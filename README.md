@@ -606,7 +606,7 @@ Esta sección contiene puntos importantes a considerar recopilados a lo largo de
 
 - Se puede establecer ``AllowTelemetry`` en 0 en ediciones de Windows Server ([1](https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.DataCollection::AllowTelemetry))
 
-- A partir de Windows 10 2004, el kit de controladores de Windows incluye un módulo de extensión de clase de adaptador de red ([NetAdapterCx]([https://learn.microsoft.com/en-us/windows-hardware/drivers/netcx/)), A partir de Windows 11 24h2+, UMDF NetAdapterCx permite a los controladores de adaptadores de red ejecutarse en modo usuario.
+- A partir de Windows 10 2004, el kit de controladores de Windows incluye un módulo de extensión de clase de adaptador de red ([NetAdapterCx](https://learn.microsoft.com/en-us/windows-hardware/drivers/netcx/)), A partir de Windows 11 24h2+, UMDF NetAdapterCx permite a los controladores de adaptadores de red ejecutarse en modo usuario.
  - Se trata de una sustitución de NDIS (Internet Adapter Driver) por un controlador compatible con NetAdapter Class Extension, que tiene algunas ventajas sobre el antiguo.
 
 También se han introducido los siguientes cambios en 24h2:
