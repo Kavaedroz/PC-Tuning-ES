@@ -14,7 +14,7 @@
 
 <h1 id="tabla-de-contenidos">1. Tabla de contenidos <a href="#tabla-de-contenidos">(permalink)</a></h1>
 
-- [1. Table of Contents](#table-of-contents)
+- [1. Tabla de contenidos](#tabla-de-contenidos)
 - [2. Introduction](#introduction)
   - [2.1. Other Resources](#other-resources)
 - [3. Benchmarking](#benchmarking)
