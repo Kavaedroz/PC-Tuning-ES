@@ -1316,13 +1316,13 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-- Open PowerShell and enter the command below to review memory management options
+- Abre PowerShell e ingresa el siguiente comando para revisar las opciones de administración de memoria.
 
     ```powershell
     Get-MMAgent
     ```
 
-- Optionally use the command below as an example to disable a given setting. If you left Superfetch and Prefetch enabled in section [Superfetch and Prefetch](#superfetch-and-prefetch), then you likely want the prefetching related features enabled
+- Opcionalmente, utiliza el siguiente comando como ejemplo para deshabilitar una configuración específica. Si dejaste activado Superfetch y Prefetch en la sección [Superfetch and Prefetch](#superfetch-and-prefetch), entonces probablemente querrás que las características relacionadas con el prefetching sigan habilitadas.
 
     ```powershell
     Disable-MMAgent -MemoryCompression
@@ -1330,54 +1330,54 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
 <h2 id="network-adapter-options">11.33. Network Adapter Options <a href="#network-adapter-options">(permalink)</a></h2>
 
-- Open ``Network Connections`` by typing ``ncpa.cpl`` in ``Win+R``
+- Abre ``Network Connections`` escribiendo ``ncpa.cpl`` en ``Win+R``
 
-- Disable any unused network adapters then right-click your main one then select ``Properties``
+- Desactiva cualquier adaptador de red que no uses, luego haz clic derecho en el principal y selecciona  ``Properties``
 
-- Disable ``NetBIOS over TCP/IP`` for all network adapters in ``Internet Protocol Version 4 (TCP/IPv4) -> Properties -> General -> Advanced -> WINS`` to prevent unnecessary system listening, typically on ports 137-139 which can be verified in a network monitoring tool such as [TCPView](https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview) or [Wirehshark](https://www.wireshark.org). For future reference, this option has to be changed for newly installed network adapters
+- Desactiva ``NetBIOS over TCP/IP`` para todos los adaptadores de red en ``Internet Protocol Version 4 (TCP/IPv4) -> Properties -> General -> Advanced -> WINS`` para evitar escucha innecesaria del sistema, típicamente en los puertos 137-139, lo cual puede verificarse en herramientas de monitoreo de red como [TCPView](https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview) o [Wirehshark](https://www.wireshark.org). Para referencia futura, esta opción debe cambiarse para cada adaptador de red recién instalado.
 
-- Optionally configure DNS settings
+- Opcionalmente configura los ajustes de DNS.
 
-  - See [DNS Resolvers - Recommended Providers | Privacy Guides](https://www.privacyguides.org/en/dns)
+  - Consulta: [DNS Resolvers - Recommended Providers | Privacy Guides](https://www.privacyguides.org/en/dns)
 
 <h2 id="audio-devices">11.34. Audio Devices <a href="#audio-devices">(permalink)</a></h2>
 
-- The sound control panel can be opened by typing ``mmsys.cpl`` in ``Win+R``
+- El panel de control de sonido se puede abrir escribiendo ``mmsys.cpl`` en ``Win+R``
 
-- Disable unused Playback and Recording devices
+- Desactiva los dispositivos de Reproducción y Grabación que no uses.
 
-- I would recommend avoid using audio enhancements as they appear to marginally waste resources ([1](/assets/images/audio%20enhancements-benchmark.png))
+- Se recomienda evitar el uso de mejoras de audio ya que parecen consumir recursos marginalmente ([1](/assets/images/audio%20enhancements-benchmark.png))
 
-- Optionally set the option in the communications tab to ``Do nothing`` to prevent automatic adjustment of audio levels between audio sources as this is an annoyance for the majority of users ([1](https://multimedia.easeus.com/ai-article/windows-audio-ducking.html), [2](https://superuser.com/questions/1147371/how-can-i-disable-automatic-windows-7-8-10-audio-ducking))
+- Opcionalmente, en la pestaña de comunicaciones, establece la opción en ``Do nothing`` para evitar el ajuste automático de los niveles de audio entre fuentes, lo cual suele ser una molestia para la mayoría de los usuarios ([1](https://multimedia.easeus.com/ai-article/windows-audio-ducking.html), [2](https://superuser.com/questions/1147371/how-can-i-disable-automatic-windows-7-8-10-audio-ducking))
 
-- Minimize the size of the audio buffer with [LowAudioLatency](https://github.com/spddl/LowAudioLatency) or on your DAC ([1](https://www.youtube.com/watch?v=JTuZvRF-OgE&t=464s)). Beware of audio dropouts due to the CPU not being able to keep up under load
+- Minimiza el tamaño del búfer de audio con [LowAudioLatency](https://github.com/spddl/LowAudioLatency) o en tu DAC ([1](https://www.youtube.com/watch?v=JTuZvRF-OgE&t=464s)). Cuidado con las caídas de audio si el CPU no puede mantenerse al día bajo carga.
 
 <h2 id="device-manager">11.35. Device Manager <a href="#device-manager">(permalink)</a></h2>
 
-- Open Device Manager by typing ``devmgmt.msc`` in ``Win+R``
+- Abre el Administrador de Dispositivos escribiendo ``devmgmt.msc`` en ``Win+R``
 
-- Navigate to ``View -> Devices by type``
+- Navega a ``View -> Devices by type``
 
-  - In the ``Disk drives`` category, you can disable write-cache buffer flushing on all drives in the ``Properties -> Policies`` section if your system has a backup power supply or is not prone to power failures to prevent data loss
-  - In the ``Network adapters`` category, navigate to ``Properties -> Advanced`` and disable any power-saving features
+  - En la categoría ``Disk drives``, puedes desactivar la opción de vaciado del búfer de caché de escritura en todas las unidades en ``Properties -> Policies`` si tu sistema tiene una fuente de energía de respaldo o no es propenso a fallos eléctricos, para evitar pérdida de datos.
+    
+  - En la categoría ``Network adapters`` , navega a ``Properties -> Advanced`` y desactiva cualquier opción de ahorro de energía.
 
-- Navigate to ``View -> Devices by connection``
+- Navega a ``View -> Devices by connection``
 
-  - Disable any PCIe, SATA, NVMe and XHCI controllers and USB hubs with nothing connected to them
-  - Disable every device that isn't the GPU on the same PCIe port as the GPU as long as you don't need them
+  - Desactiva cualquier controlador PCIe, SATA, NVMe y XHCI así como concentradores USB que no tengan nada conectado
+  - Desactiva cualquier dispositivo que no sea la GPU que comparta el mismo puerto PCIe que la GPU, siempre que no los necesites.
 
-- Navigate to ``View -> Resources by connection``
+- Navega a ``View -> Resources by connection``
 
-  - Disable any unneeded devices that are using an IRQ or I/O resources, always ask if unsure and take your time on this step
-  - If there are multiple entries of the same devices and you are unsure which one is in use, refer back to the tree structure in ``View -> Devices by connection``. This is because a single device can use many resources (e.g. IRQs). You can also use [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) to check for duplicate and unneeded devices in case you accidentally miss any with the cluttered Device Manager tree structure
-
-- Optionally use [DeviceCleanup](https://www.uwe-sieber.de/files/DeviceCleanup.zip) to remove hidden devices
+  - Desactiva cualquier dispositivo innecesario que esté utilizando un recurso IRQ o de E/S. Siempre pregunta si tienes dudas y tómate tu tiempo en este paso.
+  - Si hay múltiples entradas del mismo dispositivo y no estás seguro de cuál está en uso, vuelve a consultar la estructura en árbol en ``View -> Devices by connection``. Esto se debe a que un solo dispositivo puede usar varios recursos (por ejemplo, IRQs). También puedes usar [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) para verificar dispositivos duplicados o innecesarios en caso de que pases alguno por alto en la vista desordenada del Administrador de Dispositivos.
+- Opcionalmente usa [DeviceCleanup](https://www.uwe-sieber.de/files/DeviceCleanup.zip) para eliminar dispositivos ocultos.
 
 <h2 id="device-power-saving">11.36. Device Power-Saving <a href="#device-power-saving">(permalink)</a></h2>
 
-Open PowerShell and enter the command below to disable the ``Allow the computer to turn off this device to save power`` option for all applicable devices in Device Manager.
+Abre PowerShell e ingresa el siguiente comando para desactivar la opción ``Allow the computer to turn off this device to save power`` para todos los dispositivos aplicables en el Administrador de Dispositivos..
 
-Re-plugging devices may cause this option to re-enable so either avoid doing so, run this command again each time or place it in a script and run it at system startup as a precautionary measure with Task Scheduler ([instructions](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Ensure to wrap any paths with quotes if there are spaces in them. Ensure to verify whether everything is working correctly after a system restart. You need to enable the ``Run with highest privileges`` option if administrator privileges are required. For PowerShell scripts, set the program to start to ``PowerShell`` and the arguments to the path of the script (e.g. ``C:\device-power-saving.ps1``).
+Reconectar dispositivos puede hacer que esta opción se vuelva a habilitar, así que evita hacerlo, vuelve a ejecutar este comando cada vez, o colócalo en un script que se ejecute al inicio del sistema usando el Programador de Tareas ([instrucciones](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Asegúrate de colocar entre comillas cualquier ruta con espacios. Verifica que todo funcione correctamente tras reiniciar el sistema. Debes habilitar la opción ``Run with highest privileges`` si se requieren privilegios de administrador. Para scripts de PowerShell, establece el programa a iniciar como ``PowerShell`` y los argumentos como la ruta del script (por ejemplo: (e.g. ``C:\device-power-saving.ps1``).
 
 ```powershell
 Get-WmiObject MSPower_DeviceEnable -Namespace root\wmi | ForEach-Object { $_.enable = $false; $_.psbase.put(); }
@@ -1385,7 +1385,7 @@ Get-WmiObject MSPower_DeviceEnable -Namespace root\wmi | ForEach-Object { $_.ena
 
 <h2 id="event-trace-sessions-ets">11.37. Event Trace Sessions (ETS) <a href="#event-trace-sessions-ets">(permalink)</a></h2>
 
-This section outlines instructions to mass-toggle the majority of Event Trace Sessions which can be viewed by typing ``perfmon`` in ``Win+R`` then navigating to ``Data Collector Sets -> Event Trace Sessions``. Programs that rely on event tracers will not be able to log data until the required sessions are restored (e.g. Windows Event Logging) which is the purpose of creating two registry files to toggle between them. Open CMD as administrator and enter the commands below to build the registry files in the ``C:\`` directory. These registry files must be run with Trusted Installer (use [NSudo](https://github.com/M2TeamArchived/NSudo/releases/latest)) to prevent permission errors.
+Esta sección describe instrucciones para desactivar la mayoría de las Event Trace Sessions, que se pueden ver escribiendo ``perfmon`` en ``Win+R`` y navegando a ``Data Collector Sets -> Event Trace Sessions``. Los programas que dependen de trazadores de eventos no podrán registrar datos hasta que se restauren las sesiones requeridas (por ejemplo, el registro de eventos de Windows), por lo que se crean dos archivos de registro para alternar entre ellos. Abre CMD como administrador e ingresa los comandos a continuación para crear los archivos de registro en el directorio ``C:\`` Estos archivos deben ejecutarse como Trusted Installer (usa [NSudo](https://github.com/M2TeamArchived/NSudo/releases/latest)) para evitar errores de permisos.
 
 - ``ets-enable.reg``
 
@@ -1401,23 +1401,23 @@ This section outlines instructions to mass-toggle the majority of Event Trace Se
 
 <h2 id="file-system">11.38. File System <a href="#file-system">(permalink)</a></h2>
 
-Open CMD as administrator and enter the commands below.
+Abre CMD como administrador e ingresa los comandos a continuación.
 
-- Disable the creation of 8.3 character-length file names on FAT and NTFS-formatted volumes which aids performance and security ([1](https://web.archive.org/web/20200217151754/https://ttcshelbyville.wordpress.com/2018/12/02/should-you-disable-8dot3-for-performance-and-security))
+- Desactiva la creación de nombres de archivo con longitud de 8.3 caracteres en volúmenes con formato FAT y NTFS, lo cual mejora el rendimiento y la seguridad ([1](https://web.archive.org/web/20200217151754/https://ttcshelbyville.wordpress.com/2018/12/02/should-you-disable-8dot3-for-performance-and-security))
 
-  - Disable the creation of 8.3 character-length file names
+  - Desactiva la creación de nombres de archivo 8.3
 
     ```bat
     fsutil 8dot3name set 1
     ```
 
-  - If the steps carried out in section [Booting Into the ISO](#booting-into-the-iso) to strip 8dot3 names was followed correctly, the command below should display a value close to 0 for "total 8dot3 names found"
+  - Si se realizaron correctamente los pasos descritos en la sección [Booting Into the ISO](#booting-into-the-iso) para eliminar los nombres 8dot3, el comando a continuación debería mostrar un valor cercano a 0 para "total 8dot3 names found"
 
     ```bat
     fsutil 8dot3name scan /s C:
     ```
 
-- Disable updates to the Last Access Time stamp on each directory when directories are listed on an NTFS volume. Disabling the Last Access Time feature improves the speed of file and directory access ([1](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior#remarks)). Beware that this may affect backup and remote storage programs as per the official remarks ([1](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior#remarks))
+- Desactiva las actualizaciones de la marca de tiempo de Último Acceso en cada directorio cuando se listan directorios en un volumen NTFS. Desactivar esta característica mejora la velocidad de acceso a archivos y directorios ([1](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior#remarks)). Ten en cuenta que esto puede afectar a programas de respaldo y almacenamiento remoto según los comentarios oficiales ([1](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fsutil-behavior#remarks))
 
     ```bat
     fsutil behavior set disablelastaccess 1
@@ -1428,44 +1428,44 @@ Open CMD as administrator and enter the commands below.
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-Message signaled interrupts (MSIs) are faster than traditional line-based interrupts and may also resolve the issue of shared interrupts which are often the cause of high interrupt latency and stability ([1](https://repo.zenk-security.com/Linux%20et%20systemes%20d.exploitations/Windows%20Internals%20Part%201_6th%20Edition.pdf)).
+Los Message Signaled Interrupts (MSIs) son más rápidos que las interrupciones tradicionales basadas en línea y también pueden resolver el problema de interrupciones compartidas, que suelen ser la causa de alta latencia de interrupciones y problemas de estabilidad ([1](https://repo.zenk-security.com/Linux%20et%20systemes%20d.exploitations/Windows%20Internals%20Part%201_6th%20Edition.pdf)).
 
-- Download and open [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) or [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy)
+- Descarga y abre [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) o [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy)
 
-- MSIs can be enabled on devices that support it. It is worth noting that it may be in the developer's intention to not enable MSIs in the driver INF file hence MSIs will be disabled by default once the driver is installed. Namely, NVIDIA seems to selectively enable MSIs depending on the GPU architecture ([1](https://www.nvidia.com/en-us/geforce/forums/game-ready-drivers/13/528356)). Exercise with due care and carry out tests to determine whether changes result in positive performance scaling
+- Se pueden habilitar los MSIs en dispositivos que los soportan. Es importante notar que puede ser intencional por parte del desarrollador no habilitar MSIs en el archivo INF del controlador, por lo que estarán deshabilitados por defecto una vez instalado el driver. Por ejemplo, NVIDIA parece habilitar MSIs selectivamente dependiendo de la arquitectura de la GPU ([1](https://www.nvidia.com/en-us/geforce/forums/game-ready-drivers/13/528356)). Actúa con precaución y realiza pruebas para determinar si los cambios resultan en una mejora de rendimiento.
 
-  - You will BSOD if you enable MSIs for the stock Windows 7 SATA driver which you should have already updated as mentioned in section [Installing Drivers](#installing-drivers)
+  - Sufrirás una pantalla azul (BSOD) si habilitas MSIs para el controlador SATA por defecto de Windows 7, el cual ya deberías haber actualizado según lo mencionado en la sección [Installing Drivers](#installing-drivers).
 
-- To verify whether a device is utilizing MSIs, restart your PC and check whether the given device has a negative IRQ in MSI Utility
+- Para verificar si un dispositivo está utilizando MSIs, reinicia tu PC y comprueba si el dispositivo tiene un IRQ negativo en MSI Utility.
 
-- Although this step may have been caried out in an earlier section to rule out the hardware-related causes of IRQ sharing, the software-related causes of potential IRQ sharing can be assessed now by confirming that there is no IRQ sharing on your system by typing ``msinfo32`` in ``Win+R`` then navigating to the ``Conflicts/Sharing`` section
+- Aunque este paso puede haberse realizado en una sección anterior para descartar causas relacionadas con hardware en la compartición de IRQs, ahora pueden evaluarse las causas relacionadas con software confirmando que no hay IRQs compartidas en tu sistema escribiendo ``msinfo32`` en ``Win+R`` y navegando a la sección ``Conflicts/Sharing``.
 
-  - If the ``System timer`` device and ``High precision event timer`` are sharing IRQ 0, a solution to this is to disable the parent device's driver of ``System timer`` which is ``PCI standard ISA bridge``. This can be accomplished with the command below. It is important to note that disabling ``msisadrv`` breaks the keyboard on mobile devices
+  - Si el dispositivo ``System timer`` y ``High precision event timer`` comparten el IRQ 0, una solución es desactivar el controlador del dispositivo padre de ``System timer`` que es ``PCI standard ISA bridge``. Esto puede hacerse con el siguiente comando. Es importante notar que desactivar ``msisadrv`` rompe el teclado en dispositivos móviles.
 
     ```bat
     reg add "HKLM\SYSTEM\CurrentControlSet\Services\msisadrv" /v "Start" /t REG_DWORD /d "4" /f
     ```
 
 > [!IMPORTANT]
-> To prevent unexpected breakage and problems due to service dependency errors, assess the other services that depend on the service you want to disable. This can be done by opening CMD as administrator then typing ``sc EnumDepend <service>`` which describes the services that rely on the service you want to disable. These services should be disabled to avoid dependency errors. If you can't disable them (e.g. because you need them), then you have no choice but to leave the service you wanted to disable initially enabled.
+> Para evitar errores inesperados y problemas debido a dependencias entre servicios, evalúa otros servicios que dependan del servicio que deseas deshabilitar. Esto puede hacerse abriendo CMD como administrador y escribiendo ``sc EnumDepend <service>`` , lo cual describirá los servicios que dependen del que deseas desactivar. Estos servicios también deben ser deshabilitados para evitar errores de dependencia. Si no puedes deshabilitarlos (por ejemplo, porque los necesitas), entonces no tendrás otra opción más que dejar habilitado el servicio que pretendías desactivar inicialmente.
 
 <h2 id="xhci-interrupt-moderation-imod">11.40. XHCI Interrupt Moderation (IMOD) <a href="#xhci-interrupt-moderation-imod">(permalink)</a></h2>
 
-On most systems, Windows 7 uses an IMOD interval of 1ms whereas recent versions of Windows use 0.05ms (50us) unless specified by the installed USB driver. This means that after an interrupt has been generated, the XHCI controller waits (buffer period) for the specified interval for more data to arrive before generating another interrupt which reduces CPU utilization but potentially results in data from a given device being supplied at an inconsistent rate in the event of expecting data from other devices within the buffer period that are connected to the same XHCI controller.
+En la mayoría de los sistemas, Windows 7 utiliza un intervalo IMOD de 1 ms, mientras que versiones más recientes de Windows emplean 0.05 ms (50 μs), a menos que el controlador USB instalado indique lo contrario. Esto significa que, después de que se genera una interrupción, el controlador XHCI espera (período de búfer) durante el intervalo especificado para que llegue más información antes de generar otra interrupción. Esta técnica reduce el uso de CPU, pero puede ocasionar que los datos de un dispositivo se suministren de forma inconsistente si se espera información de otros dispositivos conectados al mismo controlador XHCI dentro de ese mismo período de espera.
 
-For example, a mouse with a 1kHz polling rate will report data every 1ms. While only moving the mouse with an IMOD interval of 1ms, interrupt moderation will not be taking place because interrupts are being generated at a rate less than or equal to the specified interval. Realistically while playing a fast-paced game, you will easily surpass 1000 interrupts/s with keyboard and audio interaction while moving the mouse hence there will be a loss of information because you will be expecting data within the waiting period from either devices. Although this is unlikely with an IMOD interval of 0.05ms (50us), it can still happen.
+Por ejemplo, un mouse con tasa de sondeo de 1 kHz enviará datos cada 1 ms. Si solo estás moviendo el mouse y el intervalo IMOD es de 1 ms, no habrá moderación de interrupciones ya que las interrupciones se generan a una tasa igual o menor al intervalo especificado. Sin embargo, en juegos rápidos, fácilmente superarás las 1000 interrupciones por segundo al mover el mouse mientras usas teclado y audio, lo cual puede derivar en pérdida de información, ya que estarás esperando datos durante el período de espera desde cualquiera de los dispositivos. Aunque esto es poco probable con un intervalo IMOD de 0.05 ms (50 μs), aún puede ocurrir.
 
-As an example, 1ms IMOD interval with an 8kHz mouse is already problematic because you are expecting data every 0.125ms which is significantly greater than the specified interval which results in a major bottleneck ([1](https://www.overclock.net/threads/usb-polling-precision.1550666/page-61#post-28576466)).
+Como ejemplo, un intervalo IMOD de 1 ms combinado con un mouse de 8 kHz ya es problemático, porque estás esperando datos cada 0.125 ms, lo cual es significativamente más frecuente que el intervalo especificado, generando un gran cuello de botella ([1](https://www.overclock.net/threads/usb-polling-precision.1550666/page-61#post-28576466)).
 
-- See [How to persistently disable XHCI Interrupt Moderation | BoringBoredom](https://github.com/BoringBoredom/PC-Optimization-Hub/blob/main/content/xhci%20imod/xhci%20imod.md)
+- Consulta: [Cómo deshabilitar persistentemente la moderación de interrupciones XHCI | BoringBoredom](https://github.com/BoringBoredom/PC-Optimization-Hub/blob/main/content/xhci%20imod/xhci%20imod.md)
 
-- Microsoft Vulnerable Driver Blocklist may need to be disabled with the command below in order to load the [RWEverything](http://rweverything.com) driver however some in-game anticheats do not adhere to disabling the blocklist so you will need to test whether this is the case (e.g. game refuses to launch)
+- Es posible que debas desactivar la lista de bloqueo de controladores vulnerables de Microsoft con el siguiente comando para cargar el controlador de [RWEverything](http://rweverything.com) , aunque algunos anticheats no respetan esta desactivación, por lo que deberás probar si el juego en cuestión se ejecuta correctamente.
 
     ```bat
     reg add "HKLM\SYSTEM\CurrentControlSet\Control\CI\Config" /v "VulnerableDriverBlocklistEnable" /t REG_DWORD /d "0" /f
     ```
 
-- In some cases, the interrupter index can change after a reboot meaning the address will become invalid if it is hard-coded. To work around this, you can simply disable IMOD for all interrupters by placing the [XHCI-IMOD-Interval.ps1](/bin/XHCI-IMOD-Interval.ps1) script somewhere safe and launching it at startup with Task Scheduler ([instructions](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Ensure to wrap any paths with quotes if there are spaces in them. Ensure to verify whether everything is working correctly after a system restart. You need to enable the ``Run with highest privileges`` option if administrator privileges are required. For PowerShell scripts, set the program to start to ``PowerShell`` and the arguments to the path of the script (e.g. ``C:\XHCI-IMOD-Interval.ps1``)
+- En ciertos casos, el índice de interrupción puede cambiar después de un reinicio, haciendo inválida la dirección si fue codificada manualmente. Como solución, puedes simplemente deshabilitar IMOD para todos los índices de interrupción colocando el script [XHCI-IMOD-Interval.ps1](/bin/XHCI-IMOD-Interval.ps1) en una ubicación segura y configurándolo para que se ejecute al inicio mediante el Programador de tareas ([instrucciones](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Asegúrate de encerrar en comillas cualquier ruta que contenga espacios. Verifica que todo esté funcionando correctamente tras reiniciar el sistema. Debes activar la opción ``Run with highest privileges`` si se requieren privilegios de administrador. Para scripts de PowerShell, establece el programa de inicio como ``PowerShell`` y los argumentos como la ruta del script (por ejemplo: ``C:\XHCI-IMOD-Interval.ps1``)
 
   ```bat
   PowerShell C:\XHCI-IMOD-Interval.ps1
