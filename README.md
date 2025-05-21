@@ -1,15 +1,18 @@
 # PC-Tuning-ES
 
 > [!CAUTION]
+> Este fork está dirigido a usuarios avanzados y no pretende ser una simple copia del proyecto original. Gran parte del contenido ha sido traducido y adaptado desde PC-Tuning para hacerlo accesible a la comunidad hispanohablante.
+
+> [!CAUTION]
 > El orden sobre el escalado en rendimiento, Hardware > UEFI > Sistema Operativo.
 
 > [!CAUTION]
-> **Do NOT** blindly trust or believe everything you read online (including this resource) and typically doubt everything. Instead, validate statements through evidence, research and benchmarks.
+> **NO** confíes ni aceptes ciegamente todo lo que encuentres en línea (incluida esta fuente). En su lugar, mantén una actitud crítica: valida cada afirmación mediante evidencia, investigación y pruebas comparativas (benchmarks).
 
 > [!CAUTION]
-> **Do NOT** apply random, unknown or undocumented changes, programs and script to your system without a comprehensive understanding of what they are changing and impact they have on security, privacy and performance.
+> **NO** apliques cambios, programas o scripts aleatorios, desconocidos o sin documentación a tu sistema sin comprender enteramente qué modifican y cuál es su impacto en la seguridad, la privacidad y el rendimiento.
 
-<h1 id="table-of-contents">1. Table of Contents <a href="#table-of-contents">(permalink)</a></h1>
+<h1 id="tabla-de-contenidos">1. Tabla de contenidos <a href="#tabla-de-contenidos">(permalink)</a></h1>
 
 - [1. Table of Contents](#table-of-contents)
 - [2. Introduction](#introduction)
