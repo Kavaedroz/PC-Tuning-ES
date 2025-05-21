@@ -42,7 +42,7 @@
   - [6.19. Opciones de instalación del software](#software-installation-options)
   - [6.20. Velocidad del enlace pci para dispositivos](#pci-link-speed-for-devices)
   - [6.21. Curvas de ventiladores](#fan-curves)
-  - [6.22. Perfiles y copias de seguridad del BIOS](#bios-profiles-and-backups)
+  - [6.22. Perfiles y copias de seguridad de BIOS](#bios-profiles-and-backups)
 - [7. Configuración de puertos usb](#configure-usb-port-layout)
   - [7.1. Revisión de los puertos usb accesibles](#reviewing-accessible-usb-ports)
   - [7.2. Planificación de la Distribución](#layout-planning)
@@ -367,11 +367,11 @@ El modo MBR/Legacy requiere que el Compatibility Support Module (CSM) esté habi
 
 En Windows 11, algunos sistemas antitrampas (Vanguard, FACEIT, THE FINALS) requieren que el arranque seguro esté activado. Si alguna herramienta booteable falla por culpa del arranque seguro, se recomienda desactivarlo temporalmente en lugar de modificar certificados o claves, ya que esto puede ocasionar problemas adicionales. Para comprobar si está habilitado, abre ``msinfo32`` desde ``Win+R`` y revisa el valor de “Arranque seguro”.
 
-<h2 id="fast-startup-standby-and-hibernate">6.16. Fast Startup, Standby and Hibernate <a href="#fast-startup-standby-and-hibernate">(permalink)</a></h2>
+<h2 id="fast-startup-standby-and-hibernate">6.16. Inicio rápido, suspensión e hibernación <a href="#fast-startup-standby-and-hibernate">(permalink)</a></h2>
 
-This boils down to personal preference, perceptions and experiences however, some individuals prefer not to utilize features such as Fast Startup, standby and hibernation, as they can lead to unexpected issues ([explanation](https://www.youtube.com/watch?v=OBGxt8zhbRk)), while preferring to perform clean system boots instead of saving and restoring kernel and software state thus limiting the system power states to S0 (working state) and S5 (soft off). Learn about system power states and their meaning [here](https://learn.microsoft.com/en-us/windows/win32/power/system-power-states) and [here](https://www.sciencedirect.com/topics/computer-science/sleeping-state). These options in BIOS are often named Fast Startup, Suspend to RAM, S-States (search for *S1*, *S2*, *S3*, *S4*, *S5*), standby or similar options. S-State status can be verified with ``powercfg /a`` in CMD.
+Este apartado depende de la preferencia personal, percepción y experiencia del usuario. Algunas personas prefieren no usar funciones como el inicio rápido (Fast Startup), suspensión y hibernación, ya que pueden provocar problemas inesperados ([explicación](https://www.youtube.com/watch?v=OBGxt8zhbRk)), y en su lugar optan por realizar arranques limpios que no reutilizan estados previos del núcleo y del software. Esto limita los estados de energía del sistema a S0 (encendido) y S5 (apagado suave). Puedes aprender más sobre los estados de energía del sistema en [este enlace oficial de Microsoft](https://learn.microsoft.com/en-us/windows/win32/power/system-power-states) y [esta referencia técnica.](https://www.sciencedirect.com/topics/computer-science/sleeping-state). En la BIOS, estas opciones suelen denominarse Fast Startup, Suspend to RAM, S-States (*S1*, *S2*, *S3*, *S4*, *S5*), standby, o similares. Puedes verificar los estados de suspensión disponibles en tu sistema ejecutando el siguiente comando  ``powercfg /a`` en el CMD:
 
-Windows also has a toggle that disables Fast Startup, hibernation and removes ``C:\hiberfil.sys``:
+Windows también ofrece una opción para deshabilitar el inicio rápido y la hibernación, además de eliminar el archivo ``C:\hiberfil.sys``:
 
 ```bat
 powercfg /h off
@@ -379,156 +379,156 @@ powercfg /h off
 
 <h2 id="spread-spectrum">6.17. Spread Spectrum <a href="#spread-spectrum">(permalink)</a></h2>
 
-Disable Spread Spectrum ([read more](https://en.wikipedia.org/wiki/Spread_spectrum#Effect)) and ensure BCLK frequency is close to the desired value as possible (e.g. 100MHz not 99.97MHz) in [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html) however, this highly dependent on the system and motherboard.
+Desactiva el Spread Spectrum ([más información aqui](https://en.wikipedia.org/wiki/Spread_spectrum#Effect)) y asegúrate de que la frecuencia del BCLK esté lo más cercana posible al valor deseado (por ejemplo, 100 MHz en lugar de 99.97 MHz), lo cual puedes verificar con [CPU-Z](https://www.cpuid.com/softwares/cpu-z.html). Sin embargo, esto depende en gran medida del sistema y la placa base.
 
 <h2 id="legacy-usb-support">6.18. Legacy USB Support <a href="#legacy-usb-support">(permalink)</a></h2>
 
-Disable Legacy USB Support as it may cause the system to enter System Management Mode (SMM) via System Management Interrupts (SMIs) ([1](https://patents.google.com/patent/US6067589), [2](https://www.kernel.org/doc/Documentation/x86/usb-legacy-support.txt)) which are high priority unmaskable hardware interrupts which cause the CPU to immediately suspend all other activities, including the operating system ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). You may need to turn this on to install a new operating system, access BIOS or USB devices in some cases.
+Desactiva el Legacy USB Support, ya que puede hacer que el sistema entre en System Management Mode (SMM) mediante System Management Interrupts (SMIs) ([1](https://patents.google.com/patent/US6067589), [2](https://www.kernel.org/doc/Documentation/x86/usb-legacy-support.txt)) que son interrupciones de hardware de alta prioridad no enmascarables que hacen que la CPU suspenda inmediatamente todas las demás actividades, incluido el sistema operativo ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). Es posible que necesites activarlo para instalar un nuevo sistema operativo, acceder a la BIOS o usar dispositivos USB en algunos casos.
 
-<h2 id="software-installation-options">6.19. Software Installation Options <a href="#software-installation-options">(permalink)</a></h2>
+<h2 id="software-installation-options">6.19. Opciones de instalación del software <a href="#software-installation-options">(permalink)</a></h2>
 
-If there are options relating to software installation (e.g. ASUS Armoury Crate), then disable them. These types of software are typically in-line with other bloatware which can safely be avoided and are present in various BIOSes ([ASUS](https://www.asus.com/support/faq/1043788), [Gigabyte](https://old.reddit.com/r/gigabyte/comments/106d9ns/gigabyte_control_center_prompt_to_install_every/ja0gc6l), [MSI](https://old.reddit.com/r/MSI_Gaming/comments/14s7so7/how_to_disable_autoinstall_of_msi_center/l6zoigh), [ASRock](https://old.reddit.com/r/ASRock/comments/1bxf8jt/asrock_auto_driver_install_app/kyc904r)).
+Si existen opciones relacionadas con instalación de software (por ejemplo, ASUS Armoury Crate), desactívalas. Este tipo de software suele clasificarse como bloatware y puede evitarse sin problemas. Están presentes en distintas BIOS como las de ([ASUS](https://www.asus.com/support/faq/1043788), [Gigabyte](https://old.reddit.com/r/gigabyte/comments/106d9ns/gigabyte_control_center_prompt_to_install_every/ja0gc6l), [MSI](https://old.reddit.com/r/MSI_Gaming/comments/14s7so7/how_to_disable_autoinstall_of_msi_center/l6zoigh), [ASRock](https://old.reddit.com/r/ASRock/comments/1bxf8jt/asrock_auto_driver_install_app/kyc904r)).
 
-<h2 id="pci-link-speed-for-devices">6.20. PCI Link Speed for Devices <a href="#pci-link-speed-for-devices">(permalink)</a></h2>
+<h2 id="pci-link-speed-for-devices">6.20. Velocidad del enlace pci para dispositivos <a href="#pci-link-speed-for-devices">(permalink)</a></h2>
 
-Set PCIe link speed to the maximum supported such as ``Gen 4.0``. This may be represented as gigatransfers per second (GT/s) ([1](https://en.wikipedia.org/wiki/PCI_Express#Comparison_table)). This helps with alleviating unexpected behavior and issues.
+Configura la velocidad de enlace PCIe al valor máximo soportado, como por ejemplo Gen ``Gen 4.0``. Esto puede estar representado como gigatransferencias por segundo (GT/s) ([1](https://en.wikipedia.org/wiki/PCI_Express#Comparison_table)). Esto ayuda a evitar comportamientos inesperados y problemas.
 
-<h2 id="fan-curves">6.21. Fan Curves <a href="#fan-curves">(permalink)</a></h2>
+<h2 id="fan-curves">6.21. Curvas de ventiladores <a href="#fan-curves">(permalink)</a></h2>
 
-To maximize cooling potential, configure fan curves ([example](https://imgur.com/a/2UDYXp0)) or set a static, high, noise-acceptable RPM. Set your AIO pump speed to full if applicable.
+Para maximizar el potencial de refrigeración, configura las curvas de ventilador ([ejemplo](https://imgur.com/a/2UDYXp0)) o ajusta una velocidad estática alta aceptable en cuanto a ruido. Si usas un sistema AIO, configura la bomba a velocidad máxima.
 
-<h2 id="bios-profiles-and-backups">6.22. BIOS Profiles and Backups <a href="#bios-profiles-and-backups">(permalink)</a></h2>
+<h2 id="bios-profiles-and-backups">6.22. Perfiles y copias de seguridad de BIOS <a href="#bios-profiles-and-backups">(permalink)</a></h2>
 
-Backup BIOS by saving the current settings to a profile or export one to local storage as clearing CMOS will wipe all settings if you need to do so (e.g. while overclocking).
+Haz una copia de seguridad del BIOS guardando la configuración actual en un perfil o exportándola a un almacenamiento local, ya que limpiar el CMOS eliminará toda la configuración si necesitas hacerlo (por ejemplo, durante el overclocking).
 
-In my experience on various motherboards, loading a saved profile fails to restore certain settings after clearing CMOS. I would recommend dumping NVRAM using a tool such as [SCEWIN](https://github.com/ab3lkaizen/SCEHUB) so that when you restore a profile, dump NVRAM again then compare it to the previous/original export to see whether anything failed to restore by using a text comparison tool such as the [Notepad++ Compare plugin](https://sourceforge.net/projects/npp-compare) or [Visual Studio Code](https://code.visualstudio.com/download).
+En mi experiencia con varias placas base, cargar un perfil guardado no siempre restaura correctamente ciertos ajustes después de limpiar el CMOS. Recomiendo volcar la NVRAM utilizando una herramienta como  [SCEWIN](https://github.com/ab3lkaizen/SCEHUB), de forma que al restaurar un perfil, puedas volver a hacer un volcado de NVRAM y compararlo con el exportado previamente usando una herramienta de comparación de texto como el complemento ComparePlus de [Notepad++ Compare plugin](https://sourceforge.net/projects/npp-compare) o [Visual Studio Code](https://code.visualstudio.com/download).
 
-<h1 id="configure-usb-port-layout">7. Configure USB Port Layout <a href="#configure-usb-port-layout">(permalink)</a></h1>
+<h1 id="configure-usb-port-layout">7. Configuración de puertos usb <a href="#configure-usb-port-layout">(permalink)</a></h1>
 
-<h2 id="reviewing-accessible-usb-ports">7.1. Reviewing Accessible USB Ports <a href="#reviewing-accessible-usb-ports">(permalink)</a></h2>
+<h2 id="reviewing-accessible-usb-ports">7.1. Revisión de los puertos usb accesibles <a href="#reviewing-accessible-usb-ports">(permalink)</a></h2>
 
-Firstly, familiarize yourself with which USB ports correspond to given USB controllers as some ports shown in [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) may not be physically accessible. I recommended plugging a device into every accessible port on your system such as the ones on the motherboard I/O and front panels, then take a note of which controller and port each physical port corresponds to in USB Device Tree Viewer.
+Primero, familiarízate con qué puertos USB físicos corresponden a cada controlador USB, ya que algunos puertos mostrados en [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) podrían no ser accesibles físicamente. Se recomienda conectar un dispositivo a cada puerto accesible del sistema, como los del panel I/O de la placa base y los del panel frontal, y luego anotar a qué controlador y puerto corresponde cada uno en USB Device Tree Viewer.
 
-<h2 id="layout-planning">7.2. Layout Planning <a href="#layout-planning">(permalink)</a></h2>
+<h2 id="layout-planning">7.2. Planificación de la Distribución <a href="#layout-planning">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-Secondly, plan and decide which USB controllers you would like to plug devices into but don't plug them in yet. As for which USB controllers should be used, that is up to you. If you have more than one USB controller, you can isolate devices such as your mouse, keyboard and audio devices onto another USB controller as they have the potential to interfere with polling consistency ([1](https://forums.blurbusters.com/viewtopic.php?f=10&t=7618#p58449)). More USB controllers may be made available by using PCIe expansion cards or external USB 2.0 and 3.0 headers on your motherboard. Always verify with [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html). Ryzen systems have a USB controller that is directly connected to the CPU ([1](https://hexus.net/tech/features/mainboard/131789-amd-ryzen-3000-supporting-x570-chipset-examined)) which can be identified under the PCIe Bus category in [HWiNFO](https://www.hwinfo.com). It is usually the USB controller that is connected to an ``Internal PCIe Bridge to bus`` which is also labelled with the CPU architecture ([example](/assets/images/ryzen-cpu-usb-controller.png)).
+Luego, planifica y decide a qué controladores USB deseas conectar tus dispositivos, pero no los conectes todavía. En cuanto a qué controladores USB usar, eso queda a tu criterio. Si tienes más de un controlador USB, puedes aislar dispositivos como el ratón, teclado y dispositivos de audio en otro controlador USB, ya que tienen el potencial de interferir con la consistencia del polling ([1](https://forums.blurbusters.com/viewtopic.php?f=10&t=7618#p58449)). Se pueden obtener más controladores USB utilizando tarjetas de expansión PCIe o conectores USB 2.0 y 3.0 externos en la placa base. Siempre verifica esta información con [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html). Los sistemas Ryzen disponen de un controlador USB conectado directamente al CPU ([1](https://hexus.net/tech/features/mainboard/131789-amd-ryzen-3000-supporting-x570-chipset-examined)) el cual puede identificarse en la categoría PCIe Bus en [HWiNFO](https://www.hwinfo.com). Suele ser el controlador USB conectado a un ``Internal PCIe Bridge to bus`` el cual también está etiquetado con la arquitectura del CPU ([1](/assets/images/ryzen-cpu-usb-controller.png)).
 
-<h2 id="plugging-in-devices">7.3. Plugging In Devices <a href="#plugging-in-devices">(permalink)</a></h2>
+<h2 id="plugging-in-devices">7.3. Conexión de Dispositivos <a href="#plugging-in-devices">(permalink)</a></h2>
 
-Lastly, plug the devices into the ports and USB controllers that you have decided to use. In any case, consider populating ones that are closest to the root of the USB controller's hub tree first. Additionally, I would also recommend avoiding internal hubs ([example](/assets/images/usb-hub-internal-headers.png)).
+Por último, conecta los dispositivos a los puertos y controladores USB que decidiste usar. En cualquier caso, considera utilizar primero los puertos que estén más cercanos a la raíz del árbol del hub del controlador USB. Además, también se recomienda evitar los hubs internos ([1](/assets/images/usb-hub-internal-headers.png)).
 
-<h1 id="configure-peripherals">8. Configure Peripherals <a href="#configure-peripherals">(permalink)</a></h1>
+<h1 id="configure-peripherals">8. Configurar Periféricos <a href="#configure-peripherals">(permalink)</a></h1>
 
-<h2 id="cleaning">8.1. Cleaning <a href="#cleaning">(permalink)</a></h2>
+<h2 id="cleaning">8.1. Limpieza <a href="#cleaning">(permalink)</a></h2>
 
-Carefully use an [air dust blower](https://www.amazon.com/s?k=air+dust+blower) to remove dirt and debris from the mouse sensor lens without damage.
+Utiliza con cuidado un [soplador de aire](https://www.amazon.com/s?k=air+dust+blower) para eliminar suciedad y residuos del lente del sensor del ratón sin dañarlo.
 
-<h2 id="onboard-memory-profiles">8.2. Onboard Memory Profiles <a href="#onboard-memory-profiles">(permalink)</a></h2>
+<h2 id="onboard-memory-profiles">8.2. Perfiles de Memoria Integrada <a href="#onboard-memory-profiles">(permalink)</a></h2>
 
-Most modern peripherals support onboard memory profiles such as mice and keyboards. Configure them before configuring the OS as you will not be required to install the bloatware such as Razer Synapse to change the settings later. Details for separating bloat-free and bloated environments using a dual-boot will be discussed in later steps. Alternatively, limit the bloated software to a bootable Windows USB ([Windows To Go](https://www.youtube.com/watch?v=w34x1kBZN6c)).
+La mayoría de los periféricos modernos como ratones y teclados admiten perfiles con memoria integrada. Configúralos antes de configurar el sistema operativo, ya que así evitarás tener que instalar software innecesario como Razer Synapse para modificar los ajustes más adelante. Se abordarán más adelante los detalles sobre cómo separar entornos sin bloatware y con bloatware mediante arranque dual. Alternativamente, puedes limitar el uso del software con bloat a un USB con Windows de arranque ([Windows To Go](https://www.youtube.com/watch?v=w34x1kBZN6c)).
 
-<h2 id="rgb-lighting-effects">8.3. RGB Lighting Effects <a href="#rgb-lighting-effects">(permalink)</a></h2>
+<h2 id="rgb-lighting-effects">8.3. Efectos de Iluminación RGB <a href="#rgb-lighting-effects">(permalink)</a></h2>
 
-USB 2/3 are limited to 0.5A/0.9A respectively ([1](https://en.wikipedia.org/wiki/USB)) and RGB requires unnecessary power. Turn off lighting effects or strip the LED from the peripheral as running an RGB effect/animation can take a great toll on the MCU and will delay other processes ([1](https://wooting.io/post/what-influences-keyboard-speed), [2](https://www.techpowerup.com/review/endgame-gear-xm1-rgb/5.html#:~:text=tracking%20quality%20takes%20a%20hit%20as%20soon%20as%20RGB%20is%20enabled), [3](https://www.techpowerup.com/review/roccat-kone-pro-air/5.html#:~:text=after%20having%20disabled%20all%20RGB%20lighting,%20these%20outliers%20disappeared%20entirely)).
+Las especificaciones USB 2.0/3.0 están limitadas a 0.5 A y 0.9 A respectivamente ([1](https://en.wikipedia.org/wiki/USB)) y la iluminación RGB consume energía innecesaria. Apaga los efectos de iluminación o retira el LED del periférico, ya que ejecutar efectos/animaciones RGB puede afectar gravemente al microcontrolador (MCU), introduciendo demoras en otros procesos ([1](https://wooting.io/post/what-influences-keyboard-speed), [2](https://www.techpowerup.com/review/endgame-gear-xm1-rgb/5.html#:~:text=tracking%20quality%20takes%20a%20hit%20as%20soon%20as%20RGB%20is%20enabled), [3](https://www.techpowerup.com/review/roccat-kone-pro-air/5.html#:~:text=after%20having%20disabled%20all%20RGB%20lighting,%20these%20outliers%20disappeared%20entirely)).
 
 <h2 id="dpi">8.4. DPI <a href="#dpi">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-Higher sensor DPI reduces latency and helps in saturating polls with motion data ([1](https://www.youtube.com/watch?v=6AoRfv9W110), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=imYBTj2RXFs&t=275s)). Avoid jitter reduction (e.g. DPI downshift) and [sensor smoothing](https://old.reddit.com/r/MouseReview/comments/5haxn4/sensor_smoothing) kicking in with higher DPI values. If your game uses raw input, you can [reduce the pointer speed](https://boringboredom.github.io/tools/winsenscalculator) in Windows to offset the sensitivity from higher DPI. Otherwise, leave the slider at the default position as input will be negatively affected due to scaling. One way to determine whether a given application is using raw input is to spy on the raw input API calls with [API Monitor](http://www.rohitab.com/apimonitor) or check whether the ``enhance pointer precision`` option has any effect in-game. If you are still unsure or have doubts, leave the slider at the default position.
+Un DPI más alto en el sensor reduce la latencia y ayuda a saturar los sondeos con datos de movimiento ([1](https://www.youtube.com/watch?v=6AoRfv9W110), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=imYBTj2RXFs&t=275s)). Evita la reducción de jitter (por ejemplo, reducción de DPI) y el [sensor smoothing](https://old.reddit.com/r/MouseReview/comments/5haxn4/sensor_smoothing) que puede activarse con valores de DPI más altos.  Si tu juego utiliza entrada sin procesar (raw input) puedes reducir la velocidad del puntero en Windows para compensar la sensibilidad de un DPI más alto [calculadora](https://boringboredom.github.io/tools/winsenscalculator) De lo contrario, deja el control deslizante en su posición predeterminada, ya que el escalado puede afectar negativamente la entrada. Una forma de saber si una aplicación usa entrada sin procesar es espiar las llamadas a la API raw input con [API Monitor](http://www.rohitab.com/apimonitor) o verificar si la opción de “mejorar la precisión del puntero” tiene algún efecto en el juego. Si aún tienes dudas, deja el control deslizante en la posición predeterminada.
 
-<h2 id="report-rate">8.5. Report Rate <a href="#report-rate">(permalink)</a></h2>
+<h2 id="report-rate">8.5. Tasa de Sondeo <a href="#report-rate">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-Higher polling rates reduce jitter and latency ([1](https://www.youtube.com/watch?app=desktop&v=djCLZ6qEVuA), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=618s)). Higher polling rates may negatively impact performance depending on your hardware and general configuration so adjust accordingly.
+Tasas de sondeo más altas (polling rate) reducen jitter y latencia ([1](https://www.youtube.com/watch?app=desktop&v=djCLZ6qEVuA), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=618s)). Sin embargo, tasas de sondeo elevadas pueden afectar negativamente el rendimiento dependiendo del hardware y la configuración general, así que ajusta según sea necesario.
 
-<h2 id="polling-stability-analysis">8.6. Polling Stability Analysis <a href="#polling-stability-analysis">(permalink)</a></h2>
+<h2 id="polling-stability-analysis">8.6. Análisis de Estabilidad del Polling <a href="#polling-stability-analysis">(permalink)</a></h2>
 
-Use [Mouse Tester](https://github.com/valleyofdoom/MouseTester) to check whether each poll contains data. As an example, if the interval is spiking to 2ms (500Hz) or higher from 1ms (1kHz), this is not the expected behavior and is problematic. This may be due to several variables such as the device itself (e.g. sensor fault), cable, power issues, hardware, operating system and more. You may need to lower or disable USB interrupt moderation using the [XHCI-IMOD-Interval.ps1](/bin/XHCI-IMOD-Interval.ps1) script if there are multiple devices generating interrupts on the same USB controller and/or the mouse interrupts are being generated at a rate greater than or equal to the default IMOD interval during the benchmark resulting in IMOD kicking in.
+Utiliza [Mouse Tester](https://github.com/valleyofdoom/MouseTester) para verificar si cada sondeo contiene datos. Por ejemplo, si el intervalo sube a 2 ms (500 Hz) o más desde 1 ms (1 kHz), esto no es un comportamiento esperado y es problemático. Esto puede deberse a múltiples variables, como el propio dispositivo (por ejemplo, sensor defectuoso), cable, problemas de alimentación, hardware, sistema operativo, entre otros. Puede que necesites reducir o desactivar la moderación de interrupciones USB utilizando el script [XHCI-IMOD-Interval.ps1](/bin/XHCI-IMOD-Interval.ps1), especialmente si hay múltiples dispositivos generando interrupciones en el mismo controlador USB o si las interrupciones del ratón se generan a una frecuencia igual o superior al intervalo IMOD predeterminado durante el benchmark, lo cual activa la moderación IMOD.
 
 <h2 id="monitor">8.7. Monitor <a href="#monitor">(permalink)</a></h2>
 
-Optionally reset your monitor to factory settings and reconfigure it in case anything was misconfigured initially. Overdrive/AMA reduces latency ([1](https://twitter.com/CaIypto/status/1464236780190851078)) however, it comes with the penalty of additional overshoot. Additionally, you can attempt to calibrate it. Optionally overclock your display with [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU) and test for [frame skipping](https://www.testufo.com/frameskipping). Aim for an `actual` integer refresh rate such as 60.00/240.00, not 59.94/239.76.
+Opcionalmente, restablece tu monitor a la configuración de fábrica y reconfigúralo en caso de que haya algo mal configurado desde el inicio. La tecnología Overdrive/AMA reduce la latencia ([1](https://twitter.com/CaIypto/status/1464236780190851078)) sin embargo, esto puede venir acompañado de un exceso de compensación (overshoot). Además, puedes intentar calibrarlo. Opcionalmente, haz overclock al monitor con  [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU) y realiza pruebas de [frame skipping](https://www.testufo.com/frameskipping). Apunta a una frecuencia de actualización entera real como 60.00 Hz o 240.00 Hz, y no valores como 59.94 o 239.76.
 
-- See [Can You Calibrate a Monitor WITHOUT a Colorimeter? | techless](https://www.youtube.com/watch?v=avJTz1JhkR4)
+- Ver: [Can You Calibrate a Monitor WITHOUT a Colorimeter? | techless](https://www.youtube.com/watch?v=avJTz1JhkR4)
 
-<h1 id="stability-hardware-clocking-and-thermal-performance">9. Stability, Hardware Clocking and Thermal Performance <a href="#stability-hardware-clocking-and-thermal-performance">(permalink)</a></h1>
+<h1 id="stability-hardware-clocking-and-thermal-performance">9. Estabilidad, Overclock y Rendimiento Térmico <a href="#stability-hardware-clocking-and-thermal-performance">(permalink)</a></h1>
 
-Ensure that all of your hardware is stable before configuring a new operating system as unstable hardware can lead to crashes, data corruption, worse performance or indirectly irreversible damage to hardware. The effectiveness of testing for instability varies between tools which is why it is important to use a range of them for a sufficient amount of time (a non-exhaustive list of recommended tools is listed below).
+Asegúrate de que todo tu hardware sea estable antes de configurar un nuevo sistema operativo, ya que un hardware inestable puede causar fallos, corrupción de datos, menor rendimiento o incluso daños indirectos irreversibles en el hardware. La eficacia de las herramientas de prueba de estabilidad varía entre sí, por lo cual es importante usar una variedad de ellas durante suficiente tiempo (una lista no exhaustiva de herramientas recomendadas se incluye más abajo).
 
-<h2 id="temporary-operating-system">9.1. Temporary Operating System <a href="#temporary-operating-system">(permalink)</a></h2>
+<h2 id="temporary-operating-system">9.1. Sistema Operativo Temporal <a href="#temporary-operating-system">(permalink)</a></h2>
 
-I would highly recommend configuring a temporary dual-boot with a fresh installation of Windows or a bootable Windows USB ([Windows To Go](https://www.youtube.com/watch?v=w34x1kBZN6c)) to avoid corrupting your main operating system while stress-testing and overclocking. In terms of memory stress-testing, this also allows the stress-test to use more RAM as it isn't being hogged by potential bloatware on your current installation. Safe mode can also serve as a minimal testing environment but certain software may not work.
+Es altamente recomendable configurar un arranque dual temporal con una instalación limpia de Windows o usar un USB booteable con Windows ([Windows To Go](https://www.youtube.com/watch?v=w34x1kBZN6c)) para evitar corromper tu sistema principal mientras realizas pruebas de estrés y overclock. Para las pruebas de memoria, esto también permite que el test use más RAM, ya que no estará ocupada por bloatware potencial en tu instalación actual. El modo seguro también puede servir como entorno de prueba mínimo, pero cierto software puede no funcionar.
 
-<h2 id="general-information">9.2. General Information <a href="#general-information">(permalink)</a></h2>
+<h2 id="general-information">9.2. Información General <a href="#general-information">(permalink)</a></h2>
 
-- Verify and validate changes within software to avoid unexpected results and behavior (e.g. frequency, voltages, timings)
+- Verifica y valida los cambios dentro del software para evitar resultados y comportamientos inesperados (por ejemplo, frecuencia, voltajes, timings).
 
-- Save a BIOS profile before each change when overclocking such as changing CPU/RAM frequency and RAM timings so that you don't lose progress if you need to clear CMOS. Refer to section [BIOS Profiles and Backups](#bios-profiles-and-backups) regarding restoring settings properly
+- Guarda un perfil de BIOS antes de cada cambio cuando hagas overclock, como al modificar frecuencia o timings de CPU/RAM, para no perder el progreso si necesitas hacer un clear CMOS. Consulta la sección [Perfiles y copias de seguridad del BIOS](#bios-profiles-and-backups) sobre cómo restaurar correctamente la configuración.
 
-- When overclocking, you may be required to raise various power limits if the default limits are exceeded
+- Al hacer overclock, puede que necesites aumentar los límites de potencia si se superan los valores predeterminados.
 
-- Use [HWiNFO](https://www.hwinfo.com) to monitor system sensors. A higher polling interval can help to identify sudden spikes but not transients on a microsecond scale as an example. Avoid running while benchmarking as it has the potential to reduce the reliability of results
+- Utiliza [HWiNFO](https://www.hwinfo.com) para monitorear los sensores del sistema. Un mayor intervalo de sondeo puede ayudar a identificar picos súbitos, aunque no transitorios en escala de microsegundos. Evita ejecutarlo mientras haces benchmarks, ya que puede afectar la fiabilidad de los resultados.
 
-- A single error or crash is one too many. Monitor WHEAs with [HWiNFO](https://www.hwinfo.com)'s error count or configure an Event Viewer filter
+- Un solo error o cuelgue ya es demasiado. Monitorea los errores WHEA con el contador de errores de [HWiNFO](https://www.hwinfo.com) o crea un filtro en el Visor de Eventos.
 
-- Monitor voltages where applicable due to potential overvolting
+- Supervisa voltajes donde sea aplicable para evitar sobrevoltajes.
 
-- There are countless factors that contribute to stability such as temperature, power delivery, quality of hardware in general, silicon lottery and more
+- Hay incontables factores que influyen en la estabilidad, como la temperatura, la entrega de energía, la calidad general del hardware, la lotería del silicio y más.
 
-<h2 id="error-correction">9.3. Error Correction <a href="#error-correction">(permalink)</a></h2>
+<h2 id="error-correction">9.3. Corrección de Errores <a href="#error-correction">(permalink)</a></h2>
 
-Overclocking does not necessarily mean that the system will perform better due to factors such as error correction where applicable. You should verify whether whatever you are changing scales positively by adopting a systematic benchmarking methodology.
+El overclocking no garantiza mejor rendimiento, especialmente si entran en juego mecanismos como la corrección de errores. Verifica si los cambios que estás haciendo escalan positivamente mediante una metodología de benchmarking sistemática.
 
-<h2 id="thermal-management">9.4. Thermal Management <a href="#thermal-management">(permalink)</a></h2>
+<h2 id="thermal-management">9.4. Gestión Térmica <a href="#thermal-management">(permalink)</a></h2>
 
-Avoid thermal throttling at all costs. As a reminder, ambient temperature will generally increase during the summer. Deliberately underclock if your cooler is inadequate. A thermally stable component with an overall lower frequency is preferable compared to thermal throttling at a higher frequency/voltage. To apply additional thermal stress when tuning any component (e.g. CPU, RAM, GPU), consider turning off case, RAM fans or reducing RPM along with generating extra heat (e.g. GPU load, room heaters) while stress-testing.
+Evita el thermal throttling a toda costa. Recuerda que la temperatura ambiente aumenta durante el verano. Realiza underclock intencionalmente si tu sistema de refrigeración es inadecuado. Un componente térmicamente estable con menor frecuencia es preferible a uno que se acelera térmicamente a mayor frecuencia/voltaje. Para aplicar estrés térmico adicional al afinar componentes (como CPU, RAM, GPU), considera apagar ventiladores de gabinete/RAM, reducir las RPM o generar más calor (por ejemplo, cargando la GPU, usando calefactores) durante las pruebas de estrés.
 
-- See [RAM Overclock Stability and Heat Management | buildzoid](https://www.youtube.com/watch?v=iCD0ih4qzHw)
+- Ver: [Estabilidad del overclock de RAM y gestión térmica | buildzoid](https://www.youtube.com/watch?v=iCD0ih4qzHw)
 
-<h2 id="load-line-calibration">9.5. Load-line Calibration <a href="#load-line-calibration">(permalink)</a></h2>
+<h2 id="load-line-calibration">9.5. Calibración de la Línea de Carga (LLC) <a href="#load-line-calibration">(permalink)</a></h2>
 
-This is not a recommendation of what LLC mode to use and is instead, here for informative purposes.
+Esta no es una recomendación de qué modo de LLC usar, sino que se proporciona solo con fines informativos.
 
-- See [VRM Load-Line Visualized | ElmorLabs](https://elmorlabs.com/2019-09-05/vrm-load-line-visualized)
-- See [Vdroop setting and it’s impact on CPU operation | xDevs](https://xdevs.com/guide/e399ocg/#vdroop)
-- See [Why Vdroop is good for overclocking and taking a look at Gigabyte's Override Vcore mode | buildzoid](https://www.youtube.com/watch?v=zqvNkh4TVw8)
+- Ver: [VRM Load-Line Visualized | ElmorLabs](https://elmorlabs.com/2019-09-05/vrm-load-line-visualized)
+- Ver: [Vdroop setting and it’s impact on CPU operation | xDevs](https://xdevs.com/guide/e399ocg/#vdroop)
+- Ver: [Why Vdroop is good for overclocking and taking a look at Gigabyte's Override Vcore mode | buildzoid](https://www.youtube.com/watch?v=zqvNkh4TVw8)
 
 <h2 id="gpu">9.6. GPU <a href="#gpu">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-When overclocking the GPU, you may be required to flash a BIOS with a higher power limit or raise them.
+Cuando hagas overclock a la GPU, puede que necesites flashear un BIOS con mayor límite de potencia o elevar manualmente dichos límites.
 
-- On NVIDIA systems, ensure to disable ``CUDA - Force P2 State`` with [NVIDIA Profile Inspector](https://github.com/Orbmu2k/nvidiaProfileInspector) to prevent memory downclocking while stress-testing ([1](/assets/images/cuda-force-p2-state-analysis.png))
-- See [A Slightly Better Way To Overclock and Tweak Your Nvidia GPU | Cancerogeno](https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit)
-- See [LunarPSD/NvidiaOverclocking](https://github.com/LunarPSD/NvidiaOverclocking/blob/main/Nvidia%20Overclocking.md)
+- En sistemas NVIDIA, asegúrate de desactivar ``CUDA - Force P2 State`` con [NVIDIA Profile Inspector](https://github.com/Orbmu2k/nvidiaProfileInspector) para evitar que la memoria baje de frecuencia durante pruebas de estrés ([1](/assets/images/cuda-force-p2-state-analysis.png))
+- Ver: [A Slightly Better Way To Overclock and Tweak Your Nvidia GPU | Cancerogeno](https://docs.google.com/document/d/14ma-_Os3rNzio85yBemD-YSpF_1z75mZJz1UdzmW8GE/edit)
+- Ver: [LunarPSD/NvidiaOverclocking](https://github.com/LunarPSD/NvidiaOverclocking/blob/main/Nvidia%20Overclocking.md)
 
 <h2 id="ramcpu">9.7. RAM/CPU <a href="#ramcpu">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-- Ensure that your CPU is able to boost correctly before starting in case you have disabled options such as SpeedStep and Speed Shift which can prevent the processor from exceeding its base frequency
+- Asegúrate de que tu CPU puede hacer boost correctamente antes de comenzar, en caso de que hayas desactivado opciones como SpeedStep y Speed Shift, las cuales pueden impedir que el procesador supere su frecuencia base.
 
-- Configure RAM frequency and timings manually for a significant performance improvement ([1](https://kingfaris.co.uk/blog/intel-ram-oc-impact)). XMP does not tune many timings nor does it guarantee stability
+- Configura manualmente la frecuencia y los timings de la RAM para obtener una mejora de rendimiento significativa ([1](https://kingfaris.co.uk/blog/intel-ram-oc-impact)). XMP no ajusta muchos de los timings, ni garantiza estabilidad.
 
-  - See [Eden’s DDR4 guide](https://web.archive.org/web/20231211232729/https://cdn.discordapp.com/attachments/328891236918493184/1172922515962724444/DDR4_Guide_V1.2.1.pdf)
-  - See [KoTbelowall/INTEL-DDR4-RAM-OC-GUIDE-by-KoT](https://github.com/KoTbelowall/INTEL-DDR4-RAM-OC-GUIDE-by-KoT)
-  - See [integralfx/MemTestHelper](https://github.com/integralfx/MemTestHelper/blob/oc-guide/DDR4%20OC%20Guide.md)
+  - Consulta la [Eden’s DDR4 guide](https://web.archive.org/web/20231211232729/https://cdn.discordapp.com/attachments/328891236918493184/1172922515962724444/DDR4_Guide_V1.2.1.pdf)
+  - Consulta [KoTbelowall/INTEL-DDR4-RAM-OC-GUIDE-by-KoT](https://github.com/KoTbelowall/INTEL-DDR4-RAM-OC-GUIDE-by-KoT)
+  - Consulta [integralfx/MemTestHelper](https://github.com/integralfx/MemTestHelper/blob/oc-guide/DDR4%20OC%20Guide.md)
 
-- Configure static all-core frequencies and voltages for the CPU. Variations in hardware clocks can introduce jitter due to the process of frequency transitions. [Precision Boost Overdrive](https://www.amd.com/en/support/kb/faq/cpu-pb2) for Ryzen CPUs is an alternative option to a static frequency and voltages and is often recommended
+- Configura frecuencias y voltajes estáticos para todos los núcleos del CPU. Las variaciones en las frecuencias del hardware pueden introducir jitter debido al proceso de transiciones de frecuencia. [Precision Boost Overdrive](https://www.amd.com/en/support/kb/faq/cpu-pb2) para CPUs Ryzen es una alternativa a frecuencias y voltajes estáticos, y a menudo se recomienda.
 
-- The previous two bullet points affect each other in terms of stability which means that your RAM overclock may become unstable after tuning the CPU, so run RAM stress-tests again and adjust your CPU settings if required
+- Los dos puntos anteriores se afectan mutuamente en términos de estabilidad, lo cual significa que tu overclock de RAM puede volverse inestable después de ajustar la CPU, por lo que deberás ejecutar pruebas de estrés nuevamente y ajustar los parámetros del CPU si es necesario.
 
-<h2 id="stress-testing-tools">9.8. Stress-Testing Tools <a href="#stress-testing-tools">(permalink)</a></h2>
+<h2 id="stress-testing-tools">9.8. Herramientas para pruebas de Estrés <a href="#stress-testing-tools">(permalink)</a></h2>
 
 - [StresKit]((https://github.com/valleyofdoom/StresKit)) (bootable)
 
@@ -537,10 +537,10 @@ When overclocking the GPU, you may be required to flash a BIOS with a higher pow
   - [StresKit](https://github.com/valleyofdoom/StresKit)'s Linpack
   - [Linpack-Extended](https://github.com/BoringBoredom/Linpack-Extended)
   - [Linpack Xtreme Bootable](https://www.techpowerup.com/download/linpack-xtreme)
-  - Use a range of memory sizes
-  - Residuals should match otherwise, it may be a sign of instability
-  - GFLOP variation should be minimal
-
+  - Utiliza diferentes tamaños de memoria durante las pruebas
+  - Los residuales deben coincidir; de lo contrario, puede ser señal de inestabilidad
+  - La variación de GFLOP debe ser mínima
+    
 - [Prime95](https://www.mersenne.org/download)
 
 - [FIRESTARTER](https://github.com/tud-zih-energy/FIRESTARTER)
@@ -559,17 +559,17 @@ When overclocking the GPU, you may be required to flash a BIOS with a higher pow
 
 - [memtest_vulkan](https://github.com/GpuZelenograd/memtest_vulkan)
 
-<h1 id="install-windows">10. Install Windows <a href="#install-windows">(permalink)</a></h1>
+<h1 id="install-windows">10. Instalar Windows <a href="#install-windows">(permalink)</a></h1>
 
-<h2 id="storage-partitions">10.1. Storage Partitions <a href="#storage-partitions">(permalink)</a></h2>
+<h2 id="storage-partitions">10.1. Particiones de Almacenamiento <a href="#storage-partitions">(permalink)</a></h2>
 
-Set up a [multi-boot](https://en.wikipedia.org/wiki/Multi-booting) system to maintain separate environments for work/bloatware and gaming, ensuring the latter one remains free of bloatware. This allows you to keep the gaming partition clean and free of unnecessary software, as discussed in earlier sections. By doing so, you avoid installing bloatware on the same partition where you use real-time applications without sacrificing usability. To achieve this, shrink a volume in Disk Management ([instructions](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/shrink-a-basic-volume)) to create unallocated space for installing the new operating system.
+Configura un sistema con [multi-boot](https://en.wikipedia.org/wiki/Multi-booting) para mantener entornos separados para trabajo/bloatware y juegos, asegurando que el entorno para juegos permanezca libre de software innecesario. Esto permite mantener limpia la partición de juegos sin sacrificar la usabilidad general. Para lograrlo, reduce el tamaño de un volumen en el Administrador de discos ([1](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/shrink-a-basic-volume)) para crear espacio no asignado donde instalar el nuevo sistema operativo.
 
-<h2 id="what-version-of-windows-should-you-use">10.2. What Version of Windows Should You Use? <a href="#what-version-of-windows-should-you-use">(permalink)</a></h2>
+<h2 id="what-version-of-windows-should-you-use">10.2. ¿Qué Versión de Windows Deberías Usar? <a href="#what-version-of-windows-should-you-use">(permalink)</a></h2>
 
-This section contains important points to consider that have been collected over the years in regard to Windows versions, compatibility and exclusive features.
+Esta sección contiene puntos importantes a considerar recopilados a lo largo de los años sobre versiones de Windows, compatibilidad y funciones exclusivas:
 
-- Earlier versions of Windows lack anticheat support (due to lack of security updates from end-of-life OSes), driver support (commonly GPU, NIC) and application support in general, so some users are forced to use newer builds. See the table below of the minimum version required to install drivers for given GPUs. Subject to change
+- Las versiones antiguas de Windows carecen de soporte para anticheats (debido a la falta de actualizaciones de seguridad tras el fin del soporte), controladores (comúnmente GPU y NIC) y aplicaciones en general, por lo que algunos usuarios se ven forzados a usar versiones más recientes. Consulta la siguiente tabla para conocer la versión mínima requerida para instalar controladores en ciertas GPUs. Sujeto a cambios.
 
     |GPU|Minimum Windows Version|
     |---|---|
@@ -579,31 +579,31 @@ This section contains important points to consider that have been collected over
     |NVIDIA 40 series|Win10 1803+|
     |AMD|Refer to driver support page|
 
-- Windows Server lacks support for a lot of consumer NICs. Workaround tends such as [this](https://github.com/loopback-kr/Intel-I219-V-for-Windows-Server) tend to interfere with anticheats due to invalid signing certificates
+- Windows Server no tiene soporte para muchas NICs de consumo. Los métodos alternativos como  [este](https://github.com/loopback-kr/Intel-I219-V-for-Windows-Server) suelen interferir con anticheats debido a certificados de firma no válidos.
 
-- NVIDIA DCH drivers are supported on Windows 10 1803+ ([1](https://nvidia.custhelp.com/app/answers/detail/a_id/4777/~/nvidia-dch%2Fstandard-display-drivers-for-windows-10-faq))
+- Los drivers NVIDIA DCH son compatibles a partir de Windows 10 1803+ ([1](https://nvidia.custhelp.com/app/answers/detail/a_id/4777/~/nvidia-dch%2Fstandard-display-drivers-for-windows-10-faq))
 
-- During media playback exclusively on Windows 10 1709, the [Multimedia Class Scheduler Service](https://learn.microsoft.com/en-us/windows/win32/procthread/multimedia-class-scheduler-service) raises the timer resolution to 0.5ms which limits control regarding the requested resolution
+- Durante la reproducción de contenido multimedia exclusivamente en Windows 10 1709, el [Multimedia Class Scheduler Service](https://learn.microsoft.com/en-us/windows/win32/procthread/multimedia-class-scheduler-service) eleva la resolución del temporizador a 0.5ms, lo que limita el control respecto a la resolución solicitada.
 
-- Windows 10 1809+ is required for Ray Tracing on NVIDIA GPUs
+- Windows 10 1809+ es requerido para trazado de rayos (Ray Tracing) en GPUs NVIDIA
 
-- Microsoft implemented a fixed 10MHz QueryPerformanceFrequency on Windows 10 1809+
+- Microsoft implementó una frecuencia fija de 10 MHz para QueryPerformanceFrequency en Windows 10 1809+
 
-- Windows 10 1903+ has an updated scheduler for multi CCX Ryzen CPUs ([1](https://i.redd.it/y8nxtm08um331.png))
+- Windows 10 1903+ tiene un planificador actualizado para CPUs Ryzen con múltiples CCX ([1](https://i.redd.it/y8nxtm08um331.png))
 
-- DirectStorage requires Windows 10 1909+ but according to an article, games running on Windows 11 benefit further from new storage stack optimizations ([1](https://devblogs.microsoft.com/directx/directstorage-developer-preview-now-available))
+- DirectStorage requiere Windows 10 1909+, pero según un artículo, los juegos que se ejecutan en Windows 11 se benefician aún más gracias a optimizaciones en la nueva pila de almacenamiento ([1](https://devblogs.microsoft.com/directx/directstorage-developer-preview-now-available))
 
-- Windows 10 2004+ is required for [Hardware Accelerated GPU Scheduling](https://devblogs.microsoft.com/directx/hardware-accelerated-gpu-scheduling) which is necessary for DLSS Frame Generation ([1](https://developer.nvidia.com/rtx/streamline/get-started))
+- Windows 10 2004+ es requerido para [Hardware Accelerated GPU Scheduling](https://devblogs.microsoft.com/directx/hardware-accelerated-gpu-scheduling) la cual es necesaria para la generación de cuadros con DLSS ([1](https://developer.nvidia.com/rtx/streamline/get-started))
 
-- Processes raising the timer resolution on Windows 10 2004+ no longer affect the global timer resolution ([1](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod), [2](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change)) meaning that it is set on a per-process basis in which, processes that do not explicitly raise the resolution are not guaranteed a higher resolution and are serviced less often. This was further developed on Windows 11 as a higher resolution is not guaranteed to the calling process if its window is minimized or visibly occluded ([1](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod)). Microsoft added the ability to restore the global behavior on Windows Server 2022+ and Windows 11+ with a registry entry ([1](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change)) meaning that the implementation can not be restored on Windows 10 versions 2004 - 22H2
+- A partir de Windows 10 2004+, los procesos que aumentan la resolución del temporizador ya no afectan la resolución global ([1](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod), [2](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change))  Ahora se gestiona por proceso, lo que significa que los procesos que no solicitan explícitamente una resolución más alta no la obtienen y se atienden con menos frecuencia. Esto se desarrolló aún más en Windows 11: no se garantiza una mayor resolución al proceso llamante si su ventana está minimizada o no visible ([1](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod)). Microsoft añadió la posibilidad de restaurar el comportamiento global en Windows Server 2022+ y Windows 11+ mediante una entrada en el registro ([1](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change)) No es posible restaurar esta implementación en Windows 10 versiones 2004–22H2.
 
-- Windows 11+ has an updated scheduler for Intel 12th Gen CPUs and above ([1](https://www.anandtech.com/show/16959/intel-innovation-alder-lake-november-4th/3)) but the behavior can be replicated manually with affinity policies on any Windows version as explained in later sections
+- Windows 11+ tiene un planificador actualizado para CPUs Intel de 12ª generación en adelante ([1](https://www.anandtech.com/show/16959/intel-innovation-alder-lake-november-4th/3)), pero el comportamiento se puede replicar manualmente con políticas de afinidad en cualquier versión de Windows como se explica en secciones posteriores.
 
-- Windows 11+ limits the window message rate of background processes ([1](https://blogs.windows.com/windowsdeveloper/2023/05/26/delivering-delightful-performance-for-more-than-one-billion-users-worldwide))
+- Windows 11+ limita la frecuencia de mensajes de ventana de los procesos en segundo plano ([1](https://blogs.windows.com/windowsdeveloper/2023/05/26/delivering-delightful-performance-for-more-than-one-billion-users-worldwide))
 
-- Windows 11 is a minimum requirement for [Cross Adapter Scan-Out](https://videocardz.com/newz/microsoft-cross-adapter-scan-out-caso-delivers-16-fps-increse-on-laptops-without-dgpu-igpu-mux-switch) ([1](https://devblogs.microsoft.com/directx/optimizing-hybrid-laptop-performance-with-cross-adapter-scan-out-caso))
+- Windows 11 es un requisito mínimo para [Cross Adapter Scan-Out](https://videocardz.com/newz/microsoft-cross-adapter-scan-out-caso-delivers-16-fps-increse-on-laptops-without-dgpu-igpu-mux-switch) ([1](https://devblogs.microsoft.com/directx/optimizing-hybrid-laptop-performance-with-cross-adapter-scan-out-caso))
 
-- AllowTelemetry can be set to 0 on Windows Server editions ([1](https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.DataCollection::AllowTelemetry))
+- Se puede establecer ``AllowTelemetry`` en 0 en ediciones de Windows Server ([1](https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.DataCollection::AllowTelemetry))
 
 <h2 id="downloading-and-preparing-a-stock-windows-iso">10.3. Downloading and Preparing a Stock Windows ISO <a href="#downloading-and-preparing-a-stock-windows-iso">(permalink)</a></h2>
 
