@@ -41,7 +41,7 @@
   - [6.18. Legacy usb support](#legacy-usb-support)
   - [6.19. Opciones de instalación del software](#software-installation-options)
   - [6.20. Velocidad del enlace pci para dispositivos](#pci-link-speed-for-devices)
-  - [6.21. Curvas de ventiladores](#fan-curves)
+  - [6.21. Curvas de ventilación](#fan-curves)
   - [6.22. Perfiles y copias de seguridad de BIOS](#bios-profiles-and-backups)
 - [7. Configuración de puertos usb](#configure-usb-port-layout)
   - [7.1. Revisión de los puertos usb accesibles](#reviewing-accessible-usb-ports)
@@ -60,7 +60,7 @@
   - [9.2. Información General](#general-information)
   - [9.3. Corrección de Errores](#error-correction)
   - [9.4. Gestión Térmica](#thermal-management)
-  - [9.5. Calibración de la Línea de Carga (LLC](#load-line-calibration)
+  - [9.5. Calibración de la Línea de Carga (LLC)](#load-line-calibration)
   - [9.6. GPU](#gpu)
   - [9.7. RAM/CPU](#ramcpu)
   - [9.8. Herramientas para pruebas de Estrés](#stress-testing-tools)
@@ -285,7 +285,7 @@ Si aún no estás utilizando el estilo de partición adecuado para tu sistema, a
 
 - Ver también: [Cómo convertir MBR a GPT durante la instalación de Windows | MDTechVideos](https://www.youtube.com/watch?v=f81qKAJUdKc)
 
-<h2 id="consider-windows-version">6.2. Considerar la Versión de Window <a href="#consider-windows-version">(permalink)</a></h2>
+<h2 id="consider-windows-version">6.2. Considerar la Versión de Windows <a href="#consider-windows-version">(permalink)</a></h2>
 
 Asimismo, considera qué versión de Windows vas a utilizar, ya que ciertos ajustes también dependen de ello  [¿Qué versión de Windows deberías usar? ](#what-version-of-windows-should-you-use) para ayudarte a decidir cuál se adapta mejor a tus necesidades.
 
@@ -393,7 +393,7 @@ Si existen opciones relacionadas con instalación de software (por ejemplo, ASUS
 
 Configura la velocidad de enlace PCIe al valor máximo soportado, como por ejemplo Gen ``Gen 4.0``. Esto puede estar representado como gigatransferencias por segundo (GT/s) ([1](https://en.wikipedia.org/wiki/PCI_Express#Comparison_table)). Esto ayuda a evitar comportamientos inesperados y problemas.
 
-<h2 id="fan-curves">6.21. Curvas de ventiladores <a href="#fan-curves">(permalink)</a></h2>
+<h2 id="fan-curves">6.21. Curvas de ventilación <a href="#fan-curves">(permalink)</a></h2>
 
 Para maximizar el potencial de refrigeración, configura las curvas de ventilador ([ejemplo](https://imgur.com/a/2UDYXp0)) o ajusta una velocidad estática alta aceptable en cuanto a ruido. Si usas un sistema AIO, configura la bomba a velocidad máxima.
 
@@ -571,13 +571,13 @@ Esta sección contiene puntos importantes a considerar recopilados a lo largo de
 
 - Las versiones antiguas de Windows carecen de soporte para anticheats (debido a la falta de actualizaciones de seguridad tras el fin del soporte), controladores (comúnmente GPU y NIC) y aplicaciones en general, por lo que algunos usuarios se ven forzados a usar versiones más recientes. Consulta la siguiente tabla para conocer la versión mínima requerida para instalar controladores en ciertas GPUs. Sujeto a cambios.
 
-    |GPU|Minimum Windows Version|
+    |GPU|Versión mínima de Windows|
     |---|---|
-    |NVIDIA 10 series and lower|Supported by almost all Windows versions|
+    |NVIDIA 10 Series y versiones inferiores | Compatible con casi todas las versiones de Windows|
     |NVIDIA 16, 20 series|Win7, Win8, Win10 1709+|
     |NVIDIA 30 series|Win7, Win10 1803+|
     |NVIDIA 40 series|Win10 1803+|
-    |AMD|Refer to driver support page|
+    |AMD|Consulte la página de soporte del controlador|
 
 - Windows Server no tiene soporte para muchas NICs de consumo. Los métodos alternativos como  [este](https://github.com/loopback-kr/Intel-I219-V-for-Windows-Server) suelen interferir con anticheats debido a certificados de firma no válidos.
 
