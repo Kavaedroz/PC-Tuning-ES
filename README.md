@@ -146,13 +146,13 @@
   - [11.51. Archivo de Paginación](#paging-file)
   - [11.52. Limpieza y Mantenimiento](#cleanup-and-maintenance)
 
-<h1 id="introducción">2. Introducción <a href="#introducción">(permalink)</a></h1>
+<h1 id="introduction">2. Introducción <a href="#introduction">(permalink)</a></h1>
 
 Este recurso puede utilizarse en la medida que lo desees, pero asegúrate de prestar atención a las advertencias. El objetivo principal de este documento es aplicar un enfoque basado en evidencia para explorar prácticas de ajuste (tuning) en sistemas basados en Windows, abarcando configuraciones de hardware, sistema operativo y software, para una variedad de casos de uso. Si tu flujo de trabajo diario permite utilizar Linux, entonces úsalo: Linux ofrece mucha más flexibilidad que Windows en múltiples aspectos, especialmente para los usuarios avanzados. Este recurso está diseñado para atender a una audiencia amplia, abarcando diversos objetivos como el fortalecimiento de la seguridad y la privacidad; sin embargo, generalmente se inclina por y está orientado a obtener una ventaja competitiva en videojuegos y a la ejecución de tareas en tiempo real. Se hace especial énfasis en fomentar que los usuarios realicen los cambios por sí mismos, minimizando el uso de scripts, con el fin de asegurar la transparencia y evitar modificaciones no intencionadas en el sistema del lector.
 
 Se recomienda al lector avanzar a través de las secciones en el orden establecido, dado que cada etapa se fundamenta en la correcta ejecución de las anteriores. Por ello, la numeración secuencial de las secciones responde a una lógica progresiva en el desarrollo del contenido.
 
-<h2 id="otras-fuentes">2.1. Otras fuentes <a href="#otras-fuentes">(permalink)</a></h2>
+<h2 id="other-resources">2.1. Otras fuentes <a href="#other-resources">(permalink)</a></h2>
 
 - [BoringBoredom/PC-Optimization-Hub](https://github.com/BoringBoredom/PC-Optimization-Hub)
 - [Calypto's Latency Guide](https://calypto.us)
@@ -162,19 +162,18 @@ Se recomienda al lector avanzar a través de las secciones en el orden estableci
 - [WINDOWS OPTIMIZATION FOR SOFT RT V3](https://cryptpad.fr/pad/#/2/pad/view/Wik8tmQ6XC1csjmDNqmMN7dKc-Wfi26-5bOtZzegHCM/embed/)
 
 <h1 id="benchmarking">3. Pruebas de Rendimiento <a href="#benchmarking">(permalink)</a></h1>
+La evaluación comparativa es una herramienta clave para analizar de forma objetiva cómo afectan al sistema los cambios que se aplican, evitando que factores como el efecto placebo distorsionen los resultados. En este contexto, se utiliza principalmente para medir si un ajuste específico mejora el rendimiento. Es importante entender bien cómo hacer este tipo de pruebas, ya que tendrás que realizar tus propios experimentos para tomar decisiones informadas: por ejemplo, saber si un cambio provoca una caída de rendimiento o cuál es la mejor configuración para un juego. Antes de aplicar cualquier modificación, pregúntate cosas como: “*¿Qué quiero lograr con esto?*”, “*¿Cuál es el objetivo?*”, “*¿Qué espero mejorar?*”, “*¿Qué debería cambiar si esto funciona?”* y *“¿Cómo puedo medir ese cambio de forma clara?*”
 
-Benchmarking is employed to objectively assess and eliminate the influence of potential placebo effects in system modifications while evaluating the quality or characteristic of a given change. In the context of this resource, it typically refers to measuring performance scaling after making certain changes to your system. It is important to learn and understand what is involved in the benchmarking process as you will need to carry out your own experiments to assist in decision-making such as identifying whether a certain change results in a performance regression or what settings to use in-game. For given changes, ask yourself questions such as "*What am I trying to achieve?*", "*What is my goal?*", "*What am I trying to improve with this change?*", "*What is this change supposed to affect?*", "*How can the effects of this change be measured and demonstrated?*".
-
-- [FrameView](https://www.nvidia.com/en-gb/geforce/technologies/frameview) - [PC Latency](https://images.nvidia.com/content/images/article/system-latency-optimization-guide/nvidia-latency-optimization-guide-pc-latency.png) in games that support [PC Latency Stats](https://www.nvidia.com/en-gb/geforce/technologies/reflex/supported-products) and frame pacing
+- [FrameView](https://www.nvidia.com/en-gb/geforce/technologies/frameview) - [PC Latency](https://images.nvidia.com/content/images/article/system-latency-optimization-guide/nvidia-latency-optimization-guide-pc-latency.png) en juegos que admiten [PC Latency Stats](https://www.nvidia.com/en-gb/geforce/technologies/reflex/supported-products) y intervalo entre fotogramas
 - [Frame Latency Meter](https://github.com/GPUOpen-Tools/frame_latency_meter)
-- [PresentMon](https://boringboredom.github.io/Frame-Time-Analysis) - Various metrics such as frame pacing and [GPU Busy](https://www.intel.com/content/www/us/en/docs/gpa/user-guide/2022-4/gpu-metrics.html). See a full list [here](https://github.com/GameTechDev/PresentMon/blob/main/README-CaptureApplication.md#metric-definitions)
-- [Windows Performance Toolkit](https://learn.microsoft.com/en-us/windows-hardware/test/wpt) - Advanced performance analysis library for Windows. Extract ISR/DPC execution time data with [xperf](/bin/xperf-dpcisr.bat) or [xtw](https://github.com/valleyofdoom/xtw)
-- [Mouse Tester](https://github.com/valleyofdoom/MouseTester) - Mice performance metrics (e.g. polling interval, X/Y counts and more plots against time)
-- [NVIDIA Reflex Analyzer](https://www.nvidia.com/en-gb/geforce/news/reflex-latency-analyzer-360hz-g-sync-monitors) - End-to-end latency
-- [Frame-Time-Analysis](https://boringboredom.github.io/Frame-Time-Analysis) - Analyze CSV data logged by the programs mentioned above including 1%, 0.1% lows metrics
-- [Latency Grapher](https://boringboredom.github.io/tools/latencygrapher) - Analyze latency results from RLA, FrameView and PresentMon
+- [PresentMon](https://boringboredom.github.io/Frame-Time-Analysis) - Diversas métricas, incluyendo el intervalo entre fotogramas [GPU Busy](https://www.intel.com/content/www/us/en/docs/gpa/user-guide/2022-4/gpu-metrics.html). Lista completa [Aqui](https://github.com/GameTechDev/PresentMon/blob/main/README-CaptureApplication.md#metric-definitions)
+- [Windows Performance Toolkit](https://learn.microsoft.com/en-us/windows-hardware/test/wpt) - Biblioteca avanzada para el análisis de rendimiento en sistemas Windows. Permite extraer datos en tiempo de ejecución sobre ISR y DPC, facilitando una inspección detallada del comportamiento del sistema a bajo nivel. [xperf](/bin/xperf-dpcisr.bat) o [xtw](https://github.com/valleyofdoom/xtw)
+- [Mouse Tester](https://github.com/valleyofdoom/MouseTester) - Métricas de rendimiento del ratón, como el intervalo de sondeo, recuentos X/Y y otros datos relevantes.
+- [NVIDIA Reflex Analyzer](https://www.nvidia.com/en-gb/geforce/news/reflex-latency-analyzer-360hz-g-sync-monitors) - Latencia de extremo a extremo (End-to-end latency), útil para evaluar el tiempo total de respuesta desde la entrada hasta la visualización.
+- [Frame-Time-Analysis](https://boringboredom.github.io/Frame-Time-Analysis) - Análisis de datos CSV generados por las herramientas mencionadas anteriormente, incluyendo métricas clave como el percentil 1 % y 0,1 % para detectar variaciones en el rendimiento.
+- [Latency Grapher](https://boringboredom.github.io/tools/latencygrapher) - Evaluación de resultados de latencia utilizando herramientas como RLA, FrameView y PresentMon para obtener una visión detallada del rendimiento gráfico y la respuesta del sistema.
 
-<h1 id="physical-setup">4. Physical Setup <a href="#physical-setup">(permalink)</a></h1>
+<h1 id="physical-setup">4. Configuración Física <a href="#physical-setup">(permalink)</a></h1>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
