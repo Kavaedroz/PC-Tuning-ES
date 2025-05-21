@@ -1174,7 +1174,106 @@ Use [InSpectre](https://www.grc.com/inspectre.htm) and [CPU-Z's](https://www.cpu
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-To be completed.
+Open CMD and enter the commands below.
+
+- Set the active power scheme to High performance
+
+    ```bat
+    powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+    ```
+
+- Remove the Balanced power scheme
+
+    ```bat
+    powercfg /delete 381b4222-f694-41f0-9685-ff5bb260df2e
+    ```
+
+- Remove the Power Saver power scheme
+
+    ```bat
+    powercfg /delete a1841308-3541-4fab-bc81-f71556f20b4a
+    ```
+
+- USB 3 Link Power Management - Off
+
+    ```bat
+    powercfg /setacvalueindex scheme_current 2a737441-1930-4402-8d77-b2bebba308a3 d4e98f31-5ffe-4ce1-be31-1b38b384c009 0
+    ```
+
+- USB Selective Suspend - Disabled
+
+    ```bat
+    powercfg /setacvalueindex scheme_current 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
+    ```
+
+- Processor performance core parking min cores - 100
+
+    - CPU parking is disabled by default in the High Performance power scheme ([1](https://learn.microsoft.com/en-us/windows-server/administration/performance-tuning/hardware/power/power-performance-tuning#using-power-plans-in-windows-server)). However on Windows 11+ with modern CPUs, parking is overridden and enabled. Users can determine whether CPUs are parked by typing ``resmon`` in ``Win+R``. Apart from parking intended to be a power saving feature, videos such as [this](https://www.youtube.com/watch?v=2yOYfT_r0xI) and [this](https://www.youtube.com/watch?v=gyg7Gm7aN2A) explain that it is the desired behavior for correct thread scheduling which is probably fine for the average user, but they do not account for the latency penalty of unparking cores (as with C-State transitions) along with kernel-mode activity (interrupts, DPCs). In terms of per-CPU scheduling, you can easily achieve the same outcome by managing per-CPU load manually (e.g. pin the real-time application to a [single CCX/CCD](https://hwbusters.com/cpu/amd-ryzen-9-7950x3d-cpu-review-performance-thermals-power-analysis/2) or P-Cores) by configuring affinities with the advantage being no overhead from chipset drivers and Xbox processes constantly running in the background forcing unnecessary context switches. See the [Per-CPU Scheduling](#per-cpu-scheduling) section for more information
+
+        ```bat
+        powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 0cc5b647-c1df-4637-891a-dec35c318583 100
+        ```
+
+        ```bat
+        powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 0cc5b647-c1df-4637-891a-dec35c318584 100
+        ```
+        
+        - Processor performance time check interval - 5000
+
+    - There are a handful of ntoskrnl power management DPCs that are scheduled at a periodic interval to re-evaluate P-States and parked cores. With a static CPU frequency and core parking disabled, these checks become obsolete thus unnecessary DPCs get scheduled. The ``Processor performance time check interval`` setting controls how often these checks are taken place so increasing the setting's value can reduce CPU overhead as significantly fewer DPCs are scheduled. For reference and at the time of checking, the Power Saver, Balanced, High performance power schemes have a default value of 200, 15 and 15 respectively. 5000 is the maximum accepted value. Of course, if a dynamic CPU frequency is used (e.g. Precision Boost Overdrive, Turbo Boost) and parking is enabled, the effects of increasing this value should be evaluated as cores may not be able to boost their frequency in response to workloads as the OS is evaluating the current scenario less often
+
+        <table style="text-align: center;">
+            <tr>
+                <td rowspan="2">DPC Function</td>
+                <td colspan="3">Average DPC Rate</td>
+                <td colspan="3">Total DPCs</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td>200</td>
+                <td>5000</td>
+                <td>15</td>
+                <td>200</td>
+                <td>5000</td>
+            </tr>
+            <tr>
+                <td>ntoskrnl!PpmPerfAction</td>
+                <td>15.45Hz</td>
+                <td>3.07Hz</td>
+                <td>N/A</td>
+                <td>311</td>
+                <td>60</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ntoskrnl!PpmCheckRun</td>
+                <td>12.99Hz</td>
+                <td>2.29Hz</td>
+                <td>N/A</td>
+                <td>262</td>
+                <td>46</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>ntoskrnl!PpmCheckPeriodicStart</td>
+                <td>60.39Hz</td>
+                <td>4.99Hz</td>
+                <td>0.2Hz</td>
+                <td>1213</td>
+                <td>100</td>
+                <td>4</td>
+            </tr>
+        </table>
+
+        ```bat
+        powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 4d2b0152-7d5c-498b-88e2-34345392a2c5 5000
+        ```
+
+- Set the active scheme as the current scheme
+
+    ```bat
+    powercfg /setactive scheme_current
+    ```
 
 <h2 id="process-explorer">11.31. Process Explorer <a href="#process-explorer">(permalink)</a></h2>
 
