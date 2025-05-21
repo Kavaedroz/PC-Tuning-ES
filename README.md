@@ -605,14 +605,14 @@ Esta sección contiene puntos importantes a considerar recopilados a lo largo de
 
 - Se puede establecer ``AllowTelemetry`` en 0 en ediciones de Windows Server ([1](https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.DataCollection::AllowTelemetry))
 
-<h2 id="downloading-and-preparing-a-stock-windows-iso">10.3. Downloading and Preparing a Stock Windows ISO <a href="#downloading-and-preparing-a-stock-windows-iso">(permalink)</a></h2>
+<h2 id="downloading-and-preparing-a-stock-windows-iso">10.3. Descargar y Preparar una ISO de Windows Oficial <a href="#downloading-and-preparing-a-stock-windows-iso">(permalink)</a></h2>
 
-In order to install Windows, an installation media must be created using an ISO file. Upon downloading ISOs, ensure to cross-check the hashes for the file with official sources to verify that it is genuine and not corrupted. Use the command ``certutil -hashfile <file>`` in CMD to obtain the hashes of the file.
+Para instalar Windows, es necesario crear un medio de instalación utilizando un archivo ISO. Una vez descargadas las ISOs, asegúrate de verificar sus hashes con las fuentes oficiales para comprobar que son auténticas y no están corruptas. Usa el comando ``certutil -hashfile <archivo>`` n CMD para obtener los hashes del archivo.
 
-Ensure to download an ISO that contains an edition with group policy support as several policies are configured in later steps. Sometimes, you can get ISOs with specific editions missing so be careful. Below is a list of recommended editions.
+Asegúrate de descargar una ISO que contenga una edición con soporte para directivas de grupo, ya que varias de estas directivas se configurarán en pasos posteriores. A veces, puedes obtener ISOs con ediciones específicas ausentes, así que ten cuidado. A continuación se muestra una lista de ediciones recomendadas:
 
-- Client editions: Professional
-- Server editions: Standard (Desktop Experience)
+- Ediciones cliente: Professional
+- Ediciones servidor: Standard (Desktop Experience)
 
 <h2 id="iso-sources">10.4. ISO Sources <a href="#iso-sources">(permalink)</a></h2>
 
@@ -628,7 +628,7 @@ Ensure to download an ISO that contains an edition with group policy support as 
 <details>
 <summary>Windows 7</summary>
 
-If you are configuring Windows 7, I recommend using the ``en_windows_7_professional_with_sp1_x64_dvd_u_676939.iso`` ISO ([Adguard hashes](https://files.rg-adguard.net/file/11ad6502-c2aa-261c-8c3f-c81477b21dd2?lang=en-us)). Aditionally, you won't be able to boot into the ISO on modern hardware without integrating necessary drivers and updates which can be accomplished using tools such as [NTLite](https://www.ntlite.com) ([instructions](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) or DISM in CLI ([instructions](/docs/image-customization.md)), however NTLite is more user-friendly. Typically, only [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) and [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) drivers are required to be integrated into the ISO to even be able to boot into it. Ensure to integrate the drivers in Windows Setup as well otherwise you may have storage detection issues and unusable USB input, unless you plan on installing the ISO with DISM as described in section [Booting Into the ISO](#booting-into-the-iso) because it completely bypasses traditional Windows Setup and the ``boot.wim``. To find drivers that are compatible with your device, search for ones that support your device's HWID ([example](/assets/images/device-hwid-example.png)). If you are unable to find a USB driver for your HWID, try to integrate the [generic USB driver](https://forums.mydigitallife.net/threads/usb-3-xhci-driver-stack-for-windows-7.81934) and the ``KB2864202`` update. Below is a table of updates that I recommend integrating into the ISO.
+Si estás configurando Windows 7, recomiendo usar la ISO ``en_windows_7_professional_with_sp1_x64_dvd_u_676939.iso`` ISO ([Adguard hashes](https://files.rg-adguard.net/file/11ad6502-c2aa-261c-8c3f-c81477b21dd2?lang=en-us)). Además, no podrás iniciar la ISO en hardware moderno sin integrar los drivers y actualizaciones necesarios, lo cual se puede lograr utilizando herramientas como [NTLite](https://www.ntlite.com) ([instructions](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instructions](/docs/image-customization.md)). Sin embargo, NTLite es más fácil de usar. Normalmente, solo se requiere integrar drivers de [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) y [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) para poder iniciar el sistema desde la ISO. Asegúrate de integrar también los drivers en Windows Setup, de lo contrario podrías tener problemas para detectar almacenamiento o usar dispositivos USB, a menos que planees instalar la ISO con DISM como se describe en la sección [Iniciando desde la ISO](#booting-into-the-iso)  ya que este método omite por completo el instalador tradicional de Windows y el archivo ``boot.wim``. Para encontrar drivers compatibles con tu dispositivo, busca aquellos que soporten el HWID de tu dispositivo ([1](/assets/images/device-hwid-example.png)). Si no puedes encontrar un driver USB para tu HWID, intenta integrar el [generic USB driver](https://forums.mydigitallife.net/threads/usb-3-xhci-driver-stack-for-windows-7.81934) y la actualización ``KB2864202``. A continuación, se presenta una tabla de actualizaciones recomendadas para integrar a la ISO.
 
 |Knowledge Base (KB) ID|Notes|
 |---|---|
@@ -641,13 +641,13 @@ If you are configuring Windows 7, I recommend using the ``en_windows_7_professio
 |KB4534314|Easy anticheat Support|
 |KB3191566|WMF 5.1 (<https://www.microsoft.com/en-us/download/details.aspx?id=54616>)|
 
-If you are having trouble with Windows Setup when installing with a USB storage device despite integrating drivers and updates into the ``boot.wim``, you can use modern Windows Setup to install your Windows 7 ISO by placing the Windows 7 ``intall.wim`` in the ``sources`` folder of a Windows 10 USB installation media's ``sources`` folder. Ensure that the language of the ISOs match. This method of installing Windows 7 has alleviated issues for other individuals as modern Windows Setup is equipped with the required components to run on modern hardware and offers greater compatibility.
+Si tienes problemas con el instalador de Windows al usar un dispositivo USB a pesar de haber integrado drivers y actualizaciones en el ``boot.wim``,  puedes usar el instalador moderno de Windows para instalar tu ISO de Windows 7 colocando el archivo ``intall.wim`` de Windows 7 en la carpeta ``sources`` de un medio USB de instalación de Windows 10. Asegúrate de que los idiomas de ambas ISOs coincidan. Este método ha resuelto problemas para otras personas, ya que el instalador moderno de Windows incluye componentes necesarios para ejecutarse en hardware moderno y ofrece mayor compatibilidad.
 </details>
 
 <details>
 <summary>Windows 8.1</summary>
 
-If you are configuring Windows 8.1, I recommend using the ``en_windows_8_1_x64_dvd_2707217.iso`` ISO ([Adguard hashes](https://files.rg-adguard.net/file/406e60db-4275-7bf8-616f-56e88d9e0a4a?lang=en-us)). Additionally, the table below contains a list of updates that I recommend integrating into the ISO which can be accomplished using tools such as [NTLite](https://www.ntlite.com) ([instructions](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) .
+Si estás configurando Windows 8.1, recomiendo usar la ISO ``en_windows_8_1_x64_dvd_2707217.iso`` ([Adguard hashes](https://files.rg-adguard.net/file/406e60db-4275-7bf8-616f-56e88d9e0a4a?lang=en-us)). Además, a continuación se presenta una tabla con actualizaciones recomendadas que puedes integrar en la ISO utilizando herramientas como [NTLite](https://www.ntlite.com) ([instrucciones](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) .
 
 |Knowledge Base (KB) ID|Notes|
 |---|---|
@@ -661,39 +661,39 @@ If you are configuring Windows 8.1, I recommend using the ``en_windows_8_1_x64_d
 <details>
 <summary>Windows 10+</summary>
 
-No additional steps are required for Windows 10+ versions. The latest updates can be inegrated but this is not required if you plan on keeping Windows Update enabled once booted in the ISO. Additionally, ISOs build using UUP dump ship with the latest updates assuming that you build the latest version. This can be achieved using [NTLite](https://www.ntlite.com) ([instructions](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) or DISM in CLI ([instructions](/docs/image-customization.md)), however NTLite is more user-friendly.
+No se requieren pasos adicionales para las versiones de Windows 10 en adelante. Puedes integrar las actualizaciones más recientes, pero esto no es necesario si planeas mantener Windows Update habilitado después de iniciar desde la ISO. Además, las ISOs creadas usando UUP Dump ya incluyen las actualizaciones más recientes, siempre que construyas la última versión. Esto puede hacerse con [NTLite](https://www.ntlite.com) ([instrucciones](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instructions](/docs/image-customization.md))), aunque NTLite es más fácil de usar.
 </details>
 
-> [!IMPORTANT]
-> The presence of OEMs keys can force the installation of specific editions of Windows editions (e.g. Home) which is explained in section [Downloading and Preparing a Stock Windows ISO](#downloading-and-preparing-a-stock-windows-iso). To circumvent this, you can either customize ``EI.cfg`` and ``PID.txt`` ([instructions](https://www.youtube.com/watch?v=R3yM3AV6q-8)) or remove every edition apart from the edition you would like to install using [NTLite](https://www.ntlite.com) or DISM in CLI ([instructions](/docs/image-customization.md)), however NTLite is more user-friendly.
+> [!IMPORTANTE]
+> La presencia de claves OEM puede forzar la instalación de ediciones específicas de Windows (por ejemplo, Home), lo cual se explica en la sección [Descargar y Preparar una ISO de Windows Oficial](#downloading-and-preparing-a-stock-windows-iso). Para evitar esto, puedes personalizar los archivos ``EI.cfg`` y ``PID.txt`` ([instrucciones](https://www.youtube.com/watch?v=R3yM3AV6q-8)) o eliminar todas las ediciones excepto la que deseas instalar usando [NTLite](https://www.ntlite.com) o DISM en CLI ([instrucciones](/docs/image-customization.md)), NTLite es más fácil de usar.
 
-<h2 id="fetching-required-files">10.6. Fetching Required Files <a href="#fetching-required-files">(permalink)</a></h2>
+<h2 id="fetching-required-files">10.6. Obtener Archivos Requeridos <a href="#fetching-required-files">(permalink)</a></h2>
 
-There are primarily two prerequisites before installing Windows. These can be done later if you are willing to fetch them from another system but I would recommend getting them now. Store these somewhere that you can access offline after installing Windows such as a USB storage device as the installation process consists of not being connected to a network in the initial steps.
+Antes de instalar Windows hay dos prerrequisitos principales. Estos pueden hacerse más adelante si puedes obtenerlos desde otro sistema, pero se recomienda tenerlos preparados con anticipación. Guárdalos en un dispositivo de almacenamiento USB u otro medio accesible sin conexión tras la instalación de Windows, ya que no estarás conectado a Internet durante los primeros pasos.
 
-1. Download your NIC driver as it may not be packaged with Windows and must be installed in order to connect to a network
-2. The ``bin`` folder from this repository which can be downloaded [here](https://github.com/valleyofdoom/PC-Tuning/archive/refs/heads/main.zip)
+1. Descarga el driver de tu tarjeta de red (NIC), ya que puede no venir incluido con Windows y será necesario para conectarte a la red.
+2. La carpeta ``bin`` de este repositorio, que puede descargarse [here](https://github.com/valleyofdoom/PC-Tuning/archive/refs/heads/main.zip)
 
-<h2 id="booting-into-the-iso">10.7. Booting Into the ISO <a href="#booting-into-the-iso">(permalink)</a></h2>
+<h2 id="booting-into-the-iso">10.7. Iniciar desde la ISO <a href="#booting-into-the-iso">(permalink)</a></h2>
 
-This section covers booting into the ISO retrieved and prepared in the previous section. For the next steps, you are required to disconnect the Ethernet cable and not be connected to the internet during the installation process. This will allow us to bypass the forced Microsoft login during OOBE, allowing us to use Windows with a local account along with preventing installation of unwanted updates and drivers. There are two options when it comes to installing Windows, installing using USB storage or using DISM (without USB storage). Either option can be used. If you want to remove your current operating system and wipe the entire drive, then you will have to install using USB storage because the latter requires dual-booting.
+Esta sección cubre cómo iniciar desde la ISO descargada y preparada previamente. Para los próximos pasos, deberás desconectar el cable Ethernet y asegurarte de no estar conectado a Internet durante el proceso de instalación. Esto permitirá omitir el inicio de sesión obligatorio de Microsoft durante OOBE, permitiendo el uso de una cuenta local y evitando la instalación de actualizaciones y controladores no deseados. Existen dos formas principales de instalar Windows: mediante un dispositivo USB o utilizando DISM (sin almacenamiento USB). Ambos métodos son válidos. Si deseas eliminar tu sistema operativo actual y borrar todo el disco, deberás instalar usando USB, ya que el segundo método requiere arranque dual.
 
 <details>
 <summary>Option 1 -  Install using USB storage</summary>
 
-- Download [Ventoy](https://github.com/ventoy/Ventoy/releases) and launch ``Ventoy2Disk.exe``. Navigate to the option menu and select the correct partition style and disable Secure Boot support. The current partition style can be determined by typing ``msinfo32`` in ``Win+R``. Finally, select your USB storage and click install.
+- Descarga [Ventoy](https://github.com/ventoy/Ventoy/releases) y ejecuta ``Ventoy2Disk.exe``. En el menú de opciones selecciona el estilo de partición correcto y desactiva el soporte de Secure Boot. Puedes determinar el estilo actual de partición escribiendo``msinfo32`` en ``Win+R`` Finalmente, selecciona tu dispositivo USB y haz clic en instalar.
 
-- Move your Windows ISO into the USB storage in File Explorer and boot to the USB in UEFI.
+- Mueve tu ISO de Windows al almacenamiento USB desde el Explorador de archivos y arranca desde el USB en modo UEFI.
 
-- On Windows 10 24H2+ use the previous version of setup ([example](https://schneegans.de/windows/no-8.3/24h2.png))
+- En Windows 10 24H2 o superior, usa la versión anterior del instalador ([1](https://schneegans.de/windows/no-8.3/24h2.png)).
 
-- Prevent Windows setup restarting automatically so that 8dot3 names can be stripped properly as explained in the next steps by pressing ``Shift+F10`` to open CMD then type ``setup /NoReboot``. Continue with setup but don't restart at the end
+- Evita que el instalador de Windows reinicie automáticamente para que los nombres 8dot3 puedan ser eliminados correctamente, como se explica en los próximos pasos. Presiona ``Shift+F10`` para abrir CMD y escribe ``setup /NoReboot``. Continúa con la instalación, pero no reinicies al final.
 
-- If Secure Boot is enabled, temporarily disable it for the installation process. Boot into Ventoy on your USB in BIOS and select your Windows ISO. Continue with setup as per usual. Once setup has finished, Secure Boot can be re-enabled if you had temporarily disabled it
+- Si Secure Boot está activado, desactívalo temporalmente durante la instalación. Arranca desde Ventoy en tu USB usando BIOS y selecciona tu ISO de Windows. Continúa con la instalación normalmente. Una vez finalizada, puedes volver a activar Secure Boot si lo desactivaste temporalmente.
 
-- When installing Windows 8 with a USB, you may be required to enter a key. Use the generic key ``GCRJD-8NW9H-F2CDX-CCM8D-9D6T9`` to bypass this step. This does not activate Windows
+- Al instalar Windows 8 desde USB, puede que se te pida una clave. Usa la clave genérica ``GCRJD-8NW9H-F2CDX-CCM8D-9D6T9`` para omitir este paso. Esto no activa Windows.
 
-- When installing Win11 with a USB, you may encounter system requirement issues. To bypass the checks, press ``Shift+F10`` to open CMD then type ``regedit`` and add the relevant registry keys listed below
+- Al instalar Windows 11 desde USB, puedes encontrar restricciones por requisitos del sistema. Para omitir los chequeos, presiona ``Shift+F10`` para abrir CMD, luego escribe ``regedit`` y añade las claves de registro correspondientes.
 
     ```
     [HKEY_LOCAL_MACHINE\SYSTEM\Setup\LabConfig]
@@ -702,78 +702,78 @@ This section covers booting into the ISO retrieved and prepared in the previous 
     "BypassSecureBootCheck"=dword:00000001
     ```
 
-- After the files are copied to the new partition and before restarting, you can prevent the creation and strip existing 8.3 character-length file names on the volume Windows was just installed to which aids performance and security ([1](https://web.archive.org/web/20200217151754/https://ttcshelbyville.wordpress.com/2018/12/02/should-you-disable-8dot3-for-performance-and-security)). This must be done now (before booting) to prevent file access errors as explained [here](https://schneegans.de/windows/no-8.3).
+- Después de que los archivos hayan sido copiados a la nueva partición y antes de reiniciar, puedes evitar la creación y eliminar los nombres de archivo en formato 8.3 en el volumen donde se instaló Windows, lo cual mejora el rendimiento y la seguridad ([1](https://web.archive.org/web/20200217151754/https://ttcshelbyville.wordpress.com/2018/12/02/should-you-disable-8dot3-for-performance-and-security)). Este paso debe hacerse ahora (antes de iniciar por primera vez), de lo contrario puede generar errores de acceso a archivos, como se explica [aquí](https://schneegans.de/windows/no-8.3).
 
-  - Press ``Shift+F10`` to open CMD
+  - Presiona ``Shift+F10`` para abrir CMD.
 
-  - Determine the drive letter Windows was installed to by typing ``diskpart``, then type ``list volume`` and determine the correct drive letter. It will be a relatively large boot volume. Type ``exit`` to exit diskpart
+  - Determina la letra de la unidad donde se instaló Windows escribiendo ``diskpart``, luego ``list volume``  y determina la letra correcta (será un volumen de arranque relativamente grande). Escribe ``exit`` para salir del mismo.
 
-  - Disable the creation of 8.3 character-length file names. Replace ``<drive letter>`` with the correct drive letter (e.g. ``D:``)
-
-    ```bat
-    fsutil 8dot3name set <drive letter> 1
-    ```
-
-  - Strip existing 8.3 character-length file names. Replace ``<drive letter>`` with the correct drive letter (e.g. ``D:``)
+  - Desactiva la creación de nombres 8.3. Reemplaza ``<letra de unidad>`` por la correspondiente (por ejemplo, ``D:``)
 
     ```bat
-    fsutil 8dot3name strip /s /f <drive letter>
+    fsutil 8dot3name set <letra de unidad> 1
     ```
 
-  - Type ``wpeutil reboot`` to exit Windows setup and reboot
+  - Elimina los nombres de archivo 8.3 existentes. Reemplaza ``<letra de unidad>`` por la correspondiente (por ejemplo, ``D:``)
+
+    ```bat
+    fsutil 8dot3name strip /s /f <letra de unidad>
+    ```
+
+  - Escribe  ``wpeutil reboot`` para salir del instalador de Windows y reiniciar el sistema.
 
 </details>
 
 <details>
-<summary>Option 2 -  Install using DISM Apply-Image (without USB storage)</summary>
+<summary>Opción 2 – Instalar usando DISM Apply-Image (sin almacenamiento USB)
 
-- As this method requires specifying an existing partition to apply the ISO to, create a new partition by [shrinking a volume](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/shrink-a-basic-volume) if you haven't already, then assign the newly created unallocated space a drive letter
+- Como este método requiere especificar una partición existente para aplicar la ISO, crea una nueva partición [reduciendo un volumen](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/shrink-a-basic-volume) si aún no lo has hecho. Luego asigna una letra de unidad al nuevo espacio no asignado creado.
 
-- Extract the ISO if required then run the command below to apply the image to a given partition. Replace ``<path\to\wim>`` with the path to the ``install.wim`` or ``install.esd`` (which is located in the ``sources`` folder of the extracted ISO) in each command
+- Extrae la ISO si es necesario, y ejecuta el siguiente comando para aplicar la imagen a una partición dada. Sustituye ``<ruta\al\wim>`` por la ruta al archivo ``install.wim`` o ``install.esd`` (ubicado en la carpeta ``sources`` de la ISO extraída
 
-  - Get all available editions and their corresponding indexes
+  - Lista todas las ediciones disponibles y sus respectivos índices.
 
       ```bat
       DISM /Get-WimInfo /WimFile:<path\to\wim>
       ```
 
-  - Apply the image by replacing ``<index>`` with the index of the desired edition and ``<drive letter>`` with the drive letter you assigned in the previous step for the image to be mounted on (e.g. index ``1`` and drive letter ``D:``)
+  - Aplica la imagen reemplazando ``<índice>`` por el índice de la edición deseada y ``<letra de unidad>`` por la letra de unidad asignada en el paso anterior donde se montará la imagen (por ejemplo, índice ``1`` y unidad ``D:``)
 
       ```bat
-      DISM /Apply-Image /ImageFile:<path\to\wim> /Index:<index> /ApplyDir:<drive letter>
+      DISM /Apply-Image /ImageFile:<ruta\al\wim> /Index:<índice> /ApplyDir:<letra de unidad>
       ```
 
-- Create the boot entry with the command below. Replace ``<windir>`` with the path to the mounted ``Windows`` directory (e.g. ``D:\Windows``)
+- Crea la entrada de arranque con el siguiente comando. Sustituye ``<windir>`` por la ruta al directorio ``Windows`` montado (por ejemplo ``D:\Windows``)
 
     ```bat
     bcdboot <windir>
     ```
 
-- After the files are copied to the new partition and before restarting, you can prevent the creation and strip existing 8.3 character-length file names on the volume Windows was just installed to which aids performance and security ([1](https://web.archive.org/web/20200217151754/https://ttcshelbyville.wordpress.com/2018/12/02/should-you-disable-8dot3-for-performance-and-security)). This must be done now (before booting) to prevent file access errors as explained [here](https://schneegans.de/windows/no-8.3).
+- Después de que se hayan copiado los archivos a la nueva partición y antes de reiniciar, puedes evitar la creación y eliminar los nombres de archivo existentes con formato 8.3 (8 caracteres + 3 de extensión) en el volumen donde se acaba de instalar Windows. Esto mejora el rendimiento y la seguridad ([1](https://web.archive.org/web/20200217151754/https://ttcshelbyville.wordpress.com/2018/12/02/should-you-disable-8dot3-for-performance-and-security)). Este paso debe realizarse antes de arrancar Windows para evitar errores de acceso a archivos, como se explica [aqui](https://schneegans.de/windows/no-8.3).
 
-  - Disable the creation of 8.3 character-length file names. Replace ``<drive letter>`` with the correct drive letter (e.g. ``D:``). If the command below fails because the creation of 8dot3 names is globally disabled, first use ``fsutil 8dot3name set 2``, execute the command below, and then  disable it globally again with ``fsutil 8dot3name set 1``. This is only necessary if an error is displayed
+  - Para deshabilitar la creación de nombres de archivo 8.3, reemplaza ``<letra de unidad>`` con la correcta (por ejemplo. ``D:``). Si el comando falla porque la creación global de nombres 8.3 está desactivada, primero ejecuta ``fsutil 8dot3name set 2``, , luego el comando inferior, y finalmente vuelve a desactivarlo globalmente con ``fsutil 8dot3name set 1``. Esto solo es necesario si aparece un error.
 
     ```bat
     fsutil 8dot3name set <drive letter> 1
     ```
 
-  - Strip existing 8.3 character-length file names. Replace ``<drive letter>`` with the correct drive letter (e.g. ``D:``)
+  - Para eliminar los nombres 8.3 existentes. Sustituye ``<drive letter>`` por la correcta (por ejemplo, ``D:``)
 
     ```bat
     fsutil 8dot3name strip /s /f <drive letter>
     ```
 
-- The installation process will finish after a system restart
+- El proceso de instalación finalizará tras reiniciar el sistema.
 
 </details>
 
-<h1 id="configure-windows">11. Configure Windows <a href="#configure-windows">(permalink)</a></h1>
+<h1 id="configure-windows">11. Configurar Windows <a href="#configure-windows">(permalink)</a></h1>
 
-<h2 id="oobe-setup">11.1 OOBE Setup <a href="#oobe-setup">(permalink)</a></h2>
+<h2 id="oobe-setup">11.1 Configuración OOBE <a href="#oobe-setup">(permalink)</a></h2>
 
-- Windows Server may force you to enter a password which can be optionally be removed in later steps
-
-- If you are configuring Windows 11, press ``Shift+F10`` to open CMD, then type ``regedit`` to open the registy editor to add the registry entry below. This will allow us to continue without an internet connection by unlocking the ``continue with limited setup`` option as demonstrated in the video examples below. This removes the requirement to sign in with a Microsoft account which I highly advise against for privacy reasons generally speaking. After the registry entry has been applied, type ``shutdown /r /t 0`` in CMD to restart
+- Windows Server puede forzarte a introducir una contraseña, la cual puede eliminarse opcionalmente en pasos posteriores.
+  
+- Si estás configurando Windows 11, presiona ``Shift+F10`` para abrir CMD, luego escribe ``regedit`` para abrir el editor del registro y agrega la siguiente entrada de registro. Esto permitirá continuar sin conexión a Internet desbloqueando la opción de ``continue with limited setup`` , como se muestra en los videos de ejemplo. Esto elimina el requisito de iniciar sesión con una cuenta Microsoft, lo cual desaconsejo por motivos de privacidad en general. Después de aplicar la entrada del registro, escribe ``shutdown /r /t 0`` en CMD para reiniciar.
 
     ```
     [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE]
@@ -784,22 +784,22 @@ This section covers booting into the ISO retrieved and prepared in the previous 
 - See [assets/videos/oobe-windows8-example.mp4](/assets/videos/oobe-windows8-example.mp4)
 - See [assets/videos/oobe-windows10+-example.mp4](/assets/videos/oobe-windows10+-example.mp4)
 
-<h2 id="user-account-control">11.2. User Account Control <a href="#user-account-control">(permalink)</a></h2>
+<h2 id="user-account-control">11.2. Control de Cuentas de Usuario <a href="#user-account-control">(permalink)</a></h2>
 
-Set the User Account Control (UAC) setting to "Always notify" (highest level) by typing ``useraccountcontrolsettings`` in ``Win+R``. This reduces the risk of a malicious program bypassing UAC, which can occur with the default setting ([1](https://devblogs.microsoft.com/oldnewthing/20160816-00/?p=94105), [2](https://github.com/hfiref0x/UACME#system-requirements)).
+Establece el nivel de notificación de Control de Cuentas de Usuario (UAC) a “Notificar siempre” (el nivel más alto) escribiendo ``useraccountcontrolsettings`` en ``Win+R``.  Esto reduce el riesgo de que un programa malicioso eluda el UAC, algo que puede ocurrir con la configuración predeterminada ([1](https://devblogs.microsoft.com/oldnewthing/20160816-00/?p=94105), [2](https://github.com/hfiref0x/UACME#system-requirements)).
 
-<h2 id="unrestricted-powershell-execution-policy">11.3. Unrestricted PowerShell Execution Policy <a href="#unrestricted-powershell-execution-policy">(permalink)</a></h2>
+<h2 id="unrestricted-powershell-execution-policy">11.3. Política de Ejecución de PowerShell Sin Restricciones <a href="#unrestricted-powershell-execution-policy">(permalink)</a></h2>
 
-> [!WARNING]
-> 🔒 Setting the PowerShell Execution Policy to Unrestricted may negatively impact security and expose the system to vulnerabilities. Users should evaluate the security risks associated with modifying the specified setting. Alternatively, ``-ExecutionPolicy Bypass`` can be used when starting a PowerShell instance instead of configuring it globally.
+> [!ADVERTENCIA]
+> 🔒 Establecer la política de ejecución de PowerShell en “Unrestricted” puede afectar negativamente a la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con esta modificación. Como alternativa, se puede usar ``-ExecutionPolicy Bypass`` al iniciar una instancia de PowerShell en lugar de configurar la política globalmente..
 
-This is required to execute the scripts within the repository. Open PowerShell as administrator and enter the command below.
+Este ajuste es necesario para ejecutar los scripts del repositorio. Abre PowerShell como administrador e introduce el siguiente comando.
 
 ```powershell
 Set-ExecutionPolicy Unrestricted
 ```
 
-<h2 id="importing-bin-folder">11.4. Importing bin Folder <a href="#importing-bin-folder">(permalink)</a></h2>
+<h2 id="importing-bin-folder">11.4. Importar Carpeta bin <a href="#importing-bin-folder">(permalink)</a></h2>
 
 Move the ``bin`` folder that you downloaded prior to installing Windows to the ``C:`` drive as outlined in section [Fetching Required Files](#fetching-required-files). If you haven't downloaded it yet, you will need to fetch it from another system as you don't have network access at this stage. The complete path should be ``C:\bin``.
 
