@@ -4,7 +4,7 @@
 > Este fork está dirigido a usuarios avanzados y no pretende ser una simple copia del proyecto original. Gran parte del contenido ha sido traducido y adaptado desde PC-Tuning para hacerlo accesible a la comunidad hispanohablante.
 
 > [!CAUTION]
-> El orden sobre el escalado en rendimiento, Hardware > UEFI > Sistema Operativo.
+> En términos de escalado de rendimiento, el orden de impacto es: hardware > firmware (UEFI/BIOS) > sistema operativo.
 
 > [!CAUTION]
 > **NO** confíes ni aceptes ciegamente todo lo que encuentres en línea (incluida esta fuente). En su lugar, mantén una actitud crítica: valida cada afirmación mediante evidencia, investigación y pruebas comparativas (benchmarks).
