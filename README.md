@@ -864,103 +864,104 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 
 <h3 id="applying-options">11.6.2. Applying Options <a href="#applying-options">(permalink)</a></h3>
 
-- Open PowerShell as administrator and enter the command below. If the command fails, then try to disable tamper protection (Windows 10 1909+) and real-time protection in Windows Defender . If that doesn't work, reboot then re-execute the command again. If none of the previous workarounds worked, then try run the command in safe-mode. If you prefer not to run any scripts, the option of manually creating the registry file with the keys you need are explained in [/docs/registry-opts.md](/docs/registry-opts.md). This document contains all of the keys that would be merged when using the script
+- Abre PowerShell como administrador e introduce el siguiente comando. Si el comando falla, intenta desactivar la protección contra manipulaciones (Tamper Protection) (Windows 10 1909+) y la protección en tiempo real en Windows Defender. Si eso no funciona, reinicia y vuelve a ejecutar el comando. Si nada de lo anterior funciona, intenta ejecutar el comando en modo seguro. Si prefieres no ejecutar ningún script, existe la opción de crear manualmente un archivo de registro con las claves que necesites, tal como se explica en [/docs/registry-opts.md](/docs/registry-opts.md). Este documento contiene todas las claves que se fusionarían al usar el script.
 
     ```powershell
     C:\bin\apply-registry.ps1
     ```
 
-- Ensure that the script prints a "successfully applied" message to the console, if it does not then the registry keys were not successfully merged
+- Asegúrate de que el script imprima un mensaje de “aplicado correctamente” en la consola; si no lo hace, significa que las claves del registro no se fusionaron con éxito.
 
-- After and only after a restart, you can establish an internet connection as the Windows update policies will take effect, which is the primary reason for not being connected to the internet up until this point
-
+- Después, y solo después de reiniciar, puedes establecer una conexión a internet, ya que las políticas de Windows Update surtirán efecto. Esta es la principal razón por la que no se recomienda conectar a internet antes de este punto.
+  
 > [!NOTE]
-> To the maintainers and contributors, the features and options should be tested as listed in the table above. It is inevitable that more steps are required to achieve the same goal with operating system updates and upgrades over time (e.g. manual maintenance of a list of services relating to disabling Windows Defender).
+> A los mantenedores y colaboradores: las funciones y opciones deben ser probadas tal como se listan en la tabla anterior. Es inevitable que se requieran más pasos para lograr el mismo objetivo a medida que el sistema operativo reciba actualizaciones o mejoras (por ejemplo, mantener manualmente una lista de servicios relacionados con la desactivación de Windows Defender).).
 
 <h2 id="installing-drivers">11.7. Installing Drivers <a href="#installing-drivers">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-- I would advise against installing drivers via Windows Update as they can be outdated compared to the ones provided by the vendor. Driver updates via Windows Update should be blocked if ``disable driver installation via windows update`` was set to ``true`` in section [Merging Registry Options](#merging-registry-options)
+- No se recomienda instalar controladores a través de Windows Update, ya que pueden estar desactualizados en comparación con los proporcionados por el fabricante. Las actualizaciones de controladores mediante Windows Update deben ser bloqueadas si la opción ``disable driver installation via windows update`` fue establecida en ``true`` en la sección [Merging Registry Options](#merging-registry-options)
 
-- See [Chipset Device "Drivers" (= INF files) | Fernando](https://winraid.level1techs.com/t/intel-chipset-device-drivers-inf-files/30920)
+- Consulta [Chipset Device "Drivers" (= INF files) | Fernando](https://winraid.level1techs.com/t/intel-chipset-device-drivers-inf-files/30920)
 
-- GPU drivers will be installed in section [Graphics Driver](#graphics-driver) so do not install them at this stage
+- Los controladores gráficos se instalarán en la sección [Graphics Driver](#graphics-driver), por lo tanto, no los instales en esta etapa.
 
-- You can find drivers by searching for drivers that are compatible with your device's HWID. See [media/device-hwid-example.png](/assets/images/find-driver-key-example.png) in regard to finding your HWID in Device Manager for a given device
+- Puedes encontrar controladores buscando los que sean compatibles con el HWID de tu dispositivo. Consulta [media/device-hwid-example.png](/assets/images/find-driver-key-example.png) para saber cómo encontrar el HWID en el Administrador de dispositivos para un dispositivo dado.
 
-- Try to obtain the driver in its INF form so that it can be installed in Device Manager as executable installers usually install other bloatware along with the driver itself. Sometimes you can extract the installer's executable with 7-Zip
+- Intenta obtener el controlador en su forma INF para poder instalarlo desde el Administrador de dispositivos, ya que los instaladores ejecutables suelen incluir software no deseado junto con el controlador. A veces es posible extraer el ejecutable del instalador con 7-Zip.
 
-- It is recommended to update and install the following:
+- Se recomienda actualizar e instalar lo siguiente:
 
-  - Network Interface Controller. If you do not have internet access at this stage, you will need to download your NIC driver from another device or dual-boot as they may not be packaged at all with Windows
+  - Controlador del adaptador de red (NIC). Si no tienes acceso a internet en esta etapa, necesitarás descargar el controlador desde otro dispositivo o usar un arranque dual, ya que podría no estar incluido en Windows.
 
-  - [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) and [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) (if you are configuring Windows 7, both may have already been integrated in section [Downloading and Preparing a Stock Windows ISO](#downloading-and-preparing-a-stock-windows-iso))
+  - Controladores de [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) y [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) (si estás configurando Windows 7, es posible que ambos ya se hayan integrado en la sección [Downloading and Preparing a Stock Windows ISO](#downloading-and-preparing-a-stock-windows-iso))
 
-  - [SATA](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) (required on Windows 7 as the stock driver does not support Message Signaled Interrupts)
+  - [SATA](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) (necesario en Windows 7, ya que el controlador estándar no admite interrupciones señaladas por mensajes - MSI)
 
-- Other required drivers can be installed with [Snappy Driver Installer Origin](https://www.snappy-driver-installer.org)
+- Puedes instalar otros controladores necesarios con [Snappy Driver Installer Origin](https://www.snappy-driver-installer.org)
 
-<h2 id="windows-server-specific-options-windows-server">11.8. Windows Server Specific Options (Windows Server) <a href="#windows-server-specific-options-windows-server">(permalink)</a></h2>
+<h2 id="windows-server-specific-options-windows-server">11.8. Opciones específicas de Windows Server (Windows Server) <a href="#windows-server-specific-options-windows-server">(permalink)</a></h2>
 
-- To enable Wi-Fi, navigate to ``Manage -> Add Roles and Features`` in the Server Manager dashboard and enable ``Wireless LAN Service``
+- Para habilitar Wi-Fi, ve a ``Manage`` -> ``Add Roles and Features`` en el panel de ``Server Manager`` y habilita ``Wireless LAN Service``.
 
-- In Server Manager, navigate to ``Manage -> Server Manager Properties`` and enable the option to prevent Server Manager from starting automatically
+- En Server Manager, ve a ``Manage -> Server Manager Properties`` y habilita la opción para evitar que Server Manager se inicie automáticamente
 
-- Set the ``Windows Audio`` and ``Windows Audio Endpoint Builder`` services startup type to automatic by typing ``services.msc`` in ``Win+R``
+- Establece el tipo de inicio de los servicios ``Windows Audio`` y ``Windows Audio Endpoint Builder`` en automático escribiendo ``services.msc`` en ``Win+R``
 
-- Navigate to ``Computer Configuration -> Windows Settings -> Security Settings -> Account Policies -> Password Policy`` by typing ``gpedit.msc`` in ``Win+R`` and disable ``Password must meet complexity requirements``
+- Navega a ``Computer Configuration -> Windows Settings -> Security Settings -> Account Policies -> Password Policy`` escribiendo ``gpedit.msc`` en ``Win+R`` y desactiva la opción ``Password must meet complexity requirements``
 
-  - Open CMD and type ``gpupdate /force`` to apply the changes immediately
+  - Abre CMD y escribe ``gpupdate /force`` para aplicar los cambios inmediatamente
 
-- Navigate to ``Computer Configuration -> Administrative Templates -> System`` by typing ``gpedit.msc`` in ``Win+R`` and disable ``Display Shutdown Event Tracker`` to disable the shutdown prompt
-
-- To remove the user password, enter your current password and leave the new/confirm password fields blank in ``User Accounts`` by typing ``control userpasswords`` in ``Win+R``
+- Navega a ``Computer Configuration -> Administrative Templates -> System`` escribiendo ``gpedit.msc`` en ``Win+R`` y desactiva ``Display Shutdown Event Tracker`` para eliminar el mensaje de apagado
+- 
+- Para eliminar la contraseña del usuario, introduce tu contraseña actual y deja en blanco los campos de nueva contraseña y confirmación en ``User Accounts`` escribiendo ``control userpasswords`` en ``Win+R``
 
 <h2 id="privacy-options-windows-8">11.9. Privacy Options (Windows 8+) <a href="#privacy-options-windows-8">(permalink)</a></h2>
 
-Disable all unnecessary permissions in the ``Privacy`` section by pressing ``Win+I``.
+Desactiva todos los permisos innecesarios en la sección ``Privacy`` presionando ``Win+I``.
 
 <h2 id="search-indexing">11.10. Search Indexing <a href="#search-indexing">(permalink)</a></h2>
 
-Certain directories on the file system are indexed for search features in Windows which can be viewed by typing ``control srchadmin.dll`` in ``Win+R``. Indexing occurs periodically in the background and often results in notable CPU overhead which can be seen using Process Explorer as described in section [Process Explorer](#process-explorer). Therefore, it is preferable to prevent search indexing globally by disabling the ``Windows Search`` service however, search features may be limited. Open CMD as administrator and enter the command below.
+Ciertos directorios del sistema de archivos se indexan para las funciones de búsqueda de Windows, los cuales pueden visualizarse escribiendo ``control srchadmin.dll`` en ``Win+R``.  La indexación ocurre periódicamente en segundo plano y suele generar una sobrecarga notable en la CPU, lo cual puede verse con Process Explorer como se describe en la sección [Process Explorer](#process-explorer). Por lo tanto, es preferible deshabilitar la indexación de búsqueda globalmente desactivando el servicio ``Windows Search`` Abre CMD como administrador e introduce el siguiente comando:
 
   ```bat
   reg add "HKLM\SYSTEM\CurrentControlSet\Services\WSearch" /v "Start" /t REG_DWORD /d "4" /f
   ```
 
 > [!IMPORTANT]
-> To prevent unexpected breakage and problems due to service dependency errors, assess the other services that depend on the service you want to disable. This can be done by opening CMD as administrator then typing ``sc EnumDepend <service>`` which describes the services that rely on the service you want to disable. These services should be disabled to avoid dependency errors. If you can't disable them (e.g. because you need them), then you have no choice but to leave the service you wanted to disable initially enabled.
+> Para evitar errores inesperados y problemas debidos a dependencias de servicios, evalúa los otros servicios que dependen del servicio que deseas deshabilitar. Esto puede hacerse abriendo CMD como administrador y escribiendo ``sc EnumDepend <service>`` , lo cual describe los servicios que dependen del servicio que deseas deshabilitar. Estos servicios también deben ser deshabilitados para evitar errores de dependencia. Si no puedes deshabilitarlos (por ejemplo, porque los necesitas), entonces no tienes más opción que dejar habilitado el servicio que querías deshabilitar inicialmente.
 
 <h2 id="time-language-and-region">11.11. Time, Language and Region <a href="#time-language-and-region">(permalink)</a></h2>
 
-- Configure settings by typing ``intl.cpl`` and ``timedate.cpl`` in ``Win+R``
+- Configura las opciones escribiendo ``intl.cpl`` y ``timedate.cpl`` en ``Win+R``
 
-- Windows 10+ Only
+- Solo Windows 10 en adelante:
 
-  - Configure settings in ``Time & Language`` by pressing ``Win+I``
+  - Configura las opciones en ``Time & Language`` presionando ``Win+I``
 
-    - If you intend to exclusively use one language and keyboard layout, ensure that is the case in actuality so that you don't need to toggle the language bar hotkeys which can become intrusive as the hotkey can be accidentally pressed
+    - Si planeas usar exclusivamente un solo idioma y una sola distribución de teclado, asegúrate de que así sea para que no tengas que alternar la barra de idiomas con atajos que pueden activarse accidentalmente.
 
-- Ensure that the system time is synced and is correct
+- Asegúrate de que la hora del sistema esté sincronizada y sea correcta.
 
 <h2 id="web-browser">11.12. Web Browser <a href="#web-browser">(permalink)</a></h2>
 
-Configure a browser of your choice.
+Configura el navegador de tu preferencia.
 
-- See [privacytests.org](https://privacytests.org)
+- Ver: [privacytests.org](https://privacytests.org)
 
-- See [Desktop Browsers | Privacy Guides](https://www.privacyguides.org/en/desktop-browsers)
+- Ver: [Desktop Browsers | Privacy Guides](https://www.privacyguides.org/en/desktop-browsers)
 
 <h2 id="scheduled-tasks">11.13. Scheduled Tasks <a href="#scheduled-tasks">(permalink)</a></h2>
 
-There are a handful of scheduled tasks that ship with Windows which can be assessed using [TaskSchedulerView](https://www.nirsoft.net/utils/task_scheduler_view.html). Assessing them can help in having finer control as to what runs on your system silently whether it be updates-related, telemetry-related, defender-related and more. Consider the ``Last Run``, ``Next Run`` and ``Triggers`` column to evaluate whether there is any point disabling the task in question.
+Windows incluye varias tareas programadas que pueden evaluarse utilizando [TaskSchedulerView](https://www.nirsoft.net/utils/task_scheduler_view.html). Evaluarlas ayuda a tener un control más fino sobre qué se ejecuta silenciosamente en el sistema, ya sea relacionado con actualizaciones, telemetría, Defender y más. Considera las columnas ``Last Run``, ``Next Run`` y ``Triggers`` para evaluar si vale la pena deshabilitar la tarea en cuestión.
 
 <h2 id="activate-windows">11.14. Activate Windows <a href="#activate-windows">(permalink)</a></h2>
 
-Use the commands below to activate Windows using your license key if you do not have one linked to your HWID. Ensure that the activation process was successful by verifying the activation status in computer properties. Open CMD as administrator and enter the commands below.
+Utiliza los comandos siguientes para activar Windows usando tu clave de licencia si no tienes una vinculada al HWID. Asegúrate de que la activación fue exitosa verificando el estado de activación en las propiedades del sistema. Abre CMD como administrador y escribe los comandos correspondientes.
 
+ 
 ```bat
 slmgr /ipk <license key>
 ```
@@ -971,29 +972,29 @@ slmgr /ato
 
 <h2 id="declutter-interface">11.15. Declutter Interface <a href="#declutter-interface">(permalink)</a></h2>
 
-Disable features on the taskbar and unpin shortcuts and tiles from the taskbar and start menu. This is obviously personal preference.
+Desactiva las funciones en la barra de tareas y desancla accesos directos y tiles del menú de inicio y barra de tareas. Esto es cuestión de preferencia personal.
 
 <h2 id="visual-effects">11.16. Visual Effects <a href="#visual-effects">(permalink)</a></h2>
 
-Visual effects options can be accessed by typing ``sysdm.cpl`` in ``Win+R``. This menu provides the ability to disable interface animations which contributes to perceived responsiveness when generally interacting with Windows. On Windows 7, desktop composition could natively be disabled here, but the option is no longer available in Windows 8+. The rest of the options are personal preference.
+Las opciones de efectos visuales pueden accederse escribiendo ``sysdm.cpl`` en ``Win+R``.  Este menú permite deshabilitar animaciones de interfaz, lo cual contribuye a una mayor sensación de respuesta en la interacción con Windows. En Windows 7 se podía deshabilitar la composición del escritorio directamente aquí, pero ya no está disponible en Windows 8+. El resto de las opciones son personales.
 
 <h2 id="superfetch-and-prefetch">11.17. Superfetch and Prefetch <a href="#superfetch-and-prefetch">(permalink)</a></h2>
 
-If a HDD isn't present in the system then Superfetch and Prefetch can be disabled with the command below in CMD. Disabling SysMain is in Microsoft's recommendations for configuring devices for real-time performance ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)) and the ``C:\Windows\Prefetch`` folder should no longer be populated.
+Si no hay un disco duro mecánico (HDD) en el sistema, entonces se pueden deshabilitar Superfetch y Prefetch con el siguiente comando en CMD. Deshabilitar SysMain es parte de las recomendaciones de Microsoft para configurar dispositivos con rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)) ), la carpeta ``C:\Windows\Prefetch`` ya no debería llenarse de archivos.
 
   ```bat
   reg add "HKLM\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f
   ```
 
 > [!IMPORTANT]
-> To prevent unexpected breakage and problems due to service dependency errors, assess the other services that depend on the service you want to disable. This can be done by opening CMD as administrator then typing ``sc EnumDepend <service>`` which describes the services that rely on the service you want to disable. These services should be disabled to avoid dependency errors. If you can't disable them (e.g. because you need them), then you have no choice but to leave the service you wanted to disable initially enabled.
+> Para evitar errores inesperados debidos a dependencias de servicios, evalúa qué servicios dependen de aquel que deseas deshabilitar. Esto puede hacerse escribiendo ``sc EnumDepend <service>`` en CMD como administrador. Si no puedes deshabilitarlos (porque los necesitas), entonces deberás dejar habilitado el servicio original.
 
 <h2 id="operating-system-and-partition-name">11.18. Operating System and Partition Name <a href="#operating-system-and-partition-name">(permalink)</a></h2>
 
-Configure the operating system and drive's partition name. It is recommended to set it to something meaningful or unique such has ``W10 22H2 Work`` or ``W10 22H2 Gaming`` for clarity when dual-booting or when multiple drives are present. Open CMD as administrator and enter the commands below.
+Configura el nombre del sistema operativo y de la partición de la unidad. Se recomienda establecer un nombre significativo o único como ``W10 22H2`` Trabajo o ``W10 22H2`` Juegos para mayor claridad al usar arranque dual o múltiples discos. Abre CMD como administrador e introduce los comandos necesarios.
 
   ```bat
-  bcdedit /set {current} description "OS_NAME"
+  bcdedit /set {current} description "OS_NAME" 
   ```
 
   ```bat
@@ -1002,11 +1003,11 @@ Configure the operating system and drive's partition name. It is recommended to 
 
 <h2 id="show-tray-icons">11.19. Show Tray Icons <a href="#show-tray-icons">(permalink)</a></h2>
 
-I would recommend enabling the ``Always show all icons in the notification area`` for better process management. Hiding icons in the tray area can partially be considered a security risk since you won't be aware of potentially malicious or unwanted programs running silently.
+Recomiendo habilitar la opción ``Always show all icons in the notification area`` para una mejor gestión de procesos. Ocultar iconos en la bandeja puede considerarse parcialmente un riesgo de seguridad, ya que podrías no notar programas maliciosos o no deseados ejecutándose en segundo plano.
 
 <h2 id="hibernation">11.20. Hibernation <a href="#hibernation">(permalink)</a></h2>
 
-Windows has a toggle that disables Fast Startup, hibernation and removes ``C:\hiberfil.sys``.  It is recommended to shut down instead of saving software state to disk. Open CMD as administrator and enter the command below.
+Windows tiene una opción para desactivar el inicio rápido, la hibernación y eliminar ``C:\hiberfil.sys``. Se recomienda apagar completamente en lugar de guardar el estado de software en disco. Abre CMD como administrador e introduce el comando correspondiente.
 
 ```bat
 powercfg /h off
@@ -1014,68 +1015,68 @@ powercfg /h off
 
 <h2 id="runtimes">11.21. Runtimes <a href="#runtimes">(permalink)</a></h2>
 
-These are runtimes are common dependencies including a magnitude of applications. Typically, application installers automatically install its dependencies but this can't be said for some standalone applications.
+Estos runtimes son dependencias comunes para una gran cantidad de aplicaciones. Normalmente los instaladores de aplicaciones instalan automáticamente sus dependencias, pero esto no siempre ocurre con aplicaciones standalone.
 
 - [Visual C++ Redistributable](https://github.com/abbodi1406/vcredist)
-- [.NET 3.5](https://woshub.com/how-to-install-net-framework-3-5-on-windows) (less common dependency, instructions include both offline and online installation methods)
-- [.NET 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) (ships with Windows 10 1909+)
+- [.NET 3.5](https://woshub.com/how-to-install-net-framework-3-5-on-windows) (dependencia menos común, las instrucciones incluyen métodos de instalación offline y online)
+- [.NET 4.8](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48) (incluido en Windows 10 1909+)
 - [WebView](https://developer.microsoft.com/en-us/microsoft-edge/webview2)
-- [DirectX](https://www.microsoft.com/en-gb/download/details.aspx?id=8109) (game launchers typically install this silently)
+- [DirectX](https://www.microsoft.com/en-gb/download/details.aspx?id=8109) (los lanzadores de juegos suelen instalar esto en segundo plano)
 
 <h2 id="handling-bloatware">11.22. Handling Bloatware <a href="#handling-bloatware">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-I heavily discourage running debloating scripts or removing components other than actual bloatware such as Candy Crush or whatever may be packaged with Windows these days to avoid breaking your operating system. It can be argued that removing these applications have no performance benefit if they don't actively run in the background which can be assessed in Task Manager. To adopt the approach of only removing or disabling what actively runs in the background, setup Process Explorer as described in [Process Explorer](#process-explorer) and sort processes by either ``Context Switch Delta`` or ``Cycles Delta`` to assess what can be removed. The update speed can be changed in ``View -> Update Speed`` depending on your tolerance.
+Desaconsejo fuertemente el uso de scripts de desbloat o la eliminación de componentes más allá del bloatware real como Candy Crush o cualquier otro software preinstalado que venga con Windows actualmente, ya que podrías romper el sistema operativo. Puede argumentarse que eliminar estas aplicaciones no aporta beneficio de rendimiento si no se ejecutan activamente en segundo plano, lo cual puede verificarse en el Administrador de Tareas. Para adoptar el enfoque de solo eliminar o deshabilitar lo que realmente se ejecuta en segundo plano, configura Process Explorer como se describe en la sección [Process Explorer](#process-explorer) y ordena los procesos por ``Context Switch Delta`` o ``Cycles Delta`` para evaluar qué se puede quitar. La velocidad de actualización puede modificarse en ``View -> Update Speed`` según tu tolerancia.
 
-- [AppxPackagesManager](https://github.com/valleyofdoom/AppxPackagesManager) can be used to uninstall Appx packages which ship with Windows. I recommend keeping ``Microsoft.WindowsStore`` (Microsoft Store) at the very least so that you can download applications in the future. Appx packages can also be installed without the Microsoft Store ([instructions](https://superuser.com/questions/1721755/is-there-a-way-to-install-microsoft-store-exclusive-apps-without-store)). If for whatever reason you removed the Microsoft Store, it can be restored with ``wsreset -i``
+- [AppxPackagesManager](https://github.com/valleyofdoom/AppxPackagesManager) puede usarse para desinstalar paquetes Appx que vienen con Windows. Recomiendo conservar ``Microsoft.WindowsStore`` (Microsoft Store) (Microsoft Store) como mínimo para poder descargar aplicaciones más adelante. Los paquetes Appx también pueden instalarse sin la Microsoft Store ([1](https://superuser.com/questions/1721755/is-there-a-way-to-install-microsoft-store-exclusive-apps-without-store)). Si eliminaste la Microsoft Store por error, puede restaurarse con ``wsreset -i``
 
-- I highly recommend removing OneDrive for privacy reasons and if you must, use OneDrive within a browser. Removing OneDrive involves opening CMD as administrator and entering the command below
+- Recomiendo encarecidamente eliminar OneDrive por razones de privacidad. Si necesitas usarlo, accede mediante el navegador. Para eliminar OneDrive, abre CMD como administrador e introduce el comando correspondiente.
 
     ```bat
     for %a in ("SysWOW64" "System32") do (if exist "%windir%\%~a\OneDriveSetup.exe" ("%windir%\%~a\OneDriveSetup.exe" /uninstall)) && reg delete "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace\{018D5C66-4533-4307-9B53-224DE2ED1FE6}" /f
     ```
 
-- Disabling (not uninstalling) Chromium Microsoft Edge involves the steps below. The browser should be disabled instead of uninstalled to retain the WebView runtime
+- Deshabilitar (no desinstalar) el navegador Chromium Microsoft Edge implica los pasos siguientes. El navegador debe deshabilitarse en lugar de desinstalarse para conservar el runtime de WebView.
 
-  - In the Microsoft Edge settings, disable any startup options such as the ones listed below. Doing this prevents an autorun entry being created any time ``msedge.exe`` is started despite removing it in the next step with Autoruns
+  - En la configuración de Microsoft Edge, desactiva las opciones de inicio como las siguientes. Esto evita que se cree una entrada de ejecución automática cada vez que se inicie ``msedge.exe``, incluso si la eliminas posteriormente con Autoruns:
 
     - ``Startup boost``
     - ``Continue running background extensions and apps when Microsoft Edge is closed``
 
-  - Download [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) and navigate to the ``Everything`` section then search for *"edge"*. Disable every item that appears in the filtered results
+  - Descarga [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns), navega a la sección ``Everything`` y busca *`edge`*. Desactiva todos los elementos que aparezcan en los resultados filtrados.
 
-  - Open CMD and enter the command below to remove all related shortcuts
+  - Abre CMD e introduce el comando necesario para eliminar todos los accesos directos relacionados.
 
       ```bat
       for /f "delims=" %a in ('where /r C:\ *edge.lnk*') do (del /f /q "%a")
       ```
 
-- Windows 10+ Only:
+- Windows 10+ solamente:
 
-  - In the start menu, *uninstall* any residual links for applications. Keep in mind that these applications aren't actually installed, they get installed only if the user clicks on them so do not accidentally click on them
+  - En el menú de inicio, *desinstala* cualquier enlace residual de aplicaciones. Ten en cuenta que estas aplicaciones no están realmente instaladas, solo se instalan si haces clic en ellas, así que no lo hagas por accidente.
 
-  - Uninstall bloatware in the applications section in the immersive control panel by pressing ``Win+I`` (this can also be managed in [AppxPackagesManager](https://github.com/valleyofdoom/AppxPackagesManager))
-  - In the ``Optional features`` section within the immersive control panel, you can uninstall everything that you don't need if desired
+  - Desinstala el bloatware desde la sección de aplicaciones en el panel de control inmersivo presionando  ``Win+I`` (también puede gestionarse con [AppxPackagesManager](https://github.com/valleyofdoom/AppxPackagesManager))
+  - En la sección ``Optional features`` del panel de control inmersivo, puedes desinstalar todo lo que no necesites si lo deseas.
 
-- If Windows Defender was disabled in section [Merging Registry Options](#merging-registry-options) by setting ``disable windows defender`` to ``true``, ``smartscreen.exe`` ignores the registry key that controls whether it runs in the background persistently on later versions of Windows. For this reason, open CMD as TrustedInstaller with ``C:\bin\MinSudo.exe --TrustedInstaller --Privileged`` and enter the command below to prevent it running in the background
+- Si Windows Defender fue deshabilitado en la sección [Merging Registry Options](#merging-registry-options) estableciendo ``disable windows defender`` a ``true``, ``smartscreen.exe`` ignora la clave de registro que controla si se ejecuta en segundo plano de forma persistente en versiones recientes de Windows. Por esta razón, abre CMD como TrustedInstaller con ``C:\bin\MinSudo.exe --TrustedInstaller --Privileged`` e introduce el comando necesario para evitar que se ejecute en segundo plano.
 
     ```bat
     taskkill /f /im smartscreen.exe > nul 2>&1 & ren C:\Windows\System32\smartscreen.exe smartscreen.exee
     ```
 
-- You can use Task Manager to check for residual bloatware that is running in the background
+- Puedes usar el Administrador de Tareas para comprobar si hay bloatware residual ejecutándose en segundo plano.
 
 <h2 id="optional-features">11.23. Optional Features <a href="#optional-features">(permalink)</a></h2>
 
-Optional features can be accessed by typing ``OptionalFeatures`` in ``Win+R``. Enable/disable features that you do/don't need. If Windows Update is disabled then you likely won't be able to install features and instead, must install an offline package using DISM. On Windows Server, this can be accessed via the Server Manager dashboard by navigating to ``Manage -> Remove Roles and Features``.
+Las funciones opcionales se pueden acceder escribiendo ``OptionalFeatures`` en ``Win+R``. Habilita o desactiva funciones que necesites o no necesites. Si Windows Update está deshabilitado, probablemente no podrás instalar funciones desde esta ventana y, en su lugar, deberás instalar un paquete sin conexión usando DISM. En Windows Server, esto se puede acceder mediante el panel de Server Manager navegando a ``Manage -> Remove Roles and Features``.
 
 <h3 id="net-35">11.23.1. NET 3.5 <a href="#net-35">(permalink)</a></h3>
 
-Some applications still utilize the NET 3.5 runtime so I would recommend installing it just in case. As mentioned previously, you won't be able to install it in the Optional Features window if Windows Update is disabled but can instead, be installed using an offline package.
+Algunas aplicaciones aún utilizan el runtime de .NET 3.5, por lo que se recomienda instalarlo por si acaso. Como se mencionó anteriormente, no podrás instalarlo desde la ventana de Funciones Opcionales si Windows Update está desactivado, pero sí puedes hacerlo usando un paquete sin conexión.
 
-For using the offline package, download and extract a Windows ISO (e.g. ``C:\EXTRACTED_ISO``) and open CMD as administrator. Replace ``C:\EXTRACTED_ISO\sources\sxs`` with the correct path to the ``\sources\sxs`` folder in the ISO that you extracted and run the command.
+Para usar el paquete sin conexión, descarga y extrae una ISO de Windows (por ejemplo en ``C:\EXTRACTED_ISO``) y abre CMD como administrador. Sustituye ``C:\EXTRACTED_ISO\sources\sxs`` por la ruta correcta a la carpeta ``\sources\sxs`` en la ISO que extrajiste y ejecuta el siguiente comando:
 
 ```bat
 DISM /Online /Enable-Feature /FeatureName:NetFx3 /LimitAccess /Source:"C:\EXTRACTED_ISO\sources\sxs"
@@ -1083,20 +1084,20 @@ DISM /Online /Enable-Feature /FeatureName:NetFx3 /LimitAccess /Source:"C:\EXTRAC
 
 <h2 id="7-zip">11.24. 7-Zip <a href="#7-zip">(permalink)</a></h2>
 
-Download and install [7-Zip](https://www.7-zip.org). Open ``C:\Program Files\7-Zip\7zFM.exe`` then navigate ``Tools -> Options`` and associate 7-Zip with all file extensions by clicking the ``+`` button. You may need to click it twice to override existing associated extensions.
+Descarga e instala [7-Zip](https://www.7-zip.org). Abre ``C:\Program Files\7-Zip\7zFM.exe`` , luego navega a ``Tools -> Options`` y asocia 7-Zip con todas las extensiones de archivo haciendo clic en el botón ``+``. Puede que necesites hacer clic dos veces para sobrescribir asociaciones existentes.
 
 <h2 id="graphics-driver">11.25. Graphics Driver <a href="#graphics-driver">(permalink)</a></h2>
 
-- See [docs/configure-nvidia.md](/docs/configure-nvidia.md)
-- See [docs/configure-amd.md](/docs/configure-amd.md)
+- Ver: [docs/configure-nvidia.md](/docs/configure-nvidia.md)
+- Ver: [docs/configure-amd.md](/docs/configure-amd.md)
 
 <h2 id="msi-afterburner">11.26. MSI Afterburner <a href="#msi-afterburner">(permalink)</a></h2>
 
-If you use [MSI Afterburner](https://www.msi.com/Landing/afterburner/graphics-cards), download and install it now.
+Si usas  [MSI Afterburner](https://www.msi.com/Landing/afterburner/graphics-cards), descárgalo e instálalo ahora.
 
-- I recommend configuring a static fan speed as using the fan curve feature requires the program to run continually however, it is up to you whether to use the curve or not
+- Se recomienda configurar una velocidad de ventilador estática, ya que usar la función de curva de ventilador requiere que el programa esté ejecutándose continuamente. Sin embargo, depende de ti si prefieres usar la curva o no.
 
-- To automatically load profile 1 (as an example) when Windows boots, the command below can be used with Task Scheduler ([instructions](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Ensure to wrap any paths with quotes if there are spaces in them. Ensure to verify whether everything is working correctly after a system restart. You need to enable the ``Run with highest privileges`` option if administrator privileges are required
+- Para cargar automáticamente el perfil 1 (como ejemplo) al arrancar Windows, se puede usar el siguiente comando con el Programador de tareas ([1](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Asegúrate de colocar comillas si hay espacios en la ruta. Verifica que todo funcione correctamente tras reiniciar el sistema. Debes habilitar la opción ``Run with highest privileges`` si se requieren privilegios de administrador.
 
     ```bat
     "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" /Profile1 /Q
@@ -1107,52 +1108,52 @@ If you use [MSI Afterburner](https://www.msi.com/Landing/afterburner/graphics-ca
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-You may have optionally found a stable overclock for your display in earlier sections using [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU) which you can dial in now.
+Si encontraste una sobreaceleración (overclock) estable para tu pantalla en secciones anteriores usando  [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU), puedes aplicarla ahora.
 
-- Typically, you have the option of performing scaling on the GPU or display. Native resolution does not require scaling thus results in identity (no) scaling. Furthermore, identity scaling renders most of the scaling options in the GPU control panel obsolete. If you are using a non-native resolution, there is an argument for favoring display scaling due to less GPU processing
+- Normalmente, tienes la opción de realizar el escalado en la GPU o en la pantalla. La resolución nativa no requiere escalado, lo que resulta en escalado de identidad (sin escalado). Además, el escalado de identidad vuelve obsoletas la mayoría de las opciones de escalado en el panel de control de la GPU. Si estás usando una resolución no nativa, se puede argumentar que es preferible el escalado en la pantalla debido a menor procesamiento por parte de la GPU.
 
-- Aim for an ``actual`` integer refresh rate such as 60.00/240.00, not 59.94/239.76
+- Apunta a una tasa de refresco realmente entera como 60.00/240.00, no 59.94/239.76.
 
-- There are many ways to achieve the same outcome regarding GPU and display scaling. See the table in the link below for example scenarios
+- Existen múltiples formas de lograr el mismo resultado respecto al escalado por GPU o pantalla. Consulta la tabla en el siguiente enlace para ver escenarios de ejemplo:
 
-  - See [What Is Identity Scaling and How Can You Use It?](/docs/research.md#8-what-is-identity-scaling-and-how-can-you-use-it)
+  - Ver: [¿Qué es el escalado de identidad y cómo puedes usarlo?](/docs/research.md#8-what-is-identity-scaling-and-how-can-you-use-it)
 
-  - Optionally use [QueryDisplayScaling](https://github.com/valleyofdoom/QueryDisplayScaling) to query the current scaling mode
+  - Opcionalmente, puedes usar [QueryDisplayScaling](https://github.com/valleyofdoom/QueryDisplayScaling) para consultar el modo de escalado actual.
 
-- On systems with an NVIDIA GPU, ensure that the ``Display`` option for the ``Perform scaling on`` setting is still available. If it is not, then find out what change you made in CRU results in it not being accessible through trial and error. This can be accomplished by running ``reset.exe`` to reset the settings to default then re-configure CRU. After each change, run ``restart64.exe`` then check whether the option is still available
+- En sistemas con GPU NVIDIA, asegúrate de que la opción ``Display`` esté disponible en el ajuste ``Perform scaling on`` Si no está disponible, determina qué cambio en CRU provoca que deje de estar accesible mediante prueba y error. Esto se puede lograr ejecutando ``reset.exe`` para restaurar la configuración predeterminada y luego volver a configurar CRU. Después de cada cambio, ejecuta ``restart64.exe`` y comprueba si la opción sigue estando disponible.
 
-- Ensure your resolution is configured properly by typing ``rundll32.exe display.dll,ShowAdapterSettings`` in ``Win+R``
+- Asegúrate de que tu resolución esté configurada correctamente escribiendo ``rundll32.exe display.dll,ShowAdapterSettings`` en ``Win+R``
 
 <h2 id="open-shell-windows-8">11.28. Open-Shell (Windows 8+) <a href="#open-shell-windows-8">(permalink)</a></h2>
 
-Open-Shell is a FOSS alternative to the Windows Start Menu.
+Open-Shell es una alternativa FOSS al menú de inicio de Windows..
 
-- Download and install [Open-Shell](https://github.com/Open-Shell/Open-Shell-Menu). Only install the ``Open-Shell Menu``
+- Descarga e instala [Open-Shell](https://github.com/Open-Shell/Open-Shell-Menu). Solo instala el componente ``Open-Shell Menu``
 
-- Settings:
+- Configuraciones:
 
   - General Behavior
 
-    - Check for Windows updates on shutdown - Disable
+    - Check for Windows updates on shutdown - Desactivar
 
-- Windows 8 Only:
+- Solo para Windows 8:
 
-  - Open ``"C:\Program Files\Open-Shell\Start Menu Settings.lnk"``, enable ``Show all settings`` then navigate to the Windows 8 Settings section and set ``Disable active corners`` to ``All``
+  - Abre ``"C:\Program Files\Open-Shell\Start Menu Settings.lnk"``, habilita ``Show all settings`` y navega a la sección de Configuración de Windows 8, luego establece ``Disable active corners`` en ``All``
 
 <h2 id="spectre-meltdown-and-cpu-microcode">11.29. Spectre, Meltdown and CPU Microcode <a href="#spectre-meltdown-and-cpu-microcode">(permalink)</a></h2>
 
 > [!WARNING]
-> 🔒 Disabling Spectre and Meltdown may negatively impact security and expose the system to vulnerabilities. Users should evaluate the security risks associated with modifying the specified setting.
+> 🔒 Desactivar Spectre y Meltdown puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con la modificación de esta configuración.
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-Disabling Spectre and Meltdown is an age-old performance trick familiar amongst many individuals however with newer platforms and system architecture, there may be a performance regression ([1](https://www.phoronix.com/review/amd-zen4-spectrev2)). For this reason, extensive tests should be carried out to determine how performance is impacted and whether performance scales positively, negatively or not at all. Its state can be manipulated with the [InSpectre](https://www.grc.com/inspectre.htm) tool and/or by renaming the microcode DLLs within the OS depending on whether there is a microcode revision mismatch between the OS and BIOS ([1](https://superuser.com/a/895447), [2](https://support.mozilla.org/en-US/kb/microcode-update)). It is important to note that the microcode revisions are subject to change with Windows updates.
+Desactivar Spectre y Meltdown es una técnica de mejora de rendimiento conocida desde hace tiempo por muchos entusiastas; sin embargo, con plataformas más recientes y arquitecturas modernas, puede producirse una regresión de rendimiento ([1](https://www.phoronix.com/review/amd-zen4-spectrev2)). Por esta razón, deben realizarse pruebas exhaustivas para determinar cómo se ve afectado el rendimiento y si éste escala de forma positiva, negativa o si no se ve afectado en absoluto. Su estado puede modificarse utilizando la herramienta [InSpectre](https://www.grc.com/inspectre.htm) y/o renombrando las DLLs de microcódigo dentro del sistema operativo, dependiendo de si existe una discrepancia entre las versiones de microcódigo del sistema operativo y de la BIOS ([1](https://superuser.com/a/895447), [2](https://support.mozilla.org/en-US/kb/microcode-update)). Es importante tener en cuenta que las versiones del microcódigo están sujetas a cambios con las actualizaciones de Windows.
 
 <details>
-<summary>Instructions To Rename DLLs</summary>
+<summary>Instrucciones para renombrar DLLs</summary>
 
-Open CMD as TrustedInstaller with ``C:\bin\MinSudo.exe --TrustedInstaller --Privileged`` and enter the command below relevant to your CPU to remove the CPU microcode updates. To revert, simply swap the file names to restore the original DLL.
+Abre CMD como TrustedInstaller con el siguiente comando: ``C:\bin\MinSudo.exe --TrustedInstaller --Privileged`` Luego, introduce el comando correspondiente a tu CPU para eliminar las actualizaciones de microcódigo. Para revertir los cambios, simplemente intercambia los nombres de los archivos para restaurar la DLL original..
 
 ```
 ren C:\Windows\System32\mcupdate_GenuineIntel.dll mcupdate_GenuineIntel.dlll
