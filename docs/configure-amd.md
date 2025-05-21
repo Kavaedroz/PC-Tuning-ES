@@ -1,24 +1,24 @@
-<h1 id="configure-the-amd-driver">Configure the AMD Driver <a href="#configure-the-amd-driver">(permalink)</a></h1>
+<h1 id="configure-the-amd-driver">Configuración de Driver AMD <a href="#configure-the-amd-driver">(permalink)</a></h1>
 
-> [!IMPORTANT]
+> [!IMPORTANTE]
 > Disclaimer: I no longer own an AMD GPU meaning this section may be incomplete/unmaintained. For this reason, you can visit the AMD GPUs section in [Calypto's Latency Guide](https://calypto.us).
 
-> [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](/README.md#3-benchmarking)).
+> [!PRECAUCIÓN]
+> 📊 **NO** seguir ciegamente las recomendaciones en esta sección. **REALIZA** benchmarks hacia los cambios específicos que realices para asegurar que resultan en una escala positiva de rendimiento, ya que todos los sistemas se comportan de manera diferente y los cambios pueden degradar el rendimiento ([instrucciones](/README.md#3-benchmarking)).
 
-<h2 id="table-of-contents">1. Table of Contents <a href="#table-of-contents">(permalink)</a></h2>
+<h2 id="table-of-contents">1. Tabla de Contenidos <a href="#table-of-contents">(permalink)</a></h2>
 
-- [1. Table of Contents](#table-of-contents)
-- [2. Strip and Install the Driver](#strip-and-install-the-driver)
+- [1. Tabla de Contenidos](#table-of-contents)
+- [2. Preparar e instalar el Driver](#strip-and-install-the-driver)
 
-<h2 id="strip-and-install-the-driver">2. Strip and Install the Driver <a href="#strip-and-install-the-driver">(permalink)</a></h2>
+<h2 id="strip-and-install-the-driver">2. Preparar e instalar el driver <a href="#strip-and-install-the-driver">(permalink)</a></h2>
 
-- Download and extract the latest recommended driver from the [AMD drivers and support page](https://www.amd.com/en/support)
+- Descargar y extraer el último driver recomendado en: [AMD drivers and support page](https://www.amd.com/en/support)
 
-- Move ``Packages\Drivers\Display\XXXX_INF`` to the desktop. The folder may be named differently on other driver versions
+- Mueve ``Packages\Drivers\Display\XXXX_INF`` hacia el escritorio. La carpeta puede nombrarse diferente en otras versiones de driver.
 
-- Open Device Manager and install the driver by right-clicking on the display adapter, then select ``Update driver`` and select the driver folder
+  - Abre Device Manager o Administrador de Dispositivos e instala el driver mediante click derecho en el apartado de display adapter o adaptador de pantalla, luego selecciona ``Update driver`` o ``Actualizar Controlador`` y selecciona la carpeta que contenga el driver.
 
-- Extract ``XXXX_INF\ccc2_install.exe`` with 7-Zip and run ``CN\cnext\cnext64\ccc-next64.msi`` to install the Radeon software control panel
+- Extrae ``XXXX_INF\ccc2_install.exe`` con 7-Zip y ejecuta ``CN\cnext\cnext64\ccc-next64.msi`` para instalar el panel de control de Radeon.
 
-- Download [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) and navigate to the ``Everything`` section, then disable unnecessary AMD entries such as ``AMD Crash Defender``, ``AMD External Events Utility`` (required for VRR) and more. Ensure not to disable the core kernel-mode driver or other important components
+- Descarga [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) y dirígete a la sección de ``Everything``, luego deshabilita todas las entradas inecesarias de AMD tales como ``AMD Crash Defender``, ``AMD External Events Utility`` (se requieren para VRR) y más. Asegúrate de no deshabilitar el core del driver kernel-mode u otros componentes importantes.
