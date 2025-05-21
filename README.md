@@ -1,7 +1,7 @@
-# PC-Tuning
+# PC-Tuning-ES
 
-> [!CAUTION]
-> In order of performance scaling, Hardware > BIOS > Operating System.
+> [!Cuidado]
+> El orden sobre el escalado en rendimiento, Hardware > UEFI > Sistema Operativo.
 
 > [!CAUTION]
 > **Do NOT** blindly trust or believe everything you read online (including this resource) and typically doubt everything. Instead, validate statements through evidence, research and benchmarks.
