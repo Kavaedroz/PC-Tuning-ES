@@ -178,45 +178,46 @@ La evaluación comparativa es una herramienta clave para analizar de forma objet
 <h1 id="physical-setup">4. Configuración Física <a href="#physical-setup">(permalink)</a></h1>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-- New installations of Windows are recommended after major hardware changes including but not limited to motherboards, CPUs, platforms and chipsets
+- Se recomienda realizar una instalación limpia de Windows tras cualquier cambio importante de hardware, como el reemplazo de la placa base, el procesador, la plataforma o el conjunto de chips, entre otros. Esto ayuda a evitar conflictos, asegurar la compatibilidad y garantizar un rendimiento óptimo.
 
-- See [Higher Airflow Cases | Calypto](https://docs.google.com/spreadsheets/d/14Kt2cAn8a7j2sGXiPGt4GcxpR3RXVcDAx9R5c2M8680/edit#gid=0)
+- Consultar este documento con el propósito de identificar los gabinetes que ofrecen el mejor flujo de aire. [Higher Airflow Cases | Calypto](https://docs.google.com/spreadsheets/d/14Kt2cAn8a7j2sGXiPGt4GcxpR3RXVcDAx9R5c2M8680/edit#gid=0)
 
-- Avoid multi-CCX/CCD Ryzen CPUs due to the latency penalty incurred from inter-CCX/CCD communication ([1](https://calypto.us), [2](https://www.anandtech.com/show/17585/amd-zen-4-ryzen-9-7950x-and-ryzen-5-7600x-review-retaking-the-high-end/10))
+- Evite las CPU Ryzen con múltiples CCX o CCD, ya que la comunicación entre estos módulos introduce una penalización de latencia que puede afectar negativamente al rendimiento, especialmente en tareas sensibles al tiempo de respuesta. ([1](https://calypto.us), [2](https://www.anandtech.com/show/17585/amd-zen-4-ryzen-9-7950x-and-ryzen-5-7600x-review-retaking-the-high-end/10))
 
-- See [Low Latency Hardware | Calypto](https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit?tab=t.0#bookmark=kix.alwwrke7e395)
+- Consulte la sección [Low Latency Hardware | Calypto](https://docs.google.com/document/d/1c2-lUJq74wuYK1WrA_bIvgb89dUN0sj8-hO3vqmrau4/edit?tab=t.0#bookmark=kix.alwwrke7e395)
 
-- Avoid overtightening screws
+-Evite apretar demasiado los tornillos.
 
-- Verify whether all connectors are seated properly and that none are loose (e.g. PSU cables)
+-Verifique que todos los conectores estén correctamente colocados y que ninguno esté suelto (por ejemplo, los cables de la fuente de poder).
 
-- Disconnect unnecessary and unused devices from your setup including peripherals, LEDs, RGB light strips, USB devices, storage drives, wireless receivers and more
+-Desconecte dispositivos innecesarios o sin uso de su configuración, incluyendo periféricos, tiras LED o RGB, dispositivos USB, discos de almacenamiento, receptores inalámbricos, entre otros.
 
-- Favor wired over cordless devices (e.g. peripherals, Ethernet) due to the degraded performance and inconsistency associated with wireless devices, aggressive power-saving features for a longer battery life along with the downside of being negatively affected by interference and transmission overhead ([1](https://www.meetion.com/a-the-impact-of-lift-off-distance-on-battery-life-with-wireless-vs-wired-gaming-mice.html), [2](https://en.wikipedia.org/wiki/2.4_GHz_radio_use), [3](https://raw.githubusercontent.com/BoringBoredom/PC-Optimization-Hub/main/content/peripherals/wireless%20overhead.png), [4](https://www.logitechg.com/en-gb/innovation/hero.html), [5](https://www.youtube.com/watch?v=Zn7WjyIvAWA))
+- Dé preferencia a los dispositivos con cable (por ejemplo, periféricos, conexión Ethernet) en lugar de los inalámbricos, ya que estos últimos suelen ofrecer un rendimiento inferior e inconsistente debido a funciones agresivas de ahorro de energía para prolongar la batería, así como a posibles interferencias y sobrecarga en la transmisión. ([1](https://www.meetion.com/a-the-impact-of-lift-off-distance-on-battery-life-with-wireless-vs-wired-gaming-mice.html), [2](https://en.wikipedia.org/wiki/2.4_GHz_radio_use), [3](https://raw.githubusercontent.com/BoringBoredom/PC-Optimization-Hub/main/content/peripherals/wireless%20overhead.png), [4](https://www.logitechg.com/en-gb/innovation/hero.html), [5](https://www.youtube.com/watch?v=Zn7WjyIvAWA))
 
-- An SSD or NVMe storage is strongly recommended due to the degraded performance ([1](https://unihost.com/help/nvme-vs-ssd-vs-hdd-overview-and-comparison)) and excessive interference of HDDs. Ensure that there is always a sufficient amount of free space as SSDs slow down as they are filled up ([1](https://www.howtogeek.com/165542/why-solid-state-drives-slow-down-as-you-fill-them-up)) however most drives are overprovisioned from factory ([1](https://download.semiconductor.samsung.com/resources/white-paper/S190311-SAMSUNG-Memory-Over-Provisioning-White-paper.pdf), [2](https://www.techpowerup.com/ssd-specs/samsung-980-pro-1-tb.d47))
+- Se recomienda firmemente el uso de almacenamiento SSD o NVMe ([1](https://unihost.com/help/nvme-vs-ssd-vs-hdd-overview-and-comparison)) dado que los discos duros mecánicos (HDD) presentan un rendimiento deficiente y generan interferencias excesivas. ([1](https://www.howtogeek.com/165542/why-solid-state-drives-slow-down-as-you-fill-them-up)) Asegúrese de mantener siempre una cantidad suficiente de espacio libre, ya que los SSD tienden a ralentizarse a medida que se llenan. No obstante, la mayoría viene con sobreaprovisionamiento de fábrica. ([1](https://download.semiconductor.samsung.com/resources/white-paper/S190311-SAMSUNG-Memory-Over-Provisioning-White-paper.pdf), [2](https://www.techpowerup.com/ssd-specs/samsung-980-pro-1-tb.d47))
 
-- Assess the condition and performance of storage devices with [CrystalDiskInfo](https://crystalmark.info/en/software/crystaldiskinfo) and [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark) to determine whether they require replacement or maintenance
+- Evalúe el estado y el rendimiento de los dispositivos de almacenamiento con herramientas como [CrystalDiskInfo](https://crystalmark.info/en/software/crystaldiskinfo) y [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark) para determinar si requieren mantenimiento o reemplazo.
 
-- Check and update firmware for devices including but not limited to NVMe, NICs, peripherals and more. Beware of problems brought up in reviews and forums regarding specific firmware versions if applicable
+- Revise y actualice el firmware de los dispositivos, incluidos pero no limitados a NVMe, tarjetas de red (NIC), periféricos y otros. Tenga en cuenta posibles problemas reportados en reseñas o foros relacionados con versiones específicas de firmware, si aplica.
 
-- Install the RAM in the correct slots by referring to the motherboard manual. Consider the memory trace layout when determining the amount of sticks to use
+- Instale la memoria RAM en las ranuras correctas, guiándose por el manual de la placa base. Considere también el trazado de las líneas de memoria al decidir cuántos módulos utilizar.
 
-  - See [Motherboard Memory Layouts | buildzoid](https://www.youtube.com/watch?v=3vQwGGbW1AE)
+  - Consulte la sección [Motherboard Memory Layouts | buildzoid](https://www.youtube.com/watch?v=3vQwGGbW1AE)
 
-- Favor PCIe ports that are connected directly to the CPU rather than chipset. This typically applies to M.2, NVMe drives and GPUs. This can be determined with the PCIe Bus category in [HWiNFO](https://www.hwinfo.com). Additionally, ensure that all your PCIe devices under the PCIe Bus category are running at their rated specification such as ``x16 3.0`` ([example](/assets/images/hwinfo-pcie-width-speed.png)). The current link width/speed of the device should match the maximum supported by the device. For certain devices such as GPUs, the link speed may decrease when idling. In these situations, place the device under load to get a meaningful reading
+- Dé preferencia a los puertos PCIe que estén conectados directamente a la CPU en lugar del chipset. Esto aplica especialmente para unidades M.2, NVMe y tarjetas gráficas (GPU). Puede verificarlo en la categoría PCIe Bus usando HWiNFO. Además, asegúrese de que todos los dispositivos PCIe estén operando bajo su especificación nominal, como por ejemplo ``x16 3.0``. ([Ejemplo](/assets/images/hwinfo-pcie-width-speed.png)). El ancho de enlace y la velocidad actuales del dispositivo deben coincidir con el máximo que este soporte. En algunos casos, como en las GPU, la velocidad del enlace puede reducirse cuando están en reposo; en tales situaciones, someta el dispositivo a carga para obtener una lectura completa.
 
-- IRQ sharing is problematic and is a source of high interrupt latency ([1](https://repo.zenk-security.com/Linux%20et%20systemes%20d.exploitations/Windows%20Internals%20Part%201_6th%20Edition.pdf)). IRQ conflicts can be assessed by typing ``msinfo32`` in ``Win+R`` then navigating to the Conflicts/Sharing section.  The causes may be due to the hardware or software configuration. To isolate potential hardware-related causes, enable [Message Signaled Interrupts](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) on the problematic device then restart the system. If the device still shares an IRQ, this can indicate incorrectly configured hardware
+- El IRQ sharing (compartición de interrupciones) puede causar latencia alta en las interrupciones y es una fuente común de problemas de rendimiento ([1](https://repo.zenk-security.com/Linux%20et%20systemes%20d.exploitations/Windows%20Internals%20Part%201_6th%20Edition.pdf)). Para identificar conflictos de IRQ, escriba msinfo32 en la ventana de Win+R y navegue a la sección Conflicts/Sharing. Las causas pueden deberse tanto a la configuración de hardware como de software. Para aislar posibles causas relacionadas con el hardware, habilite [Message Signaled Interrupts](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) en el dispositivo problemático y reinicie el sistema. Si después del reinicio el dispositivo sigue compartiendo una IRQ, esto puede ser indicio de una configuración incorrecta del hardware.
 
-- If multiple onboard Ethernet NICs are present, consider using the one that supports MSI-X by checking in [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) or [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy) as it is required for Receive Side Scaling to function properly ([1](https://old.reddit.com/r/intel/comments/9uc03d/the_i219v_nic_on_your_new_z390_motherboard_and)). This can be achieved by plugging the Ethernet cable into the port that corresponds to the desired NIC on the motherboard
+- Si su placa base tiene múltiples interfaces de red integradas (NICs), considere usar aquella que admita MSI-X observandolo en [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) o [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy) ya que es un requisito para que Receive Side Scaling (RSS) funcione correctamente ([1](https://old.reddit.com/r/intel/comments/9uc03d/the_i219v_nic_on_your_new_z390_motherboard_and)).
+- Asegúrese de conectar el cable Ethernet al puerto correspondiente de la NIC deseada.
+  
+- Evalúe y reduzca el bufferbloat, ya que es una causa de latencia elevada y variaciones en la entrega de paquetes (jitter) en redes conmutadas por paquetes, provocada por un exceso de búfer en la red ([1](https://en.wikipedia.org/wiki/Bufferbloat), [2](https://www.bufferbloat.net/projects))
 
-- Measure and minimize bufferbloat as it is a cause of high latency and jitter in packet-switched networks caused by excess buffering of packets ([1](https://en.wikipedia.org/wiki/Bufferbloat), [2](https://www.bufferbloat.net/projects))
-
-  - See [Waveform Bufferbloat and Internet Speed Test | Waveform](https://www.waveform.com/tools/bufferbloat)
-  - See [What Can I Do About Bufferbloat? | Bufferbloat.net](https://www.bufferbloat.net/projects/bloat/wiki/What_can_I_do_about_Bufferbloat)
-  - See [stoplagging.com](https://www.stoplagging.com)
+  - Consulte la sección [Waveform Bufferbloat and Internet Speed Test | Waveform](https://www.waveform.com/tools/bufferbloat)
+  - Consulte la sección [What Can I Do About Bufferbloat? | Bufferbloat.net](https://www.bufferbloat.net/projects/bloat/wiki/What_can_I_do_about_Bufferbloat)
+  - Consulte la sección [stoplagging.com](https://www.stoplagging.com)
 
 - Avoid daisy-chaining power cables anywhere in your setup
 
