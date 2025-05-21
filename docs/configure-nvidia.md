@@ -1,21 +1,21 @@
-<h1 id="configure-the-nvidia-driver">Configure the NVIDIA Driver <a href="#configure-the-nvidia-driver">(permalink)</a></h1>
+<h1 id="configure-the-nvidia-driver">Configurar el controlador NVIDIA <a href="#configure-the-nvidia-driver">(permalink)</a></h1>
 
-<h2 id="table-of-contents">1. Table of Contents <a href="#table-of-contents">(permalink)</a></h2>
+<h2 id="table-of-contents">1. Tabla de contenidos <a href="#table-of-contents">(permalink)</a></h2>
 
-- [1. Table of Contents](#table-of-contents)
-- [2. Strip and Install the Driver](#strip-and-install-the-driver)
-- [3. Configure NVIDIA Control Panel](#configure-nvidia-control-panel)
-  - [3.1. Manage 3D Settings](#manage-3d-settings)
-  - [3.2. Change Resolution](#change-resolution)
-  - [3.3. Adjust Video  Settings](#adjust-video-color-settings)
-  - [3.4. Lock GPU Clocks/P-State 0](#lock-gpu-clocksp-state-0)
-- [3.5. Configure NVIDIA Inspector](#configure-nvidia-inspector)
+- [1. Tabla de contenidos](#table-of-contents)
+- [2. Desmontar e instalar el controlador](#strip-and-install-the-driver)
+- [3. Configurar el Panel de Control NVIDIA](#configure-nvidia-control-panel)
+  - [3.1. Gestionar la configuración 3D](#manage-3d-settings)
+  - [3.2. Cambiar resolución](#change-resolution)
+  - [3.3. Ajustar la configuración de vídeo](#adjust-video-color-settings)
+  - [3.4. Frecuencia estática/P-State 0](#lock-gpu-clocksp-state-0)
+- [3.5. Configurar NVIDIA Inspector](#configure-nvidia-inspector)
 
-<h2 id="strip-and-install-the-driver">2. Strip and Install the Driver <a href="#strip-and-install-the-driver">(permalink)</a></h2>
+<h2 id="strip-and-install-the-driver">2. Desmontar e instalar el controlador <a href="#strip-and-install-the-driver">(permalink)</a></h2>
 
-- Download the latest game ready driver using the [advanced driver search](https://www.nvidia.com/download/find.aspx) page. DCH drivers are supported on Windows 10 1803+ ([1](https://nvidia.custhelp.com/app/answers/detail/a_id/4777/~/nvidia-dch%2Fstandard-display-drivers-for-windows-10-faq)).
+- Descarga el último controlador preparado para juegos mediante la página [advanced driver search](https://www.nvidia.com/download/find.aspx). Los controladores DCH son compatibles con Windows 10 1803+ ([1](https://nvidia.custhelp.com/app/answers/detail/a_id/4777/~/nvidia-dch%2Fstandard-display-drivers-for-windows-10-faq)).
 
-- Extract the driver executable package with 7-Zip and remove all files and folders except the following:
+- Extraiga el paquete ejecutable del controlador con 7-Zip y elimine todos los archivos y carpetas excepto los siguientes:
 
     ```
     Display.Driver
@@ -26,7 +26,7 @@
     setup.exe
     ```
 
-- Remove the following lines from ``setup.cfg`` (near the end of the file):
+- Elimine las siguientes líneas de ``setup.cfg`` (cerca del final del archivo):
 
     ```
     <file name="${{EulaHtmlFile}}"/>
@@ -34,18 +34,18 @@
     <file name="${{PrivacyPolicyFile}}"/>
     ```
 
-- Run ``setup.exe`` to install the driver
+- Ejecute ``setup.exe`` para instalar el controlador.
 
-<h2 id="configure-nvidia-control-panel">3. Configure NVIDIA Control Panel <a href="#configure-nvidia-control-panel">(permalink)</a></h2>
+<h2 id="configure-nvidia-control-panel">3. Configurar el Panel de Control NVIDIA <a href="#configure-nvidia-control-panel">(permalink)</a></h2>
 
-<h3 id="manage-3d-settings">3.1. Manage 3D Settings <a href="#manage-3d-settings">(permalink)</a></h3>
+<h3 id="manage-3d-settings">3.1. Gestionar la configuración 3D <a href="#manage-3d-settings">(permalink)</a></h3>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](/README.md#3-benchmarking)).
 
 - Low Latency Mode - On
 
-  - If you leave both NVIDIA Reflex LLM and LLM in the driver on, NVIDIA Reflex LLM will take higher priority automatically ([1](https://www.nvidia.com/en-gb/geforce/news/reflex-low-latency-platform))
+  - Si dejas activados tanto NVIDIA Reflex LLM como LLM en el controlador, NVIDIA Reflex LLM tendrá mayor prioridad automáticamente. ([1](https://www.nvidia.com/en-gb/geforce/news/reflex-low-latency-platform))
 
 - Power management mode - Prefer maximum performance
 
@@ -53,7 +53,7 @@
 
 - Texture filtering - Quality - High performance
 
-- Threaded Optimization - offloads GPU-related processing tasks on the CPU ([1](https://tweakguides.pcgamingwiki.com/NVFORCE_8.html)). It may harm frame pacing as it takes CPU time away from your real-time application but you should benchmark nonetheless. You should also determine whether you are already CPU bottlenecked if you do choose to enable the setting
+- Threaded Optimization - descarga en la CPU las tareas de procesamiento relacionadas con la GPU ([1](https://tweakguides.pcgamingwiki.com/NVFORCE_8.html)). Puede perjudicar el ritmo de fotogramas, ya que quita tiempo de CPU a la aplicación en tiempo real, pero, aun así, deberías realizar pruebas comparativas. También deberías determinar si ya tienes un cuello de botella en la CPU si decides activar la opción
 
 - Ensure that settings aren't being overridden for programs in the ``Program Settings`` tab, such as Image Sharpening for some EAC games to prevent unexpected results
 
