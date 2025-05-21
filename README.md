@@ -1281,33 +1281,35 @@ Abre CMD e introduce los siguientes comandos:
 
 <h2 id="process-explorer">11.31. Process Explorer <a href="#process-explorer">(permalink)</a></h2>
 
-Task Manager lacks several useful metrics compared to a tool such as Process Explorer. On Windows 8+, Task Manager reports CPU utility in % which provides misleading CPU utilization details ([1](https://aaron-margosis.medium.com/task-managers-cpu-numbers-are-all-but-meaningless-2d165b421e43)). On the other hand, Windows 7's Task Manager and Process Explorer report time-based busy utilization. This also explains as to why disabling idle states within the OS results in 100% CPU utilization in Task Manager.
+El Administrador de tareas de Windows carece de muchas métricas útiles en comparación con una herramienta como Process Explorer. A partir de Windows 8, el Administrador de tareas muestra el uso de CPU como porcentaje, lo cual puede llevar a interpretaciones erróneas ([1](https://aaron-margosis.medium.com/task-managers-cpu-numbers-are-all-but-meaningless-2d165b421e43)). En cambio, el Administrador de tareas de Windows 7 y Process Explorer informan el uso basado en tiempo de actividad, lo que explica por qué al desactivar los estados inactivos (C-States), la CPU aparece al 100% de uso.
 
-- Download and extract [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer)
+- Descarga y extrae [Process Explorer](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer)
 
-- Copy ``procexp64.exe`` into a safe directory such as ``C:\Windows`` and open it
+- Copia ``procexp64.exe`` a una carpeta segura como ``C:\Windows`` y abrelo 
 
-- Navigate to ``Options`` and select ``Replace Task Manager``. Optionally configure the following:
+- Ve a ``Options`` y selecciona ``Replace Task Manager``. Opcionalmente configura:
 
-  - Confirm Kill
+  - Confirmar cierre de procesos (``Confirm Kill``)
 
-  - Allow Only One Instance
+  - Permitir solo una instancia (Allow Only One Instance)
 
-  - Always On Top (helpful for when applications crash and UI becomes unresponsive)
+  - Siempre visible (Always On Top) — útil si una app se cuelga
 
-  - Enable the following columns for granular resource measurement metrics
-
-    - Context Switch Delta (Process Performance)
+  - Activa las siguientes columnas para una medición más granular:
+    
+    - Context Switch Delta (rendimiento del proceso)
 
     - CPU Cycles Delta (Process Performance)
 
-    - Delta Reads (Process I/O)
+    - CPU Cycles Delta (rendimiento del proceso)
+     
+    - Delta Reads (E/S del proceso)
+  
+    - Delta Writes (E/S del proceso)
 
-    - Delta Writes (Process I/O)
+    - Delta Other (E/S del proceso
 
-    - Delta Other (Process I/O)
-
-  - Enable the ``VirusTotal`` column
+   - Habilita la columna VirusTotal para escaneo de procesos sospechosos
 
 <h2 id="memory-management-settings-windows-8">11.32. Memory Management Settings (Windows 8+) <a href="#memory-management-settings-windows-8">(permalink)</a></h2>
 
