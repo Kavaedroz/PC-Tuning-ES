@@ -1,6 +1,6 @@
 # PC-Tuning-ES
 
-> [!Cuidado]
+> [!Atención!]
 > El orden sobre el escalado en rendimiento, Hardware > UEFI > Sistema Operativo.
 
 > [!CAUTION]
