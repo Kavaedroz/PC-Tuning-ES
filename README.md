@@ -1165,50 +1165,49 @@ ren C:\Windows\System32\mcupdate_AuthenticAMD.dll mcupdate_AuthenticAMD.dlll
 
 </details>
 
-Meltdown does not affect the AMD architecture ([1](https://www.theverge.com/2018/1/3/16844630/intel-processor-security-flaw-bug-kernel-windows-linux), [2](https://www.phoronix.com/news/x86-PTI-Initial-Gaming-Tests), [3](https://lkml.org/lkml/2018/1/3/425)) and is required for a minority of anticheats (FACEIT).
+Meltdown no afecta a la arquitectura AMD ([1](https://www.theverge.com/2018/1/3/16844630/intel-processor-security-flaw-bug-kernel-windows-linux), [2](https://www.phoronix.com/news/x86-PTI-Initial-Gaming-Tests), [3](https://lkml.org/lkml/2018/1/3/425)) y solo es requerido por una minoría de anticheats (como FACEIT).
 
-Use [InSpectre](https://www.grc.com/inspectre.htm) and [CPU-Z's](https://www.cpuid.com/softwares/cpu-z.html) validation feature to check the status or version before and after a reboot to verify expected behavior.
+Utiliza [InSpectre](https://www.grc.com/inspectre.htm) y la función de validación de [CPU-Z's](https://www.cpuid.com/softwares/cpu-z.html) para comprobar el estado o versión antes y después de un reinicio y así verificar el comportamiento esperado.
 
 <h2 id="power-options">11.30. Power Options <a href="#power-options">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-Open CMD and enter the commands below.
+Abre CMD e introduce los siguientes comandos:
 
-- Set the active power scheme to High performance
+- Establecer el plan de energía activo como Alto rendimiento
 
     ```bat
     powercfg /setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
     ```
 
-- Remove the Balanced power scheme
+- Eliminar el plan de energía Equilibrado
 
     ```bat
     powercfg /delete 381b4222-f694-41f0-9685-ff5bb260df2e
     ```
 
-- Remove the Power Saver power scheme
+- Eliminar el plan de energía Ahorro de energía
 
     ```bat
     powercfg /delete a1841308-3541-4fab-bc81-f71556f20b4a
     ```
 
-- USB 3 Link Power Management - Off
-
+- Desactivar la Gestión de energía del enlace USB 3
     ```bat
     powercfg /setacvalueindex scheme_current 2a737441-1930-4402-8d77-b2bebba308a3 d4e98f31-5ffe-4ce1-be31-1b38b384c009 0
     ```
 
-- USB Selective Suspend - Disabled
+- Desactivar Suspensión selectiva de USB
 
     ```bat
     powercfg /setacvalueindex scheme_current 2a737441-1930-4402-8d77-b2bebba308a3 48e6b7a6-50f5-4782-a5d4-53bb8f07e226 0
     ```
 
-- Processor performance core parking min cores - 100
+- Establecer "Processor performance core parking min cores" en 100
 
-    - CPU parking is disabled by default in the High Performance power scheme ([1](https://learn.microsoft.com/en-us/windows-server/administration/performance-tuning/hardware/power/power-performance-tuning#using-power-plans-in-windows-server)). However on Windows 11+ with modern CPUs, parking is overridden and enabled. Users can determine whether CPUs are parked by typing ``resmon`` in ``Win+R``. Apart from parking intended to be a power saving feature, videos such as [this](https://www.youtube.com/watch?v=2yOYfT_r0xI) and [this](https://www.youtube.com/watch?v=gyg7Gm7aN2A) explain that it is the desired behavior for correct thread scheduling which is probably fine for the average user, but they do not account for the latency penalty of unparking cores (as with C-State transitions) along with kernel-mode activity (interrupts, DPCs). In terms of per-CPU scheduling, you can easily achieve the same outcome by managing per-CPU load manually (e.g. pin the real-time application to a [single CCX/CCD](https://hwbusters.com/cpu/amd-ryzen-9-7950x3d-cpu-review-performance-thermals-power-analysis/2) or P-Cores) by configuring affinities with the advantage being no overhead from chipset drivers and Xbox processes constantly running in the background forcing unnecessary context switches. See the [Per-CPU Scheduling](#per-cpu-scheduling) section for more information
+    - El "CPU parking" está desactivado por defecto en el plan de energía de alto rendimiento ([1](https://learn.microsoft.com/en-us/windows-server/administration/performance-tuning/hardware/power/power-performance-tuning#using-power-plans-in-windows-server)). Sin embargo, en Windows 11+ con CPUs modernas, el sistema puede forzar el aparcamiento de núcleos (parking) incluso con dicho plan. Puedes verificar si hay núcleos aparcados escribiendo ``resmon`` en ``Win+R``. Aunque el aparcamiento de núcleos está diseñado como una función de ahorro energético, algunos vídeos como [este](https://www.youtube.com/watch?v=2yOYfT_r0xI) y [este otro](https://www.youtube.com/watch?v=gyg7Gm7aN2A) explican que se trata de un comportamiento deseado para una correcta planificación de hilos. Esto puede estar bien para el usuario promedio, pero no consideran la penalización de latencia al desactivar el aparcamiento (como ocurre con las transiciones de C-State), además de la actividad en modo kernel (interrupciones, DPCs). En términos de planificación por CPU, puedes lograr el mismo resultado gestionando manualmente la carga por núcleo (por ejemplo, asignar la aplicación en tiempo real a un [unico CCX/CCD](https://hwbusters.com/cpu/amd-ryzen-9-7950x3d-cpu-review-performance-thermals-power-analysis/2) o solo a núcleos de alto rendimiento - P-Cores). Esto evita la sobrecarga causada por controladores del chipset y procesos como Xbox que generan conmutaciones de contexto innecesarias. Consulta la sección [Per-CPU Scheduling](#per-cpu-scheduling) para más detalles.
 
         ```bat
         powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 0cc5b647-c1df-4637-891a-dec35c318583 100
@@ -1218,9 +1217,14 @@ Open CMD and enter the commands below.
         powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 0cc5b647-c1df-4637-891a-dec35c318584 100
         ```
         
-        - Processor performance time check interval - 5000
+        - Establecer "Processor performance time check interval" en 5000
 
-    - There are a handful of ntoskrnl power management DPCs that are scheduled at a periodic interval to re-evaluate P-States and parked cores. With a static CPU frequency and core parking disabled, these checks become obsolete thus unnecessary DPCs get scheduled. The ``Processor performance time check interval`` setting controls how often these checks are taken place so increasing the setting's value can reduce CPU overhead as significantly fewer DPCs are scheduled. For reference and at the time of checking, the Power Saver, Balanced, High performance power schemes have a default value of 200, 15 and 15 respectively. 5000 is the maximum accepted value. Of course, if a dynamic CPU frequency is used (e.g. Precision Boost Overdrive, Turbo Boost) and parking is enabled, the effects of increasing this value should be evaluated as cores may not be able to boost their frequency in response to workloads as the OS is evaluating the current scenario less often
+    - Existen varios DPCs del núcleo (ntoskrnl) relacionados con la gestión de energía que se programan periódicamente para re-evaluar los estados P (P-States) y los núcleos aparcados. Si se utiliza una frecuencia de CPU estática y el aparcamiento está desactivado, estas evaluaciones se vuelven innecesarias. El ajuste Processor performance time check interval controla cada cuánto se realiza esta evaluación. Aumentar su valor puede reducir la sobrecarga en la CPU, ya que se programan muchos menos DPCs.Por referencia, en el momento de redactar esto, los valores por defecto son:
+    Ahorro de energía: 200
+    Equilibrado: 15
+    Alto rendimiento: 15
+    El valor máximo permitido es 5000.
+    Si usas frecuencias dinámicas (ej. Precision Boost, Turbo Boost) y el aparcamiento está activado, deberías evaluar el impacto de este ajuste, ya que la CPU podría no subir de frecuencia con suficiente rapidez.
 
         <table style="text-align: center;">
             <tr>
@@ -1269,7 +1273,7 @@ Open CMD and enter the commands below.
         powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 4d2b0152-7d5c-498b-88e2-34345392a2c5 5000
         ```
 
-- Set the active scheme as the current scheme
+- Establece el plan de energía actual como el plan activo
 
     ```bat
     powercfg /setactive scheme_current
