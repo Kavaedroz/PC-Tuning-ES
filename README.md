@@ -1706,7 +1706,7 @@ Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el pla
 
 <h3 id="bitmask-explaination">11.49.1. Bitmask Explaination <a href="#bitmask-explaination">(permalink)</a></h3>
 
-- The leftmost bit pair (**XX**YYZZ) determine the quantum length. This is represented by ``PspForegroundQuantum``
+- El par de bits más a la izquierda (XXYYZZ) determina la longitud del quantum. Esto está representado por ``PspForegroundQuantum``
 
   |Value|Description|
   |---|---|
@@ -1714,7 +1714,7 @@ Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el pla
   |01|Long Intervals|
   |10|Short Intervals|
 
-- The middle bit pair (XX**YY**ZZ) determine whether the quantum length is variable or fixed. If a fixed-length quantum is used, then the rightmost bit pair is ignored as the ratio that determines the time allocated to background and foreground threads within the quantum is fixed. This is represented by ``PspForegroundQuantum``
+- El par de bits del medio (XXYYZZ) determina si la longitud del quantum es variable o fija. Si se utiliza un quantum de longitud fija, entonces el par de bits más a la derecha se ignora, ya que la proporción que determina el tiempo asignado a los hilos en segundo plano y en primer plano dentro del quantum es fija. Esto también está representado por ``PspForegroundQuantum``
 
   |Value|Description|
   |---|---|
@@ -1722,7 +1722,7 @@ Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el pla
   |01|Variable-length|
   |10|Fixed-length|
 
-- The rightmost bit pair (XXYY**ZZ**) determine the ratio of time in the quantum allocated to background and foreground threads in which, foreground threads can be allocated up to three times as much processor time than background threads. As mentioned previously, this can only be configured with variable-length quantums. This is represented by ``PsPrioritySeparation``
+- El par de bits más a la derecha (XXYYZZ) determina la proporción de tiempo en el quantum asignado a los hilos en segundo plano y en primer plano, en la cual los hilos en primer plano pueden recibir hasta tres veces más tiempo de CPU que los hilos en segundo plano. Como se mencionó anteriormente, esto solo se puede configurar con quantums de longitud variable. Esto está representado por  ``PsPrioritySeparation``
 
   |Value|Description|
   |---|---|
@@ -1730,22 +1730,17 @@ Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el pla
   |01|2:1|
   |10/11|3:1|
 
-- Using the information above, the default value of ``0x2`` corresponds to short, variable-length, 3:1 on Windows Client and long, fixed-length, 3:1 on Windows Server
+- Usando la información anterior, el valor predeterminado de ``0x2`` corresponde a quantum corto, de longitud variable y proporción 3:1 en Windows Client y quantum largo, de longitud fija y proporción 3:1 en Windows Server.
 
 <h3 id="win32priorityseparation-values">11.49.2. Win32PrioritySeparation Values <a href="#win32priorityseparation-values">(permalink)</a></h3>
 
-The table below consists of all possible values that are consistent between client and server editions of Windows as ``00`` or ``11`` were not used in **XXYY**ZZ of the bitmask which have different meanings on client and server editions. Any value not specified in the table is identical to one that is stated in the table as explained [here](/docs/research.md#5-ambiguous-win32priorityseparation-values-explained), hence the values in the table are the only ones that should be used for simplicity.
+La siguiente tabla consiste en todos los valores posibles que son consistentes entre ediciones cliente y servidor de Windows, ya que ``00`` o ``11`` no fueron utilizados en XXYYZZ de la máscara de bits, los cuales tienen significados diferentes en las ediciones cliente y servidor. Cualquier valor no especificado en la tabla es idéntico a uno que sí está especificado, como se explica [aqui](/docs/research.md#5-ambiguous-win32priorityseparation-values-explained), ; por tanto, los valores en la tabla son los únicos que deberían utilizarse para mayor simplicidad.
 
-Although a foreground boost can not be used when using a fixed length interval in terms of the quantum, PsPrioritySeparation still changes, and another thread priority boosting mechanism just happens to use the value of it so in reality, a fixed 3:1 quantum should have a perceivable difference compared to a fixed 1:1 quantum. See the paragraph below from Windows Internals.
+Aunque no se puede usar una mejora para el primer plano cuando se usa un quantum de longitud fija, aún cambia PsPrioritySeparation y otro mecanismo de mejora de prioridad de hilos simplemente utiliza su valor, por lo que en realidad, un quantum fijo con proporción 3:1 debería tener una diferencia perceptible en comparación con uno fijo con proporción 1:1. Véase el siguiente párrafo de Windows Internals:
 
-> As will be described shortly, whenever a thread in the foreground process completes a wait operation on
-a kernel object, the kernel boosts its current (not base) priority by the current value of
-PsPrioritySeparation. (The windowing system is responsible for determining which process is
-considered to be in the foreground.) As described earlier in this chapter in the section “Controlling the
-quantum,” PsPrioritySeparation reflects the quantum-table index used to select quantums for the
-threads of foreground applications. However, in this case, it is being used as a priority boost value.
+> Como se describirá a continuación, siempre que un hilo en el proceso en primer plano complete una operación de espera sobre un objeto del kernel, el kernel incrementa su prioridad actual (no base) en el valor actual de PsPrioritySeparation. (El sistema de ventanas es responsable de determinar qué proceso se considera en primer plano). Como se describió anteriormente en esta sección en “Controlando el quantum,” PsPrioritySeparation refleja el índice en la tabla de quantum usado para seleccionar quantums para los hilos de aplicaciones en primer plano. Sin embargo, en este caso, se está utilizando como un valor de aumento de prioridad.
 
-For the majority of readers, I would simply recommend leaving it at default. Although, a mixture of the quantum length and foreground/background time allocation ratio can influence how often a thread switches context depending on whether thread's runtime exceeds its allocated time in the quantum as described previously hence you can benchmark whether it influences performance in your chosen applications if desired. If you are using Windows Server on a desktop system, the value can be set to ``0x26`` which mimics the same behavior as ``0x2`` does on Windows Client editions.
+Para la mayoría de los lectores, simplemente recomendaría dejar este valor en su estado predeterminado. Aunque una combinación de la longitud del quantum y la proporción de tiempo entre primer plano y segundo plano puede influir en la frecuencia de cambio de contexto de un hilo dependiendo de si su tiempo de ejecución excede el tiempo asignado en el quantum, como se describió anteriormente, puedes realizar pruebas comparativas para verificar si influye en el rendimiento de tus aplicaciones preferidas. Si estás utilizando Windows Server en un sistema de escritorio, el valor puede establecerse en ``0x26`` , el cual imita el mismo comportamiento que ``0x2`` en ediciones cliente de Windows.
 
 |**Hexadecimal**|**Decimal**|**Binary**|**Interval**|**Length**|**PsPrioSep**|
 |---|---|---|---|---|---|
@@ -1767,77 +1762,77 @@ For the majority of readers, I would simply recommend leaving it at default. Alt
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-The clock interrupt frequency is the rate at which the system's hardware clock generates interrupts which allow the scheduler to perform various tasks such as timekeeping. On most systems by default, the minimum frequency is 64Hz, meaning that a clock interrupt is generated every 15.625ms. A lower frequency results in reduced CPU overhead and power consumption due to fewer interrupts but reduces timing precision and results in potentially less responsive multitasking. The maximum frequency is 2kHz, meaning that a clock interrupt is generated every 0.5ms. A higher frequency results in higher timing precision, potentially higher multitasking responsiveness but increases CPU overhead and power consumption. The minimum, current and maximum resolutions can be viewed in [ClockRes](https://learn.microsoft.com/en-us/sysinternals/downloads/clockres).
+La frecuencia de interrupción del reloj es la tasa a la que el reloj de hardware del sistema genera interrupciones que permiten al planificador realizar varias tareas como el mantenimiento del tiempo. En la mayoría de los sistemas por defecto, la frecuencia mínima es de 64Hz, lo que significa que se genera una interrupción cada 15.625ms. Una frecuencia más baja reduce el overhead de CPU y el consumo de energía debido a menos interrupciones, pero reduce la precisión temporal y puede resultar en una multitarea menos receptiva. La frecuencia máxima es de 2kHz, lo que significa una interrupción cada 0.5ms. Una frecuencia más alta proporciona mayor precisión temporal y potencialmente una mayor capacidad de respuesta, pero incrementa el overhead de CPU y el consumo de energía. Las resoluciones mínima, actual y máxima pueden verse con [ClockRes](https://learn.microsoft.com/en-us/sysinternals/downloads/clockres).
 
-Applications that require higher precision than the default resolution of 15.625ms are able to raise the clock interrupt frequency through functions such as [timeBeginPeriod](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod) and [NtSetTimerResolution](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FTime%2FNtSetTimerResolution.html) in which, these scenarios typically consist of multimedia playback, gaming, VoIP activity and more which can be seen by running an energy trace ([instructions](https://support.microsoft.com/en-gb/topic/guided-help-get-a-detailed-power-efficiency-diagnostics-report-for-your-computer-in-windows-7-3f6ce138-fc04-7648-089a-854bcf332810)) during runtime. The precision of features that rely on sleep-related functions to pace events are directly influenced by the clock interrupt frequency ([1](https://randomascii.wordpress.com/wp-content/uploads/2020/10/image-5.png)). Using [Sleep](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep) as an example, ``Sleep(n)`` should sleep for n milliseconds in actuality and not n plus/minus an arbitrary value otherwise, it can result in unexpected and inconsistent event pacing which is not ideal for features such as sleep-based framerate limiters. Note that this is an example and many real-world applications do not rely specifically on the ``Sleep`` function for event pacing. A typical value that developers appears to raise the resolution to is 1ms which means that the application can maintain a pace of events within a resolution of 1ms. In very rare cases, developers may not raise the resolution at all while their application relies on it for event pacing precision leading to breakage, but this is not common and may be applicable to some obscure programs such as lesser-known games.
+Las aplicaciones que requieren mayor precisión que la resolución predeterminada de 15.625ms pueden aumentar la frecuencia de interrupción del reloj mediante funciones como [timeBeginPeriod](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod) y [NtSetTimerResolution](http://undocumented.ntinternals.net/index.html?page=UserMode%2FUndocumented%20Functions%2FTime%2FNtSetTimerResolution.html) Estos escenarios suelen incluir reproducción multimedia, videojuegos, VoIP y más, lo cual puede verse al ejecutar una traza de energía ([instrucciones](https://support.microsoft.com/en-gb/topic/guided-help-get-a-detailed-power-efficiency-diagnostics-report-for-your-computer-in-windows-7-3f6ce138-fc04-7648-089a-854bcf332810)) durante la ejecución. La precisión de características que dependen de funciones relacionadas con suspensión para marcar eventos está directamente influenciada por la frecuencia de interrupción del reloj ([1](https://randomascii.wordpress.com/wp-content/uploads/2020/10/image-5.png)). Usando [Sleep](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-sleep) como ejemplo,  ``Sleep(n)`` debería dormir durante n milisegundos en la práctica y no n más/menos un valor arbitrario, ya que esto podría resultar en eventos mal sincronizados, lo cual no es ideal para funciones como limitadores de FPS basados en suspensión. Cabe señalar que este es un ejemplo, y muchas aplicaciones reales no dependen específicamente de la función ``Sleep`` para el control de eventos. Un valor típico al que los desarrolladores suelen elevar la resolución es 1ms, lo que permite que la aplicación mantenga un ritmo de eventos dentro de una resolución de 1ms. En casos muy raros, los desarrolladores podrían no elevar la resolución en absoluto mientras su aplicación depende de ello, lo que podría causar fallos, aunque esto no es común y puede aplicar a programas poco conocidos como ciertos juegos indie.
 
-The implementation of timer resolution changed in Windows 10 2004+ such that the calling process raising the resolution does not affect the system on a global level meaning, process A raising the resolution to 1ms does not affect process B at the default 15.625ms resolution unlike before. This is a great change in and of itself because it reduces overhead as other processes such as idle background processes don't get serviced by the scheduler often and the calling process receives higher precision as needed. However as an end-user, this results in limitations when wanting to leverage higher resolutions such as 0.5ms.  Given that games are not open-source to modify the code along with anticheat limitations preventing DLL injection or binary patching to raise the resolution beyond 1ms the per-process way, the only other option is to resort to the global behavior which is applicable with the registry key below on Windows Server and Windows 11+ as explained in depth [here](/docs/research.md#6-fixing-timing-precision-in-windows-after-the-great-rule-change).
+La implementación de la resolución del temporizador cambió en Windows 10 versión 2004 y posteriores, de modo que el proceso que solicita una resolución más alta ya no afecta al sistema globalmente. Es decir, si el proceso A solicita una resolución de 1ms, no afecta al proceso B que permanece en la resolución predeterminada de 15.625ms, a diferencia de antes. Este es un gran cambio ya que reduce el overhead, ya que otros procesos en segundo plano no son atendidos innecesariamente y el proceso solicitante recibe mayor precisión cuando lo necesita. Sin embargo, esto presenta limitaciones para el usuario final al querer usar resoluciones mayores como 0.5ms. Dado que los juegos no son de código abierto para modificar y los sistemas antitrampas impiden la inyección de DLLs o modificación binaria para elevar la resolución más allá de 1ms, la única opción restante es recurrir al comportamiento global, el cual es aplicable a Windows Server y Windows 11+ mediante la siguiente clave de registro como se explica en detalle [aqui](/docs/research.md#6-fixing-timing-precision-in-windows-after-the-great-rule-change).
 
 ```
 [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel]
 "GlobalTimerResolutionRequests"=dword:00000001
 ```
 
-This provides the ability to raise the resolution in a separate process which in turn, results in the desired application such as a game receiving higher precision. However as mentioned previously, the per-process implantation reduces overhead which is no longer the case when the global behavior is restored and background processes are also serviced unnecessarily often. [RTSS](https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download) is an alternative method for framerate limiting and utilizes hybrid-wait which results in greater precision while eliminating the need for restoring the global behavior.
+Esto proporciona la capacidad de aumentar la resolución en un proceso separado, lo que a su vez resulta en que la aplicación deseada, como un juego, reciba mayor precisión. Sin embargo, como se mencionó anteriormente, la implementación por proceso reduce la sobrecarga, lo cual ya no ocurre cuando se restablece el comportamiento global y los procesos en segundo plano también son atendidos innecesariamente con frecuencia. [RTSS](https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download) es una alternativa que utiliza espera híbrida (hybrid-wait), proporcionando gran precisión sin necesidad de restaurar el comportamiento global.
 
-A higher resolution results in higher precision, but in some cases, the maximum supported resolution of 0.5ms provides less precision than something slightly lower such as 0.507ms ([1](/docs/research.md#7-micro-adjusting-timer-resolution-for-higher-precision)). Therefore, it is sensible to determine what calling resolution provides the highest precision (the lowest deltas) in the [MeasureSleep](https://github.com/valleyofdoom/TimerResolution) program while requesting different resolutions with the [SetTimerResolution](https://github.com/valleyofdoom/TimerResolution) program. This should be carried out under load as idle benchmarks may be misleading. The [micro-adjust-benchmark.ps1](https://github.com/valleyofdoom/TimerResolution) script can be used to automate the process.
+Una resolución más alta proporciona mayor precisión, pero en algunos casos, la resolución máxima soportada de 0.5ms proporciona menos precisión que algo ligeramente más alto como 0.507ms ([1](/docs/research.md#7-micro-adjusting-timer-resolution-for-higher-precision)). Por lo tanto, es sensato determinar qué resolución proporciona la mayor precisión (menores deltas) con el programa [MeasureSleep](https://github.com/valleyofdoom/TimerResolution) mientras se solicitan distintas resoluciones con [SetTimerResolution](https://github.com/valleyofdoom/TimerResolution). Esto debe hacerse bajo carga, ya que los benchmarks en reposo pueden ser engañosos. El script [micro-adjust-benchmark.ps1](https://github.com/valleyofdoom/TimerResolution) puede usarse para automatizar este proceso.
 
-To conclude my view on the topic, I recommend favoring the per-process (non-global) implementation where applicable as it reduces overhead and instead use [RTSS](https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download) for precise framerate limiting. It is worth noting that it can introduce noticeably higher latency ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)) therefore I recommend comparing and benchmarking it against micro-adjusting the requested resolution for higher precision with the global behavior. It is possible that frametime stability is unaffected by raising the resolution beyond 1ms due to improvements in the in-game framerate limiter which in that case, no action is required. The primary point I want to convey is to compare all available options, with a preference of using the per-process behavior which is the default on Windows 10 2004+ if you find that raising the resolution further has little to no impact.
+Recomiendo favorecer la implementación por proceso (no global) cuando sea aplicable, ya que reduce el overhead. En su lugar, usa [RTSS](https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download) para limitar el framerate con precisión. Cabe señalar que puede introducir una latencia notablemente mayor ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)) por lo que recomiendo comparar y hacer pruebas con la técnica de microajuste en la resolución solicitada usando el comportamiento global. Es posible que la estabilidad del frametime no se vea afectada al elevar la resolución más allá de 1ms debido a mejoras en el limitador de framerate del juego, en cuyo caso no se requiere ninguna acción. El punto principal es comparar todas las opciones disponibles, con preferencia por la implementación por proceso (predeterminada desde Windows 10 2004+) si descubres que elevar más la resolución no tiene impacto real.
 
 <h2 id="paging-file">11.51. Paging File <a href="#paging-file">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-For most readers, I would recommend keeping the paging file enabled which is the default state. There is an argument that it is preferable to disable it if you have enough RAM for your applications as it reduces I/O overhead and that system memory is faster than disk however, many users have reported in-game stuttering in specific games with the paging file disabled despite being nowhere near maximum RAM load. Windows appears to allocate the page file to secondary drives sometimes which can be problematic if one of the drives is a HDD. This can be resolved by allocating the page file to an SSD and its size to "system managed size" then deallocating it on other drives.
+Para la mayoría de los lectores, recomendaría mantener habilitado el archivo de paginación, que es el estado predeterminado. Existe el argumento de que es preferible deshabilitarlo si tienes suficiente RAM para tus aplicaciones, ya que reduce la sobrecarga de E/S y la memoria del sistema es más rápida que el disco. Sin embargo, muchos usuarios han reportado interrupciones (stuttering) en juegos específicos con el archivo de paginación deshabilitado, a pesar de que el uso de RAM no se acerca al máximo. Windows parece asignar el archivo de paginación a discos secundarios en ocasiones, lo cual puede ser problemático si uno de los discos es un HDD. Esto se puede resolver asignando el archivo de paginación a un SSD y configurando su tamaño como “administrado por el sistema”, y luego desasignándolo de las demás unidades.
 
 <h2 id="cleanup-and-maintenance">11.52. Cleanup and Maintenance <a href="#cleanup-and-maintenance">(permalink)</a></h2>
 
-It isn't a bad idea to revisit this step every so often. Setting a reminder to do so can be helpful in maintaining a clean system.
+No es mala idea revisar este paso periódicamente. Configurar un recordatorio para hacerlo puede ser útil para mantener el sistema limpio.
 
-- Updates
+- Actualizaciones
 
-  - Windows Update - if ``disable automatic windows updates`` was set to ``true`` in section [Merging Registry Options](#merging-registry-options), you need to manually check for updates
+  - Windows Update: si se estableció disable automatic windows updates en true en la sección [Merging Registry Options](#merging-registry-options), deberás buscar actualizaciones manualmente.
 
-  - Runtimes - as outlined in section [Runtimes](#runtimes)
+  - Runtimes: como se describe en la sección [Runtimes](#runtimes)
 
-  - Microsoft Store Apps - if ``disable automatic store app updates`` was set to ``true`` in section [Merging Registry Options](#merging-registry-options), you need to manually check for updates
+  - Aplicaciones de Microsoft Store: si se estableció disable automatic store app updates en true en la sección [Merging Registry Options](#merging-registry-options), deberás buscar actualizaciones manualmente.
 
-- Uninstall unwanted programs with [Bulk-Crap-Uninstaller](https://github.com/Klocman/Bulk-Crap-Uninstaller) and [AppxPackagesManager](https://github.com/valleyofdoom/AppxPackagesManager)
+- Desinstala programas no deseados con [Bulk-Crap-Uninstaller](https://github.com/Klocman/Bulk-Crap-Uninstaller) y [AppxPackagesManager](https://github.com/valleyofdoom/AppxPackagesManager)
 
-- Use [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) to remove any unwanted programs from launching at startup and check it often, especially after installing a program
+- Usa [Autoruns](https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns) para evitar que programas no deseados se ejecuten al iniciar el sistema y revísalo con frecuencia, especialmente después de instalar un programa.
 
-- Configure Disk Cleanup
+- Configura la limpieza de disco
 
-  - Open CMD and enter the command below, tick all the boxes except ``DirectX Shader Cache`` then press ``OK``
+  - Abre CMD e introduce el siguiente comando. Marca todas las casillas excepto ``DirectX Shader Cache`` luego presiona ``OK``
 
       ```bat
       cleanmgr /sageset:0
       ```
 
-  - Run Disk Cleanup
+  - Ejecuta la limpieza de disco
 
       ```bat
       cleanmgr /sagerun:0
       ```
 
-- Some locations you may want to review for residual files
+- Algunas ubicaciones que puedes revisar en busca de archivos residuales
 
-  - ``"C:\ProgramData\Microsoft\Windows\Start Menu\Programs"`` - start menu shortcuts (don't delete windows-related shortcuts)
-  - ``C:\Windows\Prefetch`` - prefetch files (this folder should not be populated when superfetch is disabled)
-  - ``C:\Windows\SoftwareDistribution`` - Windows Update download cache
-  - ``C:\Windows\Temp`` - temporary files
-  - ``"%userprofile%"`` - residual junk
-  - ``"%userprofile%\AppData\Local\Temp"`` - temporary files
-  - ``"%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"`` - start menu shortcuts (don't delete windows-related shortcuts)
-  - User directories - e.g. Downloads, Documents, Pictures, Music, Videos, Desktop
+  - ``"C:\ProgramData\Microsoft\Windows\Start Menu\Programs"`` - accesos directos del menú de inicio (no borres accesos directos relacionados con Windows)
+  - ``C:\Windows\Prefetch`` - archivos de prefetch (esta carpeta no debería estar poblada si Superfetch está deshabilitado)
+  - ``C:\Windows\SoftwareDistribution`` - caché de descargas de Windows Update
+  - ``C:\Windows\Temp`` - archivos temporales
+  - ``"%userprofile%"`` - residuos varios
+  - ``"%userprofile%\AppData\Local\Temp"`` - archivos temporales
+  - ``"%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs"`` - accesos directos del menú de inicio (no borres accesos directos relacionados con Windows)
+  - ``Directorios del usuario`` – por ejemplo, Descargas, Documentos, Imágenes, Música, Videos, Escritorio
 
-- Optionally clean the WinSxS folder to reduce the size of it ([1](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/clean-up-the-winsxs-folder?view=windows-11)) with the command below in CMD. Note that this can be a lengthy process
+- Opcionalmente, limpia la carpeta WinSxS para reducir su tamaño ([1](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/clean-up-the-winsxs-folder?view=windows-11)) usando el siguiente comando en CMD. Ten en cuenta que esto puede ser un proceso largo.
 
     ```bat
     DISM /Online /Cleanup-Image /StartComponentCleanup /ResetBase
     ```
 
-- Optionally delete obsolete system restore points in the ``System Protection`` tab by typing ``sysdm.cpl`` in ``Win+R``. It can be disabled completely if you don't use it
+- Opcionalmente, elimina puntos de restauración del sistema obsoletos en la pestaña ``System Protection`` escribiendo ``sysdm.cpl`` en ``Win+R``. Puedes deshabilitarla completamente si no la usas.
 
-- If ``disable automatic maintenance`` was set to ``true`` in section [Merging Registry Options](#merging-registry-options), you need to manually trim your SSDs or defrag your HDDs as this is a task executed during automatic maintenance
+- Si ``disable automatic maintenance`` se estableció en ``true`` en la sección [Merging Registry Options](#merging-registry-options), deberás optimizar manualmente tus SSDs (TRIM) o desfragmentar tus HDDs, ya que esta tarea se ejecuta durante el mantenimiento automático.
