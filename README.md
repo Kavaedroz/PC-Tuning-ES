@@ -16,35 +16,35 @@
 
 - [1. Tabla de Contenidos](#table-of-contents)
 - [2. Introducción](#introduction)
-  - [2.1. Otros Recursos](#other-resources)
+  - [2.1. Otras Fuentes](#other-resources)
 - [3. Pruebas de Rendimiento](#benchmarking)
 - [4. Configuración Física](#physical-setup)
 - [5. Refrigeración](#cooling)
 - [6. BIOS/UEFI](#biosuefi)
   - [6.1. Estilo de Partición](#partition-style)
   - [6.2. Considerar la Versión de Windows](#consider-windows-version)
-  - [6.3. Métodos de Recuperación de BIOS](#bios-recovery-methods)
+  - [6.3. Métodos de recuperación de BIOS](#bios-recovery-methods)
   - [6.4. Actualizaciones de BIOS](#bios-updates)
-  - [6.5. Microcódigo del BIOS](#bios-microcode)
-  - [6.6. Acceder a Opciones Ocultas](#accessing-hidden-options)
-  - [6.7. Dispositivos Innecesarios](#unnecessary-devices)
+  - [6.5. Microcódigo de BIOS](#bios-microcode)
+  - [6.6. Acceder a opciones ocultas](#accessing-hidden-options)
+  - [6.7. Dispositivos innecesarios](#unnecessary-devices)
   - [6.8. Resizable Bar (ReBAR)](#resizable-bar)
   - [6.9. Hyper-Threading/Simultaneous Multithreading](#hyper-threadingsimultaneous-multithreading)
   - [6.10. Estados de Energía](#power-states)
   - [6.11. Virtualización/Modo SVM](#virtualizationsvm-mode)
-  - [6.12. Ahorro de Energía](#power-saving)
+  - [6.12. Ahorros de Energía](#power-saving)
   - [6.13. Módulo de Plataforma Segura (TPM)](#trusted-platform-module-tpm)
   - [6.14. Módulo de Compatibilidad (CSM)](#compatibility-support-module-csm)
   - [6.15. Arranque Seguro](#secure-boot)
-  - [6.16. Inicio Rápido, Suspensión e Hibernación](#fast-startup-standby-and-hibernate)
+  - [6.16. Inicio rápido, suspensión e hibernación](#fast-startup-standby-and-hibernate)
   - [6.17. Spread Spectrum](#spread-spectrum)
-  - [6.18. Soporte USB Legado](#legacy-usb-support)
-  - [6.19. Opciones de Instalación de Software](#software-installation-options)
-  - [6.20. Velocidad del Enlace PCI para Dispositivos](#pci-link-speed-for-devices)
-  - [6.21. Curvas de Ventiladores](#fan-curves)
-  - [6.22. Perfiles y Copias de Seguridad del BIOS](#bios-profiles-and-backups)
-- [7. Configurar Distribución de Puertos USB](#configure-usb-port-layout)
-  - [7.1. Revisión de Puertos USB Accesibles](#reviewing-accessible-usb-ports)
+  - [6.18. Legacy usb support](#legacy-usb-support)
+  - [6.19. Opciones de instalación del software](#software-installation-options)
+  - [6.20. Velocidad del enlace pci para dispositivos](#pci-link-speed-for-devices)
+  - [6.21. Curvas de ventiladores](#fan-curves)
+  - [6.22. Perfiles y copias de seguridad del BIOS](#bios-profiles-and-backups)
+- [7. Configuración de puertos usb](#configure-usb-port-layout)
+  - [7.1. Revisión de los puertos usb accesibles](#reviewing-accessible-usb-ports)
   - [7.2. Planificación de la Distribución](#layout-planning)
   - [7.3. Conexión de Dispositivos](#plugging-in-devices)
 - [8. Configurar Periféricos](#configure-peripherals)
@@ -52,7 +52,7 @@
   - [8.2. Perfiles de Memoria Integrada](#onboard-memory-profiles)
   - [8.3. Efectos de Iluminación RGB](#rgb-lighting-effects)
   - [8.4. DPI](#dpi)
-  - [8.5. Tasa de Reporte](#report-rate)
+  - [8.5. Tasa de Sondeo](#report-rate)
   - [8.6. Análisis de Estabilidad del Polling](#polling-stability-analysis)
   - [8.7. Monitor](#monitor)
 - [9. Estabilidad, Overclock y Rendimiento Térmico](#stability-hardware-clocking-and-thermal-performance)
@@ -60,10 +60,10 @@
   - [9.2. Información General](#general-information)
   - [9.3. Corrección de Errores](#error-correction)
   - [9.4. Gestión Térmica](#thermal-management)
-  - [9.5. Calibración de la Línea de Carga](#load-line-calibration)
+  - [9.5. Calibración de la Línea de Carga (LLC](#load-line-calibration)
   - [9.6. GPU](#gpu)
   - [9.7. RAM/CPU](#ramcpu)
-  - [9.8. Herramientas de Prueba de Esfuerzo](#stress-testing-tools)
+  - [9.8. Herramientas para pruebas de Estrés](#stress-testing-tools)
 - [10. Instalar Windows](#install-windows)
   - [10.1. Particiones de Almacenamiento](#storage-partitions)
   - [10.2. ¿Qué Versión de Windows Deberías Usar?](#what-version-of-windows-should-you-use)
@@ -78,7 +78,7 @@
   - [11.3. Política de Ejecución de PowerShell Sin Restricciones](#unrestricted-powershell-execution-policy)
   - [11.4. Importar Carpeta bin](#importing-bin-folder)
   - [11.5. Mitigaciones de Procesos (Windows 10 1709+)](#process-mitigations-windows-10-1709)
-  - [11.6. Fusión de Opciones del Registro](#merging-registry-options)
+  - [11.6. Agregar las opciones del Registro](#merging-registry-options)
     - [11.6.1. Documentación de Opciones del Registro](#registry-options-documentation)
     - [11.6.2. Aplicación de Opciones](#applying-options)
   - [11.7. Instalación de Controladores](#installing-drivers)
@@ -125,11 +125,11 @@
     - [11.42.5. Modo de Juego](#game-mode)
     - [11.42.6. Reproductor Multimedia](#media-player)
     - [11.42.7. Políticas QoS](#qos-policies)
-  - [11.43. Planificación en Modo Kernel (Interrupciones, DPCs y más)](#kernel-mode-scheduling-interrupts-dpcs-and-more)
+  - [11.43. Optimización en Modo Kernel (Interrupciones, DPCs y más)](#kernel-mode-scheduling-interrupts-dpcs-and-more)
     - [11.43.1. GPU y DirectX Graphics Kernel](#gpu-and-directx-graphics-kernel)
     - [11.43.2. Controlador XHCI y de Audio](#xhci-and-audio-controller)
     - [11.43.3. Tarjeta de Red](#network-interface-card)
-  - [11.44. Planificación en Modo Usuario (Procesos, Hilos)](#user-mode-scheduling-processes-threads)
+  - [11.44. Optimización en Modo Usuario (Procesos, Hilos)](#user-mode-scheduling-processes-threads)
     - [11.44.1. Iniciar un Proceso con una Afinidad Específica](#starting-a-process-with-a-specified-affinity-mask)
     - [11.44.2. Especificar Afinidad para Procesos Activos](#specifying-an-affinity-mask-for-running-processes)
   - [11.45. CPUs Reservados (Windows 10+)](#reserved-cpu-sets-windows-10)
@@ -146,21 +146,22 @@
   - [11.51. Archivo de Paginación](#paging-file)
   - [11.52. Limpieza y Mantenimiento](#cleanup-and-maintenance)
 
-<h1 id="introduction">2. Introduction <a href="#introduction">(permalink)</a></h1>
+<h1 id="introducción">2. Introducción <a href="#introducción">(permalink)</a></h1>
 
-This resource can be used to whatever extent you prefer, but be sure to heed the warnings. The primary objective of this resource is to utilize an evidence-oriented approach to explore practices for tuning Windows-based systems for a variety of use cases, covering hardware, operating system, and software configurations. If your daily workflow allows for Linux, then use it. Linux offers far more flexibility than Windows ever will in various aspects. Especially for "power users". This resource is designed to accommodate a broad audience, addressing various goals such as enhancing security and privacy however, it generally favors and caters for gaining a competitive edge in games and executing real-time tasks. There is a strong emphasis on encouraging users to make the changes themselves, with minimal use of scripts to ensure transparency and prevent unintended modifications to the reader's system.
+Este recurso puede utilizarse en la medida que lo desees, pero asegúrate de prestar atención a las advertencias. El objetivo principal de este documento es aplicar un enfoque basado en evidencia para explorar prácticas de ajuste (tuning) en sistemas basados en Windows, abarcando configuraciones de hardware, sistema operativo y software, para una variedad de casos de uso. Si tu flujo de trabajo diario permite utilizar Linux, entonces úsalo: Linux ofrece mucha más flexibilidad que Windows en múltiples aspectos, especialmente para los usuarios avanzados. Este recurso está diseñado para atender a una audiencia amplia, abarcando diversos objetivos como el fortalecimiento de la seguridad y la privacidad; sin embargo, generalmente se inclina por y está orientado a obtener una ventaja competitiva en videojuegos y a la ejecución de tareas en tiempo real. Se hace especial énfasis en fomentar que los usuarios realicen los cambios por sí mismos, minimizando el uso de scripts, con el fin de asegurar la transparencia y evitar modificaciones no intencionadas en el sistema del lector.
 
-The reader is expected to follow the sections in sequential order as subsequent steps are contingent upon the completion of preceding steps. Therefore, each section is numbered.
+Se recomienda al lector avanzar a través de las secciones en el orden establecido, dado que cada etapa se fundamenta en la correcta ejecución de las anteriores. Por ello, la numeración secuencial de las secciones responde a una lógica progresiva en el desarrollo del contenido.
 
-<h2 id="other-resources">2.1. Other Resources <a href="#other-resources">(permalink)</a></h2>
+<h2 id="otras-fuentes">2.1. Otras fuentes <a href="#otras-fuentes">(permalink)</a></h2>
 
 - [BoringBoredom/PC-Optimization-Hub](https://github.com/BoringBoredom/PC-Optimization-Hub)
 - [Calypto's Latency Guide](https://calypto.us)
 - [djdallmann/GamingPCSetup](https://github.com/djdallmann/GamingPCSetup)
 - Windows Internals, Part 1: System Architecture, Processes, Threads, Memory Management, and More
 - Windows Internals, Part 2
+- [WINDOWS OPTIMIZATION FOR SOFT RT V3](https://cryptpad.fr/pad/#/2/pad/view/Wik8tmQ6XC1csjmDNqmMN7dKc-Wfi26-5bOtZzegHCM/embed/)
 
-<h1 id="benchmarking">3. Benchmarking <a href="#benchmarking">(permalink)</a></h1>
+<h1 id="benchmarking">3. Pruebas de Rendimiento <a href="#benchmarking">(permalink)</a></h1>
 
 Benchmarking is employed to objectively assess and eliminate the influence of potential placebo effects in system modifications while evaluating the quality or characteristic of a given change. In the context of this resource, it typically refers to measuring performance scaling after making certain changes to your system. It is important to learn and understand what is involved in the benchmarking process as you will need to carry out your own experiments to assist in decision-making such as identifying whether a certain change results in a performance regression or what settings to use in-game. For given changes, ask yourself questions such as "*What am I trying to achieve?*", "*What is my goal?*", "*What am I trying to improve with this change?*", "*What is this change supposed to affect?*", "*How can the effects of this change be measured and demonstrated?*".
 
