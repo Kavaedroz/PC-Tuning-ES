@@ -577,6 +577,7 @@ Esta sección contiene puntos importantes a considerar recopilados a lo largo de
     |NVIDIA 16, 20 series|Win7, Win8, Win10 1709+|
     |NVIDIA 30 series|Win7, Win10 1803+|
     |NVIDIA 40 series|Win10 1803+|
+    |NVIDIA 50 series|Win10 1809+|
     |AMD|Consulte la página de soporte del controlador|
 
 - Windows Server no tiene soporte para muchas NICs de consumo. Los métodos alternativos como  [este](https://github.com/loopback-kr/Intel-I219-V-for-Windows-Server) suelen interferir con anticheats debido a certificados de firma no válidos.
@@ -604,6 +605,14 @@ Esta sección contiene puntos importantes a considerar recopilados a lo largo de
 - Windows 11 es un requisito mínimo para [Cross Adapter Scan-Out](https://videocardz.com/newz/microsoft-cross-adapter-scan-out-caso-delivers-16-fps-increse-on-laptops-without-dgpu-igpu-mux-switch) ([1](https://devblogs.microsoft.com/directx/optimizing-hybrid-laptop-performance-with-cross-adapter-scan-out-caso))
 
 - Se puede establecer ``AllowTelemetry`` en 0 en ediciones de Windows Server ([1](https://admx.help/?Category=Windows_10_2016&Policy=Microsoft.Policies.DataCollection::AllowTelemetry))
+
+- A partir de Windows 10 2004, el kit de controladores de Windows incluye un módulo de extensión de clase de adaptador de red ([NetAdapterCx]([https://learn.microsoft.com/en-us/windows-hardware/drivers/netcx/)), A partir de Windows 11 24h2+, UMDF NetAdapterCx permite a los controladores de adaptadores de red ejecutarse en modo usuario.
+ - Se trata de una sustitución de NDIS (Internet Adapter Driver) por un controlador compatible con NetAdapter Class Extension, que tiene algunas ventajas sobre el antiguo.
+
+También se han introducido los siguientes cambios en 24h2:
+- Actualización de WDDM a la versión 3.2 ([1](https://learn.microsoft.com/en-us/windows-hardware/drivers/what-s-new-in-driver-development#display-and-graphics-drivers)).
+- Se ha eliminado la conexión con el CPD del controlador de la GPU del flujo de entrada (función GetRawInputData), lo que tiene un efecto positivo en los resultados finales.
+- Utiliza dos flujos de entrada en DWM en lugar de tres (23h2).
 
 <h2 id="downloading-and-preparing-a-stock-windows-iso">10.3. Descargar y Preparar una ISO de Windows Oficial <a href="#downloading-and-preparing-a-stock-windows-iso">(permalink)</a></h2>
 
