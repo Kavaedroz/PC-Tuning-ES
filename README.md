@@ -1471,58 +1471,58 @@ Como ejemplo, un intervalo IMOD de 1 ms combinado con un mouse de 8 kHz ya e
   PowerShell C:\XHCI-IMOD-Interval.ps1
   ```
 
-- To determine whether changing the IMOD interval is taking effect, you can temporarily set the interval to ``0xFA00`` (62.5Hz). If the mouse cursor is visibly stuttering upon movement, then the changes are successfully taking effect
+- Para comprobar si el cambio del intervalo IMOD está teniendo efecto, puedes configurarlo temporalmente a ``0xFA00`` (62.5 Hz). Si el cursor del mouse presenta tartamudeos visibles al moverse, entonces los cambios se aplicaron correctamente.
 
 <h2 id="control-panel">11.41. Control Panel <a href="#control-panel">(permalink)</a></h2>
 
-It isn't a bad idea to skim through both the legacy and immersive control panel to ensure nothing is misconfigured.
+No es mala idea revisar tanto el Panel de control clásico como el moderno para asegurarte de que no haya configuraciones mal aplicadas.
 
 <h2 id="configuring-applications">11.42. Configuring Applications <a href="#configuring-applications">(permalink)</a></h2>
 
-- Install any programs and applications that you use (including games) to prepare us for the next steps
+- Instala todos los programas y aplicaciones que utilices (incluyendo videojuegos) para preparar el entorno para los próximos pasos.
 
-- If applicable, favor portable editions of programs as installers tend to leave bloatware behind even after uninstalling them however, this can be circumvented by using programs such as [Bulk-Crap-Uninstaller](https://github.com/Klocman/Bulk-Crap-Uninstaller)
+- Si es posible, prioriza las ediciones portables de los programas, ya que los instaladores suelen dejar residuos incluso después de desinstalar. Esto puede evitarse usando herramientas como [Bulk-Crap-Uninstaller](https://github.com/Klocman/Bulk-Crap-Uninstaller)
 
 <h3 id="nvidia-reflex">11.42.1. NVIDIA Reflex <a href="#nvidia-reflex">(permalink)</a></h3>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-[NVIDIA Reflex](https://www.nvidia.com/en-us/geforce/news/reflex-low-latency-platform) minimizes queued frames in the GPU render queue by dynamically adjusting the framerate in GPU-intensive gaming scenarios and can be enabled in-game if the developer has added support for it. Although this minimizes latency, it acts as a dynamic framerate limiter and can result in minor stuttering or frametime variance. For this reason, I would recommend extensively benchmarking this rather than blindly enabling it in your chosen games.
+[NVIDIA Reflex](https://www.nvidia.com/en-us/geforce/news/reflex-low-latency-platform) minimiza los fotogramas en cola en la GPU ajustando dinámicamente la tasa de cuadros por segundo en escenarios intensivos gráficamente. Puede activarse en juegos compatibles si el desarrollador ha implementado soporte. Aunque reduce la latencia, funciona como un limitador dinámico de FPS, lo que puede causar microtartamudeos o variaciones en el tiempo de fotogramas. Por esta razón, se recomienda hacer pruebas exhaustivas antes de activarlo de forma predeterminada.
 
-- See [NVIDIA Reflex Low Latency - How It Works & Why You Want To Use It | Battle(non)sense](https://www.youtube.com/watch?v=QzmoLJwS6eQ)
+- Consulta: [NVIDIA Reflex Low Latency - How It Works & Why You Want To Use It | Battle(non)sense](https://www.youtube.com/watch?v=QzmoLJwS6eQ)
 
 <h3 id="framerate-limit">11.42.2. Framerate Limit <a href="#framerate-limit">(permalink)</a></h3>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-- If you cap your framerate, ensure to set it at a multiple of your monitor refresh rate ([calculator](https://boringboredom.github.io/tools/fpscapcalculator)) to prevent frame mistiming and a rolling tearline ([1](https://www.youtube.com/watch?v=_73gFgNrYVQ), [2](https://github.com/BoringBoredom/PC-Optimization-Hub/blob/main/content/peripherals/mistiming/mistiming.md)). Reducing your refresh rate to avoid mismatching is also applicable ([instructions](https://forums.blurbusters.com/viewtopic.php?t=8946)). Other options include Variable Refresh Rate
+- Si limitas tu tasa de fotogramas, asegúrate de establecerla como múltiplo de la frecuencia de actualización de tu monitor ([calculadora](https://boringboredom.github.io/tools/fpscapcalculator)) para evitar desincronizaciones de cuadros y tearing desplazado ([1](https://www.youtube.com/watch?v=_73gFgNrYVQ), [2](https://github.com/BoringBoredom/PC-Optimization-Hub/blob/main/content/peripherals/mistiming/mistiming.md)). . También puedes reducir la frecuencia de actualización para evitar desajustes ([instrucciones](https://forums.blurbusters.com/viewtopic.php?t=8946)). Otra alternativa es usar Frecuencia de Actualización Variable (VRR).
 
-- Ensure that the GPU isn't fully utilized as lower GPU utilization reduces system latency ([1](https://www.youtube.com/watch?v=8ZRuFaFZh5M&t=859s), [2](https://www.youtube.com/watch?v=7CKnJ5ujL_Q))
+- Asegúrate de que la GPU no esté totalmente utilizada, ya que un menor uso de GPU reduce la latencia del sistema ([1](https://www.youtube.com/watch?v=8ZRuFaFZh5M&t=859s), [2](https://www.youtube.com/watch?v=7CKnJ5ujL_Q)).
 
-- Capping your framerate with [RTSS](https://www.guru3d.com/files-details/rtss-rivatuner-statistics-server-download.html) instead of the in-game limiter will result in consistent frame pacing and a smoother experience as it utilizes busy-wait which offers higher precision than 100% passive-waiting but at the cost of noticeably higher latency and potentially greater CPU overhead ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)). Disabling the ``Enable dedicated encoder server service`` setting prevents ``EncoderServer.exe`` from running
+- Limitar la tasa de fotogramas usando [RTSS](https://www.guru3d.com/files-details/rtss-rivatuner-statistics-server-download.html) en lugar del limitador del propio juego resulta en un ritmo de fotogramas más consistente y una experiencia más fluida, ya que utiliza busy-wait (espera activa), lo cual ofrece mayor precisión que la espera pasiva al 100%, pero a costa de una mayor latencia y posible sobrecarga en CPU ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)). Desactiva la opción ``Enable dedicated encoder server service`` para evitar que se ejecute ``EncoderServer.exe``.
 
 <h3 id="register-game">11.42.3. Register Game in Config Store <a href="#register-game">(permalink)</a></h3>
 
-Ensure that Xbox Game Bar acknowledges the game that you are running or have installed. If not, open Game Bar by pressing ``Win+G`` and enabling ``Remember this is a game`` while it is open. This also ensures that Game Mode functions properly if you choose to use it.
+Asegúrate de que la Barra de Juegos de Xbox reconozca el juego que estás ejecutando o que has instalado. Si no lo hace, abre la Barra de Juegos con ``Win+G`` y activa la opción ``Remember this is a game`` mientras el juego esté abierto. Esto también garantiza que el Modo Juego funcione correctamente si decides usarlo.
 
 <h3 id="presentation-mode">11.42.4. Presentation Mode <a href="#presentation-mode">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instrucciones](#benchmarking)).
 
-This is not a recommendation of what presentation mode to use and is instead, here for informative purposes.
+Esto no implica una recomendación sobre el modo de presentación a usar, es meramente informativo.
 
-- Always verify whether your game is using the desired presentation mode with PresentMon ([instructions](https://boringboredom.github.io/Frame-Time-Analysis))
+- Verifica siempre si tu juego está usando el modo de presentación deseado mediante PresentMon  ([instructions](https://boringboredom.github.io/Frame-Time-Analysis))
 
-- You can experiment and benchmark different presentation modes to assess which you prefer
+- Puedes experimentar y comparar distintos modos de presentación para evaluar cuál prefieres
 
-  - See [Presentation Model | Special K Wiki](https://wiki.special-k.info/en/Presentation_Model)
+  - Consulta: [Presentation Model | Special K Wiki](https://wiki.special-k.info/en/Presentation_Model)
 
-- If there are no results after searching for the application's binary name in ``HKCU\SYSTEM\GameConfigStore`` within registry, you may need to register the game by pressing ``Win+G`` and enabling ``Remember this is a game`` while it is open. Check whether the entry has been created under the aforementioned registry key once completed
+- Si no aparece ningún resultado al buscar el nombre del ejecutable del juego en  ``HKCU\SYSTEM\GameConfigStore`` dentro del Registro, es posible que debas registrar el juego presionando ``Win+G`` y activando ``Remember this is a game`` con el juego abierto. Luego verifica si la entrada fue creada en la clave de registro mencionada.
 
-- If you want to use the ``Hardware: Legacy Flip`` presentation mode, tick the ``Disable fullscreen optimizations`` checkbox. If that doesn't work, try running the commands below in CMD and reboot. These registry keys are typically accessed by the game and Windows upon launch
+- Si deseas utilizar el modo de presentación ``Hardware: Legacy Flip`` , marca la casilla ``Disable fullscreen optimizations`` Si eso no funciona, ejecuta los comandos siguientes en CMD y reinicia. Estas claves del Registro suelen ser accedidas por el juego y por Windows al iniciar.
 
     ```bat
     reg add "HKCU\SYSTEM\GameConfigStore" /v "GameDVR_DXGIHonorFSEWindowsCompatible" /t REG_DWORD /d "1" /f
@@ -1543,9 +1543,9 @@ This is not a recommendation of what presentation mode to use and is instead, he
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-Game Mode prevents Windows Update running and certain notifications from being pushed to the user ([1](https://support.xbox.com/en-GB/help/games-apps/game-setup-and-play/use-game-mode-gaming-on-pc)).
+El Modo Juego impide que Windows Update se ejecute y que se muestren ciertas notificaciones al usuario ([1](https://support.xbox.com/en-GB/help/games-apps/game-setup-and-play/use-game-mode-gaming-on-pc)).
 
-It is worth noting that Game Mode can intefere with process and thread priority boosts depending on the value of PsPrioritySeparation as explained in section [Thread Quantums and Scheduling](#thread-quantums-and-scheduling). This is evident by replicating the listening to thread priority boosts experiment in Windows Internals using Performance Monitor and the thread current priority performance counter. For this reason, you can experiment with Game Mode enabled and disabled.
+Cabe destacar que el Modo Juego puede interferir con los impulsos de prioridad de procesos e hilos, dependiendo del valor de PsPrioritySeparation, como se explica en la sección [Thread Quantums and Scheduling](#thread-quantums-and-scheduling). Esto se puede evidenciar replicando el experimento de impulso de prioridad de hilos descrito en Windows Internals, usando el Monitor de rendimiento y el contador de prioridad actual de hilos. Por esta razón, se recomienda experimentar con el Modo Juego tanto activado como desactivado.
 
 <h3 id="media-player">11.42.6. Media Player <a href="#media-player">(permalink)</a></h3>
 
@@ -1555,17 +1555,17 @@ It is worth noting that Game Mode can intefere with process and thread priority 
 
 <h3 id="qos-policies">11.42.7. QoS Policies <a href="#qos-policies">(permalink)</a></h3>
 
-Depending on your network and router configuration, QoS policies can be set in Windows to prioritize packets of an application.
+Dependiendo de tu red y configuración del router, pueden establecerse políticas QoS en Windows para priorizar los paquetes de una aplicación.
 
-- See [assets/images/dscp-46-qos-policy.png](/assets/images/dscp-46-qos-policy.png)
+- Ver: [assets/images/dscp-46-qos-policy.png](/assets/images/dscp-46-qos-policy.png)
 
-  - See [DSCP and Precedence Values | Cisco](https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/4_0/qos/configuration/guide/nexus1000v_qos/qos_6dscp_val.pdf)
+  - Ver: [DSCP and Precedence Values | Cisco](https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus1000/sw/4_0/qos/configuration/guide/nexus1000v_qos/qos_6dscp_val.pdf)
 
-  - See [The QoS Expedited Forwarding (EF) Model | Network World](https://www.networkworld.com/article/761413/the-qos-expedited-forwarding-ef-model.html)
+  - Ver: [The QoS Expedited Forwarding (EF) Model | Network World](https://www.networkworld.com/article/761413/the-qos-expedited-forwarding-ef-model.html)
 
-- See [How Can You Verify Whether a DSCP QoS Policy Is Working?](/docs/research.md#2-how-can-you-verify-whether-a-dscp-qos-policy-is-working)
+- Ver también:: [How Can You Verify Whether a DSCP QoS Policy Is Working?](/docs/research.md#2-how-can-you-verify-whether-a-dscp-qos-policy-is-working)
 
-- Microsoft recommend the registry entry below to ensure packets are correctly tagged with the DSCP value, especially when more than one network adapter is present or the policy is used outside a domain ([1](https://learn.microsoft.com/en-us/skypeforbusiness/manage/network-management/qos/configuring-port-ranges-for-your-skype-clients))
+- Microsoft recomienda la siguiente clave del Registro para asegurar que los paquetes estén correctamente marcados con el valor DSCP, especialmente si hay más de un adaptador de red o si la política se usa fuera de un dominio ([1](https://learn.microsoft.com/en-us/skypeforbusiness/manage/network-management/qos/configuring-port-ranges-for-your-skype-clients))
 
   ```bat
   reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\QoS" /v "Do not use NLA" /t REG_SZ /d "1" /f
@@ -1576,54 +1576,54 @@ Depending on your network and router configuration, QoS policies can be set in W
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-Windows schedules interrupts and DPCs on CPU 0 for several kernel-mode modules by default. In any case, scheduling many tasks on a single CPU can introduce additional overhead and increased jitter due to them competing for CPU time. To alleviate this, affinities can be configured to isolate given modules from disturbances including servicing time-sensitive modules on underutilized CPUs instead of clumping everything on a single CPU.
+Windows agenda interrupciones y DPCs en el CPU 0 por defecto para varios módulos en modo kernel. Agrupar muchas tareas en un solo CPU puede introducir sobrecarga adicional y mayor jitter debido a la competencia por tiempo de CPU. Para mitigar esto, se pueden configurar afinidades para aislar módulos críticos y distribuir la carga en núcleos menos utilizados..
 
-- Use the xperf DPC/ISR report generated by the [xperf-dpcisr.bat](/bin/xperf-dpcisr.bat) script or [xtw](https://github.com/valleyofdoom/xtw) to analyze which CPUs kernel-mode modules are being serviced on. You can not manage affinities if you do not know what is running and which CPU(s) they are running on to begin with. The same concept applies to user-mode threads. Additionally, verify whether interrupt affinity policies are performing as expected by analyzing per-CPU usage for the module in question while the device is busy
+- Usa el reporte DPC/ISR de xperf generado por el script [xperf-dpcisr.bat](/bin/xperf-dpcisr.bat) o [xtw](https://github.com/valleyofdoom/xtw) para analizar en qué CPU se están ejecutando los módulos en modo kernel. No puedes administrar afinidades si no sabes qué está corriendo ni en qué CPU. Esto también aplica para hilos en modo usuario. Verifica si las políticas de afinidad de interrupción están funcionando analizando el uso por CPU mientras el dispositivo está activo.
 
-- Additionally, core-to-core-latency benchmarks can assist with decision-making in terms of affinity management
+- Además, los benchmarks de latencia entre núcleos pueden ayudar en la toma de decisiones sobre afinidades
 
-  - See [CXWorld/MicroBenchX](https://github.com/CXWorld/MicroBenchX)
+  - Ver: [CXWorld/MicroBenchX](https://github.com/CXWorld/MicroBenchX)
 
-- Ensure that the corresponding DPC for an ISR is processed on the same CPU ([example](/assets/images/isr-dpc-same-core.png)). Additional overhead can be introduced if they are processed on different CPUs due to increased inter-processor communication and interfering with cache coherence
+- Asegúrate de que el DPC correspondiente a una ISR se procese en el mismo CPU ([ejemplo](/assets/images/isr-dpc-same-core.png)). Si se procesan en distintos núcleos, puede generarse sobrecarga adicional por la comunicación entre procesadores e interferencia con la coherencia de caché.
 
-- Use [Microsoft Interrupt Affinity Tool](https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool) or [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy) to configure driver affinities. The device can be identified by cross-checking the ``Location`` in the ``Properties -> General`` section of a device in Device Manager
+- Usa [Microsoft Interrupt Affinity Tool](https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool) o [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy) para configurar afinidades de controladores. El dispositivo puede identificarse comparando la información del campo ``Location`` en la pestaña ``Properties -> General`` de las propiedades del dispositivo en el Administrador de dispositivos.
 
 <h3 id="gpu-and-directx-graphics-kernel">11.43.1. GPU and DirectX Graphics Kernel <a href="#gpu-and-directx-graphics-kernel">(permalink)</a></h3>
 
-[AutoGpuAffinity](https://github.com/valleyofdoom/AutoGpuAffinity) can be used to benchmark the most performant CPUs that the GPU-related modules are assigned to. Configure the ``custom_cpus`` option in the config file if applicable. This option is useful for selecting a certain set of cores to benchmark such as P-Cores or a specific CCX/CCD.
+[AutoGpuAffinity](https://github.com/valleyofdoom/AutoGpuAffinity) puede usarse para realizar pruebas de rendimiento y determinar qué CPUs asignadas a los módulos relacionados con la GPU ofrecen el mejor desempeño. Configura la opción custom_cpus en el archivo de configuración si es necesario. Esta opción es útil para seleccionar un conjunto específico de núcleos que se desea probar, como los P-Cores o un CCX/CCD específico.
 
 <h3 id="xhci-and-audio-controller">11.43.2. XHCI and Audio Controller <a href="#xhci-and-audio-controller">(permalink)</a></h3>
 
-The XHCI and audio controller related modules generate a substantial amount of interrupts upon interaction respective of the relevant device. Isolating the related modules to an underutilized CPU is beneficial for reducing contention.
+Los módulos relacionados con los controladores XHCI y de audio generan una cantidad sustancial de interrupciones al interactuar con sus respectivos dispositivos. Aislar dichos módulos en una CPU poco utilizada es beneficioso para reducir la contención.
 
 <h3 id="network-interface-card">11.43.3. Network Interface Card <a href="#network-interface-card">(permalink)</a></h3>
 
-The NIC must support MSI-X for Receive Side Scaling to function properly ([1](https://old.reddit.com/r/intel/comments/9uc03d/the_i219v_nic_on_your_new_z390_motherboard_and)). In most cases, RSS base CPU is enough to migrate DPCs and ISRs for the NIC driver which eliminates the need for an interrupt affinity policy. However, if you are having trouble migrating either to other CPUs, try configuring both.
+La NIC (tarjeta de red) debe soportar MSI-X para que la tecnología Receive Side Scaling (RSS) funcione correctamente ([1](https://old.reddit.com/r/intel/comments/9uc03d/the_i219v_nic_on_your_new_z390_motherboard_and)). En la mayoría de los casos, establecer la CPU base de RSS es suficiente para migrar los DPCs e ISRs del controlador de red, eliminando así la necesidad de una política de afinidad por interrupciones. Sin embargo, si tienes dificultades para migrar estos elementos a otras CPUs, intenta configurar ambos parámetros.
 
-Keep in mind that the amount of RSS queues determines the amount of consecutive CPUs that the network driver is scheduled on. For example, the driver will be scheduled on CPU 2/3/4/5 (2/4/6/8 with HT/SMT enabled) if RSS base CPU is set to 2 along with 4 RSS queues configured.
+Ten en cuenta que la cantidad de colas RSS determina el número de CPUs consecutivas en las que se programa el controlador de red. Por ejemplo, el controlador se programará en las CPUs 2/3/4/5 (o 2/4/6/8 si HT/SMT está habilitado) si se establece la CPU base de RSS en 2 junto con 4 colas RSS configuradas.
 
-- See [How many RSS Queues do you need?](/docs/research.md#4-how-many-rss-queues-do-you-need)
+- Consulta [Cuántas colas RSS necesitas?](/docs/research.md#4-how-many-rss-queues-do-you-need)
 
-- See [Receive Side Scaling (RSS) Configuration](https://github.com/Duckleeng/TweakCollection#receive-side-scaling-rss-configuration)
+- Consulta la [Configuración de Receive Side Scaling (RSS)](https://github.com/Duckleeng/TweakCollection#receive-side-scaling-rss-configuration)
 
 <h2 id="user-mode-scheduling-processes-threads">11.44. User-Mode Scheduling (Processes, Threads) <a href="#user-mode-scheduling-processes-threads">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-There are several methods to set affinities for processes. One of which is Task Manager but only persists until the process is closed. A more popular and permanent solution is [Process Lasso](https://bitsum.com) which allows the configuration to be saved however, a process must run continually in the background which introduces minor overhead. To work around this, you can simply launch the application with a specified CPU affinity which eliminates the requirement of programs such as Process Lasso for affinity management at the expense of usability.
+Existen varios métodos para establecer afinidades para los procesos. Uno de ellos es el Administrador de tareas, pero sólo persiste hasta que el proceso se cierra. Una solución más popular y permanente es [Process Lasso](https://bitsum.com), que permite guardar la configuración, aunque requiere que un proceso se ejecute continuamente en segundo plano, lo que introduce una leve sobrecarga. Para evitar esto, puedes simplemente lanzar la aplicación con una afinidad de CPU especificada, eliminando la necesidad de programas como Process Lasso para gestionar afinidades, a costa de la facilidad de uso.
 
-- Use the [CPU Affinity Mask Calculator](https://bitsum.com/tools/cpu-affinity-calculator) to determine the desired hexal affinity bitmask
+- Usa el [CPU Affinity Mask Calculator](https://bitsum.com/tools/cpu-affinity-calculator) para determinar la máscara de afinidad en formato hexadecimal deseada.
 
-- In some cases, process can be protected so specifying the affinity may fail. To work around this, you can try specifying the affinity for the parent processes which will cause the child process to inherit the affinity when spawned. As an example, a game launcher is usually the parent process of a game. [Process Explorer's](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer) process tree can be used to identify parent and child processes
+- En algunos casos, el proceso puede estar protegido, por lo que especificar la afinidad puede fallar. Para solucionar esto, intenta establecer la afinidad en los procesos padre, de modo que el proceso hijo herede la afinidad al iniciarse. Por ejemplo, un lanzador de juegos suele ser el proceso padre del juego. El árbol de procesos en [Process Explorer's](https://learn.microsoft.com/en-us/sysinternals/downloads/process-explorer) puede usarse para identificar procesos padre e hijo.
 
-  - [Process Hacker](https://processhacker.sourceforge.io) and [WindowsD](https://github.com/katlogic/WindowsD) can bypass several process-level protections through exploits but is not advised as they interfere with anticheats
+  - [Process Hacker](https://processhacker.sourceforge.io) y [WindowsD](https://github.com/katlogic/WindowsD) pueden eludir varias protecciones a nivel de proceso mediante exploits, pero no se recomienda su uso ya que interfieren con los anticheats.
 
-- It may be worth benchmarking the performance scaling of your application against core count as it may behave differently due to poor scheduling implementations from the application and/or OS. In some cases, it is possible that the application may perform better with fewer cores assigned to it via an affinity mask ([1](https://developer.nvidia.com/blog/limiting-cpu-threads-for-better-game-performance)). This will also give you a rough idea as to how many cores you can reserve. In other cases, it can severely harm performance as there is a potential for the game to create more worker threads than CPUs due to the game only considering the amount of physical cores available hence, it is vital that performance scaling is measured
+- Puede ser útil evaluar cómo escala el rendimiento de tu aplicación con la cantidad de núcleos, ya que puede comportarse de forma diferente debido a implementaciones deficientes del planificador tanto por parte de la aplicación como del sistema operativo. En algunos casos, es posible que la aplicación rinda mejor con menos núcleos asignados a través de una máscara de afinidad ([1](https://developer.nvidia.com/blog/limiting-cpu-threads-for-better-game-performance)). Esto también te dará una idea general de cuántos núcleos puedes reservar. En otros casos, puede perjudicar gravemente el rendimiento si el juego crea más hilos de trabajo de los que hay CPUs disponibles, debido a que el juego sólo considera los núcleos físicos disponibles. Por ello, es vital medir la escalabilidad del rendimiento.
 
 <h3 id="starting-a-process-with-a-specified-affinity-mask">11.44.1. Starting a Process with a Specified Affinity Mask <a href="#starting-a-process-with-a-specified-affinity-mask">(permalink)</a></h3>
 
-The command below starts ``notepad.exe`` with an affinity of CPU 1 and CPU 2 as an example which will reflect in Task Manager. This command can be placed in a batch script for easy access and must be used each time to start the desired application with the specified affinity.
+El siguiente comando inicia ``notepad.exe`` con una afinidad de CPU 1 y CPU 2 como ejemplo, lo cual se reflejará en el Administrador de tareas. Este comando puede colocarse en un script por lotes para facilitar el acceso, y debe usarse cada vez que se desee iniciar la aplicación con la afinidad especificada.
 
 ```bat
 start /affinity 0x6 notepad.exe
@@ -1631,7 +1631,7 @@ start /affinity 0x6 notepad.exe
 
 <h3 id="specifying-an-affinity-mask-for-running-processes">11.44.2. Specifying an Affinity Mask for Running Processes <a href="#specifying-an-affinity-mask-for-running-processes">(permalink)</a></h3>
 
-Sometimes, the processes that you would like to set an affinity mask to are already running, so the previous command is not applicable here. As a random example, the command below sets the affinity mask of the ``svchost.exe`` and ``audiodg.exe`` processes to CPU 3. Use this example to create a PowerShell script then have it run at startup using Task Scheduler ([instructions](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Ensure to wrap any paths with quotes if there are spaces in them. Ensure to verify whether everything is working correctly after a system restart. You need to enable the ``Run with highest privileges`` option if administrator privileges are required. For PowerShell scripts, set the program to start to ``PowerShell`` and the arguments to the path of the script (e.g. ``C:\process-affinities.ps1``).
+A veces, los procesos a los que deseas aplicar una máscara de afinidad ya se están ejecutando, por lo que el comando anterior no es aplicable. A modo de ejemplo, el siguiente comando asigna la máscara de afinidad de los procesos ``svchost.exe`` y ``audiodg.exe`` a la CPU 3. Usa este ejemplo para crear un script en PowerShell y haz que se ejecute al inicio mediante el Programador de tareas ([instrucciones](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Asegúrate de colocar entre comillas cualquier ruta que contenga espacios. Verifica que todo funcione correctamente después de reiniciar el sistema. Es necesario habilitar la opción ``Run with highest privileges`` si se requieren privilegios de administrador. Para scripts de PowerShell, establece el programa a iniciar como ``PowerShell`` y los argumentos como la ruta al script (por ejemplo ``C:\process-affinities.ps1``).
 
 ```powershell
 Get-Process @("svchost", "audiodg") -ErrorAction SilentlyContinue | ForEach-Object { $_.ProcessorAffinity=0x8 }
@@ -1642,43 +1642,43 @@ Get-Process @("svchost", "audiodg") -ErrorAction SilentlyContinue | ForEach-Obje
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-[ReservedCpuSets](https://github.com/valleyofdoom/ReservedCpuSets) can be used to prevent Windows routing ISRs, DPCs and scheduling other threads on specific CPUs. Isolating modules from user and kernel-level disturbances helps reduce contention, jitter and allows time-sensitive modules to get the CPU time they require.
+[ReservedCpuSets](https://github.com/valleyofdoom/ReservedCpuSets) puede usarse para evitar que Windows programe ISRs, DPCs y otros hilos en CPUs específicas. Aislar módulos de las perturbaciones de nivel usuario y kernel ayuda a reducir la contención, el jitter, y permite que los módulos sensibles al tiempo obtengan el tiempo de CPU que requieren.
 
-- As mentioned in section [User-Mode Scheduling (Processes, Threads)](#user-mode-scheduling-processes-threads), you should determine how well or poorly your application's performance scales with core count to give you a rough idea as to how many cores you can afford to reserve
+- Como se menciona en la sección [User-Mode Scheduling (Processes, Threads)](#user-mode-scheduling-processes-threads), deberías determinar qué tan bien o mal escala tu aplicación con la cantidad de núcleos para hacerte una idea general de cuántos núcleos puedes permitirte reservar
 
-- As interrupt affinity policies, process and thread affinities have higher precedence, you can use this hand in hand with user-defined affinities to go a step further and ensure that nothing except what you assigned to specific CPUs will be scheduled on those CPUs
+- Como las políticas de afinidad por interrupciones, de procesos y de hilos tienen mayor precedencia, puedes usar esto junto con afinidades definidas por el usuario para garantizar que nada excepto lo que hayas asignado se programe en esas CPUs.
 
-- Ensure that you have enough cores to run your real-time application on and aren't reserving too many CPUs to the point where isolating modules does not yield real-time performance
+- Asegúrate de tener suficientes núcleos para ejecutar tu aplicación en tiempo real y no reservar tantos CPUs que el aislamiento deje de ofrecer mejoras en el rendimiento en tiempo real.
 
-- As CPU sets are considered soft policies, the configuration isn't guaranteed. A CPU-intensive process such as a stress-test will utilize the reserved cores if required
+- Dado que los conjuntos de CPU (CPU sets) se consideran políticas suaves (soft policies), la configuración no está garantizada. Un proceso intensivo, como una prueba de estrés, utilizará los núcleos reservados si lo requiere.
 
 > [!IMPORTANT]
-> Unexpected behavior occurs when a process affinity is set to both reserved and unreserved CPUs. Ensure to set the affinity to either reserved or unreserved CPUs, not a combination of both.
+> Ocurre un comportamiento inesperado si se asigna afinidad a una combinación de CPUs reservadas y no reservadas. Asegúrate de asignar afinidad exclusivamente a CPUs reservadas o no reservadas, pero no una mezcla de ambas.
 
 <h3 id="use-cases">11.45.1. Use Cases <a href="#use-cases">(permalink)</a></h3>
 
-- Hinting to the OS to schedule tasks on a group of CPUs. An example of this with modern platforms could be reserving E-Cores (efficiency cores) or either CCX/CCDs so that tasks are scheduled on P-Cores (performance cores) or other CCX/CCDs by default. With this approach, you can explicitly enforce background and unimportant tasks to be scheduled on the reserved CPUs. Note that this is purely an example and the logic can be flipped, but some latency-sensitive processes and modules are protected so affinity policies may fail which is a major limitation. There are several possibilities and trade-offs to consider. Note that performance can degrade when reserving E-Cores or other CCX/CCDs as applications may make use of them. Therefore, it is vital that you measure performance scaling when reserving cores whether it be one, a few or a set of CPUs. Another way of severly degrading performance by reserving E-Cores or CCX/CCDs is that the scheduler or applications can specifically target reserved cores for work to be scheduled on them as the ``RealTime`` field is set to 1 in the [SYSTEM_CPU_SET_INFORMATION](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-system_cpu_set_information) struct
+- Se puede dar una sugerencia al sistema operativo para programar tareas en un grupo específico de CPUs. Un ejemplo moderno sería reservar E-Cores (núcleos de eficiencia) o determinados CCX/CCD para que las tareas se programen por defecto en los P-Cores (núcleos de rendimiento) u otros CCX/CCDs. Con este enfoque, puedes forzar explícitamente que las tareas en segundo plano o menos importantes se ejecuten en los CPUs reservados. Este es sólo un ejemplo: la lógica puede invertirse. Sin embargo, algunos procesos y módulos sensibles a la latencia están protegidos, por lo que las políticas de afinidad pueden fallar, lo que representa una limitación importante. Existen varias posibilidades y compromisos a considerar. Ten en cuenta que el rendimiento puede degradarse al reservar E-Cores u otros CCX/CCDs si las aplicaciones hacen uso de ellos. Por ello, es vital que midas la escalabilidad del rendimiento al reservar núcleos, ya sea uno, algunos o un conjunto completo de CPUs. Otro modo en que puede degradarse el rendimiento es si el planificador o las aplicaciones apuntan específicamente a núcleos reservados porque el campo ``RealTime`` está establecido en 1 en la estructura [SYSTEM_CPU_SET_INFORMATION](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-system_cpu_set_information) struct
 
-- Reserving CPUs that have specific modules assigned to be scheduled on them
+- Reservar CPUs específicas a las que se han asignado ciertos módulos para su programación.
 
 <h2 id="analyzing-event-viewer">11.46. Analyzing Event Viewer <a href="#analyzing-event-viewer">(permalink)</a></h2>
 
-This step isn't required, but can help to justify unexplained performance issues or issues in general. Ensure that there are no errors present on Event Viewer by typing ``eventvwr.msc`` in ``Win+R`` as anything you may have changed to your operating system could lead to internal errors or exceptions being thrown periodically.
+Este paso no es obligatorio, pero puede ayudarte a justificar problemas de rendimiento inexplicables u otros errores generales. Asegúrate de que no haya errores en el Visor de eventos escribiendo ``eventvwr.msc`` en ``Win+R`` ya que cualquier cambio que hayas hecho en el sistema operativo podría causar errores o excepciones internas de forma periódica.
 
-- Merge the ``ets-enable.reg`` file that was generated in section [Event Trace Sessions (ETS)](#event-trace-sessions-ets) if applicable as it is required for event logging
+- Fusiona el archivo ``ets-enable.reg`` generado en la secció [Event Trace Sessions (ETS)](#event-trace-sessions-ets) si aplica, ya que es necesario para el registro de eventos.
 
 <h2 id="virtualization-based-security-vbs">11.47. Virtualization Based Security (VBS) <a href="#virtualization-based-security-vbs">(permalink)</a></h2>
 
-Virtualization Based Security negatively impacts performance ([1](https://www.tomshardware.com/news/windows-11-gaming-benchmarks-performance-vbs-hvci-security)) and in some cases, it is enabled by default. Its status can be determined by typing ``msinfo32`` in ``Win+R`` and can be disabled ([1](https://www.tomshardware.com/how-to/disable-vbs-windows-11), [2](https://support.microsoft.com/en-us/windows/options-to-optimize-gaming-performance-in-windows-11-a255f612-2949-4373-a566-ff6f3f474613)) if required. On the other hand, [privacyguides.org](https://www.privacyguides.org/en/os/windows/group-policies/) recommend keeping it enabled. VBS should be disabled when virtualization is disabled in BIOS, so be careful of VBS being enabled if you enable virtualization in BIOS for future reference.
+La seguridad basada en virtualización (VBS) afecta negativamente al rendimiento ([1](https://www.tomshardware.com/news/windows-11-gaming-benchmarks-performance-vbs-hvci-security)) y, en algunos casos, está habilitada por defecto. Su estado puede consultarse escribiendo ``msinfo32`` en ``Win+R`` y puede deshabilitarse si es necesario ([1](https://www.tomshardware.com/how-to/disable-vbs-windows-11), [2](https://support.microsoft.com/en-us/windows/options-to-optimize-gaming-performance-in-windows-11-a255f612-2949-4373-a566-ff6f3f474613)) Por otro lado, [privacyguides.org](https://www.privacyguides.org/en/os/windows/group-policies/) recomienda mantenerla habilitada. La VBS debería estar desactivada cuando la virtualización esté desactivada en la BIOS, por lo que debes tener cuidado si vuelves a habilitar la virtualización en el futuro.
 
 <h2 id="cpu-idle-states">11.48. CPU Idle States <a href="#cpu-idle-states">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-Disabling idle states forces C-State 0, which can be seen in [HWiNFO](https://www.hwinfo.com), and is in Microsoft's recommendations for configuring devices for real-time performance ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)). Forcing C-State 0 mitigates the undesirable delay to execute new instructions on a CPU that has entered a deeper power-saving state at the expense of higher temperatures and power consumption. Therefore, I would recommend keeping idle states enabled for the majority of readers as other problems can occur due to these side effects (e.g. throttling, power issues). The CPU temperature should not increase to the point of thermal throttling because you should have already assessed that in section [Stability, Hardware Clocking and Thermal Performance](#stability-hardware-clocking-and-thermal-performance).
+Deshabilitar los estados inactivos fuerza el estado C-State 0, lo que puede observarse en [HWiNFO](https://www.hwinfo.com), , y es parte de las recomendaciones de Microsoft para configurar dispositivos con rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)). Forzar el estado C0 mitiga el retraso indeseado al ejecutar nuevas instrucciones en una CPU que ha entrado en un estado de ahorro de energía más profundo, a costa de un mayor consumo de energía y temperaturas más altas. Por lo tanto, se recomienda mantener los estados inactivos habilitados para la mayoría de los usuarios, ya que podrían surgir otros problemas debido a estos efectos secundarios (como estrangulamiento térmico o problemas de energía). La temperatura del CPU no debería aumentar hasta el punto de provocar thermal throttling, ya que eso debería haber sido evaluado en la sección [Stability, Hardware Clocking and Thermal Performance](#stability-hardware-clocking-and-thermal-performance).
 
-If a static CPU frequency is not set, the effects of forcing C-State 0 should be assessed in terms of frequency boosting behavior. For example, you certainly wouldn't want to disable idle states when relying on Precision Boost Overdrive (PBO), Turbo Boost or similar features. Avoid disabling idle states with Hyper-Threading/Simultaneous Multithreading enabled as single-threaded performance is usually negatively impacted.
+Si no se establece una frecuencia de CPU estática, los efectos de forzar C-State 0 deben evaluarse en cuanto al comportamiento del boost de frecuencia. Por ejemplo, ciertamente no querrás deshabilitar los estados inactivos si dependes de Precision Boost Overdrive (PBO), Turbo Boost u otras tecnologías similares. Evita desactivar los estados inactivos si tienes Hyper-Threading o SMT habilitado, ya que el rendimiento monohilo suele verse negativamente afectado.
 
 <h3 id="enable-idle-states-default">11.48.1. Enable Idle States (default) <a href="#enable-idle-states-default">(permalink)</a></h3>
 
@@ -1697,7 +1697,7 @@ powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
 
-A quantum is the time designated for which a thread can execute before the scheduler evaluates whether another thread with the same priority is scheduled to execute. If a thread finishes its quantum and no other threads at its priority level are ready to execute, the scheduler allows the thread to continue running for an additional quantum. The quantum can be controlled with the registry key below, in addition to defining how much time of the quantum is allocated to background and foreground threads. The value is represented as a 6-bit bitmask such that each of the three pairs of bits determine the quantum's characteristics and distribution of time between background and foreground threads. By default, it is set to ``0x2`` which corresponds to ``0b000010`` and has different meanings on client and server editions as explained shortly.
+Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el planificador evalúe si otro hilo del mismo nivel de prioridad debe ejecutarse. Si un hilo finaliza su quantum y no hay otros hilos en su nivel de prioridad listos para ejecutarse, el planificador permite que el hilo continúe ejecutándose durante un quantum adicional. El quantum puede controlarse con la clave de registro que se muestra a continuación, además de definir cuánto tiempo del quantum se asigna a los hilos en segundo plano y primer plano. El valor está representado como una máscara de 6 bits, donde cada uno de los tres pares de bits determina las características del quantum y la distribución del tiempo entre hilos en segundo y primer plano. Por defecto, está configurado en ``0x2``, lo cual corresponde a``0b000010`` y tiene diferentes significados en ediciones cliente y servidor, como se explicará a continuación.
 
 ```
 [HKEY_LOCAL_MACHINE\SYSTEM\ControlSet001\Control\PriorityControl]
