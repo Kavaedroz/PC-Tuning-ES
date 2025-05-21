@@ -215,157 +215,157 @@ La evaluación comparativa es una herramienta clave para analizar de forma objet
   
 - Evalúe y reduzca el bufferbloat, ya que es una causa de latencia elevada y variaciones en la entrega de paquetes (jitter) en redes conmutadas por paquetes, provocada por un exceso de búfer en la red ([1](https://en.wikipedia.org/wiki/Bufferbloat), [2](https://www.bufferbloat.net/projects))
 
-  - Consulte la sección [Waveform Bufferbloat and Internet Speed Test | Waveform](https://www.waveform.com/tools/bufferbloat)
-  - Consulte la sección [What Can I Do About Bufferbloat? | Bufferbloat.net](https://www.bufferbloat.net/projects/bloat/wiki/What_can_I_do_about_Bufferbloat)
-  - Consulte la sección [stoplagging.com](https://www.stoplagging.com)
+  - Consulta la sección [Waveform Bufferbloat and Internet Speed Test | Waveform](https://www.waveform.com/tools/bufferbloat)
+  - Consulta la sección [What Can I Do About Bufferbloat? | Bufferbloat.net](https://www.bufferbloat.net/projects/bloat/wiki/What_can_I_do_about_Bufferbloat)
+  - Consulta la sección [stoplagging.com](https://www.stoplagging.com)
 
-- Avoid daisy-chaining power cables anywhere in your setup
+- Evite encadenar cables de alimentación (daisy-chain) en cualquier parte de su configuración.
 
-  - See [Installation Remark for High Power Consumption Graphics Cards | Seasonic](https://knowledge.seasonic.com/article/8-installation-remark-for-high-power-consumption-graphics-cards)
+  - Consulta la sección [Installation Remark for High Power Consumption Graphics Cards | Seasonic](https://knowledge.seasonic.com/article/8-installation-remark-for-high-power-consumption-graphics-cards)
 
-- Favor shielded cables and avoid unnecessarily long ones as they offer more protection against interference ([1](https://precmfgco.com/blog/shielded-vs-unshielded-cables))
+- Prefiera cables blindados y evite los innecesariamente largos, ya que ofrecen mayor protección contra interferencias. ([1](https://precmfgco.com/blog/shielded-vs-unshielded-cables))
 
-- Ensure that there is a moderate amount of space between cables to reduce the risk of [coupling](https://en.wikipedia.org/wiki/Coupling_(electronics))
+- Asegúrese de dejar un espacio moderado entre los cables para reducir el riesgo de [coupling](https://en.wikipedia.org/wiki/Coupling_(electronics))
 
-- Clean dust from components and heat sinks as they have the potential to cause short circuits and reduce airflow ([1](https://www.armagard.co.uk/articles/dust-computer-killer.html)). Be careful in regard to voltage feedback to the motherboard when dusting case fans
+- Limpie el polvo de los componentes y disipadores, ya que puede provocar cortocircuitos y disminuir el flujo de aire ([1](https://www.armagard.co.uk/articles/dust-computer-killer.html)). Tenga especial cuidado con el retroceso de voltaje hacia la placa base al limpiar los ventiladores del gabinete.
 
-- Clean the contact pins and connectors of components. Use compressed air to remove dust from slots before installing components such as PCIe, NVMe, RAM and more
+- Limpie los pines de contacto y conectores de los componentes. Use aire comprimido para eliminar el polvo de las ranuras antes de instalar componentes como PCIe, NVMe, RAM, entre otros.
 
-- Insert the display cable into the discrete GPU if present instead of the motherboard
+- Conecte el cable de video a la GPU dedicada (si está presente) en lugar de a la placa base.
 
-- Minimize GPU sag with an anti-sag bracket or similar to prevent damage to the PCIe contacts and the slot itself
+- Minimice la caída de la GPU usando un soporte anti-sag o similar, para evitar dañar los contactos PCIe y la ranura.
 
-- Multi-monitor setups have the potential to introduce processing overhead ([1](https://www.youtube.com/watch?v=5wBxYQdN96s))
+- Tenga en cuenta que las configuraciones con múltiples monitores pueden introducir sobrecarga de procesamiento. ([1](https://www.youtube.com/watch?v=5wBxYQdN96s))
 
-<h1 id="cooling">5. Cooling <a href="#cooling">(permalink)</a></h1>
+<h1 id="cooling">5. Refrigeración <a href="#cooling">(permalink)</a></h1>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-- If you plan on overclocking, consider the points below to maximize temperature headroom and overclocking potential. It is important to note that lower temperatures can affect other variables even if you are not overclocking such as CPU boosting behavior as the boosting algorithm is affected by temperature and much more
+- Si planeas hacer overclock, ten en cuenta los siguientes puntos para maximizar el margen térmico y el potencial de overclock. Es importante destacar que mantener temperaturas más bajas puede influir positivamente en otros factores incluso si no realizas overclock, como el comportamiento de boost del CPU, ya que dicho algoritmo es sensible a la temperatura, entre otros aspectos.
 
-  - Remove the side panels from your case as they tend to trap heat or consider an open-bench setup (beware of dust)
-  - Delid your CPU and use liquid metal for a significant thermal improvement depending on the quality of the IHS ([1](https://www.youtube.com/watch?v=rUy3WcDlBXE)). Direct die and lapping are also worth considering however users should assess the risk with carrying out these procedures
-  - Avoid tower and air coolers due to limited cooling potential ([1](https://www.youtube.com/watch?v=Vex9_84VpYs)) and lack of space for fans to cool other components such as RAM and VRMs
-  - Remove the heat sink from your RAM as they tend to trap heat due to them being attached to the PCB with foam or glue ([1](https://i.imgur.com/7KvbxTv.jpg)). Replace them with higher quality heat sinks and pads as hotspots can incur with naked RAM. Get creative with mounting a fan (140mm recommended) over them using cable ties
-  - Mount a fan over VRMs, PCH and other hot spots
-  - Replace thermal pads with higher-quality ones if the stock pads are inadequate
-  - Reapply the thermal interface material on the GPU due to factory application of it often being inadequate and optionally replace the stock fans with higher quality ones
+  - Retira los paneles laterales del gabinete, ya que tienden a atrapar calor, o considera usar una configuración tipo open-bench (ten cuidado con la acumulación de polvo).
+  - Realiza delid al CPU y aplica metal líquido para una mejora térmica significativa, dependiendo de la calidad del IHS ([1](https://www.youtube.com/watch?v=rUy3WcDlBXE)). También vale la pena considerar el uso de direct die y lapping, aunque es fundamental que el usuario evalúe los riesgos de llevar a cabo estos procedimientos.
+  - Evita los disipadores por aire tipo torre, ya que su capacidad de enfriamiento es limitada ([1](https://www.youtube.com/watch?v=Vex9_84VpYs)) y suelen obstaculizar el flujo de aire hacia otros componentes importantes como la RAM o los VRMs.
+  - Retira el disipador térmico de serie de los módulos de RAM, ya que frecuentemente atrapan calor debido a que están adheridos con espuma o pegamento ([1](https://i.imgur.com/7KvbxTv.jpg)). eemplázalos por disipadores y pads térmicos de mayor calidad, ya que la RAM sin disipación adecuada puede generar puntos calientes. Considera montar un ventilador (se recomienda uno de 140 mm) sobre la RAM utilizando bridas o adaptaciones caseras.
+  - Instala un ventilador dirigido hacia los VRMs, el chipset (PCH) y otras zonas críticas con alta temperatura.
+  - Sustituye los thermal pads originales si no son de buena calidad.
+  - Reaplica la pasta térmica de la GPU, ya que la aplicación de fábrica suele ser deficiente. Opcionalmente, reemplaza los ventiladores de serie por otros de mayor calidad.
 
-- Consider contact frames and offset mounts if applicable
+- Considera el uso de contact frames y monturas con desplazamiento (offset mounts) si aplica en tu plataforma.
 
-  - See [Investigating Intel’s CPU Socket Problems | Thermal Grizzly Contact Frame Benchmark | Gamers Nexus](https://www.youtube.com/watch?v=Ysb25vsNBQI)
-  - See [Noctua Releases Offset Mounting for Improved Cooling Performance on AMD AM5 CPUs | Noctua](https://noctua.at/en/noctua-releases-offset-mounting-for-improved-cooling-performance-on-amd-am5-processors)
+  - Considera ver: [Investigación sobre los problemas del socket de Intel | Thermal Grizzly Contact Frame Benchmark | Gamers Nexus](https://www.youtube.com/watch?v=Ysb25vsNBQI)
+  - Considera ver: [Noctua lanza monturas desplazadas para mejorar el rendimiento térmico en CPUs AMD AM5 | Noctua](https://noctua.at/en/noctua-releases-offset-mounting-for-improved-cooling-performance-on-amd-am5-processors)
 
-- Use high-quality thermal interface material and an adequate amount upon application
+- Utiliza material térmico (pasta térmica) de alta calidad y asegúrate de aplicar una cantidad adecuada.
 
-  - See [Best Thermal Paste for CPUs | Tom’s Hardware](https://www.tomshardware.com/best-picks/best-thermal-paste)
+  - Considera ver: [Las mejores pastas térmicas para CPU | Tom’s Hardware](https://www.tomshardware.com/best-picks/best-thermal-paste)
 
-- Assess contact patches on the IHS/Die and cold plate
+- Evalúa la distribución del contacto entre el IHS/die y la base del disipador o cold plate para garantizar una transferencia térmica óptima.
 
-- Mount your AIO cooler properly
+- Asegúrate de montar correctamente tu sistema de refrigeración líquida (AIO).
 
-  - See [Stop Doing It Wrong: How To Kill Your CPU Cooler | Gamers Nexus](https://www.youtube.com/watch?v=BbGomv195sk)
+  - Considera ver: [Deja de hacerlo mal: cómo matar tu disipador AIO | Gamers Nexus](https://www.youtube.com/watch?v=BbGomv195sk)
 
-- Use non-RGB fans while favoring ones with a high static pressure as mesh filters, radiators, heatsink fins and more obstruct airflow
+- Usa ventiladores sin RGB y da preferencia a aquellos con alta presión estática, ya que elementos como los filtros de malla, radiadores, aletas de disipadores y similares obstruyen el flujo de aire.
 
-  - See [PC Fans | Calypto](https://docs.google.com/spreadsheets/d/1AydYHI_M6ov9a3OgVuYXhLEGps0J55LniH9htAHy2wU)
+  - Considera ver: [PC Fans | Calypto](https://docs.google.com/spreadsheets/d/1AydYHI_M6ov9a3OgVuYXhLEGps0J55LniH9htAHy2wU)
 
-- Ensure not to overload the motherboard fan header, especially if you are using fan splitters
+- No sobrecargues los conectores de ventilador en la placa madre, especialmente si estás usando divisores (splitters).
 
-- Use an M.2/NVMe heat sink to reduce temperatures ([1](https://cdn.mos.cms.futurecdn.net/mftAb4ExpeZiqVnuHrAqwf-970-80.png)) and optionally mount a fan over it
+- Usa un disipador térmico para M.2/NVMe para reducir su temperatura ([1](https://cdn.mos.cms.futurecdn.net/mftAb4ExpeZiqVnuHrAqwf-970-80.png)) y considera colocar un ventilador encima para mejorar el enfriamiento.
 
 <h1 id="biosuefi">6. BIOS/UEFI <a href="#biosuefi">(permalink)</a></h1>
 
-As a general rule of thumb, ensure that the settings you are changing results in positive performance scaling and make note of them for future reference/backtracking to resolve potential issues. I would recommend resetting settings to factory defaults to work with a clean slate in case anything was misconfigured initially.
+Como regla general, asegúrate de que cualquier configuración que modifiques genere una mejora tangible en el rendimiento, y toma nota de los cambios realizados para poder revertirlos fácilmente en caso de problemas. Si estás partiendo de un sistema ya usado o con múltiples ajustes previos, se recomienda restablecer todos los valores a su estado de fábrica para empezar desde una base limpia, especialmente si sospechas que algo pudo haber quedado mal configurado desde el inicio.
 
-<h2 id="partition-style">6.1. Partition Style <a href="#partition-style">(permalink)</a></h2>
+<h2 id="partition-style">6.1. Estilo de Partición <a href="#partition-style">(permalink)</a></h2>
 
-If you aren't already using the partition style you would like to be using, you should switch now because some settings listed in this section depend on the partition style (search for *"GPT/UEFI"* in this section). GPT/UEFI is recommended for most systems as it offers the most compatibility ([1](https://www.diskpart.com/gpt-mbr/mbr-vs-gpt-1004.html)). The current partition style can be determined by typing ``msinfo32`` in ``Win+R``. The recommended method to convert the partition style is to wipe and convert the disk using diskpart within Windows setup ([1](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/change-an-mbr-disk-into-a-gpt-disk)).
+Si aún no estás utilizando el estilo de partición adecuado para tu sistema, ahora es el momento de cambiarlo, ya que algunos ajustes de esta sección dependen de ello (busca "GPT/UEFI" en esta misma sección). GPT con arranque UEFI es generalmente la opción más recomendable, ya que ofrece mejor compatibilidad y soporte moderno ([1](https://www.diskpart.com/gpt-mbr/mbr-vs-gpt-1004.html)). Puedes verificar el estilo de partición actual ejecutando ``msinfo32`` desde el cuadro de diálogo ``Win+R``. El método recomendado para convertir un disco a GPT es limpiar y convertirlo desde el instalador de Windows utilizando ``diskpart`` ([1](https://learn.microsoft.com/en-us/windows-server/storage/disk-management/change-an-mbr-disk-into-a-gpt-disk)).
 
-- See [How To Convert MBR to GPT During Windows 10/8/7 Installation | MDTechVideos](https://www.youtube.com/watch?v=f81qKAJUdKc)
+- Ver también: [Cómo convertir MBR a GPT durante la instalación de Windows | MDTechVideos](https://www.youtube.com/watch?v=f81qKAJUdKc)
 
-<h2 id="consider-windows-version">6.2. Consider Windows Version <a href="#consider-windows-version">(permalink)</a></h2>
+<h2 id="consider-windows-version">6.2. Considerar la Versión de Window <a href="#consider-windows-version">(permalink)</a></h2>
 
-Consider what Windows version you will be using because some settings listed in this section depend on the Windows version being used (search for *"Windows"* in this section). Read section [What Version of Windows Should You Use?](#what-version-of-windows-should-you-use) to help decide which version best suits your requirements.
+Asimismo, considera qué versión de Windows vas a utilizar, ya que ciertos ajustes también dependen de ello  [¿Qué versión de Windows deberías usar? ](#what-version-of-windows-should-you-use) para ayudarte a decidir cuál se adapta mejor a tus necesidades.
 
-<h2 id="bios-recovery-methods">6.3. BIOS Recovery Methods <a href="#bios-recovery-methods">(permalink)</a></h2>
+<h2 id="bios-recovery-methods">6.3. Métodos de recuperación de BIOS <a href="#bios-recovery-methods">(permalink)</a></h2>
 
-Modifying BIOS is never without risks. Explore methods to flash a stock BIOS such as USB flashback or a [CH341A](https://www.techinferno.com/index.php?/topic/12230-some-guide-how-to-use-spi-programmer-ch341a) programmer if [clearing CMOS](https://www.intel.co.uk/content/www/uk/en/support/articles/000025368/processors.html) does not restore everything to its original state.
+Modificar la BIOS siempre conlleva ciertos riesgos. Antes de hacer cambios importantes, asegúrate de conocer métodos seguros para restaurarla, como el uso de la función USB Flashback o un programador SPI como el [CH341A](https://www.techinferno.com/index.php?/topic/12230-some-guide-how-to-use-spi-programmer-ch341a), en caso de que limpiar el CMOS [1.](https://www.intel.co.uk/content/www/uk/en/support/articles/000025368/processors.html) no sea suficiente para revertir los cambios.
 
-<h2 id="bios-updates">6.4. BIOS Updates <a href="#bios-updates">(permalink)</a></h2>
+<h2 id="bios-updates">6.4. Actualizaciones de BIOS <a href="#bios-updates">(permalink)</a></h2>
 
-Check for BIOS updates and positive changes in the change logs (e.g. increased memory stability). Beware of problems brought up in reviews and forums regarding specific BIOS versions if applicable.
+Por último, revisa si existen actualizaciones de BIOS disponibles y lee detalladamente los registros de cambios, especialmente si se menciona una mejora en la estabilidad de la memoria u otros aspectos relevantes. No olvides consultar foros y reseñas para asegurarte de que la versión que vas a instalar no tenga problemas conocidos.
 
-<h2 id="bios-microcode">6.5. BIOS Microcode <a href="#bios-microcode">(permalink)</a></h2>
+<h2 id="bios-microcode">6.5. Microcódigo de BIOS <a href="#bios-microcode">(permalink)</a></h2>
 
 > [!WARNING]
-> 🔒 Upgrading or downgrading microcode may negatively impact security and expose the system to vulnerabilities. Users should evaluate the security risks associated with modifying the specified setting.
+> 🔒 Actualizar o degradar el microcódigo del procesador puede afectar negativamente la seguridad del sistema y exponerlo a vulnerabilidades. Se recomienda que el usuario evalúe cuidadosamente los riesgos de seguridad antes de modificar esta configuración.
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-On much older platforms and CPUs, BIOS-level Spectre, Meltdown and other CPU microcode patches had the ability to drastically influence performance which isn't so much the case with modern systems nowadays. [CPU-Z's](https://www.cpuid.com/softwares/cpu-z.html) validation feature exposes the microcode version and it was possible to manipulate microcode and their versions within the BIOS using tools such as [MMTool](https://www.ami.com/blog/2017/10/30/what-is-mmtool). Nonetheless, this is not necessarily required to be changed on modern platforms and is here as an informative note.
+En plataformas y procesadores mucho más antiguos, los parches a nivel de BIOS contra Spectre, Meltdown y otras vulnerabilidades similares podían tener un impacto considerable en el rendimiento. Sin embargo, en sistemas modernos esto ya no suele ser un factor tan determinante. La función de validación de [CPU-Z's](https://www.cpuid.com/softwares/cpu-z.html) permite visualizar la versión del microcódigo actual, y en el pasado era posible modificarlo utilizando herramientas como [MMTool](https://www.ami.com/blog/2017/10/30/what-is-mmtool). Aun así, en plataformas actuales este tipo de modificación rara vez es necesaria, y se menciona aquí únicamente con fines informativos.
 
-<h2 id="accessing-hidden-options">6.6. Accessing Hidden Options <a href="#accessing-hidden-options">(permalink)</a></h2>
+<h2 id="accessing-hidden-options">6.6. Acceder a opciones ocultas <a href="#accessing-hidden-options">(permalink)</a></h2>
 
-Motherboard vendors hide and lock a lot of settings so that they aren't visible to a regular user. For clarification, unlocking BIOS corresponds to making hidden settings visible and accessible. The easiest approach to take is to change the access levels within the BIOS using [UEFI-Editor](https://github.com/BoringBoredom/UEFI-Editor#usage-guide) then flash it which will result in hidden options available in the UEFI. An alternative approach is to configure what is already accessible in UEFI then access hidden options by reading and writing to NVRAM using [GRUB](https://github.com/BoringBoredom/UEFI-Editor#how-to-change-hidden-settings-without-flashing-a-modded-bios) ([script generator](https://github.com/ab3lkaizen/setupvar-builder)) or [SCEWIN](https://github.com/ab3lkaizen/SCEHUB).
+Los fabricantes de placas base suelen ocultar muchas configuraciones para que no estén visibles al usuario estándar. En este contexto, "desbloquear la BIOS" implica hacer visibles y accesibles estas configuraciones ocultas. La forma más sencilla de hacerlo es modificando los niveles de acceso dentro del firmware con [UEFI-Editor](https://github.com/BoringBoredom/UEFI-Editor#usage-guide) y luego flashearlo, lo cual permitirá que dichas opciones se muestren directamente en el menú UEFI. Otra opción consiste en modificar lo que ya está disponible y luego acceder a las opciones ocultas leyendo y escribiendo en la NVRAM mediante [GRUB](https://github.com/BoringBoredom/UEFI-Editor#how-to-change-hidden-settings-without-flashing-a-modded-bios) ([script generator](https://github.com/ab3lkaizen/setupvar-builder)) o [SCEWIN](https://github.com/ab3lkaizen/SCEHUB).
 
-<h2 id="unnecessary-devices">6.7. Unnecessary Devices <a href="#unnecessary-devices">(permalink)</a></h2>
+<h2 id="unnecessary-devices">6.7. Dispositivos innecesarios <a href="#unnecessary-devices">(permalink)</a></h2>
 
-Generally, follow the rule of "If you're not using it, disable it". It is preferable to physically disconnect components if possible, but this typically includes NICs, WLAN, Bluetooth, High Definition Audio (if you are not utilizing motherboard audio) controllers, integrated graphics, SATA, RAM slots, onboard devices visible in [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) (e.g. LED controllers, IR receivers) and more. Keep in mind that some motherboards have the High Definition Audio controller linked to the USB controller ([1](https://www.igorslab.de/en/the-old-alc4080-on-the-new-intel-boards-demystified-and-the-differences-from-alc1220-insider)) so don't get confused if this is encountered in the USB device tree.
+GComo regla general, aplica el principio de "si no lo usas, desactívalo". Si es posible, es mejor desconectar físicamente los componentes no utilizados, aunque también es válido deshabilitarlos desde la BIOS. Esto incluye, entre otros: adaptadores de red (NICs), Wi-Fi, Bluetooth, controladores de audio de alta definición (si no se usa el audio de la placa), gráficos integrados, puertos SATA, ranuras de RAM, y dispositivos integrados visibles en [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) (como controladores RGB, receptores IR, etc.). Ten en cuenta que en algunas placas base el controlador de audio de alta definición puede estar vinculado al controlador USB (referencia), por lo que puede aparecer en dicho árbol como un dispositivo USB. ([1](https://www.igorslab.de/en/the-old-alc4080-on-the-new-intel-boards-demystified-and-the-differences-from-alc1220-insider)). Así que no te confundas si se encuentra en el árbol de dispositivos USB.
 
 <h2 id="resizable-bar">6.8. Resizable Bar (ReBAR) <a href="#resizable-bar">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-See [this](https://www.howtogeek.com/819578/what-is-resizable-bar-on-a-gpu) for an overview of what Resizable Bar is. It is worth noting that ReBAR can result in a performance regression in some games ([1](https://www.techspot.com/review/2234-nvidia-resizable-bar)) so carry out your own benchmarks.
+Consulta [este artículo](https://www.howtogeek.com/819578/what-is-resizable-bar-on-a-gpu) para obtener una visión general de qué es Resizable BAR (ReBAR). Es importante destacar que ReBAR puede provocar una pérdida de rendimiento en ciertos juegos ([1](https://www.techspot.com/review/2234-nvidia-resizable-bar)) por lo tanto, es recomendable hacer tus propias pruebas para decidir si mantenerlo habilitado.
 
-ReBAR requires the GPT/UEFI BIOS mode and `Above 4G Decoding` to be enabled. For unsupported motherboards, consider viewing [ReBarUEFI](https://github.com/xCuri0/ReBarUEFI)/[NvStrapsReBar](https://github.com/terminatorul/NvStrapsReBar). To verify that Resizable Bar is enabled, check the status with [GPU-Z](https://www.techpowerup.com/gpuz).
+ReBAR requiere que el sistema esté en modo BIOS UEFI con particiones GPT, además de tener activada la opción `Above 4G Decoding`  Si tu placa base no lo soporta de forma nativa, puedes considerar usar herramientas como [ReBarUEFI](https://github.com/xCuri0/ReBarUEFI)/[NvStrapsReBar](https://github.com/terminatorul/NvStrapsReBar). Para verificar si Resizable BAR está habilitado, consulta el estado desde [GPU-Z](https://www.techpowerup.com/gpuz).
 
 <h2 id="hyper-threadingsimultaneous-multithreading">6.9. Hyper-Threading/Simultaneous Multithreading <a href="#hyper-threadingsimultaneous-multithreading">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-If you have enough CPUs for your application then consider disabling [Hyper-Threading (HT)/Simultaneous Multithreading (SMT)](https://en.wikipedia.org/wiki/Hyper-threading). This feature is beneficial for highly threaded operations such as encoding, compiling and rendering however using multiple execution threads per CPU increases contention on processor resources and is a potential source of system latency and jitter ([1](https://www.intel.com/content/www/us/en/developer/articles/technical/optimizing-computer-applications-for-latency-part-1-configuring-the-hardware.html)). Disabling HT/SMT has the additional benefit of increased overclocking potential due to lower temperatures which can affect performance positively or negatively in some games hence, I would recommend benchmarking these options thoroughly and not blindly disabling them.
+Si tu aplicación no depende intensamente del uso de múltiples hilos por núcleo, considera desactivar [Hyper-Threading (HT)/Simultaneous Multithreading (SMT)](https://en.wikipedia.org/wiki/Hyper-threading). Esta función resulta útil en tareas altamente paralelizables como la codificación, compilación y renderizado; sin embargo, el uso de múltiples hilos por núcleo puede aumentar la contención de recursos internos del procesador y es una posible fuente de latencia e inestabilidad del sistema ([1](https://www.intel.com/content/www/us/en/developer/articles/technical/optimizing-computer-applications-for-latency-part-1-configuring-the-hardware.html)). Además, desactivar HT/SMT puede mejorar el potencial de overclocking debido a una menor generación de calor, lo cual puede traducirse en mejoras o pérdidas de rendimiento dependiendo del juego o la aplicación. Por tanto, se recomienda realizar pruebas comparativas antes de desactivarlo.
 
-<h2 id="power-states">6.10. Power States <a href="#power-states">(permalink)</a></h2>
+<h2 id="power-states">6.10. Estados de Energía <a href="#power-states">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-To be completed.
+Por completar.
 
-<h2 id="virtualizationsvm-mode">6.11. Virtualization/SVM Mode <a href="#virtualizationsvm-mode">(permalink)</a></h2>
+<h2 id="virtualizationsvm-mode">6.11. Virtualización/Modo SVM <a href="#virtualizationsvm-mode">(permalink)</a></h2>
 
-Disable [Virtualization/SVM Mode](https://en.wikipedia.org/wiki/Desktop_virtualization) and [Intel VT-d/AMD-Vi](https://en.wikipedia.org/wiki/X86_virtualization#I/O_MMU_virtualization_(AMD-Vi_and_Intel_VT-d)) if applicable as they can cause a difference in latency for memory access ([1](https://web.archive.org/web/20190403122634/https://www.amd.com/system/files/TechDocs/56263-EPYC-performance-tuning-app-note.pdf)). Virtualization also has the potential to affect BCLK ([1](https://linustechtips.com/topic/1479168-issue-enabling-svm-virtualization-causes-bclk-to-fluctuate-a-lot)). The virtualization status can be verified using Task Manager's CPU section.
+Desactiva [Virtualization/SVM Mode](https://en.wikipedia.org/wiki/Desktop_virtualization) y [Intel VT-d/AMD-Vi](https://en.wikipedia.org/wiki/X86_virtualization#I/O_MMU_virtualization_(AMD-Vi_and_Intel_VT-d)) si no utilizas máquinas virtuales, ya que estas tecnologías pueden introducir latencias adicionales en el acceso a la memoria ([1](https://web.archive.org/web/20190403122634/https://www.amd.com/system/files/TechDocs/56263-EPYC-performance-tuning-app-note.pdf)). También pueden provocar fluctuaciones en la frecuencia base del sistema (BCLK) ([1](https://linustechtips.com/topic/1479168-issue-enabling-svm-virtualization-causes-bclk-to-fluctuate-a-lot)). Puedes verificar si la virtualización está habilitada en el Administrador de Tareas, en la pestaña "Rendimiento" > CPU.
 
-<h2 id="power-saving">6.12. Power-Saving <a href="#power-saving">(permalink)</a></h2>
+<h2 id="power-saving">6.12. Ahorros de Energía <a href="#power-saving">(permalink)</a></h2>
 
-Power-saving has no place on a machine executing real-time tasks. These features can be named differently, including but not limited to [ASPM (Active State Power Management)](https://en.wikipedia.org/wiki/Active_State_Power_Management) (e.g. search for *L0*, *L1*), [ALPM (Aggressive Link Power Management)](https://en.wikipedia.org/wiki/Aggressive_Link_Power_Management), Power/Clock Gating and more. You can also look out for options named *power management* or *power saving*. Search the internet if you are unsure whether a given setting is power-saving related.
+Las funciones de ahorro de energía no tienen cabida en sistemas que ejecutan tareas en tiempo real. Estas características pueden denominarse de diversas formas, incluyendo [ASPM (Active State Power Management)](https://en.wikipedia.org/wiki/Active_State_Power_Management) (por ejemplo, buscar *L0*, *L1*), [ALPM (Aggressive Link Power Management)](https://en.wikipedia.org/wiki/Aggressive_Link_Power_Management), Power/Clock Gating, entre otras. También pueden aparecer como "power saving". Si tienes dudas sobre una configuración específica, busca su descripción en internet para verificar si pertenece a esta categoría.
 
-<h2 id="trusted-platform-module-tpm">6.13. Trusted Platform Module (TPM) <a href="#trusted-platform-module-tpm">(permalink)</a></h2>
+<h2 id="trusted-platform-module-tpm">6.13. Módulo de Plataforma Segura (TPM) <a href="#trusted-platform-module-tpm">(permalink)</a></h2>
 
 > [!WARNING]
-> 🔒 Disabling TPM may negatively impact security and expose the system to vulnerabilities. Users should evaluate the security risks associated with modifying the specified setting.
+> 🔒 Desactivar el TPM (Trusted Platform Module) puede comprometer la seguridad del sistema. Evalúa cuidadosamente los riesgos antes de modificar esta opción.
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
-Disable Trusted Platform Module as it may cause the system to enter System Management Mode (SMM) via System Management Interrupts (SMIs) ([1](https://youtu.be/X72LgcMpM9k?si=A5Kl5NmU5f1WzZP4&t=2060)) which are high priority unmaskable hardware interrupts which cause the CPU to immediately suspend all other activities, including the operating system ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). On Windows 11, a minority of anticheats (Vanguard, FACEIT) require it to be enabled and its status can be verified by typing ``tpm.msc`` in ``Win+R``.
+Desactiva el TPM si estás priorizando rendimiento de baja latencia. Este módulo puede generar interrupciones del tipo System Management Interrupts (SMIs) ([1](https://youtu.be/X72LgcMpM9k?si=A5Kl5NmU5f1WzZP4&t=2060)) estas son interrupciones hardware de máxima prioridad que no pueden desactivarse, cuando ocurren, obligan al CPU a pausar instantáneamente todas sus operaciones, incluso las del sistema operativo ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). Sin embargo, en Windows 11 algunos sistemas antitrampas como Vanguard (Valorant), FACEIT o THE FINALS requieren que el TPM esté activado. Para verificar su estado, presiona ``Win+R`` escribe ``tpm.msc``y presiona Enter.
 
-<h2 id="compatibility-support-module-csm">6.14. Compatibility Support Module (CSM) <a href="#compatibility-support-module-csm">(permalink)</a></h2>
+<h2 id="compatibility-support-module-csm">6.14. Módulo de Compatibilidad (CSM) <a href="#compatibility-support-module-csm">(permalink)</a></h2>
 
-MBR/Legacy requires Compatibility Support Module to be enabled and typically, only the storage and PCIe OpROMs are required, but you can enable all of them if you are unsure. Disable CSM if you are using GPT/UEFI with the exception being Windows 7 GPT/UEFI as it requires CSM and OpROMs unless you are using [uefiseven](https://github.com/manatails/uefiseven). Disable CSM if you are using Resizable Bar.
+El modo MBR/Legacy requiere que el Compatibility Support Module (CSM) esté habilitado. Generalmente, basta con activar solo los OpROM de almacenamiento y PCIe, aunque puedes habilitar todos si no estás seguro. Desactiva el CSM si estás usando GPT/UEFI, excepto en el caso de Windows 7 GPT/UEFI, que requiere CSM y OpROMs a menos que uses [uefiseven](https://github.com/manatails/uefiseven). Recuerda que ReBAR también requiere que el CSM esté deshabilitado.
 
 <h2 id="secure-boot">6.15. Secure Boot <a href="#secure-boot">(permalink)</a></h2>
 
 > [!WARNING]
-> 🔒 Disabling Secure Boot may negatively impact security and expose the system to vulnerabilities. Users should evaluate the security risks associated with modifying the specified setting.
+> 🔒 Desactivar el arranque seguro (Secure Boot) puede comprometer la seguridad del sistema. Evalúa los riesgos antes de hacerlo.
 
-On Windows 11, a minority of anticheats (Vanguard, FACEIT, THE FINALS) require Secure Boot to be enabled. If something fails due to Secure Boot being enabled such as bootable tools, I recommended temporarily disabling it rather than resorting to alternative solutions such as enrolling keys as they can lead to issues. If Secure Boot is not required, it can be disabled to avoid various issues. Its status can be verified by typing ``msinfo32`` in ``Win+R``.
+En Windows 11, algunos sistemas antitrampas (Vanguard, FACEIT, THE FINALS) requieren que el arranque seguro esté activado. Si alguna herramienta booteable falla por culpa del arranque seguro, se recomienda desactivarlo temporalmente en lugar de modificar certificados o claves, ya que esto puede ocasionar problemas adicionales. Para comprobar si está habilitado, abre ``msinfo32`` desde ``Win+R`` y revisa el valor de “Arranque seguro”.
 
 <h2 id="fast-startup-standby-and-hibernate">6.16. Fast Startup, Standby and Hibernate <a href="#fast-startup-standby-and-hibernate">(permalink)</a></h2>
 
