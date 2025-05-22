@@ -889,7 +889,7 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 <h2 id="installing-drivers">11.7. Installing Drivers <a href="#installing-drivers">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 - No se recomienda instalar controladores a través de Windows Update, ya que pueden estar desactualizados en comparación con los proporcionados por el fabricante. Las actualizaciones de controladores mediante Windows Update deben ser bloqueadas si la opción ``disable driver installation via windows update`` fue establecida en ``true`` en la sección [Merging Registry Options](#merging-registry-options)
 
@@ -1035,7 +1035,7 @@ Estos runtimes son dependencias comunes para una gran cantidad de aplicaciones. 
 <h2 id="handling-bloatware">11.22. Handling Bloatware <a href="#handling-bloatware">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Desaconsejo fuertemente el uso de scripts de desbloat o la eliminación de componentes más allá del bloatware real como Candy Crush o cualquier otro software preinstalado que venga con Windows actualmente, ya que podrías romper el sistema operativo. Puede argumentarse que eliminar estas aplicaciones no aporta beneficio de rendimiento si no se ejecutan activamente en segundo plano, lo cual puede verificarse en el Administrador de Tareas. Para adoptar el enfoque de solo eliminar o deshabilitar lo que realmente se ejecuta en segundo plano, configura Process Explorer como se describe en la sección [Process Explorer](#process-explorer) y ordena los procesos por ``Context Switch Delta`` o ``Cycles Delta`` para evaluar qué se puede quitar. La velocidad de actualización puede modificarse en ``View -> Update Speed`` según tu tolerancia.
 
@@ -1115,7 +1115,7 @@ Si usas  [MSI Afterburner](https://www.msi.com/Landing/afterburner/graphics-card
 <h2 id="display-resolutions-and-scaling-modes">11.27. Display Resolutions and Scaling Modes <a href="#display-resolutions-and-scaling-modes">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Si encontraste una sobreaceleración (overclock) estable para tu pantalla en secciones anteriores usando  [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU), puedes aplicarla ahora.
 
@@ -1155,7 +1155,7 @@ Open-Shell es una alternativa FOSS al menú de inicio de Windows..
 > 🔒 Desactivar Spectre y Meltdown puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con la modificación de esta configuración.
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Desactivar Spectre y Meltdown es una técnica de mejora de rendimiento conocida desde hace tiempo por muchos entusiastas; sin embargo, con plataformas más recientes y arquitecturas modernas, puede producirse una regresión de rendimiento ([1](https://www.phoronix.com/review/amd-zen4-spectrev2)). Por esta razón, deben realizarse pruebas exhaustivas para determinar cómo se ve afectado el rendimiento y si éste escala de forma positiva, negativa o si no se ve afectado en absoluto. Su estado puede modificarse utilizando la herramienta [InSpectre](https://www.grc.com/inspectre.htm) y/o renombrando las DLLs de microcódigo dentro del sistema operativo, dependiendo de si existe una discrepancia entre las versiones de microcódigo del sistema operativo y de la BIOS ([1](https://superuser.com/a/895447), [2](https://support.mozilla.org/en-US/kb/microcode-update)). Es importante tener en cuenta que las versiones del microcódigo están sujetas a cambios con las actualizaciones de Windows.
 
@@ -1181,7 +1181,7 @@ Utiliza [InSpectre](https://www.grc.com/inspectre.htm) y la función de validaci
 <h2 id="power-options">11.30. Power Options <a href="#power-options">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Abre CMD e introduce los siguientes comandos:
 
@@ -1323,7 +1323,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 <h2 id="memory-management-settings-windows-8">11.32. Memory Management Settings (Windows 8+) <a href="#memory-management-settings-windows-8">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 - Abre PowerShell e ingresa el siguiente comando para revisar las opciones de administración de memoria.
 
@@ -1435,7 +1435,7 @@ Abre CMD como administrador e ingresa los comandos a continuación.
 <h2 id="message-signaled-interrupts">11.39. Message Signaled Interrupts <a href="#message-signaled-interrupts">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Los Message Signaled Interrupts (MSIs) son más rápidos que las interrupciones tradicionales basadas en línea y también pueden resolver el problema de interrupciones compartidas, que suelen ser la causa de alta latencia de interrupciones y problemas de estabilidad ([1](https://repo.zenk-security.com/Linux%20et%20systemes%20d.exploitations/Windows%20Internals%20Part%201_6th%20Edition.pdf)).
 
@@ -1495,7 +1495,7 @@ No es mala idea revisar tanto el Panel de control clásico como el moderno para 
 <h3 id="nvidia-reflex">11.42.1. NVIDIA Reflex <a href="#nvidia-reflex">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 [NVIDIA Reflex](https://www.nvidia.com/en-us/geforce/news/reflex-low-latency-platform) minimiza los fotogramas en cola en la GPU ajustando dinámicamente la tasa de cuadros por segundo en escenarios intensivos gráficamente. Puede activarse en juegos compatibles si el desarrollador ha implementado soporte. Aunque reduce la latencia, funciona como un limitador dinámico de FPS, lo que puede causar microtartamudeos o variaciones en el tiempo de fotogramas. Por esta razón, se recomienda hacer pruebas exhaustivas antes de activarlo de forma predeterminada.
 
@@ -1519,7 +1519,7 @@ Asegúrate de que la Barra de Juegos de Xbox reconozca el juego que estás ejecu
 <h3 id="presentation-mode">11.42.4. Presentation Mode <a href="#presentation-mode">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instrucciones](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Esto no implica una recomendación sobre el modo de presentación a usar, es meramente informativo.
 
@@ -1583,7 +1583,7 @@ Dependiendo de tu red y configuración del router, pueden establecerse política
 <h2 id="kernel-mode-scheduling-interrupts-dpcs-and-more">11.43. Kernel-Mode Scheduling (Interrupts, DPCs and more) <a href="#kernel-mode-scheduling-interrupts-dpcs-and-more">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Windows agenda interrupciones y DPCs en el CPU 0 por defecto para varios módulos en modo kernel. Agrupar muchas tareas en un solo CPU puede introducir sobrecarga adicional y mayor jitter debido a la competencia por tiempo de CPU. Para mitigar esto, se pueden configurar afinidades para aislar módulos críticos y distribuir la carga en núcleos menos utilizados..
 
@@ -1618,7 +1618,7 @@ Ten en cuenta que la cantidad de colas RSS determina el número de CPUs consecut
 <h2 id="user-mode-scheduling-processes-threads">11.44. User-Mode Scheduling (Processes, Threads) <a href="#user-mode-scheduling-processes-threads">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Existen varios métodos para establecer afinidades para los procesos. Uno de ellos es el Administrador de tareas, pero sólo persiste hasta que el proceso se cierra. Una solución más popular y permanente es [Process Lasso](https://bitsum.com), que permite guardar la configuración, aunque requiere que un proceso se ejecute continuamente en segundo plano, lo que introduce una leve sobrecarga. Para evitar esto, puedes simplemente lanzar la aplicación con una afinidad de CPU especificada, eliminando la necesidad de programas como Process Lasso para gestionar afinidades, a costa de la facilidad de uso.
 
@@ -1649,7 +1649,7 @@ Get-Process @("svchost", "audiodg") -ErrorAction SilentlyContinue | ForEach-Obje
 <h2 id="reserved-cpu-sets-windows-10">11.45. Reserved CPU Sets (Windows 10+) <a href="#reserved-cpu-sets-windows-10">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 [ReservedCpuSets](https://github.com/valleyofdoom/ReservedCpuSets) puede usarse para evitar que Windows programe ISRs, DPCs y otros hilos en CPUs específicas. Aislar módulos de las perturbaciones de nivel usuario y kernel ayuda a reducir la contención, el jitter, y permite que los módulos sensibles al tiempo obtengan el tiempo de CPU que requieren.
 
@@ -1683,7 +1683,7 @@ La seguridad basada en virtualización (VBS) afecta negativamente al rendimiento
 <h2 id="cpu-idle-states">11.48. CPU Idle States <a href="#cpu-idle-states">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Deshabilitar los estados inactivos fuerza el estado C-State 0, lo que puede observarse en [HWiNFO](https://www.hwinfo.com), , y es parte de las recomendaciones de Microsoft para configurar dispositivos con rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)). Forzar el estado C0 mitiga el retraso indeseado al ejecutar nuevas instrucciones en una CPU que ha entrado en un estado de ahorro de energía más profundo, a costa de un mayor consumo de energía y temperaturas más altas. Por lo tanto, se recomienda mantener los estados inactivos habilitados para la mayoría de los usuarios, ya que podrían surgir otros problemas debido a estos efectos secundarios (como estrangulamiento térmico o problemas de energía). La temperatura del CPU no debería aumentar hasta el punto de provocar thermal throttling, ya que eso debería haber sido evaluado en la sección [Stability, Hardware Clocking and Thermal Performance](#stability-hardware-clocking-and-thermal-performance).
 
@@ -1704,7 +1704,7 @@ powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2
 <h2 id="thread-quantums-and-scheduling">11.49. Thread Quantums and Scheduling <a href="#thread-quantums-and-scheduling">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el planificador evalúe si otro hilo del mismo nivel de prioridad debe ejecutarse. Si un hilo finaliza su quantum y no hay otros hilos en su nivel de prioridad listos para ejecutarse, el planificador permite que el hilo continúe ejecutándose durante un quantum adicional. El quantum puede controlarse con la clave de registro que se muestra a continuación, además de definir cuánto tiempo del quantum se asigna a los hilos en segundo plano y primer plano. El valor está representado como una máscara de 6 bits, donde cada uno de los tres pares de bits determina las características del quantum y la distribución del tiempo entre hilos en segundo y primer plano. Por defecto, está configurado en ``0x2``, lo cual corresponde a``0b000010`` y tiene diferentes significados en ediciones cliente y servidor, como se explicará a continuación.
 
@@ -1769,7 +1769,7 @@ Para la mayoría de los lectores, simplemente recomendaría dejar este valor en 
 <h2 id="clock-interrupt-frequency-timer-resolution">11.50. Clock Interrupt Frequency (Timer Resolution) <a href="#clock-interrupt-frequency-timer-resolution">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 La frecuencia de interrupción del reloj es la tasa a la que el reloj de hardware del sistema genera interrupciones que permiten al planificador realizar varias tareas como el mantenimiento del tiempo. En la mayoría de los sistemas por defecto, la frecuencia mínima es de 64Hz, lo que significa que se genera una interrupción cada 15.625ms. Una frecuencia más baja reduce el overhead de CPU y el consumo de energía debido a menos interrupciones, pero reduce la precisión temporal y puede resultar en una multitarea menos receptiva. La frecuencia máxima es de 2kHz, lo que significa una interrupción cada 0.5ms. Una frecuencia más alta proporciona mayor precisión temporal y potencialmente una mayor capacidad de respuesta, pero incrementa el overhead de CPU y el consumo de energía. Las resoluciones mínima, actual y máxima pueden verse con [ClockRes](https://learn.microsoft.com/en-us/sysinternals/downloads/clockres).
 
@@ -1791,7 +1791,7 @@ Recomiendo favorecer la implementación por proceso (no global) cuando sea aplic
 <h2 id="paging-file">11.51. Paging File <a href="#paging-file">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
 
 Para la mayoría de los lectores, recomendaría mantener habilitado el archivo de paginación, que es el estado predeterminado. Existe el argumento de que es preferible deshabilitarlo si tienes suficiente RAM para tus aplicaciones, ya que reduce la sobrecarga de E/S y la memoria del sistema es más rápida que el disco. Sin embargo, muchos usuarios han reportado interrupciones (stuttering) en juegos específicos con el archivo de paginación deshabilitado, a pesar de que el uso de RAM no se acerca al máximo. Windows parece asignar el archivo de paginación a discos secundarios en ocasiones, lo cual puede ser problemático si uno de los discos es un HDD. Esto se puede resolver asignando el archivo de paginación a un SSD y configurando su tamaño como “administrado por el sistema”, y luego desasignándolo de las demás unidades.
 
