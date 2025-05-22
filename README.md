@@ -68,7 +68,7 @@
   - [10.1. Particiones de Almacenamiento](#storage-partitions)
   - [10.2. ¿Qué Versión de Windows Deberías Usar?](#what-version-of-windows-should-you-use)
   - [10.3. Descargar y Preparar una ISO de Windows Oficial](#downloading-and-preparing-a-stock-windows-iso)
-  - [10.4. Fuentes de ISO](#iso-sources)
+  - [10.4. Fuentes de ISO's](#iso-sources)
   - [10.5. Preparación de la ISO](#iso-preparation)
   - [10.6. Obtener Archivos Requeridos](#fetching-required-files)
   - [10.7. Iniciar desde la ISO](#booting-into-the-iso)
@@ -178,7 +178,7 @@ La evaluación comparativa es una herramienta clave para analizar de forma objet
 <h1 id="physical-setup">4. Configuración Física <a href="#physical-setup">(permalink)</a></h1>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 - Se recomienda realizar una instalación limpia de Windows tras cualquier cambio importante de hardware, como el reemplazo de la placa base, el procesador, la plataforma o el conjunto de chips, entre otros. Esto ayuda a evitar conflictos, asegurar la compatibilidad y garantizar un rendimiento óptimo.
 
@@ -240,7 +240,7 @@ La evaluación comparativa es una herramienta clave para analizar de forma objet
 <h1 id="cooling">5. Refrigeración <a href="#cooling">(permalink)</a></h1>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 - Si planeas hacer overclock, ten en cuenta los siguientes puntos para maximizar el margen térmico y el potencial de overclock. Es importante destacar que mantener temperaturas más bajas puede influir positivamente en otros factores incluso si no realizas overclock, como el comportamiento de boost del CPU, ya que dicho algoritmo es sensible a la temperatura, entre otros aspectos.
 
@@ -303,7 +303,7 @@ Por último, revisa si existen actualizaciones de BIOS disponibles y lee detalla
 > 🔒 Actualizar o degradar el microcódigo del procesador puede afectar negativamente la seguridad del sistema y exponerlo a vulnerabilidades. Se recomienda que el usuario evalúe cuidadosamente los riesgos de seguridad antes de modificar esta configuración.
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 En plataformas y procesadores mucho más antiguos, los parches a nivel de BIOS contra Spectre, Meltdown y otras vulnerabilidades similares podían tener un impacto considerable en el rendimiento. Sin embargo, en sistemas modernos esto ya no suele ser un factor tan determinante. La función de validación de [CPU-Z's](https://www.cpuid.com/softwares/cpu-z.html) permite visualizar la versión del microcódigo actual, y en el pasado era posible modificarlo utilizando herramientas como [MMTool](https://www.ami.com/blog/2017/10/30/what-is-mmtool). Aun así, en plataformas actuales este tipo de modificación rara vez es necesaria, y se menciona aquí únicamente con fines informativos.
 
@@ -318,7 +318,7 @@ GComo regla general, aplica el principio de "si no lo usas, desactívalo". Si es
 <h2 id="resizable-bar">6.8. Resizable Bar (ReBAR) <a href="#resizable-bar">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Consulta [este artículo](https://www.howtogeek.com/819578/what-is-resizable-bar-on-a-gpu) para obtener una visión general de qué es Resizable BAR (ReBAR). Es importante destacar que ReBAR puede provocar una pérdida de rendimiento en ciertos juegos ([1](https://www.techspot.com/review/2234-nvidia-resizable-bar)) por lo tanto, es recomendable hacer tus propias pruebas para decidir si mantenerlo habilitado.
 
@@ -327,14 +327,14 @@ ReBAR requiere que el sistema esté en modo BIOS UEFI con particiones GPT, adem�
 <h2 id="hyper-threadingsimultaneous-multithreading">6.9. Hyper-Threading/Simultaneous Multithreading <a href="#hyper-threadingsimultaneous-multithreading">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Si tu aplicación no depende intensamente del uso de múltiples hilos por núcleo, considera desactivar [Hyper-Threading (HT)/Simultaneous Multithreading (SMT)](https://en.wikipedia.org/wiki/Hyper-threading). Esta función resulta útil en tareas altamente paralelizables como la codificación, compilación y renderizado; sin embargo, el uso de múltiples hilos por núcleo puede aumentar la contención de recursos internos del procesador y es una posible fuente de latencia e inestabilidad del sistema ([1](https://www.intel.com/content/www/us/en/developer/articles/technical/optimizing-computer-applications-for-latency-part-1-configuring-the-hardware.html)). Además, desactivar HT/SMT puede mejorar el potencial de overclocking debido a una menor generación de calor, lo cual puede traducirse en mejoras o pérdidas de rendimiento dependiendo del juego o la aplicación. Por tanto, se recomienda realizar pruebas comparativas antes de desactivarlo.
 
 <h2 id="power-states">6.10. Estados de Energía <a href="#power-states">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Por completar.
 
@@ -352,7 +352,7 @@ Las funciones de ahorro de energía no tienen cabida en sistemas que ejecutan ta
 > 🔒 Desactivar el TPM (Trusted Platform Module) puede comprometer la seguridad del sistema. Evalúa cuidadosamente los riesgos antes de modificar esta opción.
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Desactiva el TPM si estás priorizando rendimiento de baja latencia. Este módulo puede generar interrupciones del tipo System Management Interrupts (SMIs) ([1](https://youtu.be/X72LgcMpM9k?si=A5Kl5NmU5f1WzZP4&t=2060)) estas son interrupciones hardware de máxima prioridad que no pueden desactivarse, cuando ocurren, obligan al CPU a pausar instantáneamente todas sus operaciones, incluso las del sistema operativo ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). Sin embargo, en Windows 11 algunos sistemas antitrampas como Vanguard (Valorant), FACEIT o THE FINALS requieren que el TPM esté activado. Para verificar su estado, presiona ``Win+R`` escribe ``tpm.msc``y presiona Enter.
 
@@ -412,7 +412,7 @@ Primero, familiarízate con qué puertos USB físicos corresponden a cada contro
 <h2 id="layout-planning">7.2. Planificación de la Distribución <a href="#layout-planning">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Luego, planifica y decide a qué controladores USB deseas conectar tus dispositivos, pero no los conectes todavía. En cuanto a qué controladores USB usar, eso queda a tu criterio. Si tienes más de un controlador USB, puedes aislar dispositivos como el ratón, teclado y dispositivos de audio en otro controlador USB, ya que tienen el potencial de interferir con la consistencia del polling ([1](https://forums.blurbusters.com/viewtopic.php?f=10&t=7618#p58449)). Se pueden obtener más controladores USB utilizando tarjetas de expansión PCIe o conectores USB 2.0 y 3.0 externos en la placa base. Siempre verifica esta información con [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html). Los sistemas Ryzen disponen de un controlador USB conectado directamente al CPU ([1](https://hexus.net/tech/features/mainboard/131789-amd-ryzen-3000-supporting-x570-chipset-examined)) el cual puede identificarse en la categoría PCIe Bus en [HWiNFO](https://www.hwinfo.com). Suele ser el controlador USB conectado a un ``Internal PCIe Bridge to bus`` el cual también está etiquetado con la arquitectura del CPU ([1](/assets/images/ryzen-cpu-usb-controller.png)).
 
@@ -437,14 +437,14 @@ Las especificaciones USB 2.0/3.0 están limitadas a 0.5 A y 0.9 A respectivament
 <h2 id="dpi">8.4. DPI <a href="#dpi">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Un DPI más alto en el sensor reduce la latencia y ayuda a saturar los sondeos con datos de movimiento ([1](https://www.youtube.com/watch?v=6AoRfv9W110), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=imYBTj2RXFs&t=275s)). Evita la reducción de jitter (por ejemplo, reducción de DPI) y el [sensor smoothing](https://old.reddit.com/r/MouseReview/comments/5haxn4/sensor_smoothing) que puede activarse con valores de DPI más altos.  Si tu juego utiliza entrada sin procesar (raw input) puedes reducir la velocidad del puntero en Windows para compensar la sensibilidad de un DPI más alto [calculadora](https://boringboredom.github.io/tools/winsenscalculator) De lo contrario, deja el control deslizante en su posición predeterminada, ya que el escalado puede afectar negativamente la entrada. Una forma de saber si una aplicación usa entrada sin procesar es espiar las llamadas a la API raw input con [API Monitor](http://www.rohitab.com/apimonitor) o verificar si la opción de “mejorar la precisión del puntero” tiene algún efecto en el juego. Si aún tienes dudas, deja el control deslizante en la posición predeterminada.
 
 <h2 id="report-rate">8.5. Tasa de Sondeo <a href="#report-rate">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Tasas de sondeo más altas (polling rate) reducen jitter y latencia ([1](https://www.youtube.com/watch?app=desktop&v=djCLZ6qEVuA), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=618s)). Sin embargo, tasas de sondeo elevadas pueden afectar negativamente el rendimiento dependiendo del hardware y la configuración general, así que ajusta según sea necesario.
 
@@ -503,7 +503,7 @@ Esta no es una recomendación de qué modo de LLC usar, sino que se proporciona 
 <h2 id="gpu">9.6. GPU <a href="#gpu">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Cuando hagas overclock a la GPU, puede que necesites flashear un BIOS con mayor límite de potencia o elevar manualmente dichos límites.
 
@@ -514,7 +514,7 @@ Cuando hagas overclock a la GPU, puede que necesites flashear un BIOS con mayor 
 <h2 id="ramcpu">9.7. RAM/CPU <a href="#ramcpu">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 - Asegúrate de que tu CPU puede hacer boost correctamente antes de comenzar, en caso de que hayas desactivado opciones como SpeedStep y Speed Shift, las cuales pueden impedir que el procesador supere su frecuencia base.
 
@@ -616,14 +616,14 @@ También se han introducido los siguientes cambios en 24h2:
 
 <h2 id="downloading-and-preparing-a-stock-windows-iso">10.3. Descargar y Preparar una ISO de Windows Oficial <a href="#downloading-and-preparing-a-stock-windows-iso">(permalink)</a></h2>
 
-Para instalar Windows, es necesario crear un medio de instalación utilizando un archivo ISO. Una vez descargadas las ISOs, asegúrate de verificar sus hashes con las fuentes oficiales para comprobar que son auténticas y no están corruptas. Usa el comando ``certutil -hashfile <archivo>`` n CMD para obtener los hashes del archivo.
+Para instalar Windows, es necesario crear un medio de instalación utilizando un archivo ISO. Una vez descargadas las ISOs, asegúrate de verificar sus hashes con las fuentes oficiales para comprobar que son auténticas y no están corruptas. Usa el comando ``certutil -hashfile <archivo>`` en el CMD para obtener los hashes del archivo.
 
 Asegúrate de descargar una ISO que contenga una edición con soporte para directivas de grupo, ya que varias de estas directivas se configurarán en pasos posteriores. A veces, puedes obtener ISOs con ediciones específicas ausentes, así que ten cuidado. A continuación se muestra una lista de ediciones recomendadas:
 
 - Ediciones cliente: Professional
 - Ediciones servidor: Standard (Desktop Experience)
 
-<h2 id="iso-sources">10.4. ISO Sources <a href="#iso-sources">(permalink)</a></h2>
+<h2 id="iso-sources">10.4. Links de las ISO's <a href="#iso-sources">(permalink)</a></h2>
 
 - [os.click](https://os.click)
 - [New Download Links](https://docs.google.com/spreadsheets/d/1zTF5uRJKfZ3ziLxAZHh47kF85ja34_OFB5C5bVSPumk)
@@ -632,12 +632,12 @@ Asegúrate de descargar una ISO que contenga una edición con soporte para direc
 - [Fido](https://github.com/pbatard/Fido)
 - [UUP dump](https://uupdump.net)
 
-<h2 id="iso-preparation">10.5. ISO Preparation <a href="#iso-preparation">(permalink)</a></h2>
+<h2 id="iso-preparation">10.5. Preparacion de la ISO <a href="#iso-preparation">(permalink)</a></h2>
 
 <details>
 <summary>Windows 7</summary>
 
-Si estás configurando Windows 7, recomiendo usar la ISO ``en_windows_7_professional_with_sp1_x64_dvd_u_676939.iso`` ISO ([Adguard hashes](https://files.rg-adguard.net/file/11ad6502-c2aa-261c-8c3f-c81477b21dd2?lang=en-us)). Además, no podrás iniciar la ISO en hardware moderno sin integrar los drivers y actualizaciones necesarios, lo cual se puede lograr utilizando herramientas como [NTLite](https://www.ntlite.com) ([instructions](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instructions](/docs/image-customization.md)). Sin embargo, NTLite es más fácil de usar. Normalmente, solo se requiere integrar drivers de [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) y [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) para poder iniciar el sistema desde la ISO. Asegúrate de integrar también los drivers en Windows Setup, de lo contrario podrías tener problemas para detectar almacenamiento o usar dispositivos USB, a menos que planees instalar la ISO con DISM como se describe en la sección [Iniciando desde la ISO](#booting-into-the-iso)  ya que este método omite por completo el instalador tradicional de Windows y el archivo ``boot.wim``. Para encontrar drivers compatibles con tu dispositivo, busca aquellos que soporten el HWID de tu dispositivo ([1](/assets/images/device-hwid-example.png)). Si no puedes encontrar un driver USB para tu HWID, intenta integrar el [generic USB driver](https://forums.mydigitallife.net/threads/usb-3-xhci-driver-stack-for-windows-7.81934) y la actualización ``KB2864202``. A continuación, se presenta una tabla de actualizaciones recomendadas para integrar a la ISO.
+Si estás configurando Windows 7, recomiendo usar la ISO ``en_windows_7_professional_with_sp1_x64_dvd_u_676939.iso`` ISO ([Adguard hashes](https://files.rg-adguard.net/file/11ad6502-c2aa-261c-8c3f-c81477b21dd2?lang=en-us)). Además, no podrás iniciar la ISO en hardware moderno sin integrar los drivers y actualizaciones necesarios, lo cual se puede lograr utilizando herramientas como [NTLite](https://www.ntlite.com) ([instrucciones](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instrucciones](/docs/image-customization.md)). Sin embargo, NTLite es más fácil de usar. Normalmente, solo se requiere integrar drivers de [NVMe](https://winraid.level1techs.com/t/recommended-ahci-raid-and-nvme-drivers/28310) y [USB](https://winraid.level1techs.com/t/usb-3-0-3-1-drivers-original-and-modded/30871) para poder iniciar el sistema desde la ISO. Asegúrate de integrar también los drivers en Windows Setup, de lo contrario podrías tener problemas para detectar almacenamiento o usar dispositivos USB, a menos que planees instalar la ISO con DISM como se describe en la sección [Iniciando desde la ISO](#booting-into-the-iso)  ya que este método omite por completo el instalador tradicional de Windows y el archivo ``boot.wim``. Para encontrar drivers compatibles con tu dispositivo, busca aquellos que soporten el HWID de tu dispositivo ([1](/assets/images/device-hwid-example.png)). Si no puedes encontrar un driver USB para tu HWID, intenta integrar el [generic USB driver](https://forums.mydigitallife.net/threads/usb-3-xhci-driver-stack-for-windows-7.81934) y la actualización ``KB2864202``. A continuación, se presenta una tabla de actualizaciones recomendadas para integrar a la ISO.
 
 |Knowledge Base (KB) ID|Notes|
 |---|---|
@@ -670,7 +670,7 @@ Si estás configurando Windows 8.1, recomiendo usar la ISO ``en_windows_8_1_x64_
 <details>
 <summary>Windows 10+</summary>
 
-No se requieren pasos adicionales para las versiones de Windows 10 en adelante. Puedes integrar las actualizaciones más recientes, pero esto no es necesario si planeas mantener Windows Update habilitado después de iniciar desde la ISO. Además, las ISOs creadas usando UUP Dump ya incluyen las actualizaciones más recientes, siempre que construyas la última versión. Esto puede hacerse con [NTLite](https://www.ntlite.com) ([instrucciones](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instructions](/docs/image-customization.md))), aunque NTLite es más fácil de usar.
+No se requieren pasos adicionales para las versiones de Windows 10 en adelante. Puedes integrar las actualizaciones más recientes, pero esto no es necesario si planeas mantener Windows Update habilitado después de iniciar desde la ISO. Además, las ISOs creadas usando UUP Dump ya incluyen las actualizaciones más recientes, siempre que construyas la última versión. Esto puede hacerse con [NTLite](https://www.ntlite.com) ([instrucciones](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instrucciones](/docs/image-customization.md))), aunque NTLite es más fácil de usar.
 </details>
 
 > [!IMPORTANTE]
@@ -818,7 +818,7 @@ Mueve la carpeta ``bin`` que descargaste antes de instalar Windows a la unidad `
 > 🔒 Desactivar las mitigaciones de procesos puede impactar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con esta modificación.
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Existen varias mitigaciones a nivel del sistema operativo ([1](https://learn.microsoft.com/en-us/powershell/module/processmitigations/set-processmitigation?view=windowsserver2019-ps#-disable)) que están habilitadas por defecto y que pueden impactar el rendimiento. Si se desea, estas pueden deshabilitarse desde la página de "Protección contra vulnerabilidades" de Windows Defender. Debe quedar claro que deshabilitar mitigaciones reduce la seguridad. Este paso se realiza ahora ya que, si decides desactivar Windows Defender en los siguientes pasos, la interfaz ya no estará accesible; sin embargo, pueden ser activadas o desactivadas mediante los comandos [Get-ProcessMitigation](https://learn.microsoft.com/en-us/powershell/module/processmitigations/get-processmitigation?view=windowsserver2022-ps) y [Set-ProcessMitigation](https://learn.microsoft.com/en-us/powershell/module/processmitigations/set-processmitigation?view=windowsserver2019-ps) en PowerShell. Algunos programas pueden requerir que las mitigaciones estén habilitadas y fallarán si se deshabilitan, por lo tanto, procede con precaución.
 
@@ -836,8 +836,8 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 
 |Opción|Motivo|Notas|Valor por defecto|
 |---|---|---|---|
-|``disable windows update``|1. 1. Reducir la carga del CPU<br><br>2. Obtener un control más preciso sobre la característica en cuestió|🔒 Un valor de ``true`` puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con modificar esta configuración<br><br>Deshabilitar Windows Update está incluido en las recomendaciones de Microsoft para configurar dispositivos para rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)). Alternativamente, se pueden deshabilitar solo las actualizaciones automáticas en lugar de deshabilitar completamente Windows Update, logrando el mismo efecto en cuanto a reducción de carga de CPU, pero aún siendo posible actualizar Windows configurando ``disable windows update`` en ``false`` y ``disable automatic windows updates`` en ``true``. Se sabe que los procesos de Windows Update utilizan muchos recursos de CPU y memoria. Deshabilitar Windows Update rompe la Microsoft Store, sin embargo, puedes descargar e instalar paquetes Appx directamente ([instructions](https://superuser.com/questions/1721755/is-there-a-way-to-install-microsoft-store-exclusive-apps-without-store))|``false``|
-|``disable automatic windows updates``|1. Reducir la carga del CPU<br><br>2. Obtener un control más preciso sobre la característica en cuestión|🔒 Un valor de ``true`` puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con modificar esta configuración<br><br>Evita la descarga e instalación automática de actualizaciones de Windows en lugar de deshabilitar completamente Windows Update y permite verificar actualizaciones manualmente de vez en cuando. Las actualizaciones pueden ocurrir en momentos inoportunos, lo que lleva a un uso excesivo de CPU y memoria en intervalos aleatorios, además de interrumpir apagados en ciertos casos. Esta opción es sobrescrita si ``disable windows update`` está configurado como ``true``. <br><br>Esta opción no afecta a las actualizaciones mayores (upgrades), que pueden ser controladas usando directivas de grupo ([instructions](https://www.tenforums.com/tutorials/159624-how-specify-target-feature-update-version-windows-10-a.html)). Sin embargo, estás limitado a evitar actualizaciones hasta que la versión especificada alcance su fin de soporte|``true``|
+|``disable windows update``|1. 1. Reducir la carga del CPU<br><br>2. Obtener un control más preciso sobre la característica en cuestió|🔒 Un valor de ``true`` puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con modificar esta configuración<br><br>Deshabilitar Windows Update está incluido en las recomendaciones de Microsoft para configurar dispositivos para rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)). Alternativamente, se pueden deshabilitar solo las actualizaciones automáticas en lugar de deshabilitar completamente Windows Update, logrando el mismo efecto en cuanto a reducción de carga de CPU, pero aún siendo posible actualizar Windows configurando ``disable windows update`` en ``false`` y ``disable automatic windows updates`` en ``true``. Se sabe que los procesos de Windows Update utilizan muchos recursos de CPU y memoria. Deshabilitar Windows Update rompe la Microsoft Store, sin embargo, puedes descargar e instalar paquetes Appx directamente ([instrucciones](https://superuser.com/questions/1721755/is-there-a-way-to-install-microsoft-store-exclusive-apps-without-store))|``false``|
+|``disable automatic windows updates``|1. Reducir la carga del CPU<br><br>2. Obtener un control más preciso sobre la característica en cuestión|🔒 Un valor de ``true`` puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con modificar esta configuración<br><br>Evita la descarga e instalación automática de actualizaciones de Windows en lugar de deshabilitar completamente Windows Update y permite verificar actualizaciones manualmente de vez en cuando. Las actualizaciones pueden ocurrir en momentos inoportunos, lo que lleva a un uso excesivo de CPU y memoria en intervalos aleatorios, además de interrumpir apagados en ciertos casos. Esta opción es sobrescrita si ``disable windows update`` está configurado como ``true``. <br><br>Esta opción no afecta a las actualizaciones mayores (upgrades), que pueden ser controladas usando directivas de grupo ([instrucciones](https://www.tenforums.com/tutorials/159624-how-specify-target-feature-update-version-windows-10-a.html)). Sin embargo, estás limitado a evitar actualizaciones hasta que la versión especificada alcance su fin de soporte|``true``|
 |``disable driver installation via windows update``|1. Reducir la carga del CPU<br><br>2. Obtener un control más preciso sobre la característica en cuestión|Evita que se instalen controladores desactualizados, vulnerables y potencialmente de bajo rendimiento mediante Windows Update. Se recomienda instalar manualmente solo la versión mínima necesaria para tu sistema (ya que el instalador completo a menudo incluye bloatware que se ejecuta constantemente en segundo plano) junto con la versión más reciente directamente desde el sitio del fabricante, como se describe en la sección [Installing Drivers](#installing-drivers). Esta opción se sobrescribe si ``disable windows update`` está en ``true``|``true``|
 |``disable automatic store app updates``|1. Reducir la carga del CPU<br><br>2. Obtener un control más preciso sobre la característica en cuestión|🔒 Un valor de ``true`` puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con modificar esta configuración<br><br>Evita la descarga e instalación automática de actualizaciones de aplicaciones de la tienda en comparación con deshabilitar completamente las actualizaciones, lo cual no es deseable si el objetivo es reducir la carga de CPU. En su lugar, verifica manualmente las actualizaciones de aplicaciones de vez en cuando|``true``|
 |``disable windows defender``|1. Reducir la carga del CPU<br><br>2. Prevenir problemas con la CPU entrando al estado C-State 0 ([1](https://www.techpowerup.com/295877/windows-defender-can-significantly-impact-intel-cpu-performance-we-have-the-fix))|🔒 Un valor de ``true`` puede afectar negativamente la seguridad. Los usuarios deben evaluar el riesgo de seguridad al modificar esta configuración<br><br>Esta opción desactiva completamente Windows Defender. En su lugar, realiza escaneos frecuentes, utiliza un navegador endurecido con [uBlock Origin](https://ublockorigin.com),  mantén activado el UAC y prefiere software gratuito, de código abierto y de buena reputación. Evita software propietario cuando sea posible y asegúrate de analizar archivos y ejecutables con [VirusTotal](https://www.virustotal.com/gui/home/upload) antes de abrirlos|``true``|
@@ -889,7 +889,7 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 <h2 id="installing-drivers">11.7. Installing Drivers <a href="#installing-drivers">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 - No se recomienda instalar controladores a través de Windows Update, ya que pueden estar desactualizados en comparación con los proporcionados por el fabricante. Las actualizaciones de controladores mediante Windows Update deben ser bloqueadas si la opción ``disable driver installation via windows update`` fue establecida en ``true`` en la sección [Merging Registry Options](#merging-registry-options)
 
@@ -1035,7 +1035,7 @@ Estos runtimes son dependencias comunes para una gran cantidad de aplicaciones. 
 <h2 id="handling-bloatware">11.22. Handling Bloatware <a href="#handling-bloatware">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Desaconsejo fuertemente el uso de scripts de desbloat o la eliminación de componentes más allá del bloatware real como Candy Crush o cualquier otro software preinstalado que venga con Windows actualmente, ya que podrías romper el sistema operativo. Puede argumentarse que eliminar estas aplicaciones no aporta beneficio de rendimiento si no se ejecutan activamente en segundo plano, lo cual puede verificarse en el Administrador de Tareas. Para adoptar el enfoque de solo eliminar o deshabilitar lo que realmente se ejecuta en segundo plano, configura Process Explorer como se describe en la sección [Process Explorer](#process-explorer) y ordena los procesos por ``Context Switch Delta`` o ``Cycles Delta`` para evaluar qué se puede quitar. La velocidad de actualización puede modificarse en ``View -> Update Speed`` según tu tolerancia.
 
@@ -1115,7 +1115,7 @@ Si usas  [MSI Afterburner](https://www.msi.com/Landing/afterburner/graphics-card
 <h2 id="display-resolutions-and-scaling-modes">11.27. Display Resolutions and Scaling Modes <a href="#display-resolutions-and-scaling-modes">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Si encontraste una sobreaceleración (overclock) estable para tu pantalla en secciones anteriores usando  [Custom Resolution Utility](https://www.monitortests.com/forum/Thread-Custom-Resolution-Utility-CRU), puedes aplicarla ahora.
 
@@ -1155,12 +1155,12 @@ Open-Shell es una alternativa FOSS al menú de inicio de Windows..
 > 🔒 Desactivar Spectre y Meltdown puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con la modificación de esta configuración.
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Desactivar Spectre y Meltdown es una técnica de mejora de rendimiento conocida desde hace tiempo por muchos entusiastas; sin embargo, con plataformas más recientes y arquitecturas modernas, puede producirse una regresión de rendimiento ([1](https://www.phoronix.com/review/amd-zen4-spectrev2)). Por esta razón, deben realizarse pruebas exhaustivas para determinar cómo se ve afectado el rendimiento y si éste escala de forma positiva, negativa o si no se ve afectado en absoluto. Su estado puede modificarse utilizando la herramienta [InSpectre](https://www.grc.com/inspectre.htm) y/o renombrando las DLLs de microcódigo dentro del sistema operativo, dependiendo de si existe una discrepancia entre las versiones de microcódigo del sistema operativo y de la BIOS ([1](https://superuser.com/a/895447), [2](https://support.mozilla.org/en-US/kb/microcode-update)). Es importante tener en cuenta que las versiones del microcódigo están sujetas a cambios con las actualizaciones de Windows.
 
 <details>
-<summary>Instrucciones para renombrar DLLs</summary>
+<summary>instrucciones para renombrar DLLs</summary>
 
 Abre CMD como TrustedInstaller con el siguiente comando: ``C:\bin\MinSudo.exe --TrustedInstaller --Privileged`` Luego, introduce el comando correspondiente a tu CPU para eliminar las actualizaciones de microcódigo. Para revertir los cambios, simplemente intercambia los nombres de los archivos para restaurar la DLL original..
 
@@ -1181,7 +1181,7 @@ Utiliza [InSpectre](https://www.grc.com/inspectre.htm) y la función de validaci
 <h2 id="power-options">11.30. Power Options <a href="#power-options">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Abre CMD e introduce los siguientes comandos:
 
@@ -1323,7 +1323,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 <h2 id="memory-management-settings-windows-8">11.32. Memory Management Settings (Windows 8+) <a href="#memory-management-settings-windows-8">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 - Abre PowerShell e ingresa el siguiente comando para revisar las opciones de administración de memoria.
 
@@ -1435,7 +1435,7 @@ Abre CMD como administrador e ingresa los comandos a continuación.
 <h2 id="message-signaled-interrupts">11.39. Message Signaled Interrupts <a href="#message-signaled-interrupts">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Los Message Signaled Interrupts (MSIs) son más rápidos que las interrupciones tradicionales basadas en línea y también pueden resolver el problema de interrupciones compartidas, que suelen ser la causa de alta latencia de interrupciones y problemas de estabilidad ([1](https://repo.zenk-security.com/Linux%20et%20systemes%20d.exploitations/Windows%20Internals%20Part%201_6th%20Edition.pdf)).
 
@@ -1495,7 +1495,7 @@ No es mala idea revisar tanto el Panel de control clásico como el moderno para 
 <h3 id="nvidia-reflex">11.42.1. NVIDIA Reflex <a href="#nvidia-reflex">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 [NVIDIA Reflex](https://www.nvidia.com/en-us/geforce/news/reflex-low-latency-platform) minimiza los fotogramas en cola en la GPU ajustando dinámicamente la tasa de cuadros por segundo en escenarios intensivos gráficamente. Puede activarse en juegos compatibles si el desarrollador ha implementado soporte. Aunque reduce la latencia, funciona como un limitador dinámico de FPS, lo que puede causar microtartamudeos o variaciones en el tiempo de fotogramas. Por esta razón, se recomienda hacer pruebas exhaustivas antes de activarlo de forma predeterminada.
 
@@ -1504,7 +1504,7 @@ No es mala idea revisar tanto el Panel de control clásico como el moderno para 
 <h3 id="framerate-limit">11.42.2. Framerate Limit <a href="#framerate-limit">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instrucciones](#benchmarking)).
 
 - Si limitas tu tasa de fotogramas, asegúrate de establecerla como múltiplo de la frecuencia de actualización de tu monitor ([calculadora](https://boringboredom.github.io/tools/fpscapcalculator)) para evitar desincronizaciones de cuadros y tearing desplazado ([1](https://www.youtube.com/watch?v=_73gFgNrYVQ), [2](https://github.com/BoringBoredom/PC-Optimization-Hub/blob/main/content/peripherals/mistiming/mistiming.md)). . También puedes reducir la frecuencia de actualización para evitar desajustes ([instrucciones](https://forums.blurbusters.com/viewtopic.php?t=8946)). Otra alternativa es usar Frecuencia de Actualización Variable (VRR).
 
@@ -1519,11 +1519,11 @@ Asegúrate de que la Barra de Juegos de Xbox reconozca el juego que estás ejecu
 <h3 id="presentation-mode">11.42.4. Presentation Mode <a href="#presentation-mode">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Esto no implica una recomendación sobre el modo de presentación a usar, es meramente informativo.
 
-- Verifica siempre si tu juego está usando el modo de presentación deseado mediante PresentMon  ([instructions](https://boringboredom.github.io/Frame-Time-Analysis))
+- Verifica siempre si tu juego está usando el modo de presentación deseado mediante PresentMon  ([instrucciones](https://boringboredom.github.io/Frame-Time-Analysis))
 
 - Puedes experimentar y comparar distintos modos de presentación para evaluar cuál prefieres
 
@@ -1550,7 +1550,7 @@ Esto no implica una recomendación sobre el modo de presentación a usar, es mer
 <h3 id="game-mode">11.42.5. Game Mode <a href="#game-mode">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instructions](#benchmarking)).
+> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instrucciones](#benchmarking)).
 
 El Modo Juego impide que Windows Update se ejecute y que se muestren ciertas notificaciones al usuario ([1](https://support.xbox.com/en-GB/help/games-apps/game-setup-and-play/use-game-mode-gaming-on-pc)).
 
@@ -1583,7 +1583,7 @@ Dependiendo de tu red y configuración del router, pueden establecerse política
 <h2 id="kernel-mode-scheduling-interrupts-dpcs-and-more">11.43. Kernel-Mode Scheduling (Interrupts, DPCs and more) <a href="#kernel-mode-scheduling-interrupts-dpcs-and-more">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Windows agenda interrupciones y DPCs en el CPU 0 por defecto para varios módulos en modo kernel. Agrupar muchas tareas en un solo CPU puede introducir sobrecarga adicional y mayor jitter debido a la competencia por tiempo de CPU. Para mitigar esto, se pueden configurar afinidades para aislar módulos críticos y distribuir la carga en núcleos menos utilizados..
 
@@ -1618,7 +1618,7 @@ Ten en cuenta que la cantidad de colas RSS determina el número de CPUs consecut
 <h2 id="user-mode-scheduling-processes-threads">11.44. User-Mode Scheduling (Processes, Threads) <a href="#user-mode-scheduling-processes-threads">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Existen varios métodos para establecer afinidades para los procesos. Uno de ellos es el Administrador de tareas, pero sólo persiste hasta que el proceso se cierra. Una solución más popular y permanente es [Process Lasso](https://bitsum.com), que permite guardar la configuración, aunque requiere que un proceso se ejecute continuamente en segundo plano, lo que introduce una leve sobrecarga. Para evitar esto, puedes simplemente lanzar la aplicación con una afinidad de CPU especificada, eliminando la necesidad de programas como Process Lasso para gestionar afinidades, a costa de la facilidad de uso.
 
@@ -1649,7 +1649,7 @@ Get-Process @("svchost", "audiodg") -ErrorAction SilentlyContinue | ForEach-Obje
 <h2 id="reserved-cpu-sets-windows-10">11.45. Reserved CPU Sets (Windows 10+) <a href="#reserved-cpu-sets-windows-10">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 [ReservedCpuSets](https://github.com/valleyofdoom/ReservedCpuSets) puede usarse para evitar que Windows programe ISRs, DPCs y otros hilos en CPUs específicas. Aislar módulos de las perturbaciones de nivel usuario y kernel ayuda a reducir la contención, el jitter, y permite que los módulos sensibles al tiempo obtengan el tiempo de CPU que requieren.
 
@@ -1683,7 +1683,7 @@ La seguridad basada en virtualización (VBS) afecta negativamente al rendimiento
 <h2 id="cpu-idle-states">11.48. CPU Idle States <a href="#cpu-idle-states">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Deshabilitar los estados inactivos fuerza el estado C-State 0, lo que puede observarse en [HWiNFO](https://www.hwinfo.com), , y es parte de las recomendaciones de Microsoft para configurar dispositivos con rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)). Forzar el estado C0 mitiga el retraso indeseado al ejecutar nuevas instrucciones en una CPU que ha entrado en un estado de ahorro de energía más profundo, a costa de un mayor consumo de energía y temperaturas más altas. Por lo tanto, se recomienda mantener los estados inactivos habilitados para la mayoría de los usuarios, ya que podrían surgir otros problemas debido a estos efectos secundarios (como estrangulamiento térmico o problemas de energía). La temperatura del CPU no debería aumentar hasta el punto de provocar thermal throttling, ya que eso debería haber sido evaluado en la sección [Stability, Hardware Clocking and Thermal Performance](#stability-hardware-clocking-and-thermal-performance).
 
@@ -1704,7 +1704,7 @@ powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2
 <h2 id="thread-quantums-and-scheduling">11.49. Thread Quantums and Scheduling <a href="#thread-quantums-and-scheduling">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el planificador evalúe si otro hilo del mismo nivel de prioridad debe ejecutarse. Si un hilo finaliza su quantum y no hay otros hilos en su nivel de prioridad listos para ejecutarse, el planificador permite que el hilo continúe ejecutándose durante un quantum adicional. El quantum puede controlarse con la clave de registro que se muestra a continuación, además de definir cuánto tiempo del quantum se asigna a los hilos en segundo plano y primer plano. El valor está representado como una máscara de 6 bits, donde cada uno de los tres pares de bits determina las características del quantum y la distribución del tiempo entre hilos en segundo y primer plano. Por defecto, está configurado en ``0x2``, lo cual corresponde a``0b000010`` y tiene diferentes significados en ediciones cliente y servidor, como se explicará a continuación.
 
@@ -1769,7 +1769,7 @@ Para la mayoría de los lectores, simplemente recomendaría dejar este valor en 
 <h2 id="clock-interrupt-frequency-timer-resolution">11.50. Clock Interrupt Frequency (Timer Resolution) <a href="#clock-interrupt-frequency-timer-resolution">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 La frecuencia de interrupción del reloj es la tasa a la que el reloj de hardware del sistema genera interrupciones que permiten al planificador realizar varias tareas como el mantenimiento del tiempo. En la mayoría de los sistemas por defecto, la frecuencia mínima es de 64Hz, lo que significa que se genera una interrupción cada 15.625ms. Una frecuencia más baja reduce el overhead de CPU y el consumo de energía debido a menos interrupciones, pero reduce la precisión temporal y puede resultar en una multitarea menos receptiva. La frecuencia máxima es de 2kHz, lo que significa una interrupción cada 0.5ms. Una frecuencia más alta proporciona mayor precisión temporal y potencialmente una mayor capacidad de respuesta, pero incrementa el overhead de CPU y el consumo de energía. Las resoluciones mínima, actual y máxima pueden verse con [ClockRes](https://learn.microsoft.com/en-us/sysinternals/downloads/clockres).
 
@@ -1791,7 +1791,7 @@ Recomiendo favorecer la implementación por proceso (no global) cuando sea aplic
 <h2 id="paging-file">11.51. Paging File <a href="#paging-file">(permalink)</a></h2>
 
 > [!CAUTION]
-> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([Instrucciones aquí.](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Para la mayoría de los lectores, recomendaría mantener habilitado el archivo de paginación, que es el estado predeterminado. Existe el argumento de que es preferible deshabilitarlo si tienes suficiente RAM para tus aplicaciones, ya que reduce la sobrecarga de E/S y la memoria del sistema es más rápida que el disco. Sin embargo, muchos usuarios han reportado interrupciones (stuttering) en juegos específicos con el archivo de paginación deshabilitado, a pesar de que el uso de RAM no se acerca al máximo. Windows parece asignar el archivo de paginación a discos secundarios en ocasiones, lo cual puede ser problemático si uno de los discos es un HDD. Esto se puede resolver asignando el archivo de paginación a un SSD y configurando su tamaño como “administrado por el sistema”, y luego desasignándolo de las demás unidades.
 
