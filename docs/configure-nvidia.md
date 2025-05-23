@@ -83,7 +83,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
-- Descarga y extrae [NVIDIA Profile Inspector]([https://github.com/Orbmu2k/nvidiaProfileInspector](https://github.com/Ixeoz/nvidiaProfileInspector-UNLOCKED))
+- Descarga y extrae [NVIDIA Profile Inspector]((https://github.com/Ixeoz/nvidiaProfileInspector-UNLOCKED))
 
 - Desactiva ``Enable Ansel``, ya que esta función es inyectada automáticamente por los controladores en todos los juegos, incluso si el título no es compatible con Ansel, lo cual puede provocar conflictos con herramientas o inyectores de terceros ([1](https://www.pcgamingwiki.com/wiki/Nvidia#Ansel))
 
