@@ -108,7 +108,7 @@
   - [11.30. Opciones de Energía](#power-options)
   - [11.31. Process Explorer](#process-explorer)
   - [11.32. Configuración de la Gestión de Memoria (Windows 8+)](#memory-management-settings-windows-8)
-  - [11.33. Opciones del Adaptador de Red](#network-adapter-options)
+  - [11.33. Opciones del Adaptador de ](#network-adapter-options)
   - [11.34. Dispositivos de Audio](#audio-devices)
   - [11.35. Administrador de Dispositivos](#device-manager)
   - [11.36. Ahorro de Energía en Dispositivos](#device-power-saving)
@@ -128,7 +128,7 @@
   - [11.43. Optimización en Modo Kernel (Interrupciones, DPCs y más)](#kernel-mode-scheduling-interrupts-dpcs-and-more)
     - [11.43.1. GPU y DirectX Graphics Kernel](#gpu-and-directx-graphics-kernel)
     - [11.43.2. Controlador XHCI y de Audio](#xhci-and-audio-controller)
-    - [11.43.3. Tarjeta de Red](#network-interface-card)
+    - [11.43.3. Tarjeta de ](#network-interface-card)
   - [11.44. Optimización en Modo Usuario (Procesos, Hilos)](#user-mode-scheduling-processes-threads)
     - [11.44.1. Iniciar un Proceso con una Afinidad Específica](#starting-a-process-with-a-specified-affinity-mask)
     - [11.44.2. Especificar Afinidad para Procesos Activos](#specifying-an-affinity-mask-for-running-processes)
@@ -1347,9 +1347,11 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
 - Desactiva ``NetBIOS over TCP/IP`` para todos los adaptadores de red en ``Internet Protocol Version 4 (TCP/IPv4) -> Properties -> General -> Advanced -> WINS`` para evitar escucha innecesaria del sistema, típicamente en los puertos 137-139, lo cual puede verificarse en herramientas de monitoreo de red como [TCPView](https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview) o [Wirehshark](https://www.wireshark.org). Para referencia futura, esta opción debe cambiarse para cada adaptador de red recién instalado.
 
-- Desactivar todas las opciones de ahorro de energía en la sección ``Advanced``
+- Desactivar todas las opciones de ahorro de energía en la sección ``Advanced``.
 
-                ```
+  - Lista de posibles parámetros:
+
+            ```
                 Disabled Advanced EEE
                 Energy Efficient Ethernet (EEE)
                 Gigabit Ethernet
@@ -1359,11 +1361,15 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
                 Selective Suspend
                 Ultra Low Power Mode
                 System Idle Power Saver
-                ```
+            ```
 
 - Opcionalmente configura los ajustes de DNS.
 
   - Consulta: [DNS Resolvers - Recommended Providers | Privacy Guides](https://www.privacyguides.org/en/dns)
+
+- Opcionalmente leer esta guía con una cantidad grande de ajustes sobre adaptadores de Ethernet:
+ 
+  Ver: [NIC / AFD / NDIS / TCPIP strings/dwords (ENG)]([https://cryptpad.fr/pad/#/2/pad/view/Wik8tmQ6XC1csjmDNqmMN7dKc-Wfi26-5bOtZzegHCM/embed/](https://cryptpad.fr/pad/#/2/pad/view/IvUHErBqvbDs9lPOAUkUixP2zplJFGYAC99V8vcJkbM/embed/))
 
 <h2 id="audio-devices">11.34. Dispositivos de Audio <a href="#audio-devices">(permalink)</a></h2>
 
