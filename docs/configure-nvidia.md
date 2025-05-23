@@ -83,7 +83,7 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
-- Descarga y extrae [NVIDIA Profile Inspector]((https://github.com/Ixeoz/nvidiaProfileInspector-UNLOCKED))
+- Descarga y extrae ([NVIDIA Profile Inspector)](https://github.com/Ixeoz/nvidiaProfileInspector-UNLOCKED))
 
 - Desactiva ``Enable Ansel``, ya que esta función es inyectada automáticamente por los controladores en todos los juegos, incluso si el título no es compatible con Ansel, lo cual puede provocar conflictos con herramientas o inyectores de terceros ([1](https://www.pcgamingwiki.com/wiki/Nvidia#Ansel))
 
@@ -96,4 +96,4 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08
 - Disable ``CUDA - Force P2 State`` to prevent the memory clock frequency from downclocking during CUDA workloads as it enters P-State 2 despite following the steps in the [Lock GPU Clocks/P-State 0](#lock-gpu-clocksp-state-0) section ([1](/assets/images/cuda-force-p2-state-analysis.png))
 
 - Recomiendo leer la siguiente guia con el fin de optimizar los drivers gráficos de forma más completa:
-  - ([Nvidia(ENG)](https://cryptpad.fr/pad/#/2/pad/view/X6i8p0857ZxlnvPEqOeu1vRQFUbUg2lP9W23vcyD8tM/embed/))
+  - ([Nvidia (ENG)](https://cryptpad.fr/pad/#/2/pad/view/X6i8p0857ZxlnvPEqOeu1vRQFUbUg2lP9W23vcyD8tM/embed/))
