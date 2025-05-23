@@ -108,7 +108,7 @@
   - [11.30. Opciones de Energía](#power-options)
   - [11.31. Process Explorer](#process-explorer)
   - [11.32. Configuración de la Gestión de Memoria (Windows 8+)](#memory-management-settings-windows-8)
-  - [11.33. Opciones del Adaptador de ](#network-adapter-options)
+  - [11.33. Opciones del Adaptador de Ethernet](#network-adapter-options)
   - [11.34. Dispositivos de Audio](#audio-devices)
   - [11.35. Administrador de Dispositivos](#device-manager)
   - [11.36. Ahorro de Energía en Dispositivos](#device-power-saving)
@@ -1369,7 +1369,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
 - Opcionalmente leer esta guía con una cantidad grande de ajustes sobre adaptadores de Ethernet:
  
-  Ver: [NIC / AFD / NDIS / TCPIP strings/dwords (ENG)]([https://cryptpad.fr/pad/#/2/pad/view/Wik8tmQ6XC1csjmDNqmMN7dKc-Wfi26-5bOtZzegHCM/embed/](https://cryptpad.fr/pad/#/2/pad/view/IvUHErBqvbDs9lPOAUkUixP2zplJFGYAC99V8vcJkbM/embed/)
+  Ver: [NIC / AFD / NDIS / TCPIP strings/dwords (ENG)]([(https://cryptpad.fr/pad/#/2/pad/view/IvUHErBqvbDs9lPOAUkUixP2zplJFGYAC99V8vcJkbM/embed/))
 
 <h2 id="audio-devices">11.34. Dispositivos de Audio <a href="#audio-devices">(permalink)</a></h2>
 
