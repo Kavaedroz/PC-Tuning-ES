@@ -808,7 +808,7 @@ Este ajuste es necesario para ejecutar los scripts del repositorio. Abre PowerSh
 Set-ExecutionPolicy Unrestricted
 ```
 
-<h2 id="importing-bin-folder">11.4. Importar Carpeta bin <a href="#importing-bin-folder">(permalink)</a></h2>
+<h2 id="importing-bin-folder">11.4. Importar Carpeta Bin <a href="#importing-bin-folder">(permalink)</a></h2>
 
 Mueve la carpeta ``bin`` que descargaste antes de instalar Windows a la unidad ``C:`` , tal como se detalla en la sección [Obtener los archivos requeridos](#fetching-required-files). Si no la has descargado aún, deberás obtenerla desde otro sistema ya que todavía no tienes acceso a la red. La ruta completa debe ser ``C:\bin``.
 
@@ -822,14 +822,14 @@ Mueve la carpeta ``bin`` que descargaste antes de instalar Windows a la unidad `
 
 Existen varias mitigaciones a nivel del sistema operativo ([1](https://learn.microsoft.com/en-us/powershell/module/processmitigations/set-processmitigation?view=windowsserver2019-ps#-disable)) que están habilitadas por defecto y que pueden impactar el rendimiento. Si se desea, estas pueden deshabilitarse desde la página de "Protección contra vulnerabilidades" de Windows Defender. Debe quedar claro que deshabilitar mitigaciones reduce la seguridad. Este paso se realiza ahora ya que, si decides desactivar Windows Defender en los siguientes pasos, la interfaz ya no estará accesible; sin embargo, pueden ser activadas o desactivadas mediante los comandos [Get-ProcessMitigation](https://learn.microsoft.com/en-us/powershell/module/processmitigations/get-processmitigation?view=windowsserver2022-ps) y [Set-ProcessMitigation](https://learn.microsoft.com/en-us/powershell/module/processmitigations/set-processmitigation?view=windowsserver2019-ps) en PowerShell. Algunos programas pueden requerir que las mitigaciones estén habilitadas y fallarán si se deshabilitan, por lo tanto, procede con precaución.
 
-<h2 id="merging-registry-options">11.6. Merging Registry Options <a href="#merging-registry-options">(permalink)</a></h2>
+<h2 id="merging-registry-options">11.6. Ajustar opciones en el registro <a href="#merging-registry-options">(permalink)</a></h2>
 
 > [!ADVERTENCIA]
 > 🔒 Algunos cambios descritos en la siguiente tabla pueden afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos asociados antes de modificar una configuración específica.
 
 Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. En cuanto a qué opciones se aplican, estas se detallan en la tabla a continuación, la cual puede personalizarse editando el archivo ``C:\bin\registry-options.json`` con un editor de texto y configurando las propiedades como ``true`` o ``false``. Puedes respaldar este archivo para no tener que modificarlo tras cada reinstalación de Windows.
 
-<h3 id="registry-options-documentation">11.6.1. Documentación de Opciones del Registro <a href="#registry-options-documentation">(permalink)</a></h3>
+<h3 id="registry-options-documentation">11.6.1. Documentación de los cambios en el Registro <a href="#registry-options-documentation">(permalink)</a></h3>
 
 > [!IMPORTANTE]
 > Actualmente, el script no revierte opciones si se ejecuta nuevamente. Por ejemplo, si el script fue ejecutado con una opción en ``true``, luego ejecutarlo con dicha opción en  ``false``  no revertirá los cambios ya realizados, ya que el script no lleva registro del estado anterior de las claves del registro asociadas a la opción. Esta funcionalidad puede añadirse en el futuro, pero por ahora, usa el argumento ``-get_option_keys <option>`` con el script para obtener todas las claves relacionadas y revertirlas manualmente si es necesario.
@@ -871,7 +871,7 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 |``disable computer is out of support message``|1. Reducir o desactivar funciones intrusivas|Desactiva [este mensaje](https://support.microsoft.com/en-us/topic/you-received-a-notification-your-windows-7-pc-is-out-of-support-3278599f-9613-5cc1-e0ee-4f81f623adcf) intrusivo. No relevante en versiones modernas de Windows.|``true``|
 |``disable fault tolerant heap``|1. Obtener un control más preciso sobre la función en cuestión|Evita que Windows aplique mitigaciones automáticamente a nivel de aplicación para prevenir futuros bloqueos ([1](https://learn.microsoft.com/en-us/windows/win32/win7appqual/fault-tolerant-heap)), lo cual puede generar problemas ([1](https://www.mak.com/mak-one/support/help/knowledge/performance-issues-caused-by-the-fault-tolerant-heap-windows))|``true``|
 
-<h3 id="applying-options">11.6.2. Applying Options <a href="#applying-options">(permalink)</a></h3>
+<h3 id="applying-options">11.6.2. Aplicar ajustes <a href="#applying-options">(permalink)</a></h3>
 
 - Abre PowerShell como administrador e introduce el siguiente comando. Si el comando falla, intenta desactivar la protección contra manipulaciones (Tamper Protection) (Windows 10 1909+) y la protección en tiempo real en Windows Defender. Si eso no funciona, reinicia y vuelve a ejecutar el comando. Si nada de lo anterior funciona, intenta ejecutar el comando en modo seguro. Si prefieres no ejecutar ningún script, existe la opción de crear manualmente un archivo de registro con las claves que necesites, tal como se explica en [/docs/registry-opts.md](/docs/registry-opts.md). Este documento contiene todas las claves que se fusionarían al usar el script.
 
@@ -886,7 +886,7 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 > [!NOTE]
 > A los mantenedores y colaboradores: las funciones y opciones deben ser probadas tal como se listan en la tabla anterior. Es inevitable que se requieran más pasos para lograr el mismo objetivo a medida que el sistema operativo reciba actualizaciones o mejoras (por ejemplo, mantener manualmente una lista de servicios relacionados con la desactivación de Windows Defender).).
 
-<h2 id="installing-drivers">11.7. Installing Drivers <a href="#installing-drivers">(permalink)</a></h2>
+<h2 id="installing-drivers">11.7. Instalación de Controladores <a href="#installing-drivers">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -927,11 +927,11 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 - 
 - Para eliminar la contraseña del usuario, introduce tu contraseña actual y deja en blanco los campos de nueva contraseña y confirmación en ``User Accounts`` escribiendo ``control userpasswords`` en ``Win+R``
 
-<h2 id="privacy-options-windows-8">11.9. Privacy Options (Windows 8+) <a href="#privacy-options-windows-8">(permalink)</a></h2>
+<h2 id="privacy-options-windows-8">11.9. Opciones de Privacidad (Windows 8+) <a href="#privacy-options-windows-8">(permalink)</a></h2>
 
 Desactiva todos los permisos innecesarios en la sección ``Privacy`` presionando ``Win+I``.
 
-<h2 id="search-indexing">11.10. Search Indexing <a href="#search-indexing">(permalink)</a></h2>
+<h2 id="search-indexing">11.10. Indexación de Búsqueda <a href="#search-indexing">(permalink)</a></h2>
 
 Ciertos directorios del sistema de archivos se indexan para las funciones de búsqueda de Windows, los cuales pueden visualizarse escribiendo ``control srchadmin.dll`` en ``Win+R``.  La indexación ocurre periódicamente en segundo plano y suele generar una sobrecarga notable en la CPU, lo cual puede verse con Process Explorer como se describe en la sección [Process Explorer](#process-explorer). Por lo tanto, es preferible deshabilitar la indexación de búsqueda globalmente desactivando el servicio ``Windows Search`` Abre CMD como administrador e introduce el siguiente comando:
 
@@ -942,7 +942,7 @@ Ciertos directorios del sistema de archivos se indexan para las funciones de bú
 > [!IMPORTANT]
 > Para evitar errores inesperados y problemas debidos a dependencias de servicios, evalúa los otros servicios que dependen del servicio que deseas deshabilitar. Esto puede hacerse abriendo CMD como administrador y escribiendo ``sc EnumDepend <service>`` , lo cual describe los servicios que dependen del servicio que deseas deshabilitar. Estos servicios también deben ser deshabilitados para evitar errores de dependencia. Si no puedes deshabilitarlos (por ejemplo, porque los necesitas), entonces no tienes más opción que dejar habilitado el servicio que querías deshabilitar inicialmente.
 
-<h2 id="time-language-and-region">11.11. Time, Language and Region <a href="#time-language-and-region">(permalink)</a></h2>
+<h2 id="time-language-and-region">11.11. Hora, Idioma y Región <a href="#time-language-and-region">(permalink)</a></h2>
 
 - Configura las opciones escribiendo ``intl.cpl`` y ``timedate.cpl`` en ``Win+R``
 
@@ -950,11 +950,13 @@ Ciertos directorios del sistema de archivos se indexan para las funciones de bú
 
   - Configura las opciones en ``Time & Language`` presionando ``Win+I``
 
+    - Se recomienda mantener los ajustes en inglés, ya que muchos parámetros se conservan en su idioma original dentro de la guía para garantizar compatibilidad universal.
+  
     - Si planeas usar exclusivamente un solo idioma y una sola distribución de teclado, asegúrate de que así sea para que no tengas que alternar la barra de idiomas con atajos que pueden activarse accidentalmente.
 
 - Asegúrate de que la hora del sistema esté sincronizada y sea correcta.
 
-<h2 id="web-browser">11.12. Web Browser <a href="#web-browser">(permalink)</a></h2>
+<h2 id="web-browser">11.12. Navegador Web <a href="#web-browser">(permalink)</a></h2>
 
 Configura el navegador de tu preferencia.
 
@@ -962,11 +964,11 @@ Configura el navegador de tu preferencia.
 
 - Ver: [Desktop Browsers | Privacy Guides](https://www.privacyguides.org/en/desktop-browsers)
 
-<h2 id="scheduled-tasks">11.13. Scheduled Tasks <a href="#scheduled-tasks">(permalink)</a></h2>
+<h2 id="scheduled-tasks">11.13. Tareas Programadas <a href="#scheduled-tasks">(permalink)</a></h2>
 
 Windows incluye varias tareas programadas que pueden evaluarse utilizando [TaskSchedulerView](https://www.nirsoft.net/utils/task_scheduler_view.html). Evaluarlas ayuda a tener un control más fino sobre qué se ejecuta silenciosamente en el sistema, ya sea relacionado con actualizaciones, telemetría, Defender y más. Considera las columnas ``Last Run``, ``Next Run`` y ``Triggers`` para evaluar si vale la pena deshabilitar la tarea en cuestión.
 
-<h2 id="activate-windows">11.14. Activate Windows <a href="#activate-windows">(permalink)</a></h2>
+<h2 id="activate-windows">11.14. Activar Windows <a href="#activate-windows">(permalink)</a></h2>
 
 Utiliza los comandos siguientes para activar Windows usando tu clave de licencia si no tienes una vinculada al HWID. Asegúrate de que la activación fue exitosa verificando el estado de activación en las propiedades del sistema. Abre CMD como administrador y escribe los comandos correspondientes.
 
@@ -979,15 +981,15 @@ slmgr /ipk <license key>
 slmgr /ato
 ```
 
-<h2 id="declutter-interface">11.15. Declutter Interface <a href="#declutter-interface">(permalink)</a></h2>
+<h2 id="declutter-interface">11.15. Limpieza de la Interfaz <a href="#declutter-interface">(permalink)</a></h2>
 
 Desactiva las funciones en la barra de tareas y desancla accesos directos y tiles del menú de inicio y barra de tareas. Esto es cuestión de preferencia personal.
 
-<h2 id="visual-effects">11.16. Visual Effects <a href="#visual-effects">(permalink)</a></h2>
+<h2 id="visual-effects">11.16. Efectos Visuales <a href="#visual-effects">(permalink)</a></h2>
 
 Las opciones de efectos visuales pueden accederse escribiendo ``sysdm.cpl`` en ``Win+R``.  Este menú permite deshabilitar animaciones de interfaz, lo cual contribuye a una mayor sensación de respuesta en la interacción con Windows. En Windows 7 se podía deshabilitar la composición del escritorio directamente aquí, pero ya no está disponible en Windows 8+. El resto de las opciones son personales.
 
-<h2 id="superfetch-and-prefetch">11.17. Superfetch and Prefetch <a href="#superfetch-and-prefetch">(permalink)</a></h2>
+<h2 id="superfetch-and-prefetch">11.17. Superfetch y Prefetch <a href="#superfetch-and-prefetch">(permalink)</a></h2>
 
 Si no hay un disco duro mecánico (HDD) en el sistema, entonces se pueden deshabilitar Superfetch y Prefetch con el siguiente comando en CMD. Deshabilitar SysMain es parte de las recomendaciones de Microsoft para configurar dispositivos con rendimiento en tiempo real ([1](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/soft-real-time/soft-real-time-device)) ), la carpeta ``C:\Windows\Prefetch`` ya no debería llenarse de archivos.
 
@@ -998,7 +1000,7 @@ Si no hay un disco duro mecánico (HDD) en el sistema, entonces se pueden deshab
 > [!IMPORTANT]
 > Para evitar errores inesperados debidos a dependencias de servicios, evalúa qué servicios dependen de aquel que deseas deshabilitar. Esto puede hacerse escribiendo ``sc EnumDepend <service>`` en CMD como administrador. Si no puedes deshabilitarlos (porque los necesitas), entonces deberás dejar habilitado el servicio original.
 
-<h2 id="operating-system-and-partition-name">11.18. Operating System and Partition Name <a href="#operating-system-and-partition-name">(permalink)</a></h2>
+<h2 id="operating-system-and-partition-name">11.18. Nombre del Sistema Operativo y de la Partición <a href="#operating-system-and-partition-name">(permalink)</a></h2>
 
 Configura el nombre del sistema operativo y de la partición de la unidad. Se recomienda establecer un nombre significativo o único como ``W10 22H2`` Trabajo o ``W10 22H2`` Juegos para mayor claridad al usar arranque dual o múltiples discos. Abre CMD como administrador e introduce los comandos necesarios.
 
@@ -1010,11 +1012,11 @@ Configura el nombre del sistema operativo y de la partición de la unidad. Se re
   label C: OS_NAME
   ```
 
-<h2 id="show-tray-icons">11.19. Show Tray Icons <a href="#show-tray-icons">(permalink)</a></h2>
+<h2 id="show-tray-icons">11.19. Mostrar Iconos en la Bandeja <a href="#show-tray-icons">(permalink)</a></h2>
 
 Recomiendo habilitar la opción ``Always show all icons in the notification area`` para una mejor gestión de procesos. Ocultar iconos en la bandeja puede considerarse parcialmente un riesgo de seguridad, ya que podrías no notar programas maliciosos o no deseados ejecutándose en segundo plano.
 
-<h2 id="hibernation">11.20. Hibernation <a href="#hibernation">(permalink)</a></h2>
+<h2 id="hibernation">11.20. Hibernación <a href="#hibernation">(permalink)</a></h2>
 
 Windows tiene una opción para desactivar el inicio rápido, la hibernación y eliminar ``C:\hiberfil.sys``. Se recomienda apagar completamente en lugar de guardar el estado de software en disco. Abre CMD como administrador e introduce el comando correspondiente.
 
@@ -1032,7 +1034,7 @@ Estos runtimes son dependencias comunes para una gran cantidad de aplicaciones. 
 - [WebView](https://developer.microsoft.com/en-us/microsoft-edge/webview2)
 - [DirectX](https://www.microsoft.com/en-gb/download/details.aspx?id=8109) (los lanzadores de juegos suelen instalar esto en segundo plano)
 
-<h2 id="handling-bloatware">11.22. Handling Bloatware <a href="#handling-bloatware">(permalink)</a></h2>
+<h2 id="handling-bloatware">11.22. Eliminación de Bloatware <a href="#handling-bloatware">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
