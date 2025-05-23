@@ -1369,7 +1369,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
 - Opcionalmente leer esta guía con una cantidad grande de ajustes sobre adaptadores de Ethernet:
  
-  Ver: [NIC / AFD / NDIS / TCPIP strings/dwords (ENG)]([https://cryptpad.fr/pad/#/2/pad/view/Wik8tmQ6XC1csjmDNqmMN7dKc-Wfi26-5bOtZzegHCM/embed/](https://cryptpad.fr/pad/#/2/pad/view/IvUHErBqvbDs9lPOAUkUixP2zplJFGYAC99V8vcJkbM/embed/))
+  Ver: [NIC / AFD / NDIS / TCPIP strings/dwords (ENG)]([https://cryptpad.fr/pad/#/2/pad/view/Wik8tmQ6XC1csjmDNqmMN7dKc-Wfi26-5bOtZzegHCM/embed/](https://cryptpad.fr/pad/#/2/pad/view/IvUHErBqvbDs9lPOAUkUixP2zplJFGYAC99V8vcJkbM/embed/)
 
 <h2 id="audio-devices">11.34. Dispositivos de Audio <a href="#audio-devices">(permalink)</a></h2>
 
