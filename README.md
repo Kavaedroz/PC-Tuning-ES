@@ -598,9 +598,9 @@ Esta sección contiene puntos importantes a considerar recopilados a lo largo de
 
 - A partir de Windows 10 2004+, los procesos que aumentan la resolución del temporizador ya no afectan la resolución global ([1](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod), [2](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change))  Ahora se gestiona por proceso, lo que significa que los procesos que no solicitan explícitamente una resolución más alta no la obtienen y se atienden con menos frecuencia. Esto se desarrolló aún más en Windows 11: no se garantiza una mayor resolución al proceso llamante si su ventana está minimizada o no visible ([1](https://learn.microsoft.com/en-us/windows/win32/api/timeapi/nf-timeapi-timebeginperiod)). Microsoft añadió la posibilidad de restaurar el comportamiento global en Windows Server 2022+ y Windows 11+ mediante una entrada en el registro ([1](https://randomascii.wordpress.com/2020/10/04/windows-timer-resolution-the-great-rule-change)) No es posible restaurar esta implementación en Windows 10 versiones 2004–22H2.
 
-- Windows 11+ tiene un planificador actualizado para CPUs Intel de 12ª generación en adelante ([1](https://www.anandtech.com/show/16959/intel-innovation-alder-lake-november-4th/3)), pero el comportamiento se puede replicar manualmente con políticas de afinidad en cualquier versión de Windows como se explica en secciones posteriores.
+- Windows 11+ tiene un scheduler actualizado para CPUs Intel de 12ª generación en adelante ([1](https://www.anandtech.com/show/16959/intel-innovation-alder-lake-november-4th/3)), pero el comportamiento se puede replicar manualmente con políticas de afinidad en cualquier versión de Windows como se explica en secciones posteriores.
 
-- Windows 11+ limita la frecuencia de mensajes de ventana de los procesos en segundo plano ([1](https://blogs.windows.com/windowsdeveloper/2023/05/26/delivering-delightful-performance-for-more-than-one-billion-users-worldwide))
+- Windows 11+ limita el polling rate de los procesos en segundo plano ([1](https://blogs.windows.com/windowsdeveloper/2023/05/26/delivering-delightful-performance-for-more-than-one-billion-users-worldwide))
 
 - Windows 11 es un requisito mínimo para [Cross Adapter Scan-Out](https://videocardz.com/newz/microsoft-cross-adapter-scan-out-caso-delivers-16-fps-increse-on-laptops-without-dgpu-igpu-mux-switch) ([1](https://devblogs.microsoft.com/directx/optimizing-hybrid-laptop-performance-with-cross-adapter-scan-out-caso))
 
@@ -886,7 +886,7 @@ Los ajustes del registro se aplican mediante el script ``apply-registry.ps1``. E
 > [!NOTE]
 > A los mantenedores y colaboradores: las funciones y opciones deben ser probadas tal como se listan en la tabla anterior. Es inevitable que se requieran más pasos para lograr el mismo objetivo a medida que el sistema operativo reciba actualizaciones o mejoras (por ejemplo, mantener manualmente una lista de servicios relacionados con la desactivación de Windows Defender).).
 
-<h2 id="installing-drivers">11.7. Instalación de Controladores <a href="#installing-drivers">(permalink)</a></h2>
+<h2 id="installing-drivers">11.7. Instalación de Drivers <a href="#installing-drivers">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -964,7 +964,7 @@ Configura el navegador de tu preferencia.
 
 - Ver: [Desktop Browsers | Privacy Guides](https://www.privacyguides.org/en/desktop-browsers)
 
-<h2 id="scheduled-tasks">11.13. Tareas Programadas <a href="#scheduled-tasks">(permalink)</a></h2>
+<h2 id="scheduled-tasks">11.13. Scheduled Tasks <a href="#scheduled-tasks">(permalink)</a></h2>
 
 Windows incluye varias tareas programadas que pueden evaluarse utilizando [TaskSchedulerView](https://www.nirsoft.net/utils/task_scheduler_view.html). Evaluarlas ayuda a tener un control más fino sobre qué se ejecuta silenciosamente en el sistema, ya sea relacionado con actualizaciones, telemetría, Defender y más. Considera las columnas ``Last Run``, ``Next Run`` y ``Triggers`` para evaluar si vale la pena deshabilitar la tarea en cuestión.
 
@@ -1079,7 +1079,7 @@ Desaconsejo fuertemente el uso de scripts de desbloat o la eliminación de compo
 
 - Puedes usar el Administrador de Tareas para comprobar si hay bloatware residual ejecutándose en segundo plano.
 
-<h2 id="optional-features">11.23. Optional Features <a href="#optional-features">(permalink)</a></h2>
+<h2 id="optional-features">11.23. Características Opcionales <a href="#optional-features">(permalink)</a></h2>
 
 Las funciones opcionales se pueden acceder escribiendo ``OptionalFeatures`` en ``Win+R``. Habilita o desactiva funciones que necesites o no necesites. Si Windows Update está deshabilitado, probablemente no podrás instalar funciones desde esta ventana y, en su lugar, deberás instalar un paquete sin conexión usando DISM. En Windows Server, esto se puede acceder mediante el panel de Server Manager navegando a ``Manage -> Remove Roles and Features``.
 
@@ -1097,7 +1097,7 @@ DISM /Online /Enable-Feature /FeatureName:NetFx3 /LimitAccess /Source:"C:\EXTRAC
 
 Descarga e instala [7-Zip](https://www.7-zip.org). Abre ``C:\Program Files\7-Zip\7zFM.exe`` , luego navega a ``Tools -> Options`` y asocia 7-Zip con todas las extensiones de archivo haciendo clic en el botón ``+``. Puede que necesites hacer clic dos veces para sobrescribir asociaciones existentes.
 
-<h2 id="graphics-driver">11.25. Graphics Driver <a href="#graphics-driver">(permalink)</a></h2>
+<h2 id="graphics-driver">11.25. Drivers Gráficos <a href="#graphics-driver">(permalink)</a></h2>
 
 - Ver: [docs/configure-nvidia.md](/docs/configure-nvidia.md)
 - Ver: [docs/configure-amd.md](/docs/configure-amd.md)
@@ -1114,7 +1114,7 @@ Si usas  [MSI Afterburner](https://www.msi.com/Landing/afterburner/graphics-card
     "C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe" /Profile1 /Q
     ```
 
-<h2 id="display-resolutions-and-scaling-modes">11.27. Display Resolutions and Scaling Modes <a href="#display-resolutions-and-scaling-modes">(permalink)</a></h2>
+<h2 id="display-resolutions-and-scaling-modes">11.27. Resoluciones de Pantalla y Modos de Escalado <a href="#display-resolutions-and-scaling-modes">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1151,7 +1151,7 @@ Open-Shell es una alternativa FOSS al menú de inicio de Windows..
 
   - Abre ``"C:\Program Files\Open-Shell\Start Menu Settings.lnk"``, habilita ``Show all settings`` y navega a la sección de Configuración de Windows 8, luego establece ``Disable active corners`` en ``All``
 
-<h2 id="spectre-meltdown-and-cpu-microcode">11.29. Spectre, Meltdown and CPU Microcode <a href="#spectre-meltdown-and-cpu-microcode">(permalink)</a></h2>
+<h2 id="spectre-meltdown-and-cpu-microcode">11.29. Spectre, Meltdown y Microcódigos del CPU <a href="#spectre-meltdown-and-cpu-microcode">(permalink)</a></h2>
 
 > [!WARNING]
 > 🔒 Desactivar Spectre y Meltdown puede afectar negativamente la seguridad y exponer el sistema a vulnerabilidades. Los usuarios deben evaluar los riesgos de seguridad asociados con la modificación de esta configuración.
@@ -1180,7 +1180,7 @@ Meltdown no afecta a la arquitectura AMD ([1](https://www.theverge.com/2018/1/3/
 
 Utiliza [InSpectre](https://www.grc.com/inspectre.htm) y la función de validación de [CPU-Z's](https://www.cpuid.com/softwares/cpu-z.html) para comprobar el estado o versión antes y después de un reinicio y así verificar el comportamiento esperado.
 
-<h2 id="power-options">11.30. Power Options <a href="#power-options">(permalink)</a></h2>
+<h2 id="power-options">11.30. Opciones de Energía <a href="#power-options">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1322,7 +1322,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
    - Habilita la columna VirusTotal para escaneo de procesos sospechosos
 
-<h2 id="memory-management-settings-windows-8">11.32. Memory Management Settings (Windows 8+) <a href="#memory-management-settings-windows-8">(permalink)</a></h2>
+<h2 id="memory-management-settings-windows-8">11.32. Configuración de la Gestión de Memoria (Windows 8+) <a href="#memory-management-settings-windows-8">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1339,7 +1339,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
     Disable-MMAgent -MemoryCompression
     ```
 
-<h2 id="network-adapter-options">11.33. Network Adapter Options <a href="#network-adapter-options">(permalink)</a></h2>
+<h2 id="network-adapter-options">11.33. Opciones del Adaptador de Red <a href="#network-adapter-options">(permalink)</a></h2>
 
 - Abre ``Network Connections`` escribiendo ``ncpa.cpl`` en ``Win+R``
 
@@ -1347,11 +1347,25 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
 - Desactiva ``NetBIOS over TCP/IP`` para todos los adaptadores de red en ``Internet Protocol Version 4 (TCP/IPv4) -> Properties -> General -> Advanced -> WINS`` para evitar escucha innecesaria del sistema, típicamente en los puertos 137-139, lo cual puede verificarse en herramientas de monitoreo de red como [TCPView](https://learn.microsoft.com/en-us/sysinternals/downloads/tcpview) o [Wirehshark](https://www.wireshark.org). Para referencia futura, esta opción debe cambiarse para cada adaptador de red recién instalado.
 
+- Desactivar todas las opciones de ahorro de energía en la sección ``Advanced``
+
+                ```
+                Disabled Advanced EEE
+                Energy Efficient Ethernet (EEE)
+                Gigabit Ethernet
+                Gigabit Lite
+                Power Saving Mode
+                Reduce Speed on Power Down
+                Selective Suspend
+                Ultra Low Power Mode
+                System Idle Power Saver
+                ```
+
 - Opcionalmente configura los ajustes de DNS.
 
   - Consulta: [DNS Resolvers - Recommended Providers | Privacy Guides](https://www.privacyguides.org/en/dns)
 
-<h2 id="audio-devices">11.34. Audio Devices <a href="#audio-devices">(permalink)</a></h2>
+<h2 id="audio-devices">11.34. Dispositivos de Audio <a href="#audio-devices">(permalink)</a></h2>
 
 - El panel de control de sonido se puede abrir escribiendo ``mmsys.cpl`` en ``Win+R``
 
@@ -1363,7 +1377,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
 
 - Minimiza el tamaño del búfer de audio con [LowAudioLatency](https://github.com/spddl/LowAudioLatency) o en tu DAC ([1](https://www.youtube.com/watch?v=JTuZvRF-OgE&t=464s)). Cuidado con las caídas de audio si el CPU no puede mantenerse al día bajo carga.
 
-<h2 id="device-manager">11.35. Device Manager <a href="#device-manager">(permalink)</a></h2>
+<h2 id="device-manager">11.35. Administrador de Dispositivos <a href="#device-manager">(permalink)</a></h2>
 
 - Abre el Administrador de Dispositivos escribiendo ``devmgmt.msc`` en ``Win+R``
 
@@ -1384,7 +1398,7 @@ El Administrador de tareas de Windows carece de muchas métricas útiles en comp
   - Si hay múltiples entradas del mismo dispositivo y no estás seguro de cuál está en uso, vuelve a consultar la estructura en árbol en ``View -> Devices by connection``. Esto se debe a que un solo dispositivo puede usar varios recursos (por ejemplo, IRQs). También puedes usar [MSI Utility](https://forums.guru3d.com/threads/windows-line-based-vs-message-signaled-based-interrupts-msi-tool.378044) para verificar dispositivos duplicados o innecesarios en caso de que pases alguno por alto en la vista desordenada del Administrador de Dispositivos.
 - Opcionalmente usa [DeviceCleanup](https://www.uwe-sieber.de/files/DeviceCleanup.zip) para eliminar dispositivos ocultos.
 
-<h2 id="device-power-saving">11.36. Device Power-Saving <a href="#device-power-saving">(permalink)</a></h2>
+<h2 id="device-power-saving">11.36. Ahorro de Energía en Dispositivos <a href="#device-power-saving">(permalink)</a></h2>
 
 Abre PowerShell e ingresa el siguiente comando para desactivar la opción ``Allow the computer to turn off this device to save power`` para todos los dispositivos aplicables en el Administrador de Dispositivos..
 
@@ -1394,7 +1408,7 @@ Reconectar dispositivos puede hacer que esta opción se vuelva a habilitar, así
 Get-WmiObject MSPower_DeviceEnable -Namespace root\wmi | ForEach-Object { $_.enable = $false; $_.psbase.put(); }
 ```
 
-<h2 id="event-trace-sessions-ets">11.37. Event Trace Sessions (ETS) <a href="#event-trace-sessions-ets">(permalink)</a></h2>
+<h2 id="event-trace-sessions-ets">11.37. Sesiones de Rastreo de Eventos (ETS) <a href="#event-trace-sessions-ets">(permalink)</a></h2>
 
 Esta sección describe instrucciones para desactivar la mayoría de las Event Trace Sessions, que se pueden ver escribiendo ``perfmon`` en ``Win+R`` y navegando a ``Data Collector Sets -> Event Trace Sessions``. Los programas que dependen de trazadores de eventos no podrán registrar datos hasta que se restauren las sesiones requeridas (por ejemplo, el registro de eventos de Windows), por lo que se crean dos archivos de registro para alternar entre ellos. Abre CMD como administrador e ingresa los comandos a continuación para crear los archivos de registro en el directorio ``C:\`` Estos archivos deben ejecutarse como Trusted Installer (usa [NSudo](https://github.com/M2TeamArchived/NSudo/releases/latest)) para evitar errores de permisos.
 
@@ -1410,7 +1424,7 @@ Esta sección describe instrucciones para desactivar la mayoría de las Event Tr
     >> "C:\ets-disable.reg" echo Windows Registry Editor Version 5.00 && >> "C:\ets-disable.reg" echo. && >> "C:\ets-disable.reg" echo [-HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\Autologger]
     ```
 
-<h2 id="file-system">11.38. File System <a href="#file-system">(permalink)</a></h2>
+<h2 id="file-system">11.38. Sistema de Archivos <a href="#file-system">(permalink)</a></h2>
 
 Abre CMD como administrador e ingresa los comandos a continuación.
 
@@ -1484,11 +1498,11 @@ Como ejemplo, un intervalo IMOD de 1 ms combinado con un mouse de 8 kHz ya e
 
 - Para comprobar si el cambio del intervalo IMOD está teniendo efecto, puedes configurarlo temporalmente a ``0xFA00`` (62.5 Hz). Si el cursor del mouse presenta tartamudeos visibles al moverse, entonces los cambios se aplicaron correctamente.
 
-<h2 id="control-panel">11.41. Control Panel <a href="#control-panel">(permalink)</a></h2>
+<h2 id="control-panel">11.41. Panel de Control <a href="#control-panel">(permalink)</a></h2>
 
 No es mala idea revisar tanto el Panel de control clásico como el moderno para asegurarte de que no haya configuraciones mal aplicadas.
 
-<h2 id="configuring-applications">11.42. Configuring Applications <a href="#configuring-applications">(permalink)</a></h2>
+<h2 id="configuring-applications">11.42. Configuración de Aplicaciones <a href="#configuring-applications">(permalink)</a></h2>
 
 - Instala todos los programas y aplicaciones que utilices (incluyendo videojuegos) para preparar el entorno para los próximos pasos.
 
@@ -1503,7 +1517,7 @@ No es mala idea revisar tanto el Panel de control clásico como el moderno para 
 
 - Consulta: [NVIDIA Reflex Low Latency - How It Works & Why You Want To Use It | Battle(non)sense](https://www.youtube.com/watch?v=QzmoLJwS6eQ)
 
-<h3 id="framerate-limit">11.42.2. Framerate Limit <a href="#framerate-limit">(permalink)</a></h3>
+<h3 id="framerate-limit">11.42.2. Límite de Fotogramas <a href="#framerate-limit">(permalink)</a></h3>
 
 > [!CAUTION]
 > 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instrucciones](#benchmarking)).
@@ -1514,11 +1528,11 @@ No es mala idea revisar tanto el Panel de control clásico como el moderno para 
 
 - Limitar la tasa de fotogramas usando [RTSS](https://www.guru3d.com/files-details/rtss-rivatuner-statistics-server-download.html) en lugar del limitador del propio juego resulta en un ritmo de fotogramas más consistente y una experiencia más fluida, ya que utiliza busy-wait (espera activa), lo cual ofrece mayor precisión que la espera pasiva al 100%, pero a costa de una mayor latencia y posible sobrecarga en CPU ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)). Desactiva la opción ``Enable dedicated encoder server service`` para evitar que se ejecute ``EncoderServer.exe``.
 
-<h3 id="register-game">11.42.3. Register Game in Config Store <a href="#register-game">(permalink)</a></h3>
+<h3 id="register-game">11.42.3. Registrar Juego en Config Store <a href="#register-game">(permalink)</a></h3>
 
 Asegúrate de que la Barra de Juegos de Xbox reconozca el juego que estás ejecutando o que has instalado. Si no lo hace, abre la Barra de Juegos con ``Win+G`` y activa la opción ``Remember this is a game`` mientras el juego esté abierto. Esto también garantiza que el Modo Juego funcione correctamente si decides usarlo.
 
-<h3 id="presentation-mode">11.42.4. Presentation Mode <a href="#presentation-mode">(permalink)</a></h3>
+<h3 id="presentation-mode">11.42.4. Modo de Presentación <a href="#presentation-mode">(permalink)</a></h3>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1549,22 +1563,24 @@ Esto no implica una recomendación sobre el modo de presentación a usar, es mer
     reg add "HKLM\SOFTWARE\Microsoft\Windows\Dwm" /v "OverlayTestMode" /t REG_DWORD /d "5" /f
     ```
 
-<h3 id="game-mode">11.42.5. Game Mode <a href="#game-mode">(permalink)</a></h3>
+<h3 id="game-mode">11.42.5. Modo de Juego <a href="#game-mode">(permalink)</a></h3>
 
 > [!CAUTION]
-> 📊 **Do NOT** blindly follow the recommendations in this section. **Do** benchmark the specified changes to ensure they result in positive performance scaling, as every system behaves differently and changes could unintentionally degrade performance ([instrucciones](#benchmarking)).
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
-El Modo Juego impide que Windows Update se ejecute y que se muestren ciertas notificaciones al usuario ([1](https://support.xbox.com/en-GB/help/games-apps/game-setup-and-play/use-game-mode-gaming-on-pc)).
+El Modo de Juego impide que Windows Update se ejecute y que se muestren ciertas notificaciones al usuario ([1](https://support.xbox.com/en-GB/help/games-apps/game-setup-and-play/use-game-mode-gaming-on-pc)).
+
+El Modo de Juego es un perfil de energía (power profile) diseñado para optimizar el rendimiento del sistema durante sesiones de juego. Este modo prioriza recursos del hardware y ajusta configuraciones de Windows para reducir interferencias, como actualizaciones automáticas o notificaciones, asegurando una experiencia más fluida. Pero en ocasiones puede generar el 
 
 Cabe destacar que el Modo Juego puede interferir con los impulsos de prioridad de procesos e hilos, dependiendo del valor de PsPrioritySeparation, como se explica en la sección [Thread Quantums and Scheduling](#thread-quantums-and-scheduling). Esto se puede evidenciar replicando el experimento de impulso de prioridad de hilos descrito en Windows Internals, usando el Monitor de rendimiento y el contador de prioridad actual de hilos. Por esta razón, se recomienda experimentar con el Modo Juego tanto activado como desactivado.
 
-<h3 id="media-player">11.42.6. Media Player <a href="#media-player">(permalink)</a></h3>
+<h3 id="media-player">11.42.6. Reproductor Multimedia <a href="#media-player">(permalink)</a></h3>
 
 - [mpv](https://mpv.io) or [mpv.net](https://github.com/stax76/mpv.net)
 - [mpc-hc](https://mpc-hc.org) ([updated fork](https://github.com/clsid2/mpc-hc))
 - [VLC](https://www.videolan.org)
 
-<h3 id="qos-policies">11.42.7. QoS Policies <a href="#qos-policies">(permalink)</a></h3>
+<h3 id="qos-policies">11.42.7. Políticas QoS <a href="#qos-policies">(permalink)</a></h3>
 
 Dependiendo de tu red y configuración del router, pueden establecerse políticas QoS en Windows para priorizar los paquetes de una aplicación.
 
@@ -1582,7 +1598,7 @@ Dependiendo de tu red y configuración del router, pueden establecerse política
   reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\QoS" /v "Do not use NLA" /t REG_SZ /d "1" /f
   ```
 
-<h2 id="kernel-mode-scheduling-interrupts-dpcs-and-more">11.43. Kernel-Mode Scheduling (Interrupts, DPCs and more) <a href="#kernel-mode-scheduling-interrupts-dpcs-and-more">(permalink)</a></h2>
+<h2 id="kernel-mode-scheduling-interrupts-dpcs-and-more">11.43. Optimización en Modo Kernel (Interrupciones, DPCs y más) <a href="#kernel-mode-scheduling-interrupts-dpcs-and-more">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1599,15 +1615,15 @@ Windows agenda interrupciones y DPCs en el CPU 0 por defecto para varios módulo
 
 - Usa [Microsoft Interrupt Affinity Tool](https://www.techpowerup.com/download/microsoft-interrupt-affinity-tool) o [GoInterruptPolicy](https://github.com/spddl/GoInterruptPolicy) para configurar afinidades de controladores. El dispositivo puede identificarse comparando la información del campo ``Location`` en la pestaña ``Properties -> General`` de las propiedades del dispositivo en el Administrador de dispositivos.
 
-<h3 id="gpu-and-directx-graphics-kernel">11.43.1. GPU and DirectX Graphics Kernel <a href="#gpu-and-directx-graphics-kernel">(permalink)</a></h3>
+<h3 id="gpu-and-directx-graphics-kernel">11.43.1. GPU y DirectX Graphics Kernel <a href="#gpu-and-directx-graphics-kernel">(permalink)</a></h3>
 
 [AutoGpuAffinity](https://github.com/valleyofdoom/AutoGpuAffinity) puede usarse para realizar pruebas de rendimiento y determinar qué CPUs asignadas a los módulos relacionados con la GPU ofrecen el mejor desempeño. Configura la opción custom_cpus en el archivo de configuración si es necesario. Esta opción es útil para seleccionar un conjunto específico de núcleos que se desea probar, como los P-Cores o un CCX/CCD específico.
 
-<h3 id="xhci-and-audio-controller">11.43.2. XHCI and Audio Controller <a href="#xhci-and-audio-controller">(permalink)</a></h3>
+<h3 id="xhci-and-audio-controller">11.43.2. Controlador XHCI y de Audio <a href="#xhci-and-audio-controller">(permalink)</a></h3>
 
 Los módulos relacionados con los controladores XHCI y de audio generan una cantidad sustancial de interrupciones al interactuar con sus respectivos dispositivos. Aislar dichos módulos en una CPU poco utilizada es beneficioso para reducir la contención.
 
-<h3 id="network-interface-card">11.43.3. Network Interface Card <a href="#network-interface-card">(permalink)</a></h3>
+<h3 id="network-interface-card">11.43.3. Tarjeta de Red <a href="#network-interface-card">(permalink)</a></h3>
 
 La NIC (tarjeta de red) debe soportar MSI-X para que la tecnología Receive Side Scaling (RSS) funcione correctamente ([1](https://old.reddit.com/r/intel/comments/9uc03d/the_i219v_nic_on_your_new_z390_motherboard_and)). En la mayoría de los casos, establecer la CPU base de RSS es suficiente para migrar los DPCs e ISRs del controlador de red, eliminando así la necesidad de una política de afinidad por interrupciones. Sin embargo, si tienes dificultades para migrar estos elementos a otras CPUs, intenta configurar ambos parámetros.
 
@@ -1617,7 +1633,7 @@ Ten en cuenta que la cantidad de colas RSS determina el número de CPUs consecut
 
 - Consulta la [Configuración de Receive Side Scaling (RSS)](https://github.com/Duckleeng/TweakCollection#receive-side-scaling-rss-configuration)
 
-<h2 id="user-mode-scheduling-processes-threads">11.44. User-Mode Scheduling (Processes, Threads) <a href="#user-mode-scheduling-processes-threads">(permalink)</a></h2>
+<h2 id="user-mode-scheduling-processes-threads">11.44. Optimización en Modo Usuario (Processes, Threads) <a href="#user-mode-scheduling-processes-threads">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1632,7 +1648,7 @@ Existen varios métodos para establecer afinidades para los procesos. Uno de ell
 
 - Puede ser útil evaluar cómo escala el rendimiento de tu aplicación con la cantidad de núcleos, ya que puede comportarse de forma diferente debido a implementaciones deficientes del planificador tanto por parte de la aplicación como del sistema operativo. En algunos casos, es posible que la aplicación rinda mejor con menos núcleos asignados a través de una máscara de afinidad ([1](https://developer.nvidia.com/blog/limiting-cpu-threads-for-better-game-performance)). Esto también te dará una idea general de cuántos núcleos puedes reservar. En otros casos, puede perjudicar gravemente el rendimiento si el juego crea más hilos de trabajo de los que hay CPUs disponibles, debido a que el juego sólo considera los núcleos físicos disponibles. Por ello, es vital medir la escalabilidad del rendimiento.
 
-<h3 id="starting-a-process-with-a-specified-affinity-mask">11.44.1. Starting a Process with a Specified Affinity Mask <a href="#starting-a-process-with-a-specified-affinity-mask">(permalink)</a></h3>
+<h3 id="starting-a-process-with-a-specified-affinity-mask">11.44.1. Iniciar un Proceso con una Afinidad Específic Mask <a href="#starting-a-process-with-a-specified-affinity-mask">(permalink)</a></h3>
 
 El siguiente comando inicia ``notepad.exe`` con una afinidad de CPU 1 y CPU 2 como ejemplo, lo cual se reflejará en el Administrador de tareas. Este comando puede colocarse en un script por lotes para facilitar el acceso, y debe usarse cada vez que se desee iniciar la aplicación con la afinidad especificada.
 
@@ -1640,7 +1656,7 @@ El siguiente comando inicia ``notepad.exe`` con una afinidad de CPU 1 y CPU 2 co
 start /affinity 0x6 notepad.exe
 ```
 
-<h3 id="specifying-an-affinity-mask-for-running-processes">11.44.2. Specifying an Affinity Mask for Running Processes <a href="#specifying-an-affinity-mask-for-running-processes">(permalink)</a></h3>
+<h3 id="specifying-an-affinity-mask-for-running-processes">11.44.2. Especificar Afinidad para Procesos Activos <a href="#specifying-an-affinity-mask-for-running-processes">(permalink)</a></h3>
 
 A veces, los procesos a los que deseas aplicar una máscara de afinidad ya se están ejecutando, por lo que el comando anterior no es aplicable. A modo de ejemplo, el siguiente comando asigna la máscara de afinidad de los procesos ``svchost.exe`` y ``audiodg.exe`` a la CPU 3. Usa este ejemplo para crear un script en PowerShell y haz que se ejecute al inicio mediante el Programador de tareas ([instrucciones](https://www.windowscentral.com/how-create-automated-task-using-task-scheduler-windows-10)). Asegúrate de colocar entre comillas cualquier ruta que contenga espacios. Verifica que todo funcione correctamente después de reiniciar el sistema. Es necesario habilitar la opción ``Run with highest privileges`` si se requieren privilegios de administrador. Para scripts de PowerShell, establece el programa a iniciar como ``PowerShell`` y los argumentos como la ruta al script (por ejemplo ``C:\process-affinities.ps1``).
 
@@ -1648,7 +1664,7 @@ A veces, los procesos a los que deseas aplicar una máscara de afinidad ya se es
 Get-Process @("svchost", "audiodg") -ErrorAction SilentlyContinue | ForEach-Object { $_.ProcessorAffinity=0x8 }
 ```
 
-<h2 id="reserved-cpu-sets-windows-10">11.45. Reserved CPU Sets (Windows 10+) <a href="#reserved-cpu-sets-windows-10">(permalink)</a></h2>
+<h2 id="reserved-cpu-sets-windows-10">11.45. CPUs Reservados (Windows 10+) <a href="#reserved-cpu-sets-windows-10">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1666,23 +1682,23 @@ Get-Process @("svchost", "audiodg") -ErrorAction SilentlyContinue | ForEach-Obje
 > [!IMPORTANT]
 > Ocurre un comportamiento inesperado si se asigna afinidad a una combinación de CPUs reservadas y no reservadas. Asegúrate de asignar afinidad exclusivamente a CPUs reservadas o no reservadas, pero no una mezcla de ambas.
 
-<h3 id="use-cases">11.45.1. Use Cases <a href="#use-cases">(permalink)</a></h3>
+<h3 id="use-cases">11.45.1. Casos de Uso <a href="#use-cases">(permalink)</a></h3>
 
 - Se puede dar una sugerencia al sistema operativo para programar tareas en un grupo específico de CPUs. Un ejemplo moderno sería reservar E-Cores (núcleos de eficiencia) o determinados CCX/CCD para que las tareas se programen por defecto en los P-Cores (núcleos de rendimiento) u otros CCX/CCDs. Con este enfoque, puedes forzar explícitamente que las tareas en segundo plano o menos importantes se ejecuten en los CPUs reservados. Este es sólo un ejemplo: la lógica puede invertirse. Sin embargo, algunos procesos y módulos sensibles a la latencia están protegidos, por lo que las políticas de afinidad pueden fallar, lo que representa una limitación importante. Existen varias posibilidades y compromisos a considerar. Ten en cuenta que el rendimiento puede degradarse al reservar E-Cores u otros CCX/CCDs si las aplicaciones hacen uso de ellos. Por ello, es vital que midas la escalabilidad del rendimiento al reservar núcleos, ya sea uno, algunos o un conjunto completo de CPUs. Otro modo en que puede degradarse el rendimiento es si el planificador o las aplicaciones apuntan específicamente a núcleos reservados porque el campo ``RealTime`` está establecido en 1 en la estructura [SYSTEM_CPU_SET_INFORMATION](https://learn.microsoft.com/en-us/windows/win32/api/winnt/ns-winnt-system_cpu_set_information) struct
 
 - Reservar CPUs específicas a las que se han asignado ciertos módulos para su programación.
 
-<h2 id="analyzing-event-viewer">11.46. Analyzing Event Viewer <a href="#analyzing-event-viewer">(permalink)</a></h2>
+<h2 id="analyzing-event-viewer">11.46. Analizar el Event Viewer <a href="#analyzing-event-viewer">(permalink)</a></h2>
 
 Este paso no es obligatorio, pero puede ayudarte a justificar problemas de rendimiento inexplicables u otros errores generales. Asegúrate de que no haya errores en el Visor de eventos escribiendo ``eventvwr.msc`` en ``Win+R`` ya que cualquier cambio que hayas hecho en el sistema operativo podría causar errores o excepciones internas de forma periódica.
 
 - Fusiona el archivo ``ets-enable.reg`` generado en la secció [Event Trace Sessions (ETS)](#event-trace-sessions-ets) si aplica, ya que es necesario para el registro de eventos.
 
-<h2 id="virtualization-based-security-vbs">11.47. Virtualization Based Security (VBS) <a href="#virtualization-based-security-vbs">(permalink)</a></h2>
+<h2 id="virtualization-based-security-vbs">11.47. Seguridad Basada en Virtualización (VBS) <a href="#virtualization-based-security-vbs">(permalink)</a></h2>
 
 La seguridad basada en virtualización (VBS) afecta negativamente al rendimiento ([1](https://www.tomshardware.com/news/windows-11-gaming-benchmarks-performance-vbs-hvci-security)) y, en algunos casos, está habilitada por defecto. Su estado puede consultarse escribiendo ``msinfo32`` en ``Win+R`` y puede deshabilitarse si es necesario ([1](https://www.tomshardware.com/how-to/disable-vbs-windows-11), [2](https://support.microsoft.com/en-us/windows/options-to-optimize-gaming-performance-in-windows-11-a255f612-2949-4373-a566-ff6f3f474613)) Por otro lado, [privacyguides.org](https://www.privacyguides.org/en/os/windows/group-policies/) recomienda mantenerla habilitada. La VBS debería estar desactivada cuando la virtualización esté desactivada en la BIOS, por lo que debes tener cuidado si vuelves a habilitar la virtualización en el futuro.
 
-<h2 id="cpu-idle-states">11.48. CPU Idle States <a href="#cpu-idle-states">(permalink)</a></h2>
+<h2 id="cpu-idle-states">11.48. Estados de Inactividad del CPU <a href="#cpu-idle-states">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1691,19 +1707,19 @@ Deshabilitar los estados inactivos fuerza el estado C-State 0, lo que puede obse
 
 Si no se establece una frecuencia de CPU estática, los efectos de forzar C-State 0 deben evaluarse en cuanto al comportamiento del boost de frecuencia. Por ejemplo, ciertamente no querrás deshabilitar los estados inactivos si dependes de Precision Boost Overdrive (PBO), Turbo Boost u otras tecnologías similares. Evita desactivar los estados inactivos si tienes Hyper-Threading o SMT habilitado, ya que el rendimiento monohilo suele verse negativamente afectado.
 
-<h3 id="enable-idle-states-default">11.48.1. Enable Idle States (default) <a href="#enable-idle-states-default">(permalink)</a></h3>
+<h3 id="enable-idle-states-default">11.48.1. Activar Estados de Inactividad (por defecto) <a href="#enable-idle-states-default">(permalink)</a></h3>
 
 ```bat
 powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 0 && powercfg /setactive scheme_current
 ```
 
-<h3 id="disable-idle-states">11.48.2. Disable Idle States <a href="#disable-idle-states">(permalink)</a></h3>
+<h3 id="disable-idle-states">11.48.2. Desactivar Estados de Inactividad <a href="#disable-idle-states">(permalink)</a></h3>
 
 ```bat
 powercfg /setacvalueindex scheme_current sub_processor 5d76a2ca-e8c0-402f-a133-2158492d58ad 1 && powercfg /setactive scheme_current
 ```
 
-<h2 id="thread-quantums-and-scheduling">11.49. Thread Quantums and Scheduling <a href="#thread-quantums-and-scheduling">(permalink)</a></h2>
+<h2 id="thread-quantums-and-scheduling">11.49. Thread Quantums y Scheduling <a href="#thread-quantums-and-scheduling">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
@@ -1715,7 +1731,7 @@ Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el pla
 "Win32PrioritySeparation"=dword:00000002
 ```
 
-<h3 id="bitmask-explaination">11.49.1. Bitmask Explaination <a href="#bitmask-explaination">(permalink)</a></h3>
+<h3 id="bitmask-explaination">11.49.1. Explicación de Bitmask <a href="#bitmask-explaination">(permalink)</a></h3>
 
 - El par de bits más a la izquierda (XXYYZZ) determina la longitud del quantum. Esto está representado por ``PspForegroundQuantum``
 
@@ -1743,7 +1759,7 @@ Un quantum es el tiempo asignado para que un hilo se ejecute antes de que el pla
 
 - Usando la información anterior, el valor predeterminado de ``0x2`` corresponde a quantum corto, de longitud variable y proporción 3:1 en Windows Client y quantum largo, de longitud fija y proporción 3:1 en Windows Server.
 
-<h3 id="win32priorityseparation-values">11.49.2. Win32PrioritySeparation Values <a href="#win32priorityseparation-values">(permalink)</a></h3>
+<h3 id="win32priorityseparation-values">11.49.2. Valores de Win32PrioritySeparation <a href="#win32priorityseparation-values">(permalink)</a></h3>
 
 La siguiente tabla consiste en todos los valores posibles que son consistentes entre ediciones cliente y servidor de Windows, ya que ``00`` o ``11`` no fueron utilizados en XXYYZZ de la máscara de bits, los cuales tienen significados diferentes en las ediciones cliente y servidor. Cualquier valor no especificado en la tabla es idéntico a uno que sí está especificado, como se explica [aqui](/docs/research.md#5-ambiguous-win32priorityseparation-values-explained), ; por tanto, los valores en la tabla son los únicos que deberían utilizarse para mayor simplicidad.
 
@@ -1790,14 +1806,14 @@ Una resolución más alta proporciona mayor precisión, pero en algunos casos, l
 
 Recomiendo favorecer la implementación por proceso (no global) cuando sea aplicable, ya que reduce el overhead. En su lugar, usa [RTSS](https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download) para limitar el framerate con precisión. Cabe señalar que puede introducir una latencia notablemente mayor ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)) por lo que recomiendo comparar y hacer pruebas con la técnica de microajuste en la resolución solicitada usando el comportamiento global. Es posible que la estabilidad del frametime no se vea afectada al elevar la resolución más allá de 1ms debido a mejoras en el limitador de framerate del juego, en cuyo caso no se requiere ninguna acción. El punto principal es comparar todas las opciones disponibles, con preferencia por la implementación por proceso (predeterminada desde Windows 10 2004+) si descubres que elevar más la resolución no tiene impacto real.
 
-<h2 id="paging-file">11.51. Paging File <a href="#paging-file">(permalink)</a></h2>
+<h2 id="paging-file">11.51. Archivo de Paginación <a href="#paging-file">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Para la mayoría de los lectores, recomendaría mantener habilitado el archivo de paginación, que es el estado predeterminado. Existe el argumento de que es preferible deshabilitarlo si tienes suficiente RAM para tus aplicaciones, ya que reduce la sobrecarga de E/S y la memoria del sistema es más rápida que el disco. Sin embargo, muchos usuarios han reportado interrupciones (stuttering) en juegos específicos con el archivo de paginación deshabilitado, a pesar de que el uso de RAM no se acerca al máximo. Windows parece asignar el archivo de paginación a discos secundarios en ocasiones, lo cual puede ser problemático si uno de los discos es un HDD. Esto se puede resolver asignando el archivo de paginación a un SSD y configurando su tamaño como “administrado por el sistema”, y luego desasignándolo de las demás unidades.
 
-<h2 id="cleanup-and-maintenance">11.52. Cleanup and Maintenance <a href="#cleanup-and-maintenance">(permalink)</a></h2>
+<h2 id="cleanup-and-maintenance">11.52. Limpieza y Mantenimiento <a href="#cleanup-and-maintenance">(permalink)</a></h2>
 
 No es mala idea revisar este paso periódicamente. Configurar un recordatorio para hacerlo puede ser útil para mantener el sistema limpio.
 
