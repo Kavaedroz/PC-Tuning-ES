@@ -243,7 +243,9 @@ La evaluación comparativa es una herramienta clave para analizar de forma objet
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 - Si planeas hacer overclock, ten en cuenta los siguientes puntos para maximizar el margen térmico y el potencial de overclock. Es importante destacar que mantener temperaturas más bajas puede influir positivamente en otros factores incluso si no realizas overclock, como el comportamiento de boost del CPU, ya que dicho algoritmo es sensible a la temperatura, entre otros aspectos.
-
+> [**AiO (Refrigeracion Liquida)**]
+> 💧 Un "AiO"/Refrigeracion Liquida es un sistema liquido de enfriamiento, el cual incluye una bomba, un radiador, y tubos pre llenados con refrigerante. Está diseñado para remover el calor de nuestra CPU y disipar el mismo, para luego pasarlo por el radiador.
+- Una Refrigeración Líquida se debe colocar adecuadamente para que tenga un funcionamiento eficiente. A continuación podrá usted ver el siguiente esquema, acerca de las formas adecuadas de colocar un enfriamiento líquido.([2](https://imgur.com/a/Ec6UNDT))
   - Retira los paneles laterales del gabinete, ya que tienden a atrapar calor, o considera usar una configuración tipo open-bench (ten cuidado con la acumulación de polvo).
   - Realiza delid al CPU y aplica metal líquido para una mejora térmica significativa, dependiendo de la calidad del IHS ([1](https://www.youtube.com/watch?v=rUy3WcDlBXE)). También vale la pena considerar el uso de direct die y lapping, aunque es fundamental que el usuario evalúe los riesgos de llevar a cabo estos procedimientos.
   - Evita los disipadores por aire tipo torre, ya que su capacidad de enfriamiento es limitada ([1](https://www.youtube.com/watch?v=Vex9_84VpYs)) y suelen obstaculizar el flujo de aire hacia otros componentes importantes como la RAM o los VRMs.
