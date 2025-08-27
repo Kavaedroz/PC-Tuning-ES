@@ -128,7 +128,7 @@
   - [11.43. Optimización en Modo Kernel (Interrupciones, DPCs y más)](#kernel-mode-scheduling-interrupts-dpcs-and-more)
     - [11.43.1. GPU y DirectX Graphics Kernel](#gpu-and-directx-graphics-kernel)
     - [11.43.2. Controlador XHCI y de Audio](#xhci-and-audio-controller)
-    - [11.43.3. Tarjeta de ](#network-interface-card)
+    - [11.43.3. Tarjeta de Red](#network-interface-card)
   - [11.44. Optimización en Modo Usuario (Procesos, Hilos)](#user-mode-scheduling-processes-threads)
     - [11.44.1. Iniciar un Proceso con una Afinidad Específica](#starting-a-process-with-a-specified-affinity-mask)
     - [11.44.2. Especificar Afinidad para Procesos Activos](#specifying-an-affinity-mask-for-running-processes)
