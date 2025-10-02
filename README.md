@@ -1489,6 +1489,72 @@ Los Message Signaled Interrupts (MSIs) son más rápidos que las interrupciones 
 
 MMCSS ofrece un mecanismo centralizado por el que aplicaciones multimedia pueden solicitar prioridad temporal en la CPU para sus hilos críticos (por ejemplo, el hilo de audio). El objetivo es maximizar tiempo de CPU para trabajo sensible al tiempo sin “matar” la capacidad de respuesta del resto del sistema. Para aplicaciones que buscan latencia ultra-baja (Pro-Audio, DAWs, motores de audio en juegos), usar MMCSS correctamente reduce la frecuencia de interrupciones audibles y mejora la estabilidad del buffer.
 
+Con MMCSS habilitado:
+
+1. Audio streams (audiodg y aplicaciones):
+
+  - Pueden recibir un aumento de prioridad hasta el rango de tiempo real.
+
+  - El nivel de aumento depende del valor PRIORITY en el registro:
+    ```HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio.```
+
+  - Ejemplo: con PRIORITY = 6 y la categoría de planificación (Scheduling Category) en Medium, la prioridad sube a 22.
+
+  - Si la categoría de planificación está en Low, la prioridad se calcula con Background Priority, pero nunca supera 15.
+
+  - Background Priority = 1 → prioridad 8
+
+  - Background Priority = 8 → prioridad 15
+
+  - En este caso MMCSS no se activa, ya que no se produce un aumento al rango de tiempo real. Por lo mismo, tampoco se activa el NDIS stream.
+
+  - A veces el flujo de audio o audiodg puede situarse en prioridad 9 por otro tipo de aumento, pero no cambia la regla general.
+
+2. Hilo de sistema MMCSS:
+
+  - Aparece un hilo del sistema con prioridad 27.
+
+  - Se ejecuta con frecuencia porque se encarga de aumentar las prioridades de los streams de audio y de la red (NDIS).
+
+  - Su duración típica es de 5.000 a 15.000 ns en cada ejecución.
+
+3. Relación con NDIS:
+
+  - Cuando el hilo de MMCSS está activo, el tiempo de ejecución de los DPC de NDIS disminuye.
+
+  - Esto ocurre porque el trabajo se traslada al hilo NDIS, que lo procesa en lugar del DPC.
+
+  - El tiempo total de procesamiento de tareas de red es similar, e incluso suele ser más rápido con MMCSS habilitado.
+
+  - Si un hilo NDIS no termina antes de la siguiente interrupción NDIS (ISR), la ejecución se retrasa porque no puede iniciar un nuevo hilo hasta terminar el anterior.
+
+  - El hilo NDIS tiene por defecto prioridad 8, lo que permite que otros hilos con mayor prioridad lo interrumpan.
+
+  - Este hilo siempre se ejecuta en el núcleo que hospeda el controlador del adaptador de red.
+
+- Su prioridad se puede ajustar en:
+  ```HKLM\SYSTEM\ControlSet001\Services\NDIS\Parameters → "ReceiveWorkerThreadPriority".```
+
+   - El valor por defecto es 8.
+
+   - No acepta valores de 0–7 ni de 9–15.
+
+   - El hilo que procesa datos de red permanece en 8, pero otros hilos NDIS inactivos adoptan el valor asignado (1–31).
+ 
+1. Con MMCSS deshabilitado:
+
+   - Los audio streams (audiodg y aplicaciones) tienen siempre prioridad 15.
+
+   - El hilo de sistema MMCSS no se ejecuta.
+
+   - Todo el trabajo pasa a los DPC de NDIS, que tardan más en completarse, y no existen hilos NDIS.
+
+   - Este mismo comportamiento ocurre si se configura el valor del registro
+
+   ```bat
+    reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "ffffffff" /f
+    ```
+
 > [!IMPORTANT]
 > Para evitar errores inesperados y problemas debido a dependencias entre servicios, evalúa otros servicios que dependan del servicio que deseas deshabilitar. Esto puede hacerse abriendo CMD como administrador y escribiendo ``sc EnumDepend <service>`` , lo cual describirá los servicios que dependen del que deseas desactivar. Estos servicios también deben ser deshabilitados para evitar errores de dependencia. Si no puedes deshabilitarlos (por ejemplo, porque los necesitas), entonces no tendrás otra opción más que dejar habilitado el servicio que pretendías desactivar inicialmente.
 
