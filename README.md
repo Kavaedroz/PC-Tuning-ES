@@ -1491,7 +1491,7 @@ MMCSS ofrece un mecanismo centralizado por el que aplicaciones multimedia pueden
 
 Con MMCSS habilitado:
 
-1. Audio streams (audiodg y aplicaciones):
+1. Audio threads (audiodg y aplicaciones):
 
   - Pueden recibir un aumento de prioridad hasta el rango de tiempo real.
 
@@ -1506,9 +1506,9 @@ Con MMCSS habilitado:
 
   - Background Priority = 8 → prioridad 15
 
-  - En este caso MMCSS no se activa, ya que no se produce un aumento al rango de tiempo real. Por lo mismo, tampoco se activa el NDIS stream.
+  - En este caso MMCSS no se activa, ya que no se produce un aumento al rango de tiempo real. Por lo mismo, tampoco se activa el hilo NDIS.
 
-  - A veces el flujo de audio o audiodg puede situarse en prioridad 9 por otro tipo de aumento, pero no cambia la regla general.
+  - A veces el hilo de audio o audiodg puede situarse en prioridad 9 por otro tipo de aumento, pero no cambia la regla general.
 
 2. Hilo de sistema MMCSS:
 
@@ -1543,7 +1543,7 @@ Con MMCSS habilitado:
  
 1. Con MMCSS deshabilitado:
 
-   - Los audio streams (audiodg y aplicaciones) tienen siempre prioridad 15.
+   - Los audio threads (audiodg y aplicaciones) tienen siempre prioridad 15.
 
    - El hilo de sistema MMCSS no se ejecuta.
 
@@ -1554,9 +1554,6 @@ Con MMCSS habilitado:
    ```bat
     reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "ffffffff" /f
     ```
-
-> [!IMPORTANT]
-> Para evitar errores inesperados y problemas debido a dependencias entre servicios, evalúa otros servicios que dependan del servicio que deseas deshabilitar. Esto puede hacerse abriendo CMD como administrador y escribiendo ``sc EnumDepend <service>`` , lo cual describirá los servicios que dependen del que deseas desactivar. Estos servicios también deben ser deshabilitados para evitar errores de dependencia. Si no puedes deshabilitarlos (por ejemplo, porque los necesitas), entonces no tendrás otra opción más que dejar habilitado el servicio que pretendías desactivar inicialmente.
 
 <h2 id="xhci-interrupt-moderation-imod">11.41. XHCI Interrupt Moderation (IMOD) <a href="#xhci-interrupt-moderation-imod">(permalink)</a></h2>
 
