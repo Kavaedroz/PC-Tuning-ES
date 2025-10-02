@@ -1493,22 +1493,22 @@ Con MMCSS habilitado:
 
 1. Audio threads (audiodg y aplicaciones):
 
-   - Pueden recibir un aumento de prioridad hasta el rango de tiempo real.
+    - Pueden recibir un aumento de prioridad hasta el rango de tiempo real.
 
   - El nivel de aumento depende del valor PRIORITY en el registro:
     ```HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Audio.```
 
-   - Ejemplo: con PRIORITY = 6 y la categoría de planificación (Scheduling Category) en Medium, la prioridad sube a 22.
+    - Ejemplo: con PRIORITY = 6 y la categoría de planificación (Scheduling Category) en Medium, la prioridad sube a 22.
 
   - Si la categoría de planificación está en Low, la prioridad se calcula con Background Priority, pero nunca supera 15.
 
-   - Background Priority = 1 → prioridad 8
+    - Background Priority = 1 → prioridad 8
 
-   - Background Priority = 8 → prioridad 15
+    - Background Priority = 8 → prioridad 15
 
-   - En este caso MMCSS no se activa, ya que no se produce un aumento al rango de tiempo real. Por lo mismo, tampoco se activa el hilo NDIS.
+    - En este caso MMCSS no se activa, ya que no se produce un aumento al rango de tiempo real. Por lo mismo, tampoco se activa el hilo NDIS.
 
-   - A veces el hilo de audio o audiodg puede situarse en prioridad 9 por otro tipo de aumento, pero no cambia la regla general.
+    - A veces el hilo de audio o audiodg puede situarse en prioridad 9 por otro tipo de aumento, pero no cambia la regla general.
 
 2. Hilo de sistema MMCSS:
 
