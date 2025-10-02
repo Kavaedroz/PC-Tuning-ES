@@ -1489,6 +1489,8 @@ Los Message Signaled Interrupts (MSIs) son más rápidos que las interrupciones 
 
 MMCSS ofrece un mecanismo centralizado por el que aplicaciones multimedia pueden solicitar prioridad temporal en la CPU para sus hilos críticos (por ejemplo, el hilo de audio). El objetivo es maximizar tiempo de CPU para trabajo sensible al tiempo sin “matar” la capacidad de respuesta del resto del sistema. Para aplicaciones que buscan latencia ultra-baja (Pro-Audio, DAWs, motores de audio en juegos), usar MMCSS correctamente reduce la frecuencia de interrupciones audibles y mejora la estabilidad del buffer.
 
+En caso de querer una explicación más amplia, con más ajustes y mejores explicaciones. [MMCSS Research](https://cryptpad.fr/pad/#/2/pad/view/Vqfy09ex1xleJNuwJVUbGbmLKPakJjKLQUAHMkQqOgk/embed/)
+
 Con MMCSS habilitado:
 
 1. Audio threads (audiodg y aplicaciones):
@@ -1554,6 +1556,7 @@ Con MMCSS habilitado:
    ```bat
     reg add "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile" /v "NetworkThrottlingIndex" /t REG_DWORD /d "ffffffff" /f
     ```
+Se han preparado 2 configuraciones pre-configuradas para experimentar: [MMCSS Configs](https://mega.nz/file/c2EHTRxI#oR1TrhraJk_ojYkSamA2Vu3qrZV7ozn7XL6S0L29NoQ)
 
 <h2 id="xhci-interrupt-moderation-imod">11.41. XHCI Interrupt Moderation (IMOD) <a href="#xhci-interrupt-moderation-imod">(permalink)</a></h2>
 
