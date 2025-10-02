@@ -1055,7 +1055,7 @@ Desaconsejo fuertemente el uso de scripts de desbloat o la eliminación de compo
 - Deshabilitar (no desinstalar) el navegador Chromium Microsoft Edge implica los pasos siguientes. El navegador debe deshabilitarse en lugar de desinstalarse para conservar el runtime de WebView.
 
   - En la configuración de Microsoft Edge, desactiva las opciones de inicio como las siguientes. Esto evita que se cree una entrada de ejecución automática cada vez que se inicie ``msedge.exe``, incluso si la eliminas posteriormente con Autoruns:
-
+    
     - ``Startup boost``
     - ``Continue running background extensions and apps when Microsoft Edge is closed``
 
@@ -1485,7 +1485,7 @@ Los Message Signaled Interrupts (MSIs) son más rápidos que las interrupciones 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
-[MMCSS]([http://rweverything.com](https://learn.microsoft.com/en-us/windows/win32/procthread/multimedia-class-scheduler-service) (Multimedia Class Scheduler Service) es el servicio de Windows que permite a aplicaciones multimedia (audio, captura, reproducción, juegos, aplicaciones “Pro Audio”) obtener acceso prioritario a la CPU sin bloquear por completo el resto del sistema. Las apps “se registran” con MMCSS mediante funciones del sistema (por ejemplo AvSetMmThreadCharacteristics) para indicar qué hilo está realizando trabajo de baja latencia, y el servicio ajusta prioridades y cuotas para favorecer tareas sensibles al tiempo. Esto ayuda a reducir “glitches” y dropouts en audio y mejorar la respuesta de sistemas en tiempo real, pero hay límites y configuraciones en el registro (por ejemplo SystemResponsiveness) que controlan cuánto CPU se reserva para tareas de baja prioridad y cómo se comporta MMCSS.
+[MMCSS](https://learn.microsoft.com/en-us/windows/win32/procthread/multimedia-class-scheduler-service) (Multimedia Class Scheduler Service) es el servicio de Windows que permite a aplicaciones multimedia (audio, captura, reproducción, juegos, aplicaciones “Pro Audio”) obtener acceso prioritario a la CPU sin bloquear por completo el resto del sistema. Las apps “se registran” con MMCSS mediante funciones del sistema (por ejemplo AvSetMmThreadCharacteristics) para indicar qué hilo está realizando trabajo de baja latencia, y el servicio ajusta prioridades y cuotas para favorecer tareas sensibles al tiempo. Esto ayuda a reducir “glitches” y dropouts en audio y mejorar la respuesta de sistemas en tiempo real, pero hay límites y configuraciones en el registro (por ejemplo SystemResponsiveness) que controlan cuánto CPU se reserva para tareas de baja prioridad y cómo se comporta MMCSS.
 
 MMCSS ofrece un mecanismo centralizado por el que aplicaciones multimedia pueden solicitar prioridad temporal en la CPU para sus hilos críticos (por ejemplo, el hilo de audio). El objetivo es maximizar tiempo de CPU para trabajo sensible al tiempo sin “matar” la capacidad de respuesta del resto del sistema. Para aplicaciones que buscan latencia ultra-baja (Pro-Audio, DAWs, motores de audio en juegos), usar MMCSS correctamente reduce la frecuencia de interrupciones audibles y mejora la estabilidad del buffer.
 
