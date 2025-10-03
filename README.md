@@ -695,7 +695,7 @@ Si estás configurando Windows 8.1, recomiendo usar la ISO ``en_windows_8_1_x64_
 No se requieren pasos adicionales para las versiones de Windows 10 en adelante. Puedes integrar las actualizaciones más recientes, pero esto no es necesario si planeas mantener Windows Update habilitado después de iniciar desde la ISO. Además, las ISOs creadas usando UUP Dump ya incluyen las actualizaciones más recientes, siempre que construyas la última versión. Esto puede hacerse con [NTLite](https://www.ntlite.com) ([instrucciones](https://winraid.level1techs.com/t/guide-integration-of-drivers-into-a-win7-11-image/30793)) o DISM en línea de comandos ([instrucciones](/docs/image-customization.md))), aunque NTLite es más fácil de usar.
 </details>
 
-> [!IMPORTANTE]
+> [!IMPORTANT]
 > La presencia de claves OEM puede forzar la instalación de ediciones específicas de Windows (por ejemplo, Home), lo cual se explica en la sección [Descargar y Preparar una ISO de Windows Oficial](#downloading-and-preparing-a-stock-windows-iso). Para evitar esto, puedes personalizar los archivos ``EI.cfg`` y ``PID.txt`` ([instrucciones](https://www.youtube.com/watch?v=R3yM3AV6q-8)) o eliminar todas las ediciones excepto la que deseas instalar usando [NTLite](https://www.ntlite.com) o DISM en CLI ([instrucciones](/docs/image-customization.md)), NTLite es más fácil de usar.
 
 <h2 id="fetching-required-files">10.6. Obtener Archivos Requeridos <a href="#fetching-required-files">(permalink)</a></h2>
