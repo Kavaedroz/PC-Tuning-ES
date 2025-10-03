@@ -27,6 +27,8 @@
   - [6.4. Actualizaciones de BIOS](#bios-updates)
   - [6.5. Microcódigo de BIOS](#bios-microcode)
   - [6.6. Acceder a opciones ocultas](#accessing-hidden-options)
+  - [6.6.1 Model-Specific Registers](#model-specific-registers)
+  - [6.6.2 Datasheet, MMIO, IO, PCI](#datasheet)
   - [6.7. Dispositivos innecesarios](#unnecessary-devices)
   - [6.8. Resizable Bar (ReBAR)](#resizable-bar)
   - [6.9. Hyper-Threading/Simultaneous Multithreading](#hyper-threadingsimultaneous-multithreading)
@@ -314,9 +316,21 @@ En plataformas y procesadores mucho más antiguos, los parches a nivel de BIOS c
 
 Los fabricantes de placas base suelen ocultar muchas configuraciones para que no estén visibles al usuario estándar. En este contexto, "desbloquear la BIOS" implica hacer visibles y accesibles estas configuraciones ocultas. La forma más sencilla de hacerlo es modificando los niveles de acceso dentro del firmware con [UEFI-Editor](https://github.com/BoringBoredom/UEFI-Editor#usage-guide) y luego flashearlo, lo cual permitirá que dichas opciones se muestren directamente en el menú UEFI. Otra opción consiste en modificar lo que ya está disponible y luego acceder a las opciones ocultas leyendo y escribiendo en la NVRAM mediante [GRUB](https://github.com/BoringBoredom/UEFI-Editor#how-to-change-hidden-settings-without-flashing-a-modded-bios) ([script generator](https://github.com/ab3lkaizen/setupvar-builder)) o [SCEWIN](https://github.com/ab3lkaizen/SCEHUB) con [SCEWIN-GUI](https://github.com/eskezje/SCEWIN-GUI).
 
+<h2 id="model-specific-registers">6.6.1. Model-Specific Registers (MSR) <a href="#model-specific-registers">(permalink)</a></h2>
+
+Un Model-Specific Register [MSR](https://en.wikipedia.org/wiki/Model-specific_register) es un registro especial y particular del diseño de cada procesador (x86) que no forma parte de los registros generales de propósito común. Estos registros permiten funciones de control avanzadas del CPU, como monitoreo de rendimiento, activación o desactivación de características específicas, trazas de ejecución o ajustes internos del procesador.
+
+Su acceso se hace mediante instrucciones privilegiadas (RDMSR para leer y WRMSR para escribir), lo cual significa que solo el sistema operativo (o código con los permisos adecuados) puede manipularlos.
+
+<h2 id="datasheet">6.6.2. Datasheet, MMIO, IO, PCI. <a href="#datasheet">(permalink)</a></h2>
+
+El [Datasheet](https://en.wikipedia.org/wiki/Datasheet) de un procesador o chipset describe en detalle la disposición de registros accesibles mediante distintos mecanismos como MMIO (Memory-Mapped I/O), espacio PCI o puertos de E/S (I/O ports). Estos registros contienen campos y bits que controlan aspectos fundamentales del hardware, como la administración de energía, la latencia de buses, la gestión de interrupciones o el comportamiento de controladores integrados. Al modificar de forma precisa estos bits, es posible ajustar parámetros de bajo nivel que influyen directamente en el rendimiento y la respuesta del sistema.
+
+El acceso a estos registros se realiza a través de herramientas o instrucciones específicas que permiten leer y escribir en direcciones determinadas, siguiendo siempre la documentación oficial del datasheet. Esto garantiza que los cambios aplicados no sean arbitrarios, sino informados y consistentes con la arquitectura del dispositivo. Un uso cuidadoso de esta información permite optimizar el hardware para escenarios concretos —como reducir latencia, mejorar la eficiencia de comunicación en buses o desactivar funciones innecesarias—, manteniendo un balance entre rendimiento y estabilidad.
+
 <h2 id="unnecessary-devices">6.7. Dispositivos innecesarios <a href="#unnecessary-devices">(permalink)</a></h2>
 
-GComo regla general, aplica el principio de "si no lo usas, desactívalo". Si es posible, es mejor desconectar físicamente los componentes no utilizados, aunque también es válido deshabilitarlos desde la BIOS. Esto incluye, entre otros: adaptadores de red (NICs), Wi-Fi, Bluetooth, controladores de audio de alta definición (si no se usa el audio de la placa), gráficos integrados, puertos SATA, ranuras de RAM, y dispositivos integrados visibles en [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) (como controladores RGB, receptores IR, etc.). Ten en cuenta que en algunas placas base el controlador de audio de alta definición puede estar vinculado al controlador USB (referencia), por lo que puede aparecer en dicho árbol como un dispositivo USB. ([1](https://www.igorslab.de/en/the-old-alc4080-on-the-new-intel-boards-demystified-and-the-differences-from-alc1220-insider)). Así que no te confundas si se encuentra en el árbol de dispositivos USB.
+Como regla general, aplica el principio de "si no lo usas, desactívalo". Si es posible, es mejor desconectar físicamente los componentes no utilizados, aunque también es válido deshabilitarlos desde la BIOS. Esto incluye, entre otros: adaptadores de red (NICs), Wi-Fi, Bluetooth, controladores de audio de alta definición (si no se usa el audio de la placa), gráficos integrados, puertos SATA, ranuras de RAM, y dispositivos integrados visibles en [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html) (como controladores RGB, receptores IR, etc.). Ten en cuenta que en algunas placas base el controlador de audio de alta definición puede estar vinculado al controlador USB (referencia), por lo que puede aparecer en dicho árbol como un dispositivo USB. ([1](https://www.igorslab.de/en/the-old-alc4080-on-the-new-intel-boards-demystified-and-the-differences-from-alc1220-insider)). Así que no te confundas si se encuentra en el árbol de dispositivos USB.
 
 <h2 id="resizable-bar">6.8. Resizable Bar (ReBAR) <a href="#resizable-bar">(permalink)</a></h2>
 
@@ -392,7 +406,7 @@ Desactiva el Legacy USB Support, ya que puede hacer que el sistema entre en Syst
 
 Si existen opciones relacionadas con instalación de software (por ejemplo, ASUS Armoury Crate), desactívalas. Este tipo de software suele clasificarse como bloatware y puede evitarse sin problemas. Están presentes en distintas BIOS como las de ([ASUS](https://www.asus.com/support/faq/1043788), [Gigabyte](https://old.reddit.com/r/gigabyte/comments/106d9ns/gigabyte_control_center_prompt_to_install_every/ja0gc6l), [MSI](https://old.reddit.com/r/MSI_Gaming/comments/14s7so7/how_to_disable_autoinstall_of_msi_center/l6zoigh), [ASRock](https://old.reddit.com/r/ASRock/comments/1bxf8jt/asrock_auto_driver_install_app/kyc904r)).
 
-<h2 id="pci-link-speed-for-devices">6.20. Velocidad del enlace pci para dispositivos <a href="#pci-link-speed-for-devices">(permalink)</a></h2>
+<h2 id="pci-link-speed-for-devices">6.20. Velocidad del enlace pci <a href="#pci-link-speed-for-devices">(permalink)</a></h2>
 
 Configura la velocidad de enlace PCIe al valor máximo soportado, como por ejemplo Gen ``Gen 4.0``. Esto puede estar representado como gigatransferencias por segundo (GT/s) ([1](https://en.wikipedia.org/wiki/PCI_Express#Comparison_table)). Esto ayuda a evitar comportamientos inesperados y problemas.
 
@@ -417,7 +431,7 @@ Primero, familiarízate con qué puertos USB físicos corresponden a cada contro
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
-Luego, planifica y decide a qué controladores USB deseas conectar tus dispositivos, pero no los conectes todavía. En cuanto a qué controladores USB usar, eso queda a tu criterio. Si tienes más de un controlador USB, puedes aislar dispositivos como el ratón, teclado y dispositivos de audio en otro controlador USB, ya que tienen el potencial de interferir con la consistencia del polling ([1](https://forums.blurbusters.com/viewtopic.php?f=10&t=7618#p58449)). Se pueden obtener más controladores USB utilizando tarjetas de expansión PCIe o conectores USB 2.0 y 3.0 externos en la placa base. Siempre verifica esta información con [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html). Los sistemas Ryzen disponen de un controlador USB conectado directamente al CPU ([1](https://hexus.net/tech/features/mainboard/131789-amd-ryzen-3000-supporting-x570-chipset-examined)) el cual puede identificarse en la categoría PCIe Bus en [HWiNFO](https://www.hwinfo.com). Suele ser el controlador USB conectado a un ``Internal PCIe Bridge to bus`` el cual también está etiquetado con la arquitectura del CPU ([1](/assets/images/ryzen-cpu-usb-controller.png)).
+En cuanto a qué controladores USB usar, eso queda a tu criterio. Si tienes más de un controlador USB, puedes aislar dispositivos como el ratón, teclado y dispositivos de audio en otro controlador USB, ya que tienen el potencial de interferir con la consistencia del polling ([1](https://forums.blurbusters.com/viewtopic.php?f=10&t=7618#p58449)). Se pueden obtener más controladores USB utilizando tarjetas de expansión PCIe o conectores USB 2.0 y 3.0 externos en la placa base. Siempre verifica esta información con [USB Device Tree Viewer](https://www.uwe-sieber.de/usbtreeview_e.html). Los sistemas Ryzen disponen de un controlador USB conectado directamente al CPU ([1](https://hexus.net/tech/features/mainboard/131789-amd-ryzen-3000-supporting-x570-chipset-examined)) el cual puede identificarse en la categoría PCIe Bus en [HWiNFO](https://www.hwinfo.com). Suele ser el controlador USB conectado a un ``Internal PCIe Bridge to bus`` el cual también está etiquetado con la arquitectura del CPU ([1](/assets/images/ryzen-cpu-usb-controller.png)).
 
 <h2 id="plugging-in-devices">7.3. Conexión de Dispositivos <a href="#plugging-in-devices">(permalink)</a></h2>
 
@@ -1641,7 +1655,7 @@ Esto no implica una recomendación sobre el modo de presentación a usar, es mer
     reg add "HKCU\SYSTEM\GameConfigStore" /v "GameDVR_FSEBehavior" /t REG_DWORD /d "2" /f
     ```
 
-- If you are stuck with ``Hardware Composed: Independent Flip`` and would like to use another presentation mode, try running the command below to disable MPOs in CMD and reboot
+- Si se encuentra atascado con «Hardware Composed: Independent Flip» y desea utilizar otro modo de presentación, pruebe a ejecutar el siguiente comando para desactivar los MPO en CMD y reinicie el sistema.
 
     ```bat
     reg add "HKLM\SOFTWARE\Microsoft\Windows\Dwm" /v "OverlayTestMode" /t REG_DWORD /d "5" /f
@@ -1656,7 +1670,7 @@ El Modo de Juego impide que Windows Update se ejecute y que se muestren ciertas 
 
 El Modo de Juego es un perfil de energía (power profile) diseñado para optimizar el rendimiento del sistema durante sesiones de juego. Este modo prioriza recursos del hardware y ajusta configuraciones de Windows para reducir interferencias, como actualizaciones automáticas o notificaciones, asegurando una experiencia más fluida. Pero en ocasiones puede generar el 
 
-Cabe destacar que el Modo Juego puede interferir con los impulsos de prioridad de procesos e hilos, dependiendo del valor de PsPrioritySeparation, como se explica en la sección [Thread Quantums and Scheduling](#thread-quantums-and-scheduling). Esto se puede evidenciar replicando el experimento de impulso de prioridad de hilos descrito en Windows Internals, usando el Monitor de rendimiento y el contador de prioridad actual de hilos. Por esta razón, se recomienda experimentar con el Modo Juego tanto activado como desactivado.
+Cabe destacar que el Modo Juego puede interferir con los boost de prioridad de procesos e hilos, dependiendo del valor de PsPrioritySeparation, como se explica en la sección [Thread Quantums and Scheduling](#thread-quantums-and-scheduling). Esto se puede evidenciar replicando el experimento de boost de prioridad de hilos descrito en Windows Internals, usando el Monitor de rendimiento y el contador de prioridad actual de hilos. Por esta razón, se recomienda experimentar con el Modo Juego tanto activado como desactivado.
 
 <h3 id="media-player">11.43.6. Reproductor Multimedia <a href="#media-player">(permalink)</a></h3>
 
