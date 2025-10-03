@@ -24,10 +24,24 @@ Para trabajar con estos registros en Windows se suele emplear herramientas como 
 
 <h2 id="power-ctl">3.1. MSR-POWER-CTL=0x1FCH <a href="#power-ctl">(permalink)</a></h2>
 
-El MSR_POWER_CTL (dirección 0x1FC, decimal 508) es un registro específico de Intel disponible en procesadores desde la 6.ª hasta la 13.ª generación, incluyendo también varias familias de Intel Xeon y Core i3. Este registro permite al usuario modificar directamente ciertos bits relacionados con control de energía y comportamiento del procesador. Su uso resulta especialmente útil en sistemas con BIOS bloqueada (BIOS locked), ya que otorga la posibilidad de aplicar cambios a nivel de sistema operativo que normalmente solo podrían configurarse desde la BIOS.
+El MSR_POWER_CTL (dirección 0x1FC, decimal 508) es un registro específico de Intel extraido de "Intel® 64 and IA-32 Architectures Software Developer’s Manual, Volume 4: Model-Specific Registers" disponible en procesadores desde la 6.ª hasta la 13.ª generación, incluyendo también varias familias de Intel Xeon y Core i3. Este registro permite al usuario modificar directamente ciertos bits relacionados con control de energía y comportamiento del procesador. Su uso resulta especialmente útil en sistemas con BIOS bloqueada (BIOS locked), ya que otorga la posibilidad de aplicar cambios a nivel de sistema operativo que normalmente solo podrían configurarse desde la BIOS.
 
 Dentro de este MSR existen distintos campos de bits configurables, cada uno con una función específica. Por ejemplo, el bit 1 (C1E Enable) habilita o deshabilita la transición del procesador al estado de bajo consumo C1. El bit 19 (Disable Energy Efficiency Optimization) permite desactivar la optimización de eficiencia energética en los estados P, afectando directamente cómo el procesador gestiona el rendimiento y el consumo. De forma similar, el bit 20 (Disable Race to Halt Optimization) controla si se permite o no la estrategia de ejecución conocida como “Race to Halt”. Estos bits son de lectura/escritura (R/W), lo que significa que se pueden manipular mediante herramientas que accedan a los MSRs (RDMSR y WRMSR).
 
+<details>
+<summary>3.1.1 Instruccion 1. </summary>
+  
+<img width="1080" height="906" alt="MSR_POWER_CTL= (3)" src="https://github.com/user-attachments/assets/0f1cf8bc-d5bf-4819-9f05-410fe1ed65fa" />
 
-<img width="642" height="538" alt="MSR_POWER_CTL=" src="https://github.com/user-attachments/assets/31def932-3efa-4963-8629-7ee4f4628e1c" />
+<details>
+<summary>3.1.2. Instruccion 2. </summary>
+
+<img width="1080" height="634" alt="MSR_POWER_CTL= (1)" src="https://github.com/user-attachments/assets/a6085ca3-d059-4472-afc4-cce5e536b0c1" />
+
+<details>
+<summary>3.1.3. Instruccion3. </summary>
+
+<img width="1088" height="656" alt="MSR_POWER_CTL= (2)" src="https://github.com/user-attachments/assets/0e050ee5-6e7d-40ad-98e9-4f9f2c5d218d" />
+
+
 
