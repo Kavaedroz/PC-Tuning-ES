@@ -318,15 +318,20 @@ Los fabricantes de placas base suelen ocultar muchas configuraciones para que no
 
 <h2 id="model-specific-registers">6.6.1. Model-Specific Registers (MSR) <a href="#model-specific-registers">(permalink)</a></h2>
 
-Un Model-Specific Register [MSR](https://en.wikipedia.org/wiki/Model-specific_register) es un registro especial y particular del diseño de cada procesador (x86) que no forma parte de los registros generales de propósito común. Estos registros permiten funciones de control avanzadas del CPU, como monitoreo de rendimiento, activación o desactivación de características específicas, trazas de ejecución o ajustes internos del procesador.
+Un Model-Specific Register [(MSR)](https://en.wikipedia.org/wiki/Model-specific_register) es un registro especial y particular del diseño de cada procesador (x86) que no forma parte de los registros generales de propósito común. Estos registros permiten funciones de control avanzadas del CPU, como monitoreo de rendimiento, activación o desactivación de características específicas, trazas de ejecución o ajustes internos del procesador.
 
-Su acceso se hace mediante instrucciones privilegiadas (RDMSR para leer y WRMSR para escribir), lo cual significa que solo el sistema operativo (o código con los permisos adecuados) puede manipularlos.
+Su acceso se hace mediante instrucciones privilegiadas (RDMSR para leer y WRMSR para escribir), lo cual significa que solo el sistema operativo (o código con los permisos adecuados) puede manipularlos. 
+
+A continuación veremos un par de ejemplos sobre MSR's aplicables tanto para Intel como AMD:
+
+- Ver: [docs/intel-msrs.md](/docs/intel-msrs.md)
+- Ver: [docs/amd-msrs.md](/docs/amd-msrs.md)
 
 <h2 id="datasheet">6.6.2. Datasheet, MMIO, IO, PCI. <a href="#datasheet">(permalink)</a></h2>
 
 El [Datasheet](https://en.wikipedia.org/wiki/Datasheet) de un procesador o chipset describe en detalle la disposición de registros accesibles mediante distintos mecanismos como MMIO (Memory-Mapped I/O), espacio PCI o puertos de E/S (I/O ports). Estos registros contienen campos y bits que controlan aspectos fundamentales del hardware, como la administración de energía, la latencia de buses, la gestión de interrupciones o el comportamiento de controladores integrados. Al modificar de forma precisa estos bits, es posible ajustar parámetros de bajo nivel que influyen directamente en el rendimiento y la respuesta del sistema.
 
-El acceso a estos registros se realiza a través de herramientas o instrucciones específicas que permiten leer y escribir en direcciones determinadas, siguiendo siempre la documentación oficial del datasheet. Esto garantiza que los cambios aplicados no sean arbitrarios, sino informados y consistentes con la arquitectura del dispositivo. Un uso cuidadoso de esta información permite optimizar el hardware para escenarios concretos —como reducir latencia, mejorar la eficiencia de comunicación en buses o desactivar funciones innecesarias—, manteniendo un balance entre rendimiento y estabilidad.
+El acceso a estos registros se realiza a través de herramientas tales como [RW-Everything](https://rweverything.com/), [HE](https://github.com/Faintsnow/HE) o [Chiptool](https://github.com/LuSlower/chiptool) que permiten leer y escribir en direcciones determinadas, siguiendo siempre la documentación oficial del datasheet. Esto garantiza que los cambios aplicados no sean arbitrarios, sino informados y consistentes con la arquitectura del dispositivo. Un uso cuidadoso de esta información permite optimizar el hardware para escenarios concretos —como reducir latencia, mejorar la eficiencia de comunicación en buses o desactivar funciones innecesarias—, manteniendo un balance entre rendimiento y estabilidad.
 
 <h2 id="unnecessary-devices">6.7. Dispositivos innecesarios <a href="#unnecessary-devices">(permalink)</a></h2>
 
