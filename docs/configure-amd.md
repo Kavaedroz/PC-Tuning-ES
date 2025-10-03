@@ -1,10 +1,10 @@
 <h1 id="configure-the-amd-driver">Configuración de Driver AMD <a href="#configure-the-amd-driver">(permalink)</a></h1>
 
-> [!IMPORTANTE]
-> Disclaimer: I no longer own an AMD GPU meaning this section may be incomplete/unmaintained. For this reason, you can visit the AMD GPUs section in [Calypto's Latency Guide](https://calypto.us).
+> [!IMPORTANT]
+> No nos hacemos responsables: No tenemos una GPU AMD, lo que significa que esta sección puede estar incompleta o sin actualizar. Por este motivo, puede visitar la sección de GPU AMD en [Calypto's Latency Guide](https://calypto.us).
 
-> [!PRECAUCIÓN]
-> 📊 **NO** seguir ciegamente las recomendaciones en esta sección. **REALIZA** benchmarks hacia los cambios específicos que realices para asegurar que resultan en una escala positiva de rendimiento, ya que todos los sistemas se comportan de manera diferente y los cambios pueden degradar el rendimiento ([instrucciones](/README.md#3-benchmarking)).
+> [!CAUTION]
+> 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 <h2 id="table-of-contents">1. Tabla de Contenidos <a href="#table-of-contents">(permalink)</a></h2>
 
