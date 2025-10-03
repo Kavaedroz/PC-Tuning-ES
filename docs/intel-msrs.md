@@ -32,18 +32,16 @@ Dentro de este MSR existen distintos campos de bits configurables, cada uno con 
 <summary>3.1.1 Instruccion 1. </summary>
   
 <img width="1080" height="906" alt="MSR_POWER_CTL= (3)" src="https://github.com/user-attachments/assets/0f1cf8bc-d5bf-4819-9f05-410fe1ed65fa" />
-<details>
   
 <details>
 <summary>3.1.2. Instruccion 2. </summary>
 
 <img width="1080" height="634" alt="MSR_POWER_CTL= (1)" src="https://github.com/user-attachments/assets/a6085ca3-d059-4472-afc4-cce5e536b0c1" />
-<details>
   
 <details>
 <summary>3.1.3. Instruccion3. </summary>
 
 <img width="1088" height="656" alt="MSR_POWER_CTL= (2)" src="https://github.com/user-attachments/assets/0e050ee5-6e7d-40ad-98e9-4f9f2c5d218d" />
-<details>
+
 
 
