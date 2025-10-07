@@ -405,7 +405,7 @@ Desactiva el Spread Spectrum ([más información aqui](https://en.wikipedia.org/
 
 <h2 id="legacy-usb-support">6.18. Legacy USB Support <a href="#legacy-usb-support">(permalink)</a></h2>
 
-Desactiva el Legacy USB Support, ya que puede hacer que el sistema entre en System Management Mode (SMM) mediante System Management Interrupts (SMIs) ([1](https://patents.google.com/patent/US6067589), [2](https://www.kernel.org/doc/Documentation/x86/usb-legacy-support.txt)) que son interrupciones de hardware de alta prioridad no enmascarables que hacen que la CPU suspenda inmediatamente todas las demás actividades, incluido el sistema operativo ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). Es posible que necesites activarlo para instalar un nuevo sistema operativo, acceder a la BIOS o usar dispositivos USB en algunos casos.
+Desactiva el Legacy USB Support, ya que puede hacer que el sistema entre en System Management Mode (SMM) mediante System Management Interrupts (SMIs) ([1](https://patents.google.com/patent/US6067589), [2](https://www.kernel.org/doc/Documentation/x86/usb-legacy-support.txt)) que son interrupciones de hardware de alta prioridad no modificables que hacen que la CPU suspenda inmediatamente todas las demás actividades, incluido el sistema operativo ([1](https://wiki.linuxfoundation.org/realtime/documentation/howto/debugging/smi-latency/smi)). Es posible que necesites activarlo para instalar un nuevo sistema operativo, acceder a la BIOS o usar dispositivos USB en algunos casos.
 
 <h2 id="software-installation-options">6.19. Opciones de instalación del software <a href="#software-installation-options">(permalink)</a></h2>
 
@@ -413,11 +413,11 @@ Si existen opciones relacionadas con instalación de software (por ejemplo, ASUS
 
 <h2 id="pci-link-speed-for-devices">6.20. Velocidad del enlace pci <a href="#pci-link-speed-for-devices">(permalink)</a></h2>
 
-Configura la velocidad de enlace PCIe al valor máximo soportado, como por ejemplo Gen ``Gen 4.0``. Esto puede estar representado como gigatransferencias por segundo (GT/s) ([1](https://en.wikipedia.org/wiki/PCI_Express#Comparison_table)). Esto ayuda a evitar comportamientos inesperados y problemas.
+Configura la velocidad de enlace PCIe al valor máximo soportado, como por ejemplo Gen ``Gen 4.0``. Esto puede estar representado como gigatransferencias por segundo (GT/s) ([1](https://en.wikipedia.org/wiki/PCI_Express#Comparison_table)). Esto ayuda a evitar comportamientos inesperados, problemas y garantiza una experiencia optima.
 
 <h2 id="fan-curves">6.21. Curvas de ventilación <a href="#fan-curves">(permalink)</a></h2>
 
-Para maximizar el potencial de refrigeración, configura las curvas de ventilador ([ejemplo](https://imgur.com/a/2UDYXp0)) o ajusta una velocidad estática alta aceptable en cuanto a ruido. Si usas un sistema AIO, configura la bomba a velocidad máxima.
+Para maximizar el potencial de refrigeración, configura las curvas de ventilador ([ejemplo](https://imgur.com/a/2UDYXp0)) o ajusta una velocidad estática alta aceptable en cuanto a ruido. Si usas un sistema AIO, configura la bomba a velocidad máxima, esto en parte tambien ayuda a reducir la cantidad de smi's. 
 
 <h2 id="bios-profiles-and-backups">6.22. Perfiles y copias de seguridad de BIOS <a href="#bios-profiles-and-backups">(permalink)</a></h2>
 
@@ -461,7 +461,7 @@ Las especificaciones USB 2.0/3.0 están limitadas a 0.5 A y 0.9 A respectivament
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
-Un DPI más alto en el sensor reduce la latencia y ayuda a saturar los sondeos con datos de movimiento ([1](https://www.youtube.com/watch?v=6AoRfv9W110), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=imYBTj2RXFs&t=275s)). Evita la reducción de jitter (por ejemplo, reducción de DPI) y el [sensor smoothing](https://old.reddit.com/r/MouseReview/comments/5haxn4/sensor_smoothing) que puede activarse con valores de DPI más altos.  Si tu juego utiliza entrada sin procesar (raw input) puedes reducir la velocidad del puntero en Windows para compensar la sensibilidad de un DPI más alto [calculadora](https://boringboredom.github.io/tools/winsenscalculator) De lo contrario, deja el control deslizante en su posición predeterminada, ya que el escalado puede afectar negativamente la entrada. Una forma de saber si una aplicación usa entrada sin procesar es espiar las llamadas a la API raw input con [API Monitor](http://www.rohitab.com/apimonitor) o verificar si la opción de “mejorar la precisión del puntero” tiene algún efecto en el juego. Si aún tienes dudas, deja el control deslizante en la posición predeterminada.
+Un DPI más alto en el sensor reduce la latencia y ayuda a saturar los sondeos con datos de movimiento ([1](https://www.youtube.com/watch?v=6AoRfv9W110), [2](https://www.youtube.com/watch?v=mwf_F2VboFQ&t=458s), [3](https://www.youtube.com/watch?v=imYBTj2RXFs&t=275s)). Evita la reducción de jitter (por ejemplo, reducción de DPI) y el [sensor smoothing](https://old.reddit.com/r/MouseReview/comments/5haxn4/sensor_smoothing) que puede activarse con valores de DPI más altos.  Si tu juego utiliza entrada sin procesar (raw input) puedes reducir la velocidad del puntero en Windows para compensar la sensibilidad de un DPI más alto [calculadora](https://boringboredom.github.io/tools/winsenscalculator) De lo contrario, deja el control deslizante en su posición predeterminada, ya que el escalado puede afectar negativamente la entrada. Una forma de saber si una aplicación usa entrada sin procesar es espiar las llamadas a la API raw input con [API Monitor](http://www.rohitab.com/apimonitor) o verificar si la opción de “mejorar la precisión del puntero” tiene algún efecto en el juego.
 
 <h2 id="report-rate">8.5. Tasa de Sondeo <a href="#report-rate">(permalink)</a></h2>
 
@@ -506,7 +506,7 @@ Es altamente recomendable configurar un arranque dual temporal con una instalaci
 
 <h2 id="error-correction">9.3. Corrección de Errores <a href="#error-correction">(permalink)</a></h2>
 
-El overclocking no garantiza mejor rendimiento, especialmente si entran en juego mecanismos como la corrección de errores. Verifica si los cambios que estás haciendo escalan positivamente mediante una metodología de benchmarking sistemática.
+El overclocking no garantiza mejor rendimiento, especialmente si entran en juego mecanismos como la "corrección de errores". Verifica si los cambios que estás haciendo escalan positivamente mediante una metodología de benchmarking.
 
 <h2 id="thermal-management">9.4. Gestión Térmica <a href="#thermal-management">(permalink)</a></h2>
 
@@ -635,6 +635,8 @@ También se han introducido los siguientes cambios en 24h2:
 - Actualización de WDDM a la versión 3.2 ([1](https://learn.microsoft.com/en-us/windows-hardware/drivers/what-s-new-in-driver-development#display-and-graphics-drivers)).
 - Se ha eliminado la conexión con el CPD del controlador de la GPU del flujo de entrada (función GetRawInputData), lo que tiene un efecto positivo en los resultados finales.
 - Utiliza dos flujos de entrada en DWM en lugar de tres (23h2).
+
+Al momento de esta actualizacion windows 11 24h2 tiene un bug con las tarjetas graficas nvidia ["AutoBoost"](https://github.com/Duckleeng/TweakCollection/tree/main/Research#windows-11-24h2-autoboost-behavior), debido a lo cual no se recomienda usar esta version hasta que microsoft o nvidia publiquen una solucion.
 
 <h2 id="downloading-and-preparing-a-stock-windows-iso">10.3. Descargar y Preparar una ISO de Windows Oficial <a href="#downloading-and-preparing-a-stock-windows-iso">(permalink)</a></h2>
 
