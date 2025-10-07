@@ -1874,6 +1874,18 @@ Aunque no se puede usar una mejora para el primer plano cuando se usa un quantum
 
 Para la mayoría de los lectores, simplemente recomendaría dejar este valor en su estado predeterminado. Aunque una combinación de la longitud del quantum y la proporción de tiempo entre primer plano y segundo plano puede influir en la frecuencia de cambio de contexto de un hilo dependiendo de si su tiempo de ejecución excede el tiempo asignado en el quantum, como se describió anteriormente, puedes realizar pruebas comparativas para verificar si influye en el rendimiento de tus aplicaciones preferidas. Si estás utilizando Windows Server en un sistema de escritorio, el valor puede establecerse en ``0x26`` , el cual imita el mismo comportamiento que ``0x2`` en ediciones cliente de Windows.
 
+Con la llegada de Windows 24H2, se ha actualizado el mecanismo interno con el que el sistema calcula el quantum (unidad de tiempo que un hilo puede ejecutarse antes de ser reemplazado).
+
+-A partir de esta versión:
+
+   -Un Quantum Unit ahora equivale a 1/18 de KeMaximumIncrement, lo que da como resultado aproximadamente 0.868 ms por unidad.
+
+   -Cuando se usa la longitud "Short" al establecer Win32PrioritySeparation, y gracias a que ahora se emplea PspVariableQuantums_With_ShortQuantum, se obtienen 2 Quantum Units, es decir, 1.736 ms de quantum.
+
+   -Por esta razón, el temporizador de interrupciones del sistema se ha ajustado a 1.74 ms, permitiendo una mayor precisión en la planificación de hilos.
+
+   -Este comportamiento está regulado por el valor del símbolo KiVelocityFlags, que en Windows 24H2 toma el valor 0x70000. El bit 18 habilita estas nuevas reglas de cálculo.
+
 | **Hex** | **Dec** | **Binary** | **Interval** | **Length** | **PsPrioSep** | **FG (legacy)** | **BG (legacy)** | **Total (legacy)** | **FG (KiVelocityFlags)** | **BG (KiVelocityFlags)** | **Total (KiVelocityFlags)** |
 |--------|---------|------------|--------------|------------|---------------|------------------|------------------|---------------------|---------------------------|---------------------------|------------------------------|
 | 0x14   | 20      | 010100     | Long         | Variable   | 0             | 12 (62.50 ms)     | 12 (62.50 ms)     | 24 (125.00 ms)       | 12 (10.42 ms)             | 12 (10.42 ms)             | 24 (20.83 ms)                |
