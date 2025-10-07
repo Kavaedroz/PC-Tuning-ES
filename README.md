@@ -146,8 +146,9 @@
     - [11.50.1. Explicación de Bitmask](#bitmask-explaination)
     - [11.50.2. Valores de Win32PrioritySeparation](#win32priorityseparation-values)
   - [11.51. Frecuencia de Interrupción del Reloj (Resolución del Temporizador)](#clock-interrupt-frequency-timer-resolution)
-  - [11.52. Archivo de Paginación](#paging-file)
-  - [11.53. Limpieza y Mantenimiento](#cleanup-and-maintenance)
+  - [11.52. Serialize Timer Expiration (STE)](#serialize-timer-expiration)
+  - [11.53. Archivo de Paginación](#paging-file)
+  - [11.54. Limpieza y Mantenimiento](#cleanup-and-maintenance)
 
 <h1 id="introduction">2. Introducción <a href="#introduction">(permalink)</a></h1>
 
@@ -1876,15 +1877,15 @@ Para la mayoría de los lectores, simplemente recomendaría dejar este valor en 
 
 Con la llegada de Windows 24H2, se ha actualizado el mecanismo interno con el que el sistema calcula el quantum (unidad de tiempo que un hilo puede ejecutarse antes de ser reemplazado).
 
--A partir de esta versión:
+- A partir de esta versión:
 
-   -Un Quantum Unit ahora equivale a 1/18 de KeMaximumIncrement, lo que da como resultado aproximadamente 0.868 ms por unidad.
+   - Un Quantum Unit ahora equivale a 1/18 de KeMaximumIncrement, lo que da como resultado aproximadamente 0.868 ms por unidad.
 
-   -Cuando se usa la longitud "Short" al establecer Win32PrioritySeparation, y gracias a que ahora se emplea PspVariableQuantums_With_ShortQuantum, se obtienen 2 Quantum Units, es decir, 1.736 ms de quantum.
+   - Cuando se usa la longitud "Short" al establecer Win32PrioritySeparation, y gracias a que ahora se emplea PspVariableQuantums_With_ShortQuantum, se obtienen 2 Quantum Units, es decir, 1.736 ms de quantum.
 
-   -Por esta razón, el temporizador de interrupciones del sistema se ha ajustado a 1.74 ms, permitiendo una mayor precisión en la planificación de hilos.
+   - Por esta razón, el temporizador de interrupciones del sistema se ha ajustado a 1.74 ms, permitiendo una mayor precisión en la planificación de hilos.
 
-   -Este comportamiento está regulado por el valor del símbolo KiVelocityFlags, que en Windows 24H2 toma el valor 0x70000. El bit 18 habilita estas nuevas reglas de cálculo.
+   - Este comportamiento está regulado por el valor del símbolo KiVelocityFlags, que en Windows 24H2 toma el valor 0x70000. El bit 18 habilita estas nuevas reglas de cálculo.
 
 | **Hex** | **Dec** | **Binary** | **Interval** | **Length** | **PsPrioSep** | **FG (legacy)** | **BG (legacy)** | **Total (legacy)** | **FG (KiVelocityFlags)** | **BG (KiVelocityFlags)** | **Total (KiVelocityFlags)** |
 |--------|---------|------------|--------------|------------|---------------|------------------|------------------|---------------------|---------------------------|---------------------------|------------------------------|
@@ -1924,14 +1925,34 @@ Una resolución más alta proporciona mayor precisión, pero en algunos casos, l
 
 Recomiendo favorecer la implementación por proceso (no global) cuando sea aplicable, ya que reduce el overhead. En su lugar, usa [RTSS](https://www.guru3d.com/download/rtss-rivatuner-statistics-server-download) para limitar el framerate con precisión. Cabe señalar que puede introducir una latencia notablemente mayor ([1](https://www.youtube.com/watch?t=377&v=T2ENf9cigSk), [2](https://en.wikipedia.org/wiki/Busy_waiting)) por lo que recomiendo comparar y hacer pruebas con la técnica de microajuste en la resolución solicitada usando el comportamiento global. Es posible que la estabilidad del frametime no se vea afectada al elevar la resolución más allá de 1ms debido a mejoras en el limitador de framerate del juego, en cuyo caso no se requiere ninguna acción. El punto principal es comparar todas las opciones disponibles, con preferencia por la implementación por proceso (predeterminada desde Windows 10 2004+) si descubres que elevar más la resolución no tiene impacto real.
 
-<h2 id="paging-file">11.52. Archivo de Paginación <a href="#paging-file">(permalink)</a></h2>
+<h2 id="serialize-timer-expiration">11.52. Serialize Timer Expiration (STE) <a href="#serialize-timer-expiration">(permalink)</a></h2>
+
+SerializeTimerExpiration es un parámetro del registro de Windows que controla cómo se distribuyen las interrupciones del temporizador del sistema (system timer interrupts) entre los distintos núcleos del procesador. Estas interrupciones son fundamentales para mantener actualizado el reloj del sistema, medir el tiempo de ejecución de los hilos (quantum), y programar tareas internas del sistema operativo o de aplicaciones que dependen de temporizadores de alta resolución.
+
+Por diseño, solo uno de los núcleos (generalmente el núcleo 0) se encarga de actualizar el reloj del sistema en respuesta a estas interrupciones. Los demás núcleos reciben las interrupciones únicamente para medir el quantum y realizar la replanificación de hilos. SerializeTimerExpiration permite definir si estas interrupciones deben ejecutarse solo en el núcleo principal o en todos los núcleos, lo que puede influir tanto en el rendimiento como en el consumo energético.
+
+Este parámetro acepta diferentes valores que permiten ajustar su comportamiento. Por ejemplo, se puede configurar para que las interrupciones de alta resolución ocurran únicamente en un núcleo para reducir la carga en el sistema, o en todos los núcleos si se desea una distribución más uniforme, aunque esto incrementa el trabajo de CPU. También existe un modo automático, en el que el sistema decide la configuración óptima según la compatibilidad del equipo con tecnologías como Modern Standby.
+
+En Windows 11 versión 24H2, el comportamiento de SerializeTimerExpiration ha sido actualizado para mejorar el control sobre las interrupciones del temporizador del sistema, especialmente en escenarios donde se utilizan temporizadores de alta resolución (como 0.5 ms). Este parámetro ahora puede tomar los valores 0, 1 o 2, y su impacto varía de forma significativa.
+
+Cuando SerializeTimerExpiration está configurado en 1, el sistema genera interrupciones del temporizador cada ~0.5 ms únicamente en el núcleo 0, mientras que en el resto de los núcleos se mantiene un intervalo de 1.74 ms. Este comportamiento está estrechamente relacionado con el uso de los 18 bits de la variable KiVelocityFlags, que permite calcular de forma precisa el quantum, especialmente cuando se trata de valores cortos como 1.73611 ms. Esta separación entre núcleos permite reducir la carga de interrupciones en el sistema manteniéndolas centralizadas en un solo núcleo.
+
+En cambio, cuando el valor se establece en 2, las interrupciones del temporizador del sistema ocurren cada ~0.5 ms en todos los núcleos. Aunque esto garantiza una sincronización más uniforme, también aumenta la carga general del sistema. Sin embargo, es importante entender que solo el núcleo 0 actualiza realmente el reloj del sistema; los demás núcleos utilizan las interrupciones únicamente para calcular el quantum o realizar replanificación. Esto se explica en la documentación interna de Windows, donde se aclara que aunque cada procesador tiene su propia tabla de interrupciones (IDT), solo uno de ellos —normalmente el núcleo 0— es responsable de actualizar el reloj del sistema.
+
+Si el valor está en 0, el sistema selecciona el modo automáticamente en función de si el dispositivo es compatible con Modern Standby. En ese caso, se comportará como si el valor fuera 1. Puedes verificar si Modern Standby está disponible usando el comando powercfg -a.
+
+Durante las pruebas realizadas en esta versión, se observó que parámetros como UsePlatformTick, DisableDynamicTick, o incluso el valor de GlobalTimerResolutionRequests no afectan el número de interrupciones del temporizador del sistema, aunque este último sí influye en el comportamiento del sueño de los procesos. Por ejemplo, si una aplicación solicita una resolución de temporizador de 0.5 ms, pero un juego usa una de 1 ms, las interrupciones seguirán ocurriendo cada 0.5 ms, pero el juego solo recibirá actualizaciones cada 1 ms. Además, los demás procesos podrían seguir durmiendo en intervalos de 15.6 ms, lo que significa que el beneficio de una mayor frecuencia de interrupciones se pierde para la mayoría de ellos. También hay que tener en cuenta que funciones como WaitForSingleObject dependen de esta resolución, aunque solo afecta los timeouts, y no tiene un impacto significativo en el rendimiento.
+
+Finalmente, se debe considerar que el número de DPCs (procedimientos diferidos) relacionados con SYMCRYPTK también depende del número de interrupciones, incluyendo las del temporizador del sistema. Por defecto, el mayor número de DPCs de este tipo se genera en el núcleo 0, ya que es el encargado de mantener el reloj del sistema. Si deseas eliminar las interrupciones del temporizador en todos los núcleos excepto en el núcleo 0 —y con ello reducir los DPCs de SYMCRYPTK en esos núcleos— puedes modificar el valor asociado al símbolo KeQuantumEndTimerIncrement a 0xFFFFFFFF. No obstante, es importante saber que aún podrán generarse DPCs en otros núcleos como resultado de interrupciones de otros controladores.
+
+<h2 id="paging-file">11.53. Archivo de Paginación <a href="#paging-file">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
 
 Para la mayoría de los lectores, recomendaría mantener habilitado el archivo de paginación, que es el estado predeterminado. Existe el argumento de que es preferible deshabilitarlo si tienes suficiente RAM para tus aplicaciones, ya que reduce la sobrecarga de E/S y la memoria del sistema es más rápida que el disco. Sin embargo, muchos usuarios han reportado interrupciones (stuttering) en juegos específicos con el archivo de paginación deshabilitado, a pesar de que el uso de RAM no se acerca al máximo. Windows parece asignar el archivo de paginación a discos secundarios en ocasiones, lo cual puede ser problemático si uno de los discos es un HDD. Esto se puede resolver asignando el archivo de paginación a un SSD y configurando su tamaño como “administrado por el sistema”, y luego desasignándolo de las demás unidades.
 
-<h2 id="cleanup-and-maintenance">11.53. Limpieza y Mantenimiento <a href="#cleanup-and-maintenance">(permalink)</a></h2>
+<h2 id="cleanup-and-maintenance">11.54. Limpieza y Mantenimiento <a href="#cleanup-and-maintenance">(permalink)</a></h2>
 
 No es mala idea revisar este paso periódicamente. Configurar un recordatorio para hacerlo puede ser útil para mantener el sistema limpio.
 
