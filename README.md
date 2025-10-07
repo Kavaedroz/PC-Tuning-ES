@@ -1874,20 +1874,21 @@ Aunque no se puede usar una mejora para el primer plano cuando se usa un quantum
 
 Para la mayoría de los lectores, simplemente recomendaría dejar este valor en su estado predeterminado. Aunque una combinación de la longitud del quantum y la proporción de tiempo entre primer plano y segundo plano puede influir en la frecuencia de cambio de contexto de un hilo dependiendo de si su tiempo de ejecución excede el tiempo asignado en el quantum, como se describió anteriormente, puedes realizar pruebas comparativas para verificar si influye en el rendimiento de tus aplicaciones preferidas. Si estás utilizando Windows Server en un sistema de escritorio, el valor puede establecerse en ``0x26`` , el cual imita el mismo comportamiento que ``0x2`` en ediciones cliente de Windows.
 
-|**Hexadecimal**|**Decimal**|**Binary**|**Interval**|**Length**|**PsPrioSep**|
-|---|---|---|---|---|---|
-|0x14|20|0b010100|Long|Variable|0|
-|0x15|21|0b010101|Long|Variable|1|
-|0x16|22|0b010110|Long|Variable|2|
-|0x18|24|0b011000|Long|Fixed|0|
-|0x19|25|0b011001|Long|Fixed|1|
-|0x1A|26|0b011010|Long|Fixed|2|
-|0x24|36|0b100100|Short|Variable|0|
-|0x25|37|0b100101|Short|Variable|1|
-|0x26|38|0b100110|Short|Variable|2|
-|0x28|40|0b101000|Short|Fixed|0|
-|0x29|41|0b101001|Short|Fixed|1|
-|0x2A|42|0b101010|Short|Fixed|2|
+| **Hex** | **Dec** | **Binary** | **Interval** | **Length** | **PsPrioSep** | **FG (legacy)** | **BG (legacy)** | **Total (legacy)** | **FG (KiVelocityFlags)** | **BG (KiVelocityFlags)** | **Total (KiVelocityFlags)** |
+|--------|---------|------------|--------------|------------|---------------|------------------|------------------|---------------------|---------------------------|---------------------------|------------------------------|
+| 0x14   | 20      | 010100     | Long         | Variable   | 0             | 12 (62.50 ms)     | 12 (62.50 ms)     | 24 (125.00 ms)       | 12 (10.42 ms)             | 12 (10.42 ms)             | 24 (20.83 ms)                |
+| 0x15   | 21      | 010101     | Long         | Variable   | 1             | 24 (125.00 ms)    | 12 (62.50 ms)     | 36 (187.50 ms)       | 24 (20.83 ms)             | 12 (10.42 ms)             | 36 (31.25 ms)                |
+| 0x16   | 22      | 010110     | Long         | Variable   | 2             | 36 (187.50 ms)    | 12 (62.50 ms)     | 48 (250.00 ms)       | 36 (31.25 ms)             | 12 (10.42 ms)             | 48 (41.67 ms)                |
+| 0x18   | 24      | 011000     | Long         | Fixed      | 0             | 36 (187.50 ms)    | 36 (187.50 ms)    | 72 (375.00 ms)       | 36 (31.25 ms)             | 36 (31.25 ms)             | 72 (62.50 ms)                |
+| 0x19   | 25      | 011001     | Long         | Fixed      | 1             | 36 (187.50 ms)    | 36 (187.50 ms)    | 72 (375.00 ms)       | 36 (31.25 ms)             | 36 (31.25 ms)             | 72 (62.50 ms)                |
+| 0x1A   | 26      | 011010     | Long         | Fixed      | 2             | 36 (187.50 ms)    | 36 (187.50 ms)    | 72 (375.00 ms)       | 36 (31.25 ms)             | 36 (31.25 ms)             | 72 (62.50 ms)                |
+| 0x24   | 36      | 100100     | Short        | Variable   | 0             | 6 (31.25 ms)      | 6 (31.25 ms)      | 12 (62.50 ms)        | 6 (5.21 ms)               | 6 (5.21 ms)               | 12 (10.42 ms)                |
+| 0x25   | 37      | 100101     | Short        | Variable   | 1             | 12 (62.50 ms)     | 6 (31.25 ms)      | 18 (93.75 ms)        | 12 (10.42 ms)             | 6 (5.21 ms)               | 18 (15.62 ms)                |
+| 0x26   | 38      | 100110     | Short        | Variable   | 2             | 18 (93.75 ms)     | 6 (31.25 ms)      | 24 (125.00 ms)       | 18 (15.62 ms)             | 6 (5.21 ms)               | 24 (20.83 ms)                |
+| 0x28   | 40      | 101000     | Short        | Fixed      | 0             | 18 (93.75 ms)     | 18 (93.75 ms)     | 36 (187.50 ms)       | 18 (15.62 ms)             | 18 (15.62 ms)             | 36 (31.25 ms)                |
+| 0x29   | 41      | 101001     | Short        | Fixed      | 1             | 18 (93.75 ms)     | 18 (93.75 ms)     | 36 (187.50 ms)       | 18 (15.62 ms)             | 18 (15.62 ms)             | 36 (31.25 ms)                |
+| 0x2A   | 42      | 101010     | Short        | Fixed      | 2             | 18 (93.75 ms)     | 18 (93.75 ms)     | 36 (187.50 ms)       | 18 (15.62 ms)             | 18 (15.62 ms)             | 36 (31.25 ms)                |
+
 
 <h2 id="clock-interrupt-frequency-timer-resolution">11.51. Clock Interrupt Frequency (Timer Resolution) <a href="#clock-interrupt-frequency-timer-resolution">(permalink)</a></h2>
 
