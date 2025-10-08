@@ -145,7 +145,7 @@
   - [11.50. Quantums de Hilo y Planificación](#thread-quantums-and-scheduling)
     - [11.50.1. Explicación de Bitmask](#bitmask-explaination)
     - [11.50.2. Valores de Win32PrioritySeparation](#win32priorityseparation-values)
-  - [11.51. Frecuencia de Interrupción del Reloj (Resolución del Temporizador)](#clock-interrupt-frequency-timer-resolution)
+  - [11.51. Frecuencia de Interrupción del Reloj (Timer Resolution)](#clock-interrupt-frequency-timer-resolution)
   - [11.52. Serialize Timer Expiration (STE)](#serialize-timer-expiration)
   - [11.53. Archivo de Paginación](#paging-file)
   - [11.54. Limpieza y Mantenimiento](#cleanup-and-maintenance)
@@ -1903,7 +1903,7 @@ Con la llegada de Windows 24H2, se ha actualizado el mecanismo interno con el qu
 | 0x2A   | 42      | 101010     | Short        | Fixed      | 2             | 18 (93.75 ms)     | 18 (93.75 ms)     | 36 (187.50 ms)       | 18 (15.62 ms)             | 18 (15.62 ms)             | 36 (31.25 ms)                |
 
 
-<h2 id="clock-interrupt-frequency-timer-resolution">11.51. Clock Interrupt Frequency (Timer Resolution) <a href="#clock-interrupt-frequency-timer-resolution">(permalink)</a></h2>
+<h2 id="clock-interrupt-frequency-timer-resolution">11.51. Frecuencia de Interrupción del Reloj (Timer Resolution) <a href="#clock-interrupt-frequency-timer-resolution">(permalink)</a></h2>
 
 > [!CAUTION]
 > 📊 **No** apliques ciegamente las recomendaciones de esta sección. Es fundamental evaluar cada cambio para asegurarse de que realmente mejora el rendimiento, ya que el comportamiento puede variar significativamente entre distintos sistemas. Algunos ajustes podrían incluso afectar negativamente si no se prueban adecuadamente ([instrucciones aquí.](#benchmarking)).
